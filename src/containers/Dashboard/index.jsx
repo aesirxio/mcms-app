@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { observer } from "mobx-react";
-import DateRangePicker from "components/DateRangePicker";
 import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
-import SummaryStore from "store/SummaryStore/SummaryStore";
-import SummaryViewModel from "store/SummaryStore/SummaryViewModel";
 import { withRouter } from "react-router-dom";
-const summaryStore = new SummaryStore();
-const summaryViewModel = new SummaryViewModel(summaryStore);
 const Dashboard = observer(
   class Dashboard extends Component {
     constructor(props) {
@@ -41,9 +36,9 @@ const Dashboard = observer(
               <p className="mb-0 text-color">{t("txt_dashboard_below")}</p>
             </div>
             <div className="position-relative">
-              <DateRangePicker
+              {/* <DateRangePicker
                 viewModelArr={[summaryViewModel.summaryListViewModel]}
-              ></DateRangePicker>
+              ></DateRangePicker> */}
             </div>
           </div>
         </div>

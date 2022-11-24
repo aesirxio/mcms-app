@@ -17,3 +17,16 @@
     opacity: 0.6;
   }
 }
+.line {
+  padding-top: 30px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.line span {
+  background: #f5f8fa;
+  padding: 0 10px;
+}

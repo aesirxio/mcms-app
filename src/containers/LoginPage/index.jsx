@@ -6,6 +6,7 @@ import "./index.scss";
 
 import { login } from "../../auth";
 import InputPassword from "../../components/inputPassword";
+// import GoogleLoginButton from "components/googleLogin";
 // import ComponentImage from 'components/ComponentImage';
 const dataSlider = [
   {
@@ -14,6 +15,24 @@ const dataSlider = [
     subtitle: "Creator of AesirX",
   },
 ];
+const menuLogin = [
+  {
+    title: "Continue Concordium Wallet ",
+    icon: "/assets/images/wallet.png",
+    color: "blue-50",
+  },
+  {
+    title: "Continue with Facebook",
+    icon: "/assets/images/facebook.png",
+    color: "blue-100",
+  },
+  {
+    title: "Continue with Google",
+    icon: "/assets/images/google.svg",
+    color: "white",
+  },
+];
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +83,7 @@ class LoginPage extends React.Component {
         <BannerLeft dataSlider={dataSlider} />
         <div className="col-12 col-xl-8 d-flex flex-column justify-content-center align-items-center">
           <div className="d-block">
-            <h1 className="fs-2 fw-normal text-start mb-16 lh-base">
+            <h1 className="fs-2 fw-normal text-start mb-16 lh-base fw-semibold">
               {t("txt_welcome_to")}
               <img
                 className="pe-2"
@@ -74,6 +93,27 @@ class LoginPage extends React.Component {
               />
               {t("txt_login_text_1")} <br /> {t("txt_login_text_2")}
             </h1>
+            {/* <GoogleLoginButton /> */}
+            {menuLogin?.map((v) => (
+              <button
+                type="button"
+                className={`btn w-100 fw-medium btn-${v?.color} position-relative d-flex align-item-center justify-content-center wr_btn_login mt-3 border-1`}
+              >
+                {v?.title}
+                <div className="ps-2 btn_loading">
+                  <div
+                    className="spinner-border"
+                    style={{ width: "1.7rem", height: "1.7rem" }}
+                    role="status"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+            <p class="line">
+              <span className="fs-1 fw-medium">OR</span>
+            </p>
             <form>
               <label className="form-label mb-16">
                 Email <span className="text-danger">*</span>
