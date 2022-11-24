@@ -1,6 +1,6 @@
 import history from "../routes/history";
 import { notify } from "../components/Toast";
-import AesirxAuthenticationApiService from "aesirx-dma-lib/src/Bi/Authentication";
+import AesirxAuthenticationApiService from "aesirx-dma-lib/src/Authentication/Authentication";
 import Storage from "aesirx-dma-lib/src/Utils/Storage";
 import {
   AXIOS_CONFIGS,

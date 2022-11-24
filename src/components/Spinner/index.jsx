@@ -3,6 +3,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import "./index.scss";
 
 class Spinner extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }

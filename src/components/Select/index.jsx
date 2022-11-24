@@ -7,6 +7,7 @@ import { ThemesContext } from "themes/ThemeContextProvider";
 import { withTranslation } from "react-i18next";
 
 class SelectComponent extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }
@@ -16,7 +17,7 @@ class SelectComponent extends React.Component {
     const { t } = this.props;
     const { theme } = this.context;
     let { isBorder, plColor, async, placeholder, arrowColor } = this.props;
-    if (theme == "dark") {
+    if (theme === "dark") {
       plColor = "#bfc9f7";
     }
     let styles = customStyles(isBorder, plColor, arrowColor);

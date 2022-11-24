@@ -1,15 +1,17 @@
 // import { isLogin } from 'auth';
-
 import React, { lazy } from "react";
-// import { Redirect } from 'react-router-dom';
 
 const LoginPage = lazy(() => import("../containers/LoginPage"));
-
 const WelcomePage = lazy(() => import("../containers/WelcomePage"));
 const DashboardPage = lazy(() => import("../containers/Dashboard"));
-
 const ProfilePage = lazy(() => import("../containers/ProfilePage"));
-
+const CategoriesPage = lazy(() => import("../containers/Categories"));
+const DamPage = lazy(() => import("../containers/DamPage"));
+const FieldsPage = lazy(() => import("../containers/FieldsPage"));
+const FieldsGroupPage = lazy(() => import("../containers/FieldsGroupPage"));
+const ContentPage = lazy(() => import("../containers/ContentPage"));
+const SettingPage = lazy(() => import("../containers/Dashboard"));
+const HelpCenterPage = lazy(() => import("../containers/Dashboard"));
 const authRoutes = [
   {
     path: "/login",
@@ -20,9 +22,44 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: ["/data-:domain", "/"],
+    path: "/",
     exact: true,
     main: () => <DashboardPage />,
+  },
+  {
+    path: "/cate",
+    exact: true,
+    main: () => <CategoriesPage />,
+  },
+  {
+    path: "/dam",
+    exact: true,
+    main: () => <DamPage />,
+  },
+  {
+    path: "/fields",
+    exact: true,
+    main: () => <FieldsPage />,
+  },
+  {
+    path: "/fields-gr",
+    exact: true,
+    main: () => <FieldsGroupPage />,
+  },
+  {
+    path: "/content",
+    exact: true,
+    main: () => <ContentPage />,
+  },
+  {
+    path: "/setting",
+    exact: true,
+    main: () => <SettingPage />,
+  },
+  {
+    path: "/help-center",
+    exact: true,
+    main: () => <HelpCenterPage />,
   },
 ];
 

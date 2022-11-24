@@ -145,6 +145,15 @@ $utilities: (
       semibold: 600,
     ),
   ),
+  "font-size": (
+    rfs: true,
+    property: font-size,
+    class: fs,
+    values: (
+      1: 1rem,
+      2: 2rem,
+    ),
+  ),
   "width": (
     property: width,
     class: w,

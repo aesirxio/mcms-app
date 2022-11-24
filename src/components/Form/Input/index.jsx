@@ -16,7 +16,7 @@ const Input = ({ field }) => {
         defaultValue={field.value ?? ""}
         type={
           field.typeFormat
-            ? field.typeFormat == 11
+            ? field.typeFormat === 11
               ? "password"
               : "text"
             : "text"
