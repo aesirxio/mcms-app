@@ -1,9 +1,9 @@
 {
-  "name": "aesirx-bi-app",
+  "name": "aesirx-cms-app",
   "version": "1.0.0-alpha",
   "license": "GPL-3.0-only",
   "author": "AesirX",
-  "repository": "https://github.com/aesirxio/bi-app",
+  "repository": "https://github.com/aesirxio/cms-app",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

@@ -11,10 +11,22 @@ import domains from "../../data-stream";
 
 const dataMenuSetup = [
   {
-    text: "txt_menu_region",
-    link: "/region-country",
-    icons: "/assets/images/region-country.svg",
-    icons_color: "/assets/images/region-country.svg",
+    text: "txt_menu_field",
+    link: "/fields",
+    icons: "/assets/images/field.png",
+    icons_color: "/assets/images/field.png",
+  },
+  {
+    text: "txt_menu_field_gr",
+    link: "/fields-gr",
+    icons: "/assets/images/field_gr.png",
+    icons_color: "/assets/images/field_gr.png",
+  },
+  {
+    text: "txt_menu_content",
+    link: "/content",
+    icons: "/assets/images/content.png",
+    icons_color: "/assets/images/content.png",
   },
   {
     text: "txt_menu_setting",
@@ -56,60 +68,29 @@ const Menu = observer((props) => {
 
   const dataMenu = [
     {
-      text: "txt_menu_dashboard",
-      link: `/data-${dataStreamActive}`,
+      text: "txt_menu_items",
+      // link: `/data-${dataStreamActive}`,
+      link: `/`,
+      icons: "/assets/images/dashboard.svg",
+      icons_color: "/assets/images/items.png",
+    },
+    {
+      text: "txt_menu_cate",
+      link: `/cate`,
       icons: "/assets/images/dashboard.svg",
       icons_color: "/assets/images/dashboard.svg",
     },
     {
-      text: "txt_menu_audience",
-      link: `/data-${dataStreamActive}/audience`,
-      icons: "/assets/images/audience.svg",
-      icons_color: "/assets/images/audience.svg",
-      submenu: [
-        {
-          text: "txt_menu_overview",
-          link: `/data-${dataStreamActive}/audience/overview`,
-        },
-      ],
-    },
-    {
-      text: "txt_menu_behavior",
-      link: `/data-${dataStreamActive}/behavior`,
-      icons: "/assets/images/behavior.svg",
-      icons_color: "/assets/images/behavior.svg",
-      submenu: [
-        {
-          text: "txt_menu_overview",
-          link: `/data-${dataStreamActive}/behavior/overview`,
-        },
-        {
-          text: "txt_menu_click_anchor",
-          link: `/data-${dataStreamActive}/behavior/click-anchor`,
-        },
-        {
-          text: "txt_menu_utm_tracking",
-          link: `/data-${dataStreamActive}/behavior/utm-tracking`,
-        },
-      ],
-    },
-    {
-      text: "txt_menu_revenue",
-      link: `/data-${dataStreamActive}/revenue`,
-      icons: "/assets/images/revenue.svg",
-      icons_color: "/assets/images/revenue.svg",
-    },
-    {
-      text: "txt_menu_subscription",
-      link: `/data-${dataStreamActive}/subscription`,
-      icons: "/assets/images/subscription.svg",
-      icons_color: "/assets/images/subscription.svg",
-    },
-    {
-      text: "txt_menu_member_roles",
-      link: `/data-${dataStreamActive}/member-roles`,
-      icons: "/assets/images/member-roles.svg",
-      icons_color: "/assets/images/member-roles.svg",
+      text: "txt_menu_dam",
+      link: `/dam`,
+      icons: "/assets/images/image.png",
+      icons_color: "/assets/images/image.png",
+      // submenu: [
+      //   {
+      //     text: "txt_menu_overview",
+      //     link: `/data-${dataStreamActive}/audience/overview`,
+      //   },
+      // ],
     },
   ];
 
@@ -131,7 +112,7 @@ const Menu = observer((props) => {
     <>
       <nav className="main-menu py-24 mt-0">
         <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-          {t("txt_main_menu")}
+          {t("txt_content")}
         </p>
         <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
           {dataMenu.map((menuList, menuListkey) => {
