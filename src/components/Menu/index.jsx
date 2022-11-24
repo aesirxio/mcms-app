@@ -5,10 +5,7 @@ import "./index.scss";
 import { Collapse, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { useBiViewModel } from "store/BiStore/BiViewModelContextProvider";
 import { observer } from "mobx-react-lite";
-import domains from "../../data-stream";
-
 const dataMenuSetup = [
   {
     text: "txt_menu_field",
@@ -33,12 +30,16 @@ const dataMenuSetup = [
     link: "/setting",
     icons: "/assets/images/setting.svg",
     icons_color: "/assets/images/setting.svg",
+    submenu: [
+      {
+        text: "txt_menu_setting",
+        link: `/setting`,
+      },
+    ],
   },
 ];
 const Menu = observer((props) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState("default");
-  const [dataStreamActive, setDataStreamActive] = useState("dam.aesirx.io");
-  const biStore = useBiViewModel();
   const handleOpen = (clickedIndex, parentIndex) => {
     if (isOpenCollapse === clickedIndex.toString()) {
       if (parentIndex) {
@@ -96,16 +97,7 @@ const Menu = observer((props) => {
 
   useEffect(() => {
     checkActiveMenu();
-    let fetchData = async () => {
-      await biStore.biListViewModel.getListDomain("", domains);
-      if (props.match.params.domain) {
-        biStore.biListViewModel.setActiveDomain(props.match.params.domain);
-        setDataStreamActive(`${props.match.params.domain}`);
-      }
-    };
-
-    fetchData();
-  }, [biStore.biListViewModel, dataStreamActive]);
+  }, []);
 
   const { t } = props;
   return (
@@ -234,23 +226,95 @@ const Menu = observer((props) => {
                   value.className ? value.className : ""
                 }`}
               >
-                <NavLink
-                  exact={true}
-                  to={value.link}
-                  className={`d-block px-24 py-16 link_menu text-white text-decoration-none `}
-                  activeClassName={`active`}
-                >
-                  <span
-                    className="icon d-inline-block align-text-bottom"
-                    style={{
-                      WebkitMaskImage: `url(${value.icons_color})`,
-                      WebkitMaskRepeat: "no-repeat",
-                    }}
-                  ></span>
-                  <span className="ms-16 text d-inline-block">
-                    {t(value.text)}
-                  </span>
-                </NavLink>
+                {!value?.submenu ? (
+                  <NavLink
+                    exact={true}
+                    to={value.link}
+                    className={`d-block px-24 py-16 link_menu text-white text-decoration-none `}
+                    activeClassName={`active`}
+                  >
+                    <span
+                      className="icon d-inline-block align-text-bottom"
+                      style={{
+                        WebkitMaskImage: `url(${value.icons_color})`,
+                        WebkitMaskRepeat: "no-repeat",
+                      }}
+                    ></span>
+                    <span className="ms-16 text d-inline-block">
+                      {t(value.text)}
+                    </span>
+                  </NavLink>
+                ) : (
+                  <>
+                    <Button
+                      variant=""
+                      onClick={() => handleOpen(key)}
+                      className={`d-flex align-items-center justify-content-start rounded-2 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none ${
+                        isOpenCollapse === key.toString() ||
+                        isOpenCollapse?.includes(key + "-")
+                          ? "active"
+                          : ""
+                      }`}
+                      aria-controls="wr_list_submenu"
+                      aria-expanded={
+                        isOpenCollapse === key.toString() ||
+                        isOpenCollapse?.includes(key + "-")
+                      }
+                    >
+                      <span
+                        className="icon d-inline-block align-text-bottom"
+                        style={{
+                          WebkitMaskImage: `url(${value.icons_color})`,
+                          WebkitMaskRepeat: "no-repeat",
+                        }}
+                      ></span>
+                      <span className="ms-16 text d-inline-block">
+                        {t(value.text)}
+                      </span>
+                      <span
+                        className="icon arrow d-inline-block align-text-bottom ms-auto"
+                        style={{
+                          WebkitMaskImage: `url(/assets/images/arrow-right.svg)`,
+                          WebkitMaskRepeat: "no-repeat",
+                        }}
+                      ></span>
+                    </Button>
+                    <Collapse
+                      in={
+                        isOpenCollapse === key.toString() ||
+                        isOpenCollapse?.includes(key + "-")
+                      }
+                    >
+                      <ul id="wr_list_submenu" className="list-unstyled">
+                        {value.submenu.map((value, menuListSubkey) => {
+                          return (
+                            <li
+                              key={menuListSubkey}
+                              className={`item_menu`}
+                              onClick={handleCheckActive}
+                            >
+                              {value.link && (
+                                <NavLink
+                                  exact={true}
+                                  to={value.link}
+                                  className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
+                                  activeClassName={`active`}
+                                >
+                                  <i className="icon-submenu text-white">
+                                    <FontAwesomeIcon icon={faCircle} />
+                                  </i>
+                                  <span className="text d-inline-block">
+                                    {t(value.text)}
+                                  </span>
+                                </NavLink>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </Collapse>
+                  </>
+                )}
               </li>
             );
           })}

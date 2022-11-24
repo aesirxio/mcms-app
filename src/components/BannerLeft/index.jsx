@@ -19,22 +19,16 @@ class BannerLeft extends React.Component {
   render() {
     let { dataSlider } = this.props;
     return (
-      <div className="col-md-5 bg-primary p-0 d-none d-md-block position-relative">
+      <div className="col-xl-4 p-0 d-none d-xl-block position-relative max-w600">
         <div className="wrapper_banner_left vh-100">
           <div className="content_banner_left d-flex h-100 justify-content-between flex-column">
-            <a href="/" className="d-block" style={{ zIndex: 1 }}>
+            <a href="/" className="d-block p-5" style={{ zIndex: 1 }}>
               <ComponentImage
                 alt={"logo"}
                 src={"/assets/images/logo/logo-white.svg"}
               />
             </a>
-            <div className="wrapper_slider">
-              <div className="wrapper_icon_slider">
-                <ComponentImage
-                  alt={"icon quote"}
-                  src={"assets/images/icon-quote.svg"}
-                />
-              </div>
+            <div className="wrapper_slider position-absolute bottom-0 max-w600">
               <Swiper
                 spaceBetween={20}
                 slidesPerView={1}
@@ -44,7 +38,9 @@ class BannerLeft extends React.Component {
                   return (
                     <SwiperSlide key={key}>
                       <div className="wrapper_text_slider">
-                        <p className="text_slider">{value.text}</p>
+                        <p className="text_slider fw-semibold max-w600">
+                          {value.text}
+                        </p>
                         <p className="title_slider mb-1">{value.title}</p>
                         <p className="subtitle_slider">
                           <small>{value.subtitle}</small>
@@ -56,10 +52,6 @@ class BannerLeft extends React.Component {
               </Swiper>
             </div>
           </div>
-          <span
-            className="position-absolute top-0"
-            style={{ zIndex: 0 }}
-          ></span>
         </div>
       </div>
     );

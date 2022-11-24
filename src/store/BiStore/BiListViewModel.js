@@ -16,7 +16,6 @@ class BiListViewModel {
   dataFilter = {};
   pageSize = 5;
   isList = false;
-  activeDomain = "dam.aesirx.io";
   isSearch = false;
   constructor(biStore) {
     makeAutoObservable(this);
@@ -42,10 +41,6 @@ class BiListViewModel {
       this.callbackOnDataSuccessHandler,
       this.callbackOnErrorHander
     );
-  };
-
-  setActiveDomain = (domain) => {
-    this.activeDomain = domain;
   };
 
   handleFilter = (dataFilter) => {

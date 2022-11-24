@@ -3,6 +3,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import "./index.scss";
 
 class PulseLoaderComponent extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }

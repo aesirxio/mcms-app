@@ -5,13 +5,8 @@
 }
 
 .content_banner_left {
-  padding: 50px;
   background-color: rgba(0, 0, 0, 0.7);
-  background: url(./background.png) no-repeat;
-  background-position: right;
-  .swiper-wrapper {
-    margin-bottom: 50px;
-  }
+  background: url(./background.jpg) no-repeat;
 
   .swiper-pagination-bullet {
     background: $white;
@@ -21,17 +16,18 @@
   .swiper-pagination-bullet-active {
     background: $green;
   }
+  .wrapper_slider {
+    padding: 30px 60px;
+  }
 }
 
 .wrapper_text_slider {
   color: $white;
 
   .text_slider {
-    margin-bottom: 20px;
-    font-size: 1.25em;
+    font-size: 1.5rem;
   }
 }
-
-.wrapper_icon_slider {
-  margin-bottom: 15px;
+.max-w600 {
+  max-width: 600px !important;
 }
