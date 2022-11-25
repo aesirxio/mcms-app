@@ -6,7 +6,11 @@ import "./index.scss";
 
 import { login } from "../../auth";
 import InputPassword from "../../components/inputPassword";
-// import GoogleLoginButton from "components/googleLogin";
+import ComponentImage from "components/ComponentImage";
+import { Link } from "react-router-dom";
+import Checkbox from "components/Checkbox";
+import GoogleLoginButton from "components/GoogleLogin";
+import FaceLoginButton from "components/FacebookLogin";
 // import ComponentImage from 'components/ComponentImage';
 const dataSlider = [
   {
@@ -20,16 +24,6 @@ const menuLogin = [
     title: "Continue Concordium Wallet ",
     icon: "/assets/images/wallet.png",
     color: "blue-50",
-  },
-  {
-    title: "Continue with Facebook",
-    icon: "/assets/images/facebook.png",
-    color: "blue-100",
-  },
-  {
-    title: "Continue with Google",
-    icon: "/assets/images/google.svg",
-    color: "white",
   },
 ];
 
@@ -93,25 +87,30 @@ class LoginPage extends React.Component {
               />
               {t("txt_login_text_1")} <br /> {t("txt_login_text_2")}
             </h1>
-            {/* <GoogleLoginButton /> */}
+
             {menuLogin?.map((v) => (
               <button
                 type="button"
                 className={`btn w-100 fw-medium btn-${v?.color} position-relative d-flex align-item-center justify-content-center wr_btn_login mt-3 border-1`}
+                key={v?.icon}
               >
-                {v?.title}
-                <div className="ps-2 btn_loading">
-                  <div
-                    className="spinner-border"
-                    style={{ width: "1.7rem", height: "1.7rem" }}
-                    role="status"
-                  >
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
+                <div className="d-flex">
+                  <ComponentImage
+                    src={v.icon}
+                    alt={v.icon}
+                    className="icon-login"
+                    style={{
+                      width: "19px",
+                      height: "19px",
+                    }}
+                  />
+                  <span className="ms-1">{v?.title}</span>
                 </div>
               </button>
             ))}
-            <p class="line">
+            <FaceLoginButton className="w-100 text-center mt-3 fs-18px fw-normal text-black" />
+            <GoogleLoginButton className="w-100 mt-3 fs-18px fw-normal rounded-1" />
+            <p className="line">
               <span className="fs-1 fw-medium">OR</span>
             </p>
             <form>
@@ -159,6 +158,12 @@ class LoginPage extends React.Component {
                   className: "text-danger",
                 }
               )}
+              <div className="d-flex justify-content-between pt-2">
+                <Checkbox text="Remember me" />
+                <Link to={"#"} className="d-flex fw-semibold fs-1">
+                  Forgot password?
+                </Link>
+              </div>
               <button
                 type="button"
                 className={`btn w-100 fw-medium btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-3`}

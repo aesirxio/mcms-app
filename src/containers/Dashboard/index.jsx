@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
 import { withRouter } from "react-router-dom";
+import Revenue from "./Component/Revenue";
 const Dashboard = observer(
   class Dashboard extends Component {
     constructor(props) {
@@ -35,12 +36,8 @@ const Dashboard = observer(
               <h2 className="text-blue-0 fw-bold mb-8px">{t("txt_items")}</h2>
               <p className="mb-0 text-color">{t("txt_dashboard_below")}</p>
             </div>
-            <div className="position-relative">
-              {/* <DateRangePicker
-                viewModelArr={[summaryViewModel.summaryListViewModel]}
-              ></DateRangePicker> */}
-            </div>
           </div>
+          <Revenue t={t} data={null} />
         </div>
       );
     }

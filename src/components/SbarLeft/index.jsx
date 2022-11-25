@@ -25,7 +25,7 @@ const SbarLeft = observer(
     }
 
     render() {
-      let { settingPage, t } = this.props;
+      let { t } = this.props;
 
       // const listLanguages = Object.keys(i18n.options.resources).map(function (key) {
       //   return { language: key, title: i18n.options.resources[key].title };
@@ -39,13 +39,9 @@ const SbarLeft = observer(
         <aside
           className={`sidebar w-248  mt-0 position-relative bg-dark mh-100 h-100 overflow-hidden overflow-y-auto d-flex flex-column z-index-100 justify-content-between`}
         >
-          {!settingPage ? (
-            <>
-              <Menu />
-            </>
-          ) : (
-            <Menu2 />
-          )}
+          <>
+            <Menu />
+          </>
 
           <div className="d-flex align-items-center justify-content-between bottom-0 w-100 pt-1 button-language item_menu">
             {/* <Dropdown as={'div'} className="col py-2 px-3">
