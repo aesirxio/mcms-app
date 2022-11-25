@@ -39,5 +39,12 @@
   "txt_menu_items": "Items",
   "txt_menu_cate": "Categories",
   "txt_menu_dam": "DAM",
-  "txt_set_up": "SET UP"
+  "txt_set_up": "SET UP",
+  "txt_profile": "Profile",
+  "txt_title_profilfe_setting": "Profile Setting",
+  "txt_title_set_information_name": "Set Information name",
+  "txt_projectpage_password": "Projectpage Password",
+  "txt_general_information": "General Information",
+  "txt_Fullname":"Fullname",
+  "txt_your_avatar":"Avatar"
 }

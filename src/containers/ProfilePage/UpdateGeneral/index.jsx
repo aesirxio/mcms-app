@@ -1,17 +1,23 @@
 import React, { observer } from "mobx-react";
 import { Component } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Storage from "aesirx-dma-lib/src/Utils/Storage";
 import "react-datepicker/dist/react-datepicker.css";
 import { withTranslation } from "react-i18next";
 import SimpleReactValidator from "simple-react-validator";
 import FormComponent from "../../../components/Form";
+import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons/faCloudUploadAlt";
 // import Spinner from '../../../components/Spinner';
 import { FORM_FIELD_TYPE } from "../../../constants/FormFieldType";
 import { UPDATE_GENERAL_FIELD_KEY } from "../../../constants/ProfileModule";
 import "../index.scss";
 import SubmitButton from "../Layout/SubmitButton";
 import { witheProfileViewModel } from "../ProfileViewModel/ProfileViewModelContextProvider";
+import AvatarDAM from "../Layout/AvatarDAM";
+import ComponentImage from "components/ComponentImage";
+import Button from "components/Button";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons/faTimesCircle";
+import Spinner from "components/Spinner";
 
 const UpdateGeneral = observer(
   class UpdateGeneral extends Component {
@@ -138,12 +144,12 @@ const UpdateGeneral = observer(
       ];
     };
     render() {
+      let { getUrlImage } = this.state;
       const { memberInfo } = this.updateGeneralViewModel;
       return (
         <>
           {!memberInfo ? (
-            // <Spinner />
-            <></>
+            <Spinner />
           ) : (
             <div className="bg-white p-16 rounded-3">
               <div className="row">
@@ -155,38 +161,57 @@ const UpdateGeneral = observer(
                   key={Math.random(40, 200)}
                 />
 
-                {/* <AvatarDAM>
+                <AvatarDAM>
                   <div
                     className={`position-relative  cursor-pointer wr_upload_images ${
-                      getUrlImage.length > 0 ? 'active_img' : ''
+                      getUrlImage.length > 0 ? "active_img" : ""
                     }`}
                   >
                     {!getUrlImage ? (
                       <div className="wr_img_thumbnail_dam position-relative m-2 ">
                         <ComponentImage
                           className={`rounded-circle them imgTab h-196`}
-                          src={this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM]}
-                          alt={this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME]}
+                          src={
+                            this.formPropsData[
+                              UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM
+                            ]
+                          }
+                          alt={
+                            this.formPropsData[
+                              UPDATE_GENERAL_FIELD_KEY.USERNAME
+                            ]
+                          }
                         />
                         <div className="position-absolute top-50 start-0 align-content-center fw-bold text-white imgcloud ">
-                          <FontAwesomeIcon icon={faCloudUploadAlt} className="d-block m-auto  " />
-                          <span className=" mx-3 my-5">Click to change image</span>
+                          <FontAwesomeIcon
+                            icon={faCloudUploadAlt}
+                            className="d-block m-auto  "
+                          />
+                          <span className=" mx-3 my-5">
+                            Click to change image
+                          </span>
                         </div>
                       </div>
                     ) : null}
                     <div className="main_upload_images">
-                      <Button data={getUrlImage} changed={(data) => this.handleDamAssets(data)} />
+                      <Button
+                        data={getUrlImage}
+                        changed={(data) => this.handleDamAssets(data)}
+                      />
                     </div>
                     {getUrlImage ? (
                       <div
                         onClick={() => this.clearImage(memberInfo.avatar_dam)}
-                        className={'clear_image_button'}
+                        className={"clear_image_button"}
                       >
-                        <FontAwesomeIcon icon={faTimesCircle} className="text-white" />
+                        <FontAwesomeIcon
+                          icon={faTimesCircle}
+                          className="text-white"
+                        />
                       </div>
                     ) : null}
                   </div>
-                </AvatarDAM> */}
+                </AvatarDAM>
                 <SubmitButton
                   validateInfoBeforeSending={this.validateInfoBeforeSending}
                 />

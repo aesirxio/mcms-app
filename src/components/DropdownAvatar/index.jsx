@@ -12,30 +12,13 @@ import { logout } from "../../auth";
 import Helper from "../../utils/helper";
 import ComponentImage from "../ComponentImage";
 
-// const data = [
-// {
-//   key: 1,
-//   text: 'txt_profile',
-//   link: '/profile',
-// },
-// {
-//   key: 2,
-//   text: 'Billing & Plan',
-//   link: '/billing-plan',
-// },
-// {
-//   key: 3,
-//   text: "Members",
-// },
-// {
-//   key: 4,
-//   text: "My collections",
-// },
-// {
-//   key: 5,
-//   text: "Upgrade",
-// },
-// ];
+const data = [
+  {
+    key: 1,
+    text: "txt_profile",
+    link: "/profile",
+  },
+];
 
 class DropdownAvatar extends React.Component {
   constructor(props) {
@@ -65,7 +48,10 @@ class DropdownAvatar extends React.Component {
       />
       <div className="text ps-3 pe-3">
         <p className="mb-0 text-blue-0 fs-14 fw-bold">
-          {Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME) ?? "Admin"}
+          {localStorage.getItem("profile") &&
+          JSON.parse(localStorage.getItem("profile"))
+            ? JSON.parse(localStorage.getItem("profile"))?.email
+            : Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME) ?? "Admin"}
         </p>
         {/* <p className="mb-0 text-blue-0 fs-14 opacity-75">Small business owner</p> */}
       </div>
@@ -85,7 +71,7 @@ class DropdownAvatar extends React.Component {
             id="dropdown-custom-components position-relative"
           ></Dropdown.Toggle>
           <Dropdown.Menu className="shadow border-0">
-            {/* <div className="p-16">
+            <div className="p-16">
               <ul className="list-unstyled ps-0 mb-0 list_menu_avatar">
                 {data.map((value, index) => {
                   return (
@@ -100,7 +86,7 @@ class DropdownAvatar extends React.Component {
                   );
                 })}
               </ul>
-            </div> */}
+            </div>
             <div
               onClick={logout}
               className="d-flex align-items-center p-16 text-green border-gray cursor-pointer"
