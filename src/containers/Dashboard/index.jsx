@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
 import { withRouter } from "react-router-dom";
-import Revenue from "./Component/Revenue";
+import Items from "./Component/Items";
 const Dashboard = observer(
   class Dashboard extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ const Dashboard = observer(
               <p className="mb-0 text-color">{t("txt_dashboard_below")}</p>
             </div>
           </div>
-          <Revenue t={t} data={null} />
+          <Items t={t} data={null} />
         </div>
       );
     }

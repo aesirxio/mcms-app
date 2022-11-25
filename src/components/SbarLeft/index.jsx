@@ -8,7 +8,6 @@ import SwitchThemes from "components/SwitchThemes";
 // import { Dropdown } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
-import Menu2 from "components/Menu2";
 import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
 import { observer } from "mobx-react";
 import { NavLink } from "react-router-dom";
