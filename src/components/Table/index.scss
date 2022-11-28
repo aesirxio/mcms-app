@@ -2,3 +2,13 @@
 .sort-icon {
   height: 20px;
 }
+.bg-status_publish > div {
+  background: rgba(50, 177, 151, 0.15);
+  border-radius: 4px;
+  padding: 8px;
+}
+.bg-status_unPublish > div {
+  background: rgba(199, 54, 44, 0.15);
+  border-radius: 4px;
+  padding: 8px;
+}

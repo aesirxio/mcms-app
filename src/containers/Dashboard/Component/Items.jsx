@@ -1,13 +1,34 @@
 import Table from "components/Table";
-import React from "react";
+import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 const Items = ({ t, data = [] }) => {
+  const [newStatus, setNewStatus] = useState(false);
+  const setStatus = (row, e) => {
+    setNewStatus(!row?.values.check);
+  };
   const columnsTable = React.useMemo(
     () => [
+      // {
+      //   Header: "",
+      //   accessor: "checkbox",
+      //   sortParams: "archived",
+      //   Cell: ({ value, row }) => (
+      //     <div className="d-flex">
+      //       <div className="form-check">
+      //         <input
+      //           className="form-check-input"
+      //           type="checkbox"
+      //           checked={true}
+      //         />
+      //       </div>
+      //     </div>
+      //   ),
+      // },
       {
         Header: "",
         accessor: "drag",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ",
+        width: "auto",
+        className: "px-24 py-2 fs-12 opacity-50 ",
         Cell: () => {
           return <div className="px-24 d-none"></div>;
         },
@@ -29,6 +50,7 @@ const Items = ({ t, data = [] }) => {
           return <div className=" px-24 text-start">{value}</div>;
         },
         width: "25%",
+        sortParams: "name",
       },
       {
         Header: "Type",
@@ -43,7 +65,7 @@ const Items = ({ t, data = [] }) => {
         accessor: "categories",
         className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ",
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="px-24 text-start">{value}</div>;
         },
       },
       {
@@ -53,13 +75,14 @@ const Items = ({ t, data = [] }) => {
         Cell: ({ value }) => {
           return <div className="px-24">{value}</div>;
         },
+        width: "10%",
       },
       {
         Header: "Engagement",
         accessor: "engagement",
         className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ",
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="px-24 text-end">{value}</div>;
         },
       },
       {
@@ -77,6 +100,7 @@ const Items = ({ t, data = [] }) => {
         Cell: ({ value }) => {
           return <div className="px-24">{value}</div>;
         },
+        width: "15%",
       },
       {
         Header: "Status",
@@ -89,10 +113,13 @@ const Items = ({ t, data = [] }) => {
       {
         Header: "",
         accessor: "check",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ",
-        Cell: ({ value }) => {
+        className: "px-24 py-2 fs-12  border-bottom-1 ",
+        Cell: ({ row, value }) => {
           return (
-            <div className="px-24 cursor-pointer">
+            <div
+              className="px-24 cursor-pointer"
+              onClick={(e) => setStatus(row, e)}
+            >
               <svg
                 width="20"
                 height="20"
@@ -118,6 +145,7 @@ const Items = ({ t, data = [] }) => {
   const dataTable = React.useMemo(
     () => [
       {
+        checkbox: false,
         id: "260",
         name: "AesirX DMA: Open Source automation tool ...",
         type: "Services",
@@ -130,6 +158,7 @@ const Items = ({ t, data = [] }) => {
         check: true,
       },
       {
+        checkbox: true,
         id: "261",
         name: "Social Media Marketing for Free, how to ...",
         type: "Services",
@@ -142,6 +171,7 @@ const Items = ({ t, data = [] }) => {
         check: true,
       },
       {
+        checkbox: true,
         id: "262",
         name: "Organic strategy, the lost discipline in digit...",
         type: "Services",
@@ -154,6 +184,7 @@ const Items = ({ t, data = [] }) => {
         check: true,
       },
       {
+        checkbox: true,
         id: "263",
         name: "Social Media Marketing for Free, how to ...",
         type: "Services",
@@ -170,12 +201,17 @@ const Items = ({ t, data = [] }) => {
   );
 
   return (
-    <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-hidden">
+    <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
       {/* <h2 className="py-16 px-24 mb-0 fs-4 fw-semibold text-blue-0">
         {t('txt_revenue_by_subscribers')}
       </h2> */}
       <div className="fs-14 fw-semibold h-100">
-        <Table columns={columnsTable} data={dataTable}></Table>
+        <Table
+          columns={columnsTable}
+          data={dataTable}
+          canSort={true}
+          pagination="true"
+        ></Table>
       </div>
     </div>
   );
