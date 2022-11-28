@@ -46,5 +46,7 @@
   "txt_projectpage_password": "Projectpage Password",
   "txt_general_information": "General Information",
   "txt_Fullname":"Fullname",
-  "txt_your_avatar":"Avatar"
+  "txt_your_avatar":"Avatar",
+  "txt_entries_found": "entries found",
+  "txt_add_new_item": "Add new item"
 }

@@ -9,7 +9,7 @@ $gray-400: #e3e3e3 !default;
 $gray-500: #d2d2d2 !default;
 $gray-600: #8e8e8e !default;
 $gray-700: #c4c4c4 !default;
-$gray-800: #343a40 !default;
+$gray-800: #949494 !default;
 $gray-900: #4e4f53 !default;
 $black: #000 !default;
 $blue-50: #4486ab !default;
@@ -115,7 +115,7 @@ $theme-colors: (
 // Settings for the `<body>` element.
 
 $body-bg: $white !default;
-$body-color: #0a083b !default;
+$body-color: #222328 !default;
 $body-text-align: null !default;
 
 $link-color: $primary !default;
@@ -226,11 +226,13 @@ $spacers: (
   sm: 5px,
   8px: 8px,
   1: 10px,
+  14: 14px,
   15: 15px,
   16: 16px,
   2: 20px,
   24: 24px,
   3: 30px,
+  32: 32px,
   4: 40px,
   5: 50px,
   6: 60px,

@@ -149,11 +149,12 @@ $utilities: (
     rfs: true,
     property: font-size,
     class: fs,
-    values: (
-      1: 1rem,
-      2: 2rem,
-      18px: 18px,
-    ),
+    values:
+      map-merge(
+        $font-sizes,
+        (
+        )
+      ),
   ),
   "width": (
     property: width,
