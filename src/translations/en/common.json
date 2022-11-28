@@ -48,5 +48,9 @@
   "txt_Fullname":"Fullname",
   "txt_your_avatar":"Avatar",
   "txt_entries_found": "entries found",
-  "txt_add_new_item": "Add new item"
+  "txt_add_new_item": "Add new item",
+  "txt_add_item": "Add item",
+  "text_save": "Save",
+  "text_cancel": "Cancel",
+  "text_save_close": "Save & Close"
 }

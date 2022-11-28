@@ -22,7 +22,7 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: "/",
+    path: ["/", "/items-create", "/items-edit/:id"],
     exact: true,
     main: () => <DashboardPage />,
   },
