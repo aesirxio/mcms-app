@@ -128,8 +128,8 @@ $component-active-bg: $success !default;
 
 $form-check-input-width: 1.5em !default;
 
-$input-btn-padding-y: 0.75rem !default;
-$input-btn-padding-x: 0.75rem !default;
+$input-btn-padding-y: 11px !default;
+$input-btn-padding-x: 1rem !default;
 
 // $font-size-root effects the value of `rem`, which is used for as well font sizes, paddings and margins
 // $font-size-base effects the font size of the body text
@@ -224,8 +224,10 @@ $enable-negative-margins: true;
 $spacers: (
   0: 0,
   sm: 5px,
+  7px: 7px,
   8px: 8px,
   1: 10px,
+  11: 11px,
   14: 14px,
   15: 15px,
   16: 16px,
@@ -246,6 +248,7 @@ $accordion-button-active-bg: $color-blue-6;
 $accordion-border-color: $border-color;
 $accordion-button-focus-border-color: $border-color;
 $accordion-button-focus-box-shadow: $color-blue-6;
-$nav-tabs-link-active-color: #fff;
-$nav-tabs-link-active-bg: $color-blue-3;
+$nav-link-color: $gray-800;
+$nav-link-hover-color: $gray-800;
+$nav-tabs-link-active-color: $color-blue;
 $grid-gutter-width: 1.25rem;

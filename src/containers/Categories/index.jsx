@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import ComponentImage from "components/ComponentImage";
+import { Icon } from "@iconify/react";
 class Categories extends Component {
   render() {
     const { t } = this.props;
@@ -12,10 +12,7 @@ class Categories extends Component {
             <p className="mb-0 text-color fs-14">20 {t("txt_entries_found")}</p>
           </div>
           <button className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1">
-            <ComponentImage
-              className="me-1 object-fit-contain"
-              src="/assets/images/plus.svg"
-            />
+            <Icon icon="akar-icons:plus" className="me-1" />
             {t("txt_add_new_item")}
           </button>
         </div>

@@ -34,7 +34,10 @@ class SelectComponent extends React.Component {
     const { ValueContainer, Placeholder } = components;
     const CustomValueContainer = ({ children, ...props }) => {
       return (
-        <ValueContainer {...props} className="valueContainerCustom px-16">
+        <ValueContainer
+          {...props}
+          className="valueContainerCustom py-7px px-16"
+        >
           {!props.hasValue && (
             <Placeholder {...props} isFocused={props.isFocused}>
               {props.selectProps.placeholder}
