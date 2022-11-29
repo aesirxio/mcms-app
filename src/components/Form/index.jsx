@@ -24,7 +24,7 @@ class FormComponent extends Component {
       this.populatingFormDataHandler(props.populatedFormData);
     }
 
-    this.viewModel.setForm(this);
+    // this.viewModel.setForm(this);
   }
 
   isFormValid = () => {

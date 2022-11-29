@@ -6,7 +6,7 @@ class Label extends React.Component {
     let { text, required } = this.props;
     const { t } = this.props;
     return (
-      <Form.Label className="mb-3 w-100 text-blue-0">
+      <Form.Label className="mb-8px fw-semibold">
         {t(text)}
         {required && <span className="text-red-1">*</span>}
       </Form.Label>

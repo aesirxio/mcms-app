@@ -11,7 +11,7 @@
   --sidebar-bg: #1a2226;
   --sidebar-submenu-bg: #0c1215;
   --sidebar-menu-item-color: #fff;
-  --sidebar-menu-item-hover-bg: #005f89;
+  --sidebar-menu-item-hover-bg: #3B7AB5;
 
   --date-picker-color: rgba(8, 18, 64, 0.8);
   --date-picker-disabled-color: #ccc;
@@ -86,11 +86,11 @@
       background-color: var(--btn-green-bg) !important;
       border-color: var(--btn-green-bg) !important;
     }
-    &.btn-outline-secondary {
-      background-color: var(--btn-outline-secondary-bg) !important;
-      color: var(--btn-outline-secondary-color) !important;
-      border-color: var(--border-color) !important;
-    }
+    // &.btn-outline-secondary {
+    //   background-color: var(--btn-outline-secondary-bg) !important;
+    //   color: var(--btn-outline-secondary-color) !important;
+    //   border-color: var(--border-color) !important;
+    // }
     &.btn-info {
       background-color: var(--btn-action-bg) !important;
       color: var(--btn-action-color) !important;
