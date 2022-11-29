@@ -46,5 +46,7 @@
   "txt_projectpage_password": "Projectpage Password",
   "txt_general_information": "General Information",
   "txt_Fullname":"Fullname",
- "txt_your_avatar":"Avatar"
+ "txt_your_avatar":"Avatar",
+ "txt_select_date": "Date range",
+ "txt_apply": "Apply"
 }
