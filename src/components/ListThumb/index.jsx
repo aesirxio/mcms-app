@@ -3,14 +3,13 @@ import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
-
+import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
-import { Spinner } from "react-bootstrap";
 
 const optionAction = [
-  { value: "edit", label: "Edit" },
+  // { value: "edit", label: "Edit" },
   { value: "delete", label: "Delete" },
-  { value: "action-3", label: "Action 3" },
+  // { value: "action-3", label: "Action 3" },
 ];
 
 const optionColumns = [
@@ -18,14 +17,20 @@ const optionColumns = [
   { value: "columns-2", label: "Columns 2" },
   { value: "columns-3", label: "Columns 3" },
 ];
+const optionFilterColumns = [
+  { value: true, label: "Published" },
+  { value: false, label: "UnPublished" },
+];
 
-const ListThumb = ({ setLoading, loading }) => {
+const ListThumb = ({ setLoading, currentRow, setDataAction }) => {
   const [action, setAction] = useState("");
   const [columns, setColumns] = useState("");
+  const [filterColum, setFilterColum] = useState("");
   const [filter, setFilter] = useState("");
   const handleAnAction = (e) => {
     setLoading(true);
     setAction(e);
+    setDataAction(currentRow);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -45,14 +50,21 @@ const ListThumb = ({ setLoading, loading }) => {
       setLoading(false);
     }, 2000);
   };
+  const handleFilterColum = (e) => {
+    setLoading(true);
+    setFilterColum(e);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
 
   return (
     <>
       <div className="bg-white rounded-3 mb-24px">
         <div className="row">
-          <div className="col-7">
+          <div className="col-8">
             <div className="row">
-              <div className="col-6 border-end-1">
+              <div className="col-5 border-end-1">
                 <div className="input-group mb-0">
                   <input
                     type="text"
@@ -81,7 +93,7 @@ const ListThumb = ({ setLoading, loading }) => {
                   plColor="rgba(8, 18, 64, 0.8)"
                 />
               </div>
-              <div className="col-3 border-end-1">
+              <div className="col-2 border-end-1">
                 <div className="d-flex align-items-center">
                   <i className="text-blue-0">
                     <FontAwesomeIcon icon={faColumns} />
@@ -93,6 +105,24 @@ const ListThumb = ({ setLoading, loading }) => {
                       options={optionColumns}
                       isBorder={false}
                       placeholder="Columns"
+                      className="text-green"
+                      plColor="rgba(8, 18, 64, 0.8)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-2 border-end-1">
+                <div className="d-flex align-items-center">
+                  <i className="text-blue-0">
+                    <FontAwesomeIcon icon={faFilter} />
+                  </i>
+                  <div className="w-260">
+                    <SelectComponent
+                      value={filterColum}
+                      onChange={(e) => handleFilterColum(e)}
+                      options={optionFilterColumns}
+                      isBorder={false}
+                      placeholder="Filter"
                       className="text-green"
                       plColor="rgba(8, 18, 64, 0.8)"
                     />

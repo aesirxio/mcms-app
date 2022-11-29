@@ -32,6 +32,8 @@ const Table = ({
   canSort,
   sortAPI,
   dragDrop,
+  setCurrentRow,
+  dataAction,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -48,6 +50,12 @@ const Table = ({
             className="form-check-input p-0"
             type="checkbox"
             ref={resolvedRef}
+            onClick={(e) =>
+              setCurrentRow({
+                status: e?.target?.checked,
+                value: rest?.original?.id,
+              })
+            }
             {...rest}
           />
         </>
@@ -95,7 +103,9 @@ const Table = ({
             ),
             Cell: ({ row }) => (
               <div className="wrapper_checkbox px-24">
-                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+                <IndeterminateCheckbox
+                  {...row.getToggleRowSelectedProps(row)}
+                />
               </div>
             ),
           },
@@ -118,7 +128,11 @@ const Table = ({
     usePagination,
     useRowSelect
   );
-
+  useEffect(() => {
+    setRecords(
+      dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
+    );
+  }, [dataAction.value, data]);
   const handlePagination = async (pageIndex) => {
     setLoading(true);
     await store.goToPage(pageIndex);

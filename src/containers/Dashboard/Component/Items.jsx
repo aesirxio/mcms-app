@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 const Items = ({ t, data = [] }) => {
   const [newStatus, setNewStatus] = useState(false);
+  const [currentRow, setCurrentRow] = useState({ status: "", value: "" });
   const [loading, setLoading] = useState(false);
+  const [dataAction, setDataAction] = useState({});
   const setStatus = (row, e) => {
     setNewStatus(!row?.values.check);
   };
@@ -184,21 +186,34 @@ const Items = ({ t, data = [] }) => {
     ],
     []
   );
-
   return (
     <>
-      <ListThumb setLoading={setLoading} loading={loading} />
+      <ListThumb
+        setLoading={setLoading}
+        loading={loading}
+        setCurrentRow={setCurrentRow}
+        currentRow={currentRow}
+        setDataAction={setDataAction}
+        dataAction={dataAction}
+      />
       <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
         <div className="fs-14 fw-semibold h-100">
           <Table
             columns={columnsTable}
-            data={dataTable}
+            data={
+              dataAction.value
+                ? dataTable.filter((v) => v.id !== dataAction.value)
+                : dataTable
+            }
             canSort={true}
-            pagination="true"
+            pagination={true}
             selection={false}
             dragDrop={true}
             setLoading={setLoading}
             loading={loading}
+            setCurrentRow={setCurrentRow}
+            currentRow={currentRow}
+            dataAction={dataAction}
           ></Table>
         </div>
       </div>
