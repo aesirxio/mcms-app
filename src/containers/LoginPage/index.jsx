@@ -111,7 +111,7 @@ class LoginPage extends React.Component {
             <FaceLoginButton className="w-100 text-center mt-3 fs-18px fw-normal text-black" />
             <GoogleLoginButton className="w-100 mt-3 fs-18px fw-normal rounded-1" />
             <p className="line">
-              <span className="fs-1 fw-medium">OR</span>
+              <span className="fs-6 fw-medium">OR</span>
             </p>
             <form>
               <label className="form-label mb-16">
@@ -160,7 +160,7 @@ class LoginPage extends React.Component {
               )}
               <div className="d-flex justify-content-between pt-2">
                 <Checkbox text="Remember me" />
-                <Link to={"#"} className="d-flex fw-semibold fs-1">
+                <Link to={"#"} className="d-flex fw-semibold fs-6">
                   Forgot password?
                 </Link>
               </div>
