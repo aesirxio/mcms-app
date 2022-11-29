@@ -44,7 +44,8 @@ const Items = ({ t, data = [] }) => {
       {
         Header: "Categories",
         accessor: "categories",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center",
+        className:
+          "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center text-truncate",
         Cell: ({ value }) => {
           return <div className="px-24 text-start">{value}</div>;
         },
@@ -62,7 +63,8 @@ const Items = ({ t, data = [] }) => {
       {
         Header: "Engagement",
         accessor: "engagement",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center",
+        className:
+          "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center text-truncate",
         Cell: ({ value }) => {
           return <div className="px-24 text-end">{value}</div>;
         },
@@ -71,7 +73,8 @@ const Items = ({ t, data = [] }) => {
       {
         Header: "Visits",
         accessor: "visits",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center ",
+        className:
+          "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center text-truncate",
         Cell: ({ value }) => {
           return <div className="px-24">{value}</div>;
         },
