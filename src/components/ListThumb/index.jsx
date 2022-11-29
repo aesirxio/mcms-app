@@ -5,6 +5,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
+import { notify } from "components/Toast";
 
 const optionAction = [
   // { value: "edit", label: "Edit" },
@@ -27,12 +28,13 @@ const ListThumb = ({ setLoading, currentRow, setDataAction }) => {
   const [columns, setColumns] = useState("");
   const [filterColum, setFilterColum] = useState("");
   const [filter, setFilter] = useState("");
-  const handleAnAction = (e) => {
-    setLoading(true);
-    setAction(e);
-    setDataAction(currentRow);
-    setTimeout(() => {
+  const handleAnAction = async (e) => {
+    await setLoading(true);
+    await setAction(e);
+    await setDataAction(currentRow);
+    await setTimeout(() => {
       setLoading(false);
+      notify("Success");
     }, 2000);
   };
 
