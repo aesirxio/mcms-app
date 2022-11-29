@@ -6,6 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 import Items from "./Component/Items";
 import ComponentImage from "components/ComponentImage";
 import TabBarComponent from "components/TabBarComponent";
+
 const Dashboard = observer(
   class Dashboard extends Component {
     constructor(props) {
@@ -84,6 +85,7 @@ const Dashboard = observer(
             </Link>
           </div>
           <TabBarComponent tabList={tabList} view={"all-items"} />
+
           <Items t={t} data={null} />
         </div>
       );

@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
-import { faList } from "@fortawesome/free-solid-svg-icons/faList";
-import { faTh } from "@fortawesome/free-solid-svg-icons/faTh";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 
 import SelectComponent from "../Select";
+import { Spinner } from "react-bootstrap";
 
 const optionAction = [
-  { value: "action-1", label: "Action 1" },
-  { value: "action-2", label: "Action 2" },
+  { value: "edit", label: "Edit" },
+  { value: "delete", label: "Delete" },
   { value: "action-3", label: "Action 3" },
 ];
 
@@ -21,33 +19,36 @@ const optionColumns = [
   { value: "columns-3", label: "Columns 3" },
 ];
 
-class ListThumb extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      anAction: null,
-      columns: null,
-    };
-  }
-
-  handleAnAction = (selectedOption) => {
-    this.setState({
-      anAction: selectedOption,
-    });
+const ListThumb = ({ setLoading, loading }) => {
+  const [action, setAction] = useState("");
+  const [columns, setColumns] = useState("");
+  const [filter, setFilter] = useState("");
+  const handleAnAction = (e) => {
+    setLoading(true);
+    setAction(e);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
-  handleColumns = (selectedOption) => {
-    this.setState({
-      columns: selectedOption,
-    });
+  const handleColumns = (e) => {
+    setLoading(true);
+    setColumns(e);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+  const handleSearch = (e) => {
+    setLoading(true);
+    setFilter(e);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
-  render() {
-    let { anAction, columns } = this.state;
-    let { _handleList, isList } = this.props;
-
-    return (
-      <div className="bg-white rounded-3">
+  return (
+    <>
+      <div className="bg-white rounded-3 mb-24px">
         <div className="row">
           <div className="col-7">
             <div className="row">
@@ -55,7 +56,7 @@ class ListThumb extends React.Component {
                 <div className="input-group mb-0">
                   <input
                     type="text"
-                    placeholder="Search your projects"
+                    placeholder="Search"
                     aria-describedby="button-search"
                     className="form-control border-end-0 pe-2 border-0"
                   />
@@ -63,6 +64,7 @@ class ListThumb extends React.Component {
                     type="button"
                     id="button-search"
                     className="btn btn_search border-0 border-start-0 border-gray text-green"
+                    onClick={(e) => handleSearch(e)}
                   >
                     <FontAwesomeIcon icon={faSearch} />
                   </button>
@@ -70,8 +72,8 @@ class ListThumb extends React.Component {
               </div>
               <div className="col-3 border-end-1">
                 <SelectComponent
-                  value={anAction}
-                  onChange={this.handleAnAction}
+                  value={action}
+                  onChange={(e) => handleAnAction(e)}
                   options={optionAction}
                   isBorder={false}
                   placeholder="Choose an action"
@@ -87,7 +89,7 @@ class ListThumb extends React.Component {
                   <div className="w-260">
                     <SelectComponent
                       value={columns}
-                      onChange={this.handleColumns}
+                      onChange={(e) => handleColumns(e)}
                       options={optionColumns}
                       isBorder={false}
                       placeholder="Columns"
@@ -99,36 +101,36 @@ class ListThumb extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-5 justify-content-end d-flex">
-            <button
-              type="button"
-              className={`btn text-blue-0 rounded-0 px-4 ${
-                isList ? "bg-blue-3" : ""
-              }`}
-              onClick={_handleList}
-            >
-              <i>
-                <FontAwesomeIcon icon={faList} />
-              </i>
-              <span className="ms-2 opacity-75">List</span>
-            </button>
-            <button
-              type="button"
-              className={`btn text-blue-0 rounded-0 px-4 ${
-                !isList ? "bg-blue-3" : ""
-              }`}
-              onClick={_handleList}
-            >
-              <i>
-                <FontAwesomeIcon icon={faTh} />
-              </i>
-              <span className="ms-2 opacity-75">Thumb</span>
-            </button>
-          </div>
+          {/* <div className="col-5 justify-content-end d-flex">
+          <button
+            type="button"
+            className={`btn text-blue-0 rounded-0 px-4 ${
+              isList ? "bg-blue-3" : ""
+            }`}
+            onClick={_handleList}
+          >
+            <i>
+              <FontAwesomeIcon icon={faList} />
+            </i>
+            <span className="ms-2 opacity-75">List</span>
+          </button>
+          <button
+            type="button"
+            className={`btn text-blue-0 rounded-0 px-4 ${
+              !isList ? "bg-blue-3" : ""
+            }`}
+            onClick={_handleList}
+          >
+            <i>
+              <FontAwesomeIcon icon={faTh} />
+            </i>
+            <span className="ms-2 opacity-75">Thumb</span>
+          </button>
+        </div> */}
         </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default withTranslation("common")(ListThumb);

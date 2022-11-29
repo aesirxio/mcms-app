@@ -1,8 +1,10 @@
+import ListThumb from "components/ListThumb";
 import Table from "components/Table";
 import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 const Items = ({ t, data = [] }) => {
   const [newStatus, setNewStatus] = useState(false);
+  const [loading, setLoading] = useState(false);
   const setStatus = (row, e) => {
     setNewStatus(!row?.values.check);
   };
@@ -12,7 +14,7 @@ const Items = ({ t, data = [] }) => {
         Header: "ID",
         accessor: "id",
         width: "auto",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ps-3",
+        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1",
         Cell: ({ value }) => {
           return <div className="px-24">{value}</div>;
         },
@@ -21,9 +23,9 @@ const Items = ({ t, data = [] }) => {
         Header: "Name",
         accessor: "name",
         className:
-          "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-start ps-3",
+          "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-start text-truncate",
         Cell: ({ value }) => {
-          return <div className=" px-24 text-start">{value}</div>;
+          return <div className="px-24 text-start text-truncate">{value}</div>;
         },
         width: "25%",
         sortParams: "name",
@@ -49,11 +51,11 @@ const Items = ({ t, data = [] }) => {
       {
         Header: "Author",
         accessor: "author",
-        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 ",
+        className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-truncate",
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="px-24 text-truncate">{value}</div>;
         },
-        width: "10%",
+        width: "auto",
       },
       {
         Header: "Engagement",
@@ -78,7 +80,7 @@ const Items = ({ t, data = [] }) => {
         accessor: "languages",
         className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center ",
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="px-24 text-truncate">{value}</div>;
         },
         width: "15%",
       },
@@ -87,7 +89,9 @@ const Items = ({ t, data = [] }) => {
         accessor: "status",
         className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center",
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return (
+            <div className="px-24">{value ? "Published" : "UnPublished"}</div>
+          );
         },
         width: "auto",
       },
@@ -126,7 +130,7 @@ const Items = ({ t, data = [] }) => {
   const dataTable = React.useMemo(
     () => [
       {
-        checkbox: false,
+        checkbox: true,
         id: "260",
         name: "AesirX DMA: Open Source automation tool ...",
         type: "Services",
@@ -135,11 +139,11 @@ const Items = ({ t, data = [] }) => {
         engagement: "40%",
         visits: "100",
         languages: "English (en), Vietnam...",
-        status: "Published",
+        status: true,
         check: true,
       },
       {
-        checkbox: true,
+        checkbox: false,
         id: "261",
         name: "Social Media Marketing for Free, how to ...",
         type: "Services",
@@ -148,8 +152,8 @@ const Items = ({ t, data = [] }) => {
         engagement: "40%",
         visits: "100",
         languages: "English (en), Vietnam...",
-        status: "Published",
-        check: true,
+        status: false,
+        check: false,
       },
       {
         checkbox: true,
@@ -161,39 +165,44 @@ const Items = ({ t, data = [] }) => {
         engagement: "40%",
         visits: "100",
         languages: "English (en), Vietnam...",
-        status: "Published",
+        status: true,
         check: true,
       },
       {
         checkbox: true,
         id: "263",
-        name: "Social Media Marketing for Free, how to ...",
+        name: "AesirX DMA: Open Source automation tool ...",
         type: "Services",
         categories: "News",
         author: "John Dee",
         engagement: "40%",
         visits: "100",
         languages: "English (en), Vietnam...",
-        status: "Published",
-        check: false,
+        status: true,
+        check: true,
       },
     ],
     []
   );
 
   return (
-    <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
-      <div className="fs-14 fw-semibold h-100">
-        <Table
-          columns={columnsTable}
-          data={dataTable}
-          canSort={true}
-          pagination="true"
-          selection={false}
-          dragDrop={true}
-        ></Table>
+    <>
+      <ListThumb setLoading={setLoading} loading={loading} />
+      <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
+        <div className="fs-14 fw-semibold h-100">
+          <Table
+            columns={columnsTable}
+            data={dataTable}
+            canSort={true}
+            pagination="true"
+            selection={false}
+            dragDrop={true}
+            setLoading={setLoading}
+            loading={loading}
+          ></Table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default withTranslation("common")(Items);

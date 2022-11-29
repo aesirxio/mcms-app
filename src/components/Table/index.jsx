@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useExpanded,
   usePagination,
@@ -16,6 +16,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import update from "immutability-helper";
 import ComponentImage from "components/ComponentImage";
 import BTable from "react-bootstrap/Table";
+import Spinner from "components/Spinner";
 
 const Table = ({
   columns,
@@ -23,6 +24,7 @@ const Table = ({
   pagination,
   store,
   setLoading,
+  loading,
   onSelect,
   dataList,
   selection = true,
@@ -54,7 +56,6 @@ const Table = ({
   );
   const [records, setRecords] = React.useState(data);
 
-  const dragRef = React.useRef(null);
   const {
     getTableProps,
     getTableBodyProps,
@@ -79,32 +80,11 @@ const Table = ({
       },
     },
     (hooks) => {
-      if (dragDrop) {
-        hooks.visibleColumns.push((columns) => [
-          {
-            Header: () => <div className=""></div>,
-            id: "drag",
-            accessor: "drag",
-            width: "auto",
-            className: "px-24 py-2 ",
-            Cell: ({ row }) => (
-             <div ref={dragRef} className="">
-             <ComponentImage
-               src={"/assets/images/moveIcon.png"}
-               alt={"/assets/images/moveIcon.png"}
-               className="ps-2"
-             />
-           </div>
-            ),
-          },
-          ...columns,
-        ]);
-      }
       !selection &&
         hooks.visibleColumns.push((columns) => [
           {
             id: "selection",
-            className: "px-24 py-2 border-bottom-1 text-uppercase order-2",
+            className: "px-24 py-2 border-bottom-1 text-uppercase ps-3",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
               <div className="">
@@ -121,6 +101,17 @@ const Table = ({
           },
           ...columns,
         ]);
+      if (dragDrop) {
+        hooks.visibleColumns.push((columns) => [
+          {
+            Header: () => <div className=""></div>,
+            id: "drag",
+            width: "auto",
+            className: "px-24 py-2 ",
+          },
+          ...columns,
+        ]);
+      }
     },
     useSortBy,
     useExpanded,
@@ -134,9 +125,9 @@ const Table = ({
     setLoading(false);
   };
   //handle rows drag and drop
-  const moveRow = (dragIndex, hoverIndex) => {
+  const moveRow = async (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];
-    setRecords(
+    await setRecords(
       update(records, {
         $splice: [
           [dragIndex, 1],
@@ -149,6 +140,7 @@ const Table = ({
 
   const Row = ({ row, index, moveRow, newRowCells }) => {
     const dropRef = React.useRef(null);
+    const dragRef = React.useRef(null);
     const [, drop] = useDrop({
       accept: DND_ITEM_TYPE,
       hover(item, monitor) {
@@ -200,19 +192,33 @@ const Table = ({
         //   onRightClickItem(e, row.original);
         // }}
       >
+        <td ref={dragRef}>
+          <ComponentImage
+            src={"/assets/images/moveIcon.png"}
+            alt={"/assets/images/moveIcon.png"}
+            className="py-2 ps-2"
+          />
+        </td>
+
         {newRowCells.map((cell, index) => {
           return (
-            <td
-              key={index}
-              {...cell.getCellProps({
-                style: { width: cell.column.width },
-              })}
-              className={`py-2 ${
-                cell.column.id === "status" && "bg-status_publish"
-              }`}
-            >
-              {cell.render("Cell")}
-            </td>
+            cell.column.id !== "drag" && (
+              <td
+                key={index}
+                {...cell.getCellProps({
+                  style: { width: cell.column.width },
+                })}
+                className={`py-2 ${
+                  cell.column.id === "status"
+                    ? cell?.value
+                      ? "bg-status_publish"
+                      : "bg-status_unPublish"
+                    : ""
+                }`}
+              >
+                {cell.render("Cell")}
+              </td>
+            )
           );
         })}
       </tr>
@@ -220,10 +226,12 @@ const Table = ({
   };
 
   return (
-    <>
-      <div className="bg-white fs-14 text-color position-relative h-100">
-        {rows.length ? (
-          <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend}>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="bg-white fs-14 text-color position-relative h-100">
+          {rows.length ? (
             <BTable
               striped
               // bordered
@@ -400,19 +408,19 @@ const Table = ({
                   })}
               </tbody>
             </BTable>
-          </DndProvider>
-        ) : null}
+          ) : null}
 
-        {rows.length === 0 ? (
-          <div className="position-absolute top-50 start-50 translate-middle">
-            <ComponentNoData
-              icons="/assets/images/ic_project.svg"
-              title="No Data"
-              width="w-50"
-            />
-          </div>
-        ) : null}
-      </div>
+          {rows.length === 0 ? (
+            <div className="position-absolute top-50 start-50 translate-middle">
+              <ComponentNoData
+                icons="/assets/images/ic_project.svg"
+                title="No Data"
+                width="w-50"
+              />
+            </div>
+          ) : null}
+        </div>
+      )}
       {pagination && pageOptions.length ? (
         <div className="mt-2 text-center pagination">
           <button
@@ -474,7 +482,7 @@ const Table = ({
           </button>
         </div>
       ) : null}
-    </>
+    </DndProvider>
   );
 };
 
