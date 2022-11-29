@@ -29,6 +29,7 @@ const Table = ({
   classNameTable,
   canSort,
   sortAPI,
+  dragDrop,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -52,6 +53,8 @@ const Table = ({
     }
   );
   const [records, setRecords] = React.useState(data);
+
+  const dragRef = React.useRef(null);
   const {
     getTableProps,
     getTableBodyProps,
@@ -76,14 +79,35 @@ const Table = ({
       },
     },
     (hooks) => {
+      if (dragDrop) {
+        hooks.visibleColumns.push((columns) => [
+          {
+            Header: () => <div className=""></div>,
+            id: "drag",
+            accessor: "drag",
+            width: "auto",
+            className: "px-24 py-2 ",
+            Cell: ({ row }) => (
+             <div ref={dragRef} className="">
+             <ComponentImage
+               src={"/assets/images/moveIcon.png"}
+               alt={"/assets/images/moveIcon.png"}
+               className="ps-2"
+             />
+           </div>
+            ),
+          },
+          ...columns,
+        ]);
+      }
       !selection &&
         hooks.visibleColumns.push((columns) => [
           {
             id: "selection",
-            className: "px-24 py-2 border-bottom-1 text-uppercase",
+            className: "px-24 py-2 border-bottom-1 text-uppercase order-2",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div>
+              <div className="">
                 <IndeterminateCheckbox
                   {...getToggleAllPageRowsSelectedProps()}
                 />
@@ -125,8 +149,6 @@ const Table = ({
 
   const Row = ({ row, index, moveRow, newRowCells }) => {
     const dropRef = React.useRef(null);
-    const dragRef = React.useRef(null);
-
     const [, drop] = useDrop({
       accept: DND_ITEM_TYPE,
       hover(item, monitor) {
@@ -135,7 +157,6 @@ const Table = ({
         }
         const dragIndex = item.index;
         const hoverIndex = index;
-        // Don't replace items with themselves
         if (dragIndex === hoverIndex) {
           return;
         }
@@ -179,28 +200,19 @@ const Table = ({
         //   onRightClickItem(e, row.original);
         // }}
       >
-        <td ref={dragRef} className="pt-2">
-          <ComponentImage
-            src={"/assets/images/moveIcon.png"}
-            alt={"/assets/images/moveIcon.png"}
-            className="ps-2"
-          />
-        </td>
         {newRowCells.map((cell, index) => {
           return (
-            cell.column.id !== "drag" && (
-              <td
-                key={index}
-                {...cell.getCellProps({
-                  style: { width: cell.column.width },
-                })}
-                className={`py-2 ${
-                  cell.column.id === "status" && "bg-status_publish"
-                }`}
-              >
-                {cell.render("Cell")}
-              </td>
-            )
+            <td
+              key={index}
+              {...cell.getCellProps({
+                style: { width: cell.column.width },
+              })}
+              className={`py-2 ${
+                cell.column.id === "status" && "bg-status_publish"
+              }`}
+            >
+              {cell.render("Cell")}
+            </td>
           );
         })}
       </tr>

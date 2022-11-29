@@ -8,31 +8,6 @@ const Items = ({ t, data = [] }) => {
   };
   const columnsTable = React.useMemo(
     () => [
-      // {
-      //   Header: "",
-      //   accessor: "checkbox",
-      //   sortParams: "archived",
-      //   Cell: ({ value, row }) => (
-      //     <div className="d-flex">
-      //       <div className="form-check">
-      //         <input
-      //           className="form-check-input"
-      //           type="checkbox"
-      //           checked={true}
-      //         />
-      //       </div>
-      //     </div>
-      //   ),
-      // },
-      {
-        Header: "",
-        accessor: "drag",
-        width: "auto",
-        className: "px-24 py-2 fs-12 opacity-50 ",
-        Cell: () => {
-          return <div className="px-24 d-none"></div>;
-        },
-      },
       {
         Header: "ID",
         accessor: "id",
@@ -42,7 +17,6 @@ const Items = ({ t, data = [] }) => {
           return <div className="px-24">{value}</div>;
         },
       },
-
       {
         Header: "Name",
         accessor: "name",
@@ -209,15 +183,14 @@ const Items = ({ t, data = [] }) => {
 
   return (
     <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
-      {/* <h2 className="py-16 px-24 mb-0 fs-4 fw-semibold text-blue-0">
-        {t('txt_revenue_by_subscribers')}
-      </h2> */}
       <div className="fs-14 fw-semibold h-100">
         <Table
           columns={columnsTable}
           data={dataTable}
           canSort={true}
           pagination="true"
+          selection={false}
+          dragDrop={true}
         ></Table>
       </div>
     </div>
