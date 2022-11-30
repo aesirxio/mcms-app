@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   useExpanded,
   usePagination,
@@ -34,6 +34,10 @@ const Table = ({
   dragDrop,
   setCurrentRow,
   dataAction,
+  setDataAction,
+  filterTab,
+  setFilterTab,
+  setSelectedMulptiRows,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -63,7 +67,6 @@ const Table = ({
     }
   );
   const [records, setRecords] = React.useState(data);
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -76,6 +79,7 @@ const Table = ({
     canNextPage,
     gotoPage,
     nextPage,
+    selectedFlatRows,
     state: { pageIndex },
     state,
   } = useTable(
@@ -83,10 +87,14 @@ const Table = ({
       columns,
       data: records,
       onSelect,
-      initialState: {
-        pageSize: -1,
-      },
+      // initialState: {
+      //   pageSize: -1,
+      // },
     },
+    useSortBy,
+    useExpanded,
+    usePagination,
+    useRowSelect,
     (hooks) => {
       !selection &&
         hooks.visibleColumns.push((columns) => [
@@ -95,7 +103,7 @@ const Table = ({
             className: "px-24 py-2 border-bottom-1 text-uppercase ps-3",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div className="">
+              <div onClick={(e) => setSelectedMulptiRows(selectedFlatRows)}>
                 <IndeterminateCheckbox
                   {...getToggleAllPageRowsSelectedProps()}
                 />
@@ -114,7 +122,6 @@ const Table = ({
       if (dragDrop) {
         hooks.visibleColumns.push((columns) => [
           {
-            Header: () => <div className=""></div>,
             id: "drag",
             width: "auto",
             className: "px-24 py-2 ",
@@ -122,17 +129,30 @@ const Table = ({
           ...columns,
         ]);
       }
-    },
-    useSortBy,
-    useExpanded,
-    usePagination,
-    useRowSelect
+    }
   );
   useEffect(() => {
-    setRecords(
-      dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
-    );
-  }, [dataAction.value, data]);
+    if (dataAction.value) {
+      setRecords(
+        dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
+      );
+      setDataAction({});
+    } else if (filterTab) {
+      setRecords(
+        filterTab.target.innerText && filterTab.target.innerText !== "All items"
+          ? data.filter(
+              (v) =>
+                v.status ===
+                (filterTab.target.innerText === "Published"
+                  ? true
+                  : filterTab.target.innerText === "Unpublished"
+                  ? false
+                  : null)
+            )
+          : data
+      );
+    }
+  }, [dataAction.value, data, filterTab, setDataAction, setFilterTab]);
   const handlePagination = async (pageIndex) => {
     setLoading(true);
     await store.goToPage(pageIndex);

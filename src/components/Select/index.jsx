@@ -59,6 +59,7 @@ class SelectComponent extends React.Component {
         }}
         placeholder={placeholder ?? t("txt_select...")}
         styles={styles}
+        // isDisabled={true}
       />
     );
   }

@@ -23,16 +23,25 @@ const optionFilterColumns = [
   { value: false, label: "UnPublished" },
 ];
 
-const ListThumb = ({ setLoading, currentRow, setDataAction }) => {
+const ListThumb = ({
+  setLoading,
+  currentRow,
+  setDataAction,
+  selectedMulptiRows,
+}) => {
   const [action, setAction] = useState("");
   const [columns, setColumns] = useState("");
   const [filterColum, setFilterColum] = useState("");
   const [filter, setFilter] = useState("");
+  console.log("selectedMulptiRows", selectedMulptiRows);
   const handleAnAction = async (e) => {
-    await setLoading(true);
-    await setAction(e);
-    await setDataAction(currentRow);
-    await setTimeout(() => {
+    if (!currentRow.value) {
+      return;
+    }
+    setLoading(true);
+    setAction(e);
+    setDataAction(currentRow);
+    setTimeout(() => {
       setLoading(false);
       notify("Success");
     }, 2000);
