@@ -6,6 +6,8 @@ import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
 import { notify } from "components/Toast";
+import { Dropdown, Row } from "react-bootstrap";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 
 const optionAction = [
   // { value: "edit", label: "Edit" },
@@ -30,12 +32,13 @@ const ListThumb = ({
   selectedMulptiRows,
   setDataActionAllrows,
   setDataFilter,
+  allColumns,
 }) => {
   const [action, setAction] = useState("");
-  const [columns, setColumns] = useState("");
+  const [columns, setColumns] = useState();
   const [filterColum, setFilterColum] = useState("");
   const [filter, setFilter] = useState("");
-
+  console.log(columns);
   const handleAnAction = async (e) => {
     if (!currentRow.value && selectedMulptiRows?.length === 0) {
       return;
@@ -49,14 +52,15 @@ const ListThumb = ({
       notify("Success");
     }, 2000);
   };
-
+  let getColumn = [];
   const handleColumns = (e) => {
-    setLoading(true);
-    setColumns(e);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // setLoading(true);
+    getColumn.push(e.target?.parentElement?.id);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
   };
+
   const handleSearch = (e) => {
     setLoading(true);
     setFilter(e);
@@ -111,19 +115,46 @@ const ListThumb = ({
               </div>
               <div className="col-2 border-end-1">
                 <div className="d-flex align-items-center">
-                  <i className="text-blue-0">
-                    <FontAwesomeIcon icon={faColumns} />
-                  </i>
                   <div className="w-260">
-                    <SelectComponent
-                      value={columns}
-                      onChange={(e) => handleColumns(e)}
-                      options={optionColumns}
-                      isBorder={false}
-                      placeholder="Columns"
-                      className="text-green"
-                      plColor="rgba(8, 18, 64, 0.8)"
-                    />
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        variant="info"
+                        id="actions"
+                        className={`btn_toggle`}
+                      >
+                        <i>
+                          <FontAwesomeIcon icon={faColumns} />
+                        </i>
+                        <span className="p-1 text-blue-0 opacity-75">
+                          Columns
+                        </span>
+                        <i className="text-green">
+                          <FontAwesomeIcon icon={faChevronDown} />
+                        </i>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className="pt-3 px-2 border-0 shadow">
+                        {allColumns?.map(
+                          (column) =>
+                            column.id !== "selection" &&
+                            column.Header &&
+                            column.id !== "drag" && (
+                              <div
+                                key={column.id}
+                                id={column.Header}
+                                className="mb-2"
+                                onClick={(e) => handleColumns(e)}
+                              >
+                                <input
+                                  type="checkbox"
+                                  className="form-check-input"
+                                  // {...column.getToggleHiddenProps()}
+                                />
+                                {column.Header}
+                              </div>
+                            )
+                        )}
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                 </div>
               </div>

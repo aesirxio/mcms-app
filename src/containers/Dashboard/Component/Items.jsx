@@ -10,6 +10,8 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
   const [dataAction, setDataAction] = useState([]);
   const [dataActionAllrows, setDataActionAllrows] = useState();
   const [dataFilter, setDataFilter] = useState();
+  const [allColumns, setAllColumns] = useState();
+
   const columnsTable = React.useMemo(
     () => [
       {
@@ -203,6 +205,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
         selectedMulptiRows={selectedMulptiRows}
         setDataActionAllrows={setDataActionAllrows}
         setDataFilter={setDataFilter}
+        allColumns={allColumns}
       />
       <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
         <div className="fs-14 fw-semibold h-100">
@@ -223,6 +226,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
             setSelectedMulptiRows={setSelectedMulptiRows}
             dataActionAllrows={dataActionAllrows}
             dataFilter={dataFilter}
+            setAllColumns={setAllColumns}
           ></Table>
         </div>
       </div>

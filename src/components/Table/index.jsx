@@ -40,6 +40,7 @@ const Table = ({
   setSelectedMulptiRows,
   dataActionAllrows,
   dataFilter,
+  setAllColumns,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -84,6 +85,7 @@ const Table = ({
     selectedFlatRows,
     state: { pageIndex },
     state,
+    allColumns,
   } = useTable(
     {
       columns,
@@ -134,6 +136,7 @@ const Table = ({
     }
   );
   useEffect(() => {
+    setAllColumns(allColumns);
     if (dataAction.value) {
       setRecords(data.filter((v) => v.id !== dataAction.value));
       // setDataAction({});
@@ -278,6 +281,7 @@ const Table = ({
         <Spinner />
       ) : (
         <div className="bg-white fs-14 text-color position-relative h-100">
+          <div className="px-2 border-end-1"></div>
           {rows.length ? (
             <BTable
               striped
