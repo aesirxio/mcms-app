@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Items from "../Component/Items";
 import { withTranslation } from "react-i18next";
-
+import { Icon } from "@iconify/react";
 class ItemsList extends Component {
   render() {
     const { t } = this.props;
@@ -51,10 +51,7 @@ class ItemsList extends Component {
             to="/items-create"
             className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
           >
-            <ComponentImage
-              className="me-1 object-fit-contain"
-              src="/assets/images/plus.svg"
-            />
+            <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
             {t("txt_add_new_item")}
           </Link>
         </div>
