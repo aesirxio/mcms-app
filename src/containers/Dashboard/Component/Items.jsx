@@ -4,13 +4,12 @@ import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 const Items = ({ t, data = [], filterTab, setFilterTab }) => {
   const [newStatus, setNewStatus] = useState();
-  const [currentRow, setCurrentRow] = useState({ status: "", value: "" });
   const [selectedMulptiRows, setSelectedMulptiRows] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
   const [dataActionAllrows, setDataActionAllrows] = useState();
   const [dataFilter, setDataFilter] = useState();
-  const [allColumns, setAllColumns] = useState();
+  const [filterSearch, setFilterSearch] = useState("");
 
   const columnsTable = React.useMemo(
     () => [
@@ -190,6 +189,370 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
         status: true,
         check: true,
       },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "260",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: false,
+        id: "261",
+        name: "Social Media Marketing for Free, how to ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: false,
+        check: false,
+      },
+      {
+        checkbox: true,
+        id: "262",
+        name: "Organic strategy, the lost discipline in digit...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
+      {
+        checkbox: true,
+        id: "263",
+        name: "AesirX DMA: Open Source automation tool ...",
+        type: "Services",
+        categories: "News",
+        author: "John Dee",
+        engagement: "40%",
+        visits: "100",
+        languages: "English (en), Vietnam...",
+        status: true,
+        check: true,
+      },
     ],
     []
   );
@@ -198,14 +561,12 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
       <ListThumb
         setLoading={setLoading}
         loading={loading}
-        setCurrentRow={setCurrentRow}
-        currentRow={currentRow}
         setDataAction={setDataAction}
         dataAction={dataAction}
         selectedMulptiRows={selectedMulptiRows}
         setDataActionAllrows={setDataActionAllrows}
         setDataFilter={setDataFilter}
-        allColumns={allColumns}
+        setFilterSearch={setFilterSearch}
       />
       <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
         <div className="fs-14 fw-semibold h-100">
@@ -213,12 +574,11 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
             columns={columnsTable}
             data={dataTable}
             canSort={true}
-            // pagination={true}
+            pagination={true}
             selection={false}
             dragDrop={true}
             setLoading={setLoading}
             loading={loading}
-            setCurrentRow={setCurrentRow}
             setDataAction={setDataAction}
             dataAction={dataAction}
             filterTab={filterTab}
@@ -226,7 +586,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
             setSelectedMulptiRows={setSelectedMulptiRows}
             dataActionAllrows={dataActionAllrows}
             dataFilter={dataFilter}
-            setAllColumns={setAllColumns}
+            filterSearch={filterSearch}
           ></Table>
         </div>
       </div>
