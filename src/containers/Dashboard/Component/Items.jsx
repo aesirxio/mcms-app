@@ -2,9 +2,10 @@ import ListThumb from "components/ListThumb";
 import Table from "components/Table";
 import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
-const Items = ({ t, data = [] }) => {
+const Items = ({ t, data = [], filterTab, setFilterTab }) => {
   const [newStatus, setNewStatus] = useState(false);
   const [currentRow, setCurrentRow] = useState({ status: "", value: "" });
+  const [selectedMulptiRows, setSelectedMulptiRows] = useState();
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState({});
   const setStatus = (e, row) => {
@@ -202,25 +203,26 @@ const Items = ({ t, data = [] }) => {
         currentRow={currentRow}
         setDataAction={setDataAction}
         dataAction={dataAction}
+        selectedMulptiRows={selectedMulptiRows}
       />
       <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
         <div className="fs-14 fw-semibold h-100">
           <Table
             columns={columnsTable}
-            data={
-              dataAction.value
-                ? dataTable.filter((v) => v.id !== dataAction.value)
-                : dataTable
-            }
+            data={dataTable}
             canSort={true}
-            pagination={true}
+            // pagination={true}
             selection={false}
             dragDrop={true}
             setLoading={setLoading}
             loading={loading}
             setCurrentRow={setCurrentRow}
             currentRow={currentRow}
+            setDataAction={setDataAction}
             dataAction={dataAction}
+            filterTab={filterTab}
+            setFilterTab={setFilterTab}
+            setSelectedMulptiRows={setSelectedMulptiRows}
           ></Table>
         </div>
       </div>
