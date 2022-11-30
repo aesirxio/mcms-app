@@ -5,7 +5,14 @@ import ItemsFormActionBar from "./ItemsFormActionBar";
 import PublishOptionComponent from "components/PublishOptionComponent";
 import { FORM_FIELD_TYPE } from "constants/FormFieldType";
 import FormComponent from "components/Form";
+import FieldsComponent from "components/FieldsComponent";
 class ItemsFormPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+  }
   formPropsData = {};
   updateGeneralViewModel = null;
   generateFormSetting = () => {
@@ -87,6 +94,7 @@ class ItemsFormPage extends Component {
   };
   render() {
     const { t } = this.props;
+
     return (
       <>
         <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
@@ -96,19 +104,21 @@ class ItemsFormPage extends Component {
           <ItemsFormActionBar />
         </div>
         <Row>
-          <Col lg={9}>
-            <Tabs defaultActiveKey="fields" className="mb-24">
+          <Col lg={9} className="mb-24">
+            <Tabs defaultActiveKey="fields" className="mb-24 custom-tabs">
               <Tab
                 tabClassName="border-0 bg-transparent p-0 pb-16 me-4"
                 eventKey="fields"
                 title={t("txt_menu_field")}
-              ></Tab>
+              >
+                <FieldsComponent />
+              </Tab>
               <Tab
                 tabClassName="border-0 bg-transparent p-0 pb-16"
                 eventKey="general-information"
                 title={t("txt_general_information")}
               >
-                <div className="rounded-1 bg-white p-24">
+                <div className="rounded-1 bg-white p-24 shadow-sm">
                   <FormComponent
                     key={Math.random(40, 200)}
                     formPropsData={this.formPropsData}

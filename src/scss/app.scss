@@ -9,6 +9,7 @@
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/list-group";
 @import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/progress";
@@ -451,5 +452,25 @@ textarea {
   &:focus {
     box-shadow: none !important;
     border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+}
+
+.custom-tabs{
+  >.nav-item{
+    >.nav-link{
+      &.active{
+        font-weight: bold;
+        position: relative;
+        &::before{
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          height: 2px;
+          background: $success;
+        }
+      }
+    }
   }
 }
