@@ -38,6 +38,9 @@ const Table = ({
   filterTab,
   setFilterTab,
   setSelectedMulptiRows,
+  dataActionAllrows,
+  dataFilter,
+  setAllColumns,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -82,6 +85,7 @@ const Table = ({
     selectedFlatRows,
     state: { pageIndex },
     state,
+    allColumns,
   } = useTable(
     {
       columns,
@@ -103,7 +107,7 @@ const Table = ({
             className: "px-24 py-2 border-bottom-1 text-uppercase ps-3",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div onClick={(e) => setSelectedMulptiRows(selectedFlatRows)}>
+              <div>
                 <IndeterminateCheckbox
                   {...getToggleAllPageRowsSelectedProps()}
                 />
@@ -132,11 +136,12 @@ const Table = ({
     }
   );
   useEffect(() => {
+    setAllColumns(allColumns);
     if (dataAction.value) {
-      setRecords(
-        dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
-      );
-      setDataAction({});
+      setRecords(data.filter((v) => v.id !== dataAction.value));
+      // setDataAction({});
+    } else if (!dataAction.value && dataActionAllrows) {
+      setRecords(data.filter((v) => v.status === "DeleteAll"));
     } else if (filterTab) {
       setRecords(
         filterTab.target.innerText && filterTab.target.innerText !== "All items"
@@ -151,8 +156,19 @@ const Table = ({
             )
           : data
       );
+    } else if (dataFilter) {
+      setRecords(data.filter((v) => v.status === dataFilter?.value));
     }
-  }, [dataAction.value, data, filterTab, setDataAction, setFilterTab]);
+  }, [
+    dataAction.value,
+    data,
+    filterTab,
+    setDataAction,
+    setFilterTab,
+    dataActionAllrows,
+    dataFilter,
+  ]);
+  setSelectedMulptiRows(selectedFlatRows);
   const handlePagination = async (pageIndex) => {
     setLoading(true);
     await store.goToPage(pageIndex);
@@ -265,6 +281,7 @@ const Table = ({
         <Spinner />
       ) : (
         <div className="bg-white fs-14 text-color position-relative h-100">
+          <div className="px-2 border-end-1"></div>
           {rows.length ? (
             <BTable
               striped

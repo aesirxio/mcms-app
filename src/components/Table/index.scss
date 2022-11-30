@@ -12,3 +12,6 @@
   border-radius: 4px;
   padding: 8px;
 }
+.btn_toggle::after {
+  border: none !important;
+}
