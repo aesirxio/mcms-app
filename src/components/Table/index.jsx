@@ -38,6 +38,8 @@ const Table = ({
   filterTab,
   setFilterTab,
   setSelectedMulptiRows,
+  dataActionAllrows,
+  dataFilter,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -103,7 +105,7 @@ const Table = ({
             className: "px-24 py-2 border-bottom-1 text-uppercase ps-3",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div onClick={(e) => setSelectedMulptiRows(selectedFlatRows)}>
+              <div>
                 <IndeterminateCheckbox
                   {...getToggleAllPageRowsSelectedProps()}
                 />
@@ -133,10 +135,10 @@ const Table = ({
   );
   useEffect(() => {
     if (dataAction.value) {
-      setRecords(
-        dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
-      );
-      setDataAction({});
+      setRecords(data.filter((v) => v.id !== dataAction.value));
+      // setDataAction({});
+    } else if (!dataAction.value && dataActionAllrows) {
+      setRecords(data.filter((v) => v.status === "DeleteAll"));
     } else if (filterTab) {
       setRecords(
         filterTab.target.innerText && filterTab.target.innerText !== "All items"
@@ -151,8 +153,19 @@ const Table = ({
             )
           : data
       );
+    } else if (dataFilter) {
+      setRecords(data.filter((v) => v.status === dataFilter?.value));
     }
-  }, [dataAction.value, data, filterTab, setDataAction, setFilterTab]);
+  }, [
+    dataAction.value,
+    data,
+    filterTab,
+    setDataAction,
+    setFilterTab,
+    dataActionAllrows,
+    dataFilter,
+  ]);
+  setSelectedMulptiRows(selectedFlatRows);
   const handlePagination = async (pageIndex) => {
     setLoading(true);
     await store.goToPage(pageIndex);

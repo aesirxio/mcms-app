@@ -28,18 +28,21 @@ const ListThumb = ({
   currentRow,
   setDataAction,
   selectedMulptiRows,
+  setDataActionAllrows,
+  setDataFilter,
 }) => {
   const [action, setAction] = useState("");
   const [columns, setColumns] = useState("");
   const [filterColum, setFilterColum] = useState("");
   const [filter, setFilter] = useState("");
-  console.log("selectedMulptiRows", selectedMulptiRows);
+
   const handleAnAction = async (e) => {
-    if (!currentRow.value) {
+    if (!currentRow.value && selectedMulptiRows?.length === 0) {
       return;
     }
     setLoading(true);
     setAction(e);
+    setDataActionAllrows(selectedMulptiRows);
     setDataAction(currentRow);
     setTimeout(() => {
       setLoading(false);
@@ -64,6 +67,7 @@ const ListThumb = ({
   const handleFilterColum = (e) => {
     setLoading(true);
     setFilterColum(e);
+    setDataFilter(e);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -82,6 +86,7 @@ const ListThumb = ({
                     placeholder="Search"
                     aria-describedby="button-search"
                     className="form-control border-end-0 pe-2 border-0"
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch(e)}
                   />
                   <button
                     type="button"
