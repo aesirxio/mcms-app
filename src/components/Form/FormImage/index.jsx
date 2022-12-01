@@ -1,46 +1,65 @@
+import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons/faCloudUploadAlt";
 import ComponentImage from "../../ComponentImage";
-
+import styles from "./index.module.scss";
 const FormImage = ({ field }) => {
   const [file, setFile] = useState(field.value);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     accept: "image/*",
     maxFiles: 1,
     multiple: false,
     onDrop: (acceptedFiles) => {
       setFile(URL.createObjectURL(acceptedFiles[0]));
     },
+    noClick: true,
   });
 
   return (
-    <div className="position-relative cursor-pointer">
+    <div className={`${styles["border"]} position-relative p-sm`}>
+      {file && (
+        <div
+          className={`position-absolute top-0 start-100 text-end cursor-auto`}
+        >
+          <div className="bg-danger p-sm" onClick={() => setFile(null)}>
+            <Icon
+              className="text-white"
+              width={24}
+              height={24}
+              icon="ion:trash-outline"
+            />
+          </div>
+        </div>
+      )}
       <div
         {...getRootProps()}
-        className="d-flex align-items-center justify-content-center p-3"
+        className="d-flex align-items-center justify-content-center cursor-auto"
       >
         <input
           {...getInputProps()}
-          className="position-absolute start-0 top-0 bottom-0 end-0"
+          className="position-absolute start-0 top-0 bottom-0 end-0 cursor-auto"
         />
-        <div className="d-flex align-items-center p-3">
-          <i className="fs-1 text-blue-0 opacity-25">
-            <FontAwesomeIcon icon={faCloudUploadAlt} />
-          </i>
-          <div className="text-center ms-1">
-            {/* <p className="mb-0">Drag and drop a file here </p> */}
-            <p className="mb-0 ms-2">
-              <strong>Choose file</strong>
+        {file ? (
+          <div
+            key={field.value}
+            className={`${styles["limit-image"]} text-center cursor-pointer`}
+            onClick={open}
+          >
+            <ComponentImage src={file} alt={field.value} />
+          </div>
+        ) : (
+          <div className="d-flex flex-column align-items-center p-4">
+            <p>Drop files anywhere to upload</p>
+            <p className="text-secondary">or</p>
+            <p
+              className="btn bg-white text-secondary border rounded-1 py-11 px-3 mb-0"
+              onClick={open}
+            >
+              Select File
             </p>
           </div>
-        </div>
-      </div>
-      <div key={field.value} className="text-center">
-        <ComponentImage src={file} alt={field.value} />
+        )}
       </div>
     </div>
   );

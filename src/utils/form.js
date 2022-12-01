@@ -22,6 +22,9 @@ const FormPriceField = lazy(() => import("../components/Form/FormPriceField"));
 const FormRadio = lazy(() => import("../components/Form/FormRadio"));
 
 const Input = lazy(() => import("../components/Form/Input"));
+const FormCheckBoxField = lazy(() =>
+  import("../components/Form/FormCheckBoxField")
+);
 
 const renderingGroupFieldHandler = (group, validator) => {
   return Object.keys(group.fields)
@@ -34,6 +37,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               return (
                 <Form.Group key={field.key} className={`mb-24 ${className}`}>
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -53,10 +57,12 @@ const renderingGroupFieldHandler = (group, validator) => {
               return (
                 <Form.Group key={field.key} className={`mb-24 ${className}`}>
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
                   <Form.Control
+                    rows={4}
                     as="textarea"
                     defaultValue={field.value}
                     required={field.required ?? false}
@@ -92,6 +98,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -108,6 +115,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                 >
                   {field.label && (
                     <Label
+                      labelClassName={field.labelClassName}
                       text={field.label}
                       required={field.required ?? false}
                     />
@@ -133,6 +141,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -161,6 +170,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                 >
                   {field.label && (
                     <Label
+                      labelClassName={field.labelClassName}
                       text={field.label}
                       required={field.required ?? false}
                     />
@@ -184,6 +194,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -198,6 +209,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -211,7 +223,10 @@ const renderingGroupFieldHandler = (group, validator) => {
                   key={Math.random(40, 200)}
                   className={`mb-24 ${className}`}
                 >
-                  <Label text={field.label} />
+                  <Label
+                    labelClassName={field.labelClassName}
+                    text={field.label}
+                  />
                   <div className="form-control w-full">
                     <CustomizedDatePicker
                       handleOnChange={(date) => field.changed(date)}
@@ -227,6 +242,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               return (
                 <Form.Group key={field.key} className={`mb-24 ${className}`}>
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -256,6 +272,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
@@ -279,13 +296,37 @@ const renderingGroupFieldHandler = (group, validator) => {
                   className={`mb-24 ${className}`}
                 >
                   <Label
+                    labelClassName={field.labelClassName}
                     text={field.label}
                     required={field.required ?? false}
                   />
-                  <FormLocationField field={field} validator={validator} />
+                  <FormLocationField field={field} />
+                  {field.validation &&
+                    validator.message(
+                      field.label,
+                      field.value,
+                      field.validation,
+                      {
+                        className: "text-danger",
+                      }
+                    )}
                 </Form.Group>
               );
 
+            case FORM_FIELD_TYPE.CHECKBOX:
+              return (
+                <Form.Group
+                  key={Math.random(40, 200)}
+                  className={`mb-24 ${className}`}
+                >
+                  <Label
+                    labelClassName={field.labelClassName}
+                    text={field.label}
+                    required={field.required ?? false}
+                  />
+                  <FormCheckBoxField field={field} validator={validator} />
+                </Form.Group>
+              );
             default:
               return null;
           }
