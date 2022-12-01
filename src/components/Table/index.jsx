@@ -130,6 +130,7 @@ const Table = ({
       }
     }
   );
+
   useEffect(() => {
     if (dataAction && dataAction?.length === 1) {
       setRecords(data.filter((v) => v.id !== dataAction?.[0]?.values?.id));
@@ -159,7 +160,7 @@ const Table = ({
         )
       );
     } else {
-      setRecords(data)
+      setRecords(data);
     }
   }, [
     dataAction.value,
@@ -278,7 +279,6 @@ const Table = ({
       </tr>
     );
   };
-
   return (
     <DndProvider backend={HTML5Backend}>
       {loading ? (

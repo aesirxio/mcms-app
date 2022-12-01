@@ -1,9 +1,10 @@
 import TabBarComponent from "components/TabBarComponent";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Items from "../Component/Items";
 import { useTranslation, withTranslation } from "react-i18next";
 import { Icon } from "@iconify/react";
+import { itemsStore, ItemsStoreContext } from "store/ItemsStore/Items";
 
 const ItemsList = () => {
   const [filterTab, setFilterTab] = useState("");
@@ -50,6 +51,7 @@ const ItemsList = () => {
         <Link
           to="/items-create"
           className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+          onClick={() => itemsStore.clearData()}
         >
           <Icon
             icon="akar-icons:plus"
@@ -66,7 +68,14 @@ const ItemsList = () => {
         filterTab={filterTab}
         setFilterTab={setFilterTab}
       />
-      <Items t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+      <ItemsStoreContext.Provider value={itemsStore}>
+        <Items
+          t={t}
+          data={null}
+          setFilter={setFilterTab}
+          filterTab={filterTab}
+        />
+      </ItemsStoreContext.Provider>
     </>
   );
 };
