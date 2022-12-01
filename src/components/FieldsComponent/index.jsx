@@ -23,6 +23,7 @@ const FieldsComponent = (props) => {
             changed: (data) => {
               itemsStore.formPropsData["author"] = data.target.value;
             },
+            validation: "required",
           },
           {
             label: "Intro text",
@@ -59,7 +60,14 @@ const FieldsComponent = (props) => {
             label: "Append To Global Meta Data",
             key: "meta_data",
             type: FORM_FIELD_TYPE.DROPDOWN,
-            value: "",
+            option: [
+              { label: "Use Global", value: "use_global" },
+              { label: "Append", value: "append" },
+              { label: "Prepend", value: "prepend" },
+              { label: "Replace", value: "replace" },
+              { label: "None", value: "none" },
+            ],
+            value: { label: "Use Global", value: "use_global" },
             className: "col-12",
             changed: (data) => {
               itemsStore.formPropsData["meta_data"] = data.value;
@@ -116,7 +124,14 @@ const FieldsComponent = (props) => {
             label: "Robots",
             key: "robots",
             type: FORM_FIELD_TYPE.DROPDOWN,
-            value: "",
+            option: [
+              { label: "Use Global", value: "use_global" },
+              { label: "index, follow", value: "index_follow" },
+              { label: "noindex, follow", value: "noindex_follow" },
+              { label: "index, nofollow", value: "index_nofollow" },
+              { label: "noindex, nofollow", value: "noindex_nofollow" },
+            ],
+            value: { label: "Use Global", value: "use_global" },
             className: "col-12",
           },
         ],
