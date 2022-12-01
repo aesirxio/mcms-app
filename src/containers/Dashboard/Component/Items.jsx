@@ -560,7 +560,7 @@ const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
     ],
     []
   );
-  if (itemsStore.dataDumyCreate) {
+  if (itemsStore.dataDumyCreate?.id) {
     dataTable.unshift(itemsStore.dataDumyCreate);
   }
 
