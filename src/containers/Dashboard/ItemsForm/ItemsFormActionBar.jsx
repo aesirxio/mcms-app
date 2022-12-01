@@ -18,14 +18,14 @@ class ItemsFormActionBar extends Component {
         <button
           className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
           onClick={() =>
-            itemsStore.editData(itemsStore.formPropsData, redirect)
+            itemsStore.saveData(itemsStore.formPropsData, redirect)
           }
         >
           {t("txt_save_close")}
         </button>
         <button
           className="btn btn-success px-16 py-11 text-capitalize fw-semibold rounded-1 d-flex align-items-center"
-          onClick={() => itemsStore.editData(itemsStore.formPropsData)}
+          onClick={() => itemsStore.saveData(itemsStore.formPropsData)}
         >
           <Icon className="me-1" icon="teenyicons:save-outline" />
           {t("txt_save")}

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { notify } from "components/Toast";
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext } from "react";
 import history from "routes/history";
@@ -16,6 +17,7 @@ export default class ItemstStore {
   sortBy = {};
   loading = false;
   totalItems = 0;
+  dataDumyCreate = {};
   constructor() {
     makeAutoObservable(this);
   }
@@ -43,14 +45,40 @@ export default class ItemstStore {
       return null;
     }
   }
-  async editData(data, redirect) {
+  async saveData(data, redirect) {
     if (data) {
-      itemsStore.formPropsData = data;
+      if (data?.id) {
+        itemsStore.formPropsData = data;
+        setTimeout(() => {
+          notify("Success");
+          if (redirect) {
+            history.push("/");
+          }
+        }, 2000);
+      } else {
+        itemsStore.dataDumyCreate = {
+          checkbox: true,
+          id: "113",
+          name: data.name,
+          type: "Services",
+          categories: "News",
+          author: data.author,
+          engagement: "40%",
+          visits: "100",
+          languages: "English (en), Vietnam...",
+          status: true,
+          check: true,
+        };
+        setTimeout(() => {
+          notify("Success");
+          if (redirect) {
+            history.push("/");
+          }
+        }, 2000);
+      }
+    } else {
+      console.log("Error");
     }
-    if (redirect) {
-      history.push("/");
-    }
-    console.log("editData itemsStore.formPropsData", itemsStore.formPropsData);
   }
   async clearData() {
     runInAction(() => {

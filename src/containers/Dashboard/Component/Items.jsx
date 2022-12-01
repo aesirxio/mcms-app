@@ -3,8 +3,9 @@ import Table from "components/Table";
 import React, { useContext, useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import { ItemsStoreContext } from "store/ItemsStore/Items";
+import { observer } from "mobx-react-lite";
 
-const Items = ({ t, data = [], filterTab, setFilterTab }) => {
+const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
   const itemsStore = useContext(ItemsStoreContext);
   const [newStatus, setNewStatus] = useState();
   const [selectedMulptiRows, setSelectedMulptiRows] = useState(null);
@@ -559,7 +560,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
     ],
     []
   );
-
+  dataTable.unshift(itemsStore.dataDumyCreate);
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
@@ -568,6 +569,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
     };
     fetchData();
   }, [itemsStore]);
+
   return (
     <>
       <ListThumb
@@ -605,5 +607,5 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
       </div>
     </>
   );
-};
+});
 export default withTranslation("common")(Items);
