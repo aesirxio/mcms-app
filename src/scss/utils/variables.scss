@@ -222,6 +222,7 @@ $enable-negative-margins: true;
 
 //SPACER
 $spacers: (
+  24: 24px,
   0: 0,
   sm: 5px,
   7px: 7px,
@@ -232,7 +233,6 @@ $spacers: (
   15: 15px,
   16: 16px,
   2: 20px,
-  24: 24px,
   3: 30px,
   32: 32px,
   4: 40px,
@@ -240,7 +240,6 @@ $spacers: (
   6: 60px,
   7: 70px,
   8: 80px,
-  24px: $font-size-base * 1.5,
 ) !default;
 
 $form-switch-width: 2.5em !default;
@@ -259,3 +258,5 @@ $list-group-active-bg: $color-blue-3;
 $list-group-item-padding-y: 1rem;
 $list-group-item-padding-x: 1.5rem;
 $list-group-color: $body-color;
+
+$form-check-input-width: 1em;
