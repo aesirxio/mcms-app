@@ -17,6 +17,9 @@ import update from "immutability-helper";
 import ComponentImage from "components/ComponentImage";
 import BTable from "react-bootstrap/Table";
 import Spinner from "components/Spinner";
+import { Dropdown } from "react-bootstrap";
+import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 
 const Table = ({
   columns,
@@ -32,12 +35,14 @@ const Table = ({
   canSort,
   sortAPI,
   dragDrop,
-  setCurrentRow,
   dataAction,
   setDataAction,
   filterTab,
   setFilterTab,
   setSelectedMulptiRows,
+  dataActionAllrows,
+  dataFilter,
+  filterSearch,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -54,12 +59,6 @@ const Table = ({
             className="form-check-input p-0"
             type="checkbox"
             ref={resolvedRef}
-            onClick={(e) =>
-              setCurrentRow({
-                status: e?.target?.checked,
-                value: rest?.original?.id,
-              })
-            }
             {...rest}
           />
         </>
@@ -72,7 +71,7 @@ const Table = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    rows,
+    page,
     pageOptions,
     previousPage,
     canPreviousPage,
@@ -80,16 +79,18 @@ const Table = ({
     gotoPage,
     nextPage,
     selectedFlatRows,
-    state: { pageIndex },
-    state,
+    state: { pageIndex, pageSize },
+    setPageSize,
+    allColumns,
+    pageCount,
   } = useTable(
     {
       columns,
       data: records,
       onSelect,
-      // initialState: {
-      //   pageSize: -1,
-      // },
+      initialState: {
+        //  pageIndex: 1
+      },
     },
     useSortBy,
     useExpanded,
@@ -103,7 +104,7 @@ const Table = ({
             className: "px-24 py-2 border-bottom-1 text-uppercase ps-3",
             width: "50px",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div onClick={(e) => setSelectedMulptiRows(selectedFlatRows)}>
+              <div>
                 <IndeterminateCheckbox
                   {...getToggleAllPageRowsSelectedProps()}
                 />
@@ -111,9 +112,7 @@ const Table = ({
             ),
             Cell: ({ row }) => (
               <div className="wrapper_checkbox px-24">
-                <IndeterminateCheckbox
-                  {...row.getToggleRowSelectedProps(row)}
-                />
+                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
           },
@@ -132,11 +131,11 @@ const Table = ({
     }
   );
   useEffect(() => {
-    if (dataAction.value) {
-      setRecords(
-        dataAction.value ? data.filter((v) => v.id !== dataAction.value) : data
-      );
-      setDataAction({});
+    if (dataAction && dataAction?.length === 1) {
+      setRecords(data.filter((v) => v.id !== dataAction?.[0]?.values?.id));
+      // setDataAction({});
+    } else if (dataAction?.length > 1 && dataActionAllrows) {
+      setRecords(data.filter((v) => v.status === "DeleteAll"));
     } else if (filterTab) {
       setRecords(
         filterTab.target.innerText && filterTab.target.innerText !== "All items"
@@ -151,8 +150,29 @@ const Table = ({
             )
           : data
       );
+    } else if (dataFilter) {
+      setRecords(data.filter((v) => v.status === dataFilter?.value));
+    } else if (filterSearch) {
+      setRecords(
+        data.filter((v) =>
+          v.name.toLowerCase().includes(filterSearch.toLowerCase())
+        )
+      );
+    } else {
+      setRecords(data)
     }
-  }, [dataAction.value, data, filterTab, setDataAction, setFilterTab]);
+  }, [
+    dataAction.value,
+    data,
+    filterTab,
+    setDataAction,
+    setFilterTab,
+    dataActionAllrows,
+    dataFilter,
+    dataAction,
+    filterSearch,
+  ]);
+  setSelectedMulptiRows(selectedFlatRows);
   const handlePagination = async (pageIndex) => {
     setLoading(true);
     await store.goToPage(pageIndex);
@@ -265,7 +285,42 @@ const Table = ({
         <Spinner />
       ) : (
         <div className="bg-white fs-14 text-color position-relative h-100">
-          {rows.length ? (
+          <div className="w-260">
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="info"
+                id="actions"
+                className={`btn_toggle`}
+              >
+                <i>
+                  <FontAwesomeIcon icon={faColumns} />
+                </i>
+                <span className="p-1 text-blue-0 opacity-75">Columns</span>
+                <i className="text-green">
+                  <FontAwesomeIcon icon={faChevronDown} />
+                </i>
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="pt-3 px-2 border-0 shadow">
+                {allColumns?.map(
+                  (column) =>
+                    column.id !== "selection" &&
+                    column.Header &&
+                    column.id !== "drag" && (
+                      <div key={column.id} id={column.Header} className="mb-2">
+                        <input
+                          type="checkbox"
+                          className="form-check-input me-1"
+                          {...column.getToggleHiddenProps()}
+                        />
+                        {column.Header}
+                      </div>
+                    )
+                )}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="px-2 border-end-1"></div>
+          {page.length ? (
             <BTable
               striped
               // bordered
@@ -418,8 +473,8 @@ const Table = ({
                 })}
               </thead>
               <tbody {...getTableBodyProps()}>
-                {rows.length > 0 &&
-                  rows.map((row, index) => {
+                {page.length > 0 &&
+                  page.map((row, index) => {
                     prepareRow(row);
                     let newRowCells = "";
 
@@ -444,7 +499,7 @@ const Table = ({
             </BTable>
           ) : null}
 
-          {rows.length === 0 ? (
+          {page.length === 0 ? (
             <div className="position-absolute top-50 start-50 translate-middle">
               <ComponentNoData
                 icons="/assets/images/ic_project.svg"
@@ -456,65 +511,66 @@ const Table = ({
         </div>
       )}
       {pagination && pageOptions.length ? (
-        <div className="mt-2 text-center pagination">
-          <button
-            className="border-1 bg-white opacity-50 text-body btn"
-            onClick={async () => {
-              previousPage();
-              handlePagination(pageIndex);
-            }}
-            disabled={!canPreviousPage}
-          >
-            <span className="material-icons fs-4 align-middle">
-              arrow_back_ios
-            </span>
-          </button>
-          {pageOptions.map((item, key) => {
-            return (
-              <button
-                key={key}
-                onClick={() => {
-                  gotoPage(item);
-                  handlePagination(item + 1);
+        loading ? (
+          <Spinner />
+        ) : (
+          <div className="pagination position-absolute pt-3 d-flex col-12">
+            <div className="col-4">
+              <select
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
                 }}
-                className={`btn border-1  ${
-                  item === state.pageIndex
-                    ? "btn-primary text-white border-primary"
-                    : "bg-white opacity-50 number"
-                } ${
-                  pageIndex === 0
-                    ? item < pageIndex + 5
-                      ? "visible_number"
-                      : ""
-                    : pageIndex === 1
-                    ? item < pageIndex + 4
-                      ? "visible_number"
-                      : ""
-                    : item === pageIndex - 2 ||
-                      item === pageIndex - 1 ||
-                      item === pageIndex + 1 ||
-                      item === pageIndex + 2
-                    ? "visible_number"
-                    : ""
-                }`}
               >
-                {item + 1}
-              </button>
-            );
-          })}
-          <button
-            className="border-1 bg-white opacity-50 text-body btn"
-            onClick={() => {
-              nextPage();
-              handlePagination(pageIndex + 2);
-            }}
-            disabled={!canNextPage}
-          >
-            <span className="material-icons fs-4 align-middle">
-              arrow_forward_ios
-            </span>
-          </button>
-        </div>
+                {[10, 20, 30, 40, 50].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-8 text-end pe-5 button_pagination">
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                {"<<"}
+              </button>{" "}
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                {"<"}
+              </button>{" "}
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                {">"}
+              </button>{" "}
+              <button
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                {">>"}
+              </button>{" "}
+              <span>
+                Page{" "}
+                <strong>
+                  {pageIndex + 1} of {pageOptions.length}
+                </strong>{" "}
+              </span>
+              <span>
+                | Go to page:{" "}
+                <input
+                  type="number"
+                  defaultValue={pageIndex + 1}
+                  onChange={(e) => {
+                    const page = e.target.value
+                      ? Number(e.target.value) - 1
+                      : 0;
+                    gotoPage(page);
+                  }}
+                  style={{ width: "100px" }}
+                />
+              </span>
+            </div>
+          </div>
+        )
       ) : null}
     </DndProvider>
   );

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
-import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
 import { notify } from "components/Toast";
@@ -13,11 +12,6 @@ const optionAction = [
   // { value: "action-3", label: "Action 3" },
 ];
 
-const optionColumns = [
-  { value: "columns-1", label: "Columns 1" },
-  { value: "columns-2", label: "Columns 2" },
-  { value: "columns-3", label: "Columns 3" },
-];
 const optionFilterColumns = [
   { value: true, label: "Published" },
   { value: false, label: "UnPublished" },
@@ -25,38 +19,37 @@ const optionFilterColumns = [
 
 const ListThumb = ({
   setLoading,
-  currentRow,
   setDataAction,
   selectedMulptiRows,
+  setDataActionAllrows,
+  setDataFilter,
+  setFilterSearch,
 }) => {
   const [action, setAction] = useState("");
-  const [columns, setColumns] = useState("");
   const [filterColum, setFilterColum] = useState("");
-  const [filter, setFilter] = useState("");
-  console.log("selectedMulptiRows", selectedMulptiRows);
   const handleAnAction = async (e) => {
-    if (!currentRow.value) {
+    if (selectedMulptiRows?.length < 1) {
       return;
     }
     setLoading(true);
     setAction(e);
-    setDataAction(currentRow);
+    setDataActionAllrows(selectedMulptiRows);
+    setDataAction(selectedMulptiRows);
     setTimeout(() => {
       setLoading(false);
       notify("Success");
     }, 2000);
   };
-
   const handleColumns = (e) => {
-    setLoading(true);
-    setColumns(e);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
   };
+
   const handleSearch = (e) => {
     setLoading(true);
-    setFilter(e);
+    setFilterSearch(e.target.value);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -64,6 +57,7 @@ const ListThumb = ({
   const handleFilterColum = (e) => {
     setLoading(true);
     setFilterColum(e);
+    setDataFilter(e);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -82,6 +76,7 @@ const ListThumb = ({
                     placeholder="Search"
                     aria-describedby="button-search"
                     className="form-control border-end-0 pe-2 border-0"
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch(e)}
                   />
                   <button
                     type="button"
@@ -104,24 +99,10 @@ const ListThumb = ({
                   plColor="rgba(8, 18, 64, 0.8)"
                 />
               </div>
-              <div className="col-2 border-end-1">
-                <div className="d-flex align-items-center">
-                  <i className="text-blue-0">
-                    <FontAwesomeIcon icon={faColumns} />
-                  </i>
-                  <div className="w-260">
-                    <SelectComponent
-                      value={columns}
-                      onChange={(e) => handleColumns(e)}
-                      options={optionColumns}
-                      isBorder={false}
-                      placeholder="Columns"
-                      className="text-green"
-                      plColor="rgba(8, 18, 64, 0.8)"
-                    />
-                  </div>
-                </div>
-              </div>
+              {/* <div className="col-2 border-end-1">
+                <div className="d-flex align-items-center"> */}
+              {/* </div>
+              </div> */}
               <div className="col-2 border-end-1">
                 <div className="d-flex align-items-center">
                   <i className="text-blue-0">
