@@ -34,8 +34,8 @@ const ItemsFormPage = () => {
               title={t("txt_general_information")}
             >
               <GeneralInformation
-                formPropsData={this.formPropsData}
-                viewModel={this.updateGeneralViewModel}
+                formPropsData={itemsStore.formPropsData}
+                viewModel={null}
               />
             </Tab>
           </Tabs>

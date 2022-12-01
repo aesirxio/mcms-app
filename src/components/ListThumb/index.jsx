@@ -76,7 +76,7 @@ const ListThumb = ({
 
   return (
     <>
-      <div className="bg-white rounded-3 mb-24px">
+      <div className="bg-white rounded-3 mb-24">
         <div className="row">
           <div className="col-8">
             <div className="row">
