@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
 import { notify } from "components/Toast";
-
+import { ItemsStoreContext } from "store/ItemsStore/Items";
+import history from "routes/history";
 const optionAction = [
-  // { value: "edit", label: "Edit" },
+  { value: "edit", label: "Edit" },
   { value: "delete", label: "Delete" },
   // { value: "action-3", label: "Action 3" },
 ];
@@ -25,20 +26,30 @@ const ListThumb = ({
   setDataFilter,
   setFilterSearch,
 }) => {
+  const itemsStore = useContext(ItemsStoreContext);
   const [action, setAction] = useState("");
   const [filterColum, setFilterColum] = useState("");
   const handleAnAction = async (e) => {
-    if (selectedMulptiRows?.length < 1) {
-      return;
+    if (e.value === "edit" && selectedMulptiRows?.length === 1) {
+      setLoading(true);
+      itemsStore.getDetail(selectedMulptiRows[0].values.id, selectedMulptiRows);
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/items-create");
+      }, 2000);
+    } else {
+      if (selectedMulptiRows?.length < 1 || e.value === "edit") {
+        return;
+      }
+      setLoading(true);
+      setAction(e);
+      setDataActionAllrows(selectedMulptiRows);
+      setDataAction(selectedMulptiRows);
+      setTimeout(() => {
+        setLoading(false);
+        notify("Success");
+      }, 2000);
     }
-    setLoading(true);
-    setAction(e);
-    setDataActionAllrows(selectedMulptiRows);
-    setDataAction(selectedMulptiRows);
-    setTimeout(() => {
-      setLoading(false);
-      notify("Success");
-    }, 2000);
   };
   const handleColumns = (e) => {
     // setLoading(true);
@@ -65,7 +76,7 @@ const ListThumb = ({
 
   return (
     <>
-      <div className="bg-white rounded-3 mb-24px">
+      <div className="bg-white rounded-3 mb-24">
         <div className="row">
           <div className="col-8">
             <div className="row">

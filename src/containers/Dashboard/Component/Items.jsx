@@ -1,8 +1,12 @@
 import ListThumb from "components/ListThumb";
 import Table from "components/Table";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-const Items = ({ t, data = [], filterTab, setFilterTab }) => {
+import { ItemsStoreContext } from "store/ItemsStore/Items";
+import { observer } from "mobx-react-lite";
+
+const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
+  const itemsStore = useContext(ItemsStoreContext);
   const [newStatus, setNewStatus] = useState();
   const [selectedMulptiRows, setSelectedMulptiRows] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -556,6 +560,16 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
     ],
     []
   );
+  dataTable.unshift(itemsStore.dataDumyCreate);
+  useEffect(() => {
+    let fetchData = async () => {
+      setLoading(true);
+      await itemsStore.getItems();
+      setLoading(false);
+    };
+    fetchData();
+  }, [itemsStore]);
+
   return (
     <>
       <ListThumb
@@ -574,6 +588,7 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
             columns={columnsTable}
             data={dataTable}
             canSort={true}
+            store={itemsStore}
             pagination={true}
             selection={false}
             dragDrop={true}
@@ -592,5 +607,5 @@ const Items = ({ t, data = [], filterTab, setFilterTab }) => {
       </div>
     </>
   );
-};
+});
 export default withTranslation("common")(Items);

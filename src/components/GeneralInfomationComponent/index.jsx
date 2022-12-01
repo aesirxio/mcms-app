@@ -11,10 +11,13 @@ function GeneralInformation({ formPropsData, viewModel }) {
             label: "Name",
             key: "name",
             type: FORM_FIELD_TYPE.INPUT,
-            value: "",
+            value: formPropsData ? formPropsData.name : "",
             className: "col-12",
             required: true,
             validation: "required",
+            changed: (data) => {
+              formPropsData["name"] = data.target.value;
+            },
           },
           {
             label: "Alias",
