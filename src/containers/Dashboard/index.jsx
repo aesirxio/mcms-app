@@ -35,7 +35,6 @@ const Dashboard = observer(
           <Route exact path={["/"]}>
             <ItemsList />
           </Route>
-
           <Route exact path={["/items-create", "/items-edit/:id"]}>
             <ItemsFormPage />
           </Route>

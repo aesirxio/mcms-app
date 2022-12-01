@@ -1,10 +1,12 @@
 import { FORM_FIELD_TYPE } from "constants/FormFieldType";
-import React from "react";
+import React, { useContext } from "react";
 import { Col, ListGroup, Row, Tab } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
 import FormComponent from "components/Form";
+import { ItemsStoreContext } from "store/ItemsStore/Items";
 
 const FieldsComponent = (props) => {
+  const itemsStore = useContext(ItemsStoreContext);
   const data = {
     id: 1,
     groups: [
@@ -15,16 +17,24 @@ const FieldsComponent = (props) => {
             label: "Hero Text",
             key: "hero_text",
             type: FORM_FIELD_TYPE.INPUT,
-            value: "",
+            value: itemsStore.formPropsData?.author ?? "",
             className: "col-12",
             required: true,
+            changed: (data) => {
+              itemsStore.formPropsData["author"] = data.target.value;
+            },
           },
           {
             label: "Intro text",
-            key: "intro text",
+            key: "intro_text",
             type: FORM_FIELD_TYPE.INPUT,
-            value: "",
+            value: itemsStore.formPropsData
+              ? itemsStore.formPropsData["name"]
+              : "",
             className: "col-12",
+            changed: (data) => {
+              itemsStore.formPropsData["name"] = data.target.value;
+            },
           },
           {
             label: "Thumb Image",
@@ -51,13 +61,21 @@ const FieldsComponent = (props) => {
             type: FORM_FIELD_TYPE.DROPDOWN,
             value: "",
             className: "col-12",
+            changed: (data) => {
+              itemsStore.formPropsData["meta_data"] = data.value;
+            },
           },
           {
             label: "SEO Page Title",
             key: "seo_page_title",
             type: FORM_FIELD_TYPE.INPUT,
-            value: "",
+            value: itemsStore.formPropsData
+              ? itemsStore.formPropsData?.name
+              : "",
             className: "col-12",
+            changed: (data) => {
+              // formPropsData.formPropsData.name = data.value;
+            },
           },
           {
             label: "SEO Page Heading",
@@ -91,7 +109,7 @@ const FieldsComponent = (props) => {
             label: "Meta Language Setting",
             key: "meta_language_setting",
             type: FORM_FIELD_TYPE.TEXTAREA,
-            value: "",
+            value: itemsStore.formPropsData?.languages ?? "",
             className: "col-12",
           },
           {
@@ -140,7 +158,6 @@ const FieldsComponent = (props) => {
 
                     <FormComponent
                       key={Math.random(40, 200)}
-                      formPropsData={{}}
                       viewModel={null}
                       generateFormSetting={() => [{ fields: item.fields }]}
                     />
