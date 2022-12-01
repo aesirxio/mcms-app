@@ -66,6 +66,7 @@ const Table = ({
     }
   );
   const [records, setRecords] = React.useState(data);
+  console.log(records);
   const {
     getTableProps,
     getTableBodyProps,

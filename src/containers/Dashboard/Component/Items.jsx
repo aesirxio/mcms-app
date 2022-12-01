@@ -560,7 +560,10 @@ const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
     ],
     []
   );
-  dataTable.unshift(itemsStore.dataDumyCreate);
+  if (itemsStore.dataDumyCreate) {
+    dataTable.unshift(itemsStore.dataDumyCreate);
+  }
+
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
