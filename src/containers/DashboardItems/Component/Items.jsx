@@ -584,6 +584,8 @@ const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
         setDataActionAllrows={setDataActionAllrows}
         setDataFilter={setDataFilter}
         setFilterSearch={setFilterSearch}
+        store={itemsStore}
+        linkTo="/items-create"
       />
       <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
         <div className="fs-14 fw-semibold h-100">

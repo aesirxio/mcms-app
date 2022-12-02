@@ -156,7 +156,7 @@ const Table = ({
     } else if (filterSearch) {
       setRecords(
         data.filter((v) =>
-          v.name.toLowerCase().includes(filterSearch.toLowerCase())
+          v.name?.toLowerCase().includes(filterSearch?.toLowerCase())
         )
       );
     } else {
@@ -174,11 +174,11 @@ const Table = ({
     filterSearch,
   ]);
   setSelectedMulptiRows(selectedFlatRows);
-  const handlePagination = async (pageIndex) => {
-    setLoading(true);
-    await store.goToPage(pageIndex);
-    setLoading(false);
-  };
+  // const handlePagination = async (pageIndex) => {
+  //   setLoading(true);
+  //   await store.goToPage(pageIndex);
+  //   setLoading(false);
+  // };
   //handle rows drag and drop
   const moveRow = async (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];
@@ -514,9 +514,11 @@ const Table = ({
         loading ? (
           <Spinner />
         ) : (
-          <div className="pagination position-absolute pt-3 d-flex col-12">
+          <div className="pagination position-absolute mt-3 d-flex col-12">
             <div className="col-4">
+              <span className="pe-1 text-gray-800">Showing</span>
               <select
+                className="border-select"
                 value={pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
@@ -524,7 +526,7 @@ const Table = ({
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
                   <option key={pageSize} value={pageSize}>
-                    Show {pageSize}
+                    {pageSize} Items
                   </option>
                 ))}
               </select>

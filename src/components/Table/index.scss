@@ -18,3 +18,11 @@
 .button_pagination > button {
   border: none;
 }
+.border-select {
+  border: none;
+  padding: 6px;
+  background: white;
+}
+.border-select:focus-visible {
+  border: none !important;
+}

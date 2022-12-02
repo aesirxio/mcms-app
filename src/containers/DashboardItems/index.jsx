@@ -1,25 +1,79 @@
-import React, { lazy, useContext, useState } from "react";
-import { useTranslation, withTranslation } from "react-i18next";
+import React, { lazy, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react";
+import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
+import { Route, withRouter } from "react-router-dom";
 import TabBarComponent from "components/TabBarComponent";
-import { Link, Route } from "react-router-dom";
-import { CategoriesStoreContext } from "store/CategoriesStore/Categories";
-import { FORM_FIELD_TYPE } from "constants/FormFieldType";
-import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
-const CategoriesComponent = lazy(() => import("./Component/Categories"));
+import { useTranslation } from "react-i18next";
+import { Icon } from "@iconify/react";
+import history from "routes/history";
+import { ItemsStoreContext } from "store/ItemsStore/Items";
+import { FORM_FIELD_TYPE } from "constants/FormFieldType";
+
 const ItemsFormPage = lazy(() =>
   import("../../components/ItemsForm/ItemsFormPage")
 );
+const Items = lazy(() => import("./Component/Items"));
 
-const Categories = observer(() => {
-  const categoriesStore = useContext(CategoriesStoreContext);
+const Dashboard = observer(() => {
+  const itemsStore = useContext(ItemsStoreContext);
+  useEffect(() => {
+    let fetchData = async () => {
+      if (history.location.pathname === "/" || !history.location.pathname) {
+        history.push(`/`);
+      }
+    };
+    fetchData();
+  }, []);
   const [filterTab, setFilterTab] = useState("");
-  const [entriesFound, setEntriesFound] = useState(0);
   const { t } = useTranslation("common");
   const data = {
     id: 1,
     groups: [
+      {
+        name: "",
+        fields: [
+          {
+            label: "Hero Text",
+            key: "hero_text",
+            type: FORM_FIELD_TYPE.INPUT,
+            value: itemsStore.formPropsData?.author ?? "",
+            className: "col-12",
+            required: true,
+            changed: (data) => {
+              itemsStore.formPropsData["author"] = data.target.value;
+            },
+            validation: "required",
+          },
+          {
+            label: "Intro text",
+            key: "intro_text",
+            type: FORM_FIELD_TYPE.EDITOR,
+            value: itemsStore.formPropsData
+              ? itemsStore.formPropsData["name"]
+              : "",
+            className: "col-12",
+            changed: (data) => {
+              itemsStore.formPropsData["name"] = data.target.value;
+            },
+          },
+          {
+            label: "Thumb Image",
+            key: "thumb_image",
+            type: FORM_FIELD_TYPE.IMAGE,
+            value: "",
+            className: "col-12",
+          },
+          {
+            label: "Image",
+            key: "image",
+            type: FORM_FIELD_TYPE.IMAGE,
+            value: "",
+            className: "col-12",
+          },
+        ],
+      },
       {
         name: "SEO",
         fields: [
@@ -37,15 +91,15 @@ const Categories = observer(() => {
             value: { label: "Use Global", value: "use_global" },
             className: "col-12",
             changed: (data) => {
-              categoriesStore.formPropsData["meta_data"] = data.value;
+              itemsStore.formPropsData["meta_data"] = data.value;
             },
           },
           {
             label: "SEO Page Title",
             key: "seo_page_title",
             type: FORM_FIELD_TYPE.INPUT,
-            value: categoriesStore.formPropsData
-              ? categoriesStore.formPropsData?.name
+            value: itemsStore.formPropsData
+              ? itemsStore.formPropsData?.name
               : "",
             className: "col-12",
             changed: (data) => {
@@ -84,7 +138,7 @@ const Categories = observer(() => {
             label: "Meta Language Setting",
             key: "meta_language_setting",
             type: FORM_FIELD_TYPE.TEXTAREA,
-            value: categoriesStore.formPropsData?.languages ?? "",
+            value: itemsStore.formPropsData?.languages ?? "",
             className: "col-12",
           },
           {
@@ -113,14 +167,14 @@ const Categories = observer(() => {
             label: "Name",
             key: "name",
             type: FORM_FIELD_TYPE.INPUT,
-            value: categoriesStore?.formPropsData
-              ? categoriesStore?.formPropsData.name
+            value: itemsStore?.formPropsData
+              ? itemsStore?.formPropsData.name
               : "",
             className: "col-12",
             required: true,
             validation: "required",
             changed: (data) => {
-              categoriesStore.formPropsData["name"] = data.target.value;
+              itemsStore.formPropsData["name"] = data.target.value;
             },
           },
           {
@@ -190,18 +244,16 @@ const Categories = observer(() => {
   };
   return (
     <div className="py-4 px-3 h-100 d-flex flex-column">
-      <Route exact path={["/categories"]}>
-        <div className="d-flex align-items-start justify-content-between flex-wrap">
+      <Route exact path={["/"]}>
+        <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
           <div>
-            <h2 className="text-blue-0 fw-bold mb-sm">{t("txt_menu_cate")}</h2>
-            <p className="mb-0 text-color fs-14">
-              {entriesFound} {t("txt_entries_found")}
-            </p>
+            <h2 className="text-blue-0 fw-bold mb-sm">{t("txt_items")}</h2>
+            <p className="mb-0 text-color fs-14">{t("txt_dashboard_below")}</p>
           </div>
           <Link
-            to="/categories-create"
+            to="/items-create"
             className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-            onClick={() => categoriesStore.clearData()}
+            onClick={() => itemsStore.clearData()}
           >
             <Icon
               icon="akar-icons:plus"
@@ -209,35 +261,32 @@ const Categories = observer(() => {
               height={24}
               className="me-1"
             />
-            {t("txt_add_new_cate")}
+            {t("txt_add_new_item")}
           </Link>
         </div>
-        <div className="py-3 h-100 d-flex flex-column">
-          <TabBarComponent
-            view={"all-items"}
-            filterTab={filterTab}
-            setFilterTab={setFilterTab}
-          />
-          <CategoriesComponent
-            t={t}
-            data={null}
-            setFilter={setFilterTab}
-            filterTab={filterTab}
-            setEntriesFound={setEntriesFound}
-          />
-        </div>
+        <TabBarComponent
+          view={"all-items"}
+          filterTab={filterTab}
+          setFilterTab={setFilterTab}
+        />
+        <Items
+          t={t}
+          data={null}
+          setFilter={setFilterTab}
+          filterTab={filterTab}
+        />
       </Route>
-      <Route exact path={["/categories-create", "/categories-edit/:id"]}>
+      <Route exact path={["/items-create", "/items-edit/:id"]}>
         <ItemsFormPage
-          store={categoriesStore}
+          store={itemsStore}
           dataForm={data}
           generateFormSetting={generateFormSetting}
-          path="/categories"
-          title="txt_add_cate"
+          path="/"
+          title="txt_add_item"
         />
       </Route>
     </div>
   );
 });
 
-export default withTranslation("common")(Categories);
+export default withRouter(withBiViewModel(Dashboard));
