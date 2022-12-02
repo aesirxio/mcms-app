@@ -262,9 +262,9 @@ const Categories = observer(
       ],
       []
     );
-    // if (itemsStore.dataDumyCreate?.id) {
-    //   dataTable.unshift(itemsStore.dataDumyCreate);
-    // }
+    if (categoriesStore.dataDumyCreate?.id) {
+      dataTable.unshift(categoriesStore.dataDumyCreate);
+    }
 
     useEffect(() => {
       let fetchData = async () => {
@@ -274,7 +274,7 @@ const Categories = observer(
       };
       fetchData();
       setEntriesFound(dataTable?.length);
-    }, [categoriesStore, dataTable?.length, setEntriesFound]);
+    }, [categoriesStore]);
 
     return (
       <>
