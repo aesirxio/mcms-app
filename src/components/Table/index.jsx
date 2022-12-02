@@ -20,6 +20,7 @@ import Spinner from "components/Spinner";
 import { Dropdown } from "react-bootstrap";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import moment from "moment";
 
 const Table = ({
   columns,
@@ -514,7 +515,7 @@ const Table = ({
         loading ? (
           <Spinner />
         ) : (
-          <div className="pagination position-absolute pt-3 d-flex col-12">
+          <div className="pagination position-absolute mt-3 d-flex col-12">
             <div className="col-4">
               <span className="pe-1 text-gray-800">Showing</span>
               <select

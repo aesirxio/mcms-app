@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Col, Row, Tab, Tabs } from "react-bootstrap";
 import { useTranslation, withTranslation } from "react-i18next";
 import ItemsFormActionBar from "./ItemsFormActionBar";
 import PublishOptionComponent from "components/PublishOptionComponent";
 import FieldsComponent from "components/FieldsComponent";
 import GeneralInformation from "components/GeneralInfomationComponent";
-import { ItemsStoreContext } from "store/ItemsStore/Items";
-const ItemsFormPage = () => {
-  const itemsStore = useContext(ItemsStoreContext);
+const ItemsFormPage = ({ store }) => {
   const { t } = useTranslation("common");
 
   return (
@@ -16,7 +14,7 @@ const ItemsFormPage = () => {
         <div>
           <h2 className="fw-bold text-capitalize">{t("txt_add_item")}</h2>
         </div>
-        <ItemsFormActionBar itemsStore={itemsStore} />
+        <ItemsFormActionBar store={store} />
       </div>
       <Row>
         <Col lg={9} className="mb-24">
@@ -33,10 +31,7 @@ const ItemsFormPage = () => {
               eventKey="general-information"
               title={t("txt_general_information")}
             >
-              <GeneralInformation
-                formPropsData={itemsStore.formPropsData}
-                viewModel={null}
-              />
+              <GeneralInformation store={store} viewModel={null} />
             </Tab>
           </Tabs>
         </Col>

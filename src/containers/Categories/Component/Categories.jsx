@@ -215,6 +215,50 @@ const Categories = observer(
           status: true,
           check: true,
         },
+        {
+          checkbox: true,
+          id: "267",
+          category: "|-|-DAM (Digital Asset Management)",
+          type: "Services",
+          engagement: "40%",
+          visits: "100",
+          languages: "English (en), Vietnam...",
+          status: true,
+          check: true,
+        },
+        {
+          checkbox: true,
+          id: "267",
+          category: "|-|-DAM (Digital Asset Management)",
+          type: "Services",
+          engagement: "40%",
+          visits: "100",
+          languages: "English (en), Vietnam...",
+          status: true,
+          check: true,
+        },
+        {
+          checkbox: true,
+          id: "267",
+          category: "|-|-DAM (Digital Asset Management)",
+          type: "Services",
+          engagement: "40%",
+          visits: "100",
+          languages: "English (en), Vietnam...",
+          status: true,
+          check: true,
+        },
+        {
+          checkbox: true,
+          id: "267",
+          category: "|-|-DAM (Digital Asset Management)",
+          type: "Services",
+          engagement: "40%",
+          visits: "100",
+          languages: "English (en), Vietnam...",
+          status: true,
+          check: true,
+        },
       ],
       []
     );
@@ -243,6 +287,7 @@ const Categories = observer(
           setDataActionAllrows={setDataActionAllrows}
           setDataFilter={setDataFilter}
           setFilterSearch={setFilterSearch}
+          store={categoriesStore}
         />
         <div className="py-3 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
           <div className="fs-14 fw-semibold h-100">

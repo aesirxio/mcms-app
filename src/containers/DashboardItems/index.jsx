@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
 import { Route, withRouter } from "react-router-dom";
@@ -7,13 +7,16 @@ import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { Icon } from "@iconify/react";
-import { itemsStore } from "store/ItemsStore/Items";
 import history from "routes/history";
+import { ItemsStoreContext } from "store/ItemsStore/Items";
 
-const ItemsFormPage = lazy(() => import("./ItemsForm/ItemsFormPage"));
+const ItemsFormPage = lazy(() =>
+  import("../../components/ItemsForm/ItemsFormPage")
+);
 const Items = lazy(() => import("./Component/Items"));
 
 const Dashboard = observer(() => {
+  const itemsStore = useContext(ItemsStoreContext);
   useEffect(() => {
     let fetchData = async () => {
       if (history.location.pathname === "/" || !history.location.pathname) {
@@ -59,7 +62,7 @@ const Dashboard = observer(() => {
         />
       </Route>
       <Route exact path={["/items-create", "/items-edit/:id"]}>
-        <ItemsFormPage />
+        <ItemsFormPage store={itemsStore} />
       </Route>
     </div>
   );
