@@ -25,6 +25,7 @@ const ListThumb = ({
   setDataFilter,
   setFilterSearch,
   store,
+  linkTo,
 }) => {
   const [action, setAction] = useState("");
   const [filterColum, setFilterColum] = useState("");
@@ -34,7 +35,7 @@ const ListThumb = ({
       store.getDetail(selectedMulptiRows);
       setTimeout(() => {
         setLoading(false);
-        history.push("/items-create");
+        history.push(linkTo);
       }, 2000);
     } else {
       if (selectedMulptiRows?.length < 1 || e.value === "edit") {

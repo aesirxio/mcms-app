@@ -27,7 +27,7 @@ const mainRoutes = [
     main: () => <DashboardPage />,
   },
   {
-    path: "/categories",
+    path: ["/categories", "/categories-create", "/categories-edit/:id"],
     exact: true,
     main: () => <CategoriesPage />,
   },
