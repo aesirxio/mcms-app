@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 function TabBarComponent({ view, tabList, setFilterTab }) {
   const [active, setActive] = useState({ target: { outerText: "All items" } });
-  console.log(active);
   return tabList ? (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {

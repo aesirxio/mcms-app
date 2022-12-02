@@ -77,7 +77,7 @@ const Menu = observer((props) => {
     },
     {
       text: "txt_menu_cate",
-      link: `/cate`,
+      link: `/categories`,
       icons: "/assets/images/dashboard.svg",
       icons_color: "/assets/images/dashboard.svg",
     },

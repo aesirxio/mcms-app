@@ -153,6 +153,7 @@ const FieldsComponent = (props) => {
                   <ListGroup.Item
                     className="fs-14 cursor-pointer"
                     eventKey={index}
+                    key={index}
                   >
                     {item.name ? item.name : "Non grouped"}
                   </ListGroup.Item>
@@ -165,7 +166,7 @@ const FieldsComponent = (props) => {
           <Tab.Content>
             {data?.groups?.map((item, index) => {
               return (
-                <Tab.Pane eventKey={index}>
+                <Tab.Pane eventKey={index} key={index}>
                   <div className="rounded-1 bg-white shadow-sm p-24">
                     <h3 className="fs-6 mb-24 fw-bold pb-16 border-bottom text-uppercase">
                       {item.name ? item.name : "Non grouped"}
