@@ -15,19 +15,22 @@ const PushlishOptionComponent = ({ formPropsData, viewModel, ...props }) => {
           type: FORM_FIELD_TYPE.DROPDOWN,
           value: "",
           className:
-            "col-12 d-flex justify-content-between align-items-center mb-16",
+            "col-12 mb-16 d-flex justify-content-between align-items-center",
           required: true,
           validation: "required",
-          labelClassName: "fw-normal",
+          labelClassName: "fw-normal me-24 ws-nowrap",
+          classNameInput: "w-65",
         },
         {
           label: "Access",
           key: "access",
           type: FORM_FIELD_TYPE.DROPDOWN,
           value: "",
-          labelClassName: "fw-normal",
+          labelClassName: "fw-normal me-24 ws-nowrap",
+          classNameInput: "w-65",
+
           className:
-            "col-12 d-flex justify-content-between align-items-center mb-16",
+            "col-12 mb-16 d-flex justify-content-between align-items-center",
         },
       ],
     },
@@ -45,22 +48,28 @@ const PushlishOptionComponent = ({ formPropsData, viewModel, ...props }) => {
             { label: "No", value: "no" },
           ],
         },
-        // {
-        //   label: "Start publish",
-        //   key: "start_publish",
-        //   type: FORM_FIELD_TYPE.DATE,
-        //   value: "",
-        //   labelClassName: "fw-normal",
-        //   className: "col-12 d-flex justify-content-between align-items-center",
-        // },
+        {
+          label: "Start publish",
+          key: "start_publish",
+          type: FORM_FIELD_TYPE.DATE,
+          value: "",
+          labelClassName: "fw-normal me-24 ws-nowrap",
+          className:
+            "col-12 mb-16 d-flex justify-content-between align-items-center",
+          defaultValue: new Date(),
+          changed: (date) => {
+            console.log("awdawdawd", date);
+          },
+        },
         {
           label: "Author",
           key: "author",
           type: FORM_FIELD_TYPE.DROPDOWN,
           value: "",
-          labelClassName: "fw-normal",
+          labelClassName: "fw-normal me-24 ws-nowrap",
+          classNameInput: "w-65",
           className:
-            "col-12 d-flex justify-content-between align-items-center mb-16",
+            "col-12 mb-16 d-flex justify-content-between align-items-center",
         },
       ],
     },

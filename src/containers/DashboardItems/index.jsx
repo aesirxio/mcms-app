@@ -49,7 +49,7 @@ const Dashboard = observer(() => {
           {
             label: "Intro text",
             key: "intro_text",
-            type: FORM_FIELD_TYPE.INPUT,
+            type: FORM_FIELD_TYPE.EDITOR,
             value: itemsStore.formPropsData
               ? itemsStore.formPropsData["name"]
               : "",
