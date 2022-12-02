@@ -58,17 +58,16 @@ export default class CategoriesStore {
       } else {
         categoriesStore.dataDumyCreate = {
           checkbox: true,
-          id: "113",
+          id: "114",
           name: data.name,
-          type: "Services",
-          categories: "News",
-          author: data.author,
-          engagement: "40%",
+          type: "Test add",
+          engagement: "100%",
           visits: "100",
-          languages: "English (en), Vietnam...",
+          languages: data.languages,
           status: true,
           check: true,
         };
+
         setTimeout(() => {
           notify("Success");
           if (redirect) {

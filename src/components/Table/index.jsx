@@ -20,7 +20,6 @@ import Spinner from "components/Spinner";
 import { Dropdown } from "react-bootstrap";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
-import moment from "moment";
 
 const Table = ({
   columns,
@@ -157,7 +156,7 @@ const Table = ({
     } else if (filterSearch) {
       setRecords(
         data.filter((v) =>
-          v.name.toLowerCase().includes(filterSearch.toLowerCase())
+          v.name?.toLowerCase().includes(filterSearch?.toLowerCase())
         )
       );
     } else {
@@ -175,11 +174,11 @@ const Table = ({
     filterSearch,
   ]);
   setSelectedMulptiRows(selectedFlatRows);
-  const handlePagination = async (pageIndex) => {
-    setLoading(true);
-    await store.goToPage(pageIndex);
-    setLoading(false);
-  };
+  // const handlePagination = async (pageIndex) => {
+  //   setLoading(true);
+  //   await store.goToPage(pageIndex);
+  //   setLoading(false);
+  // };
   //handle rows drag and drop
   const moveRow = async (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];

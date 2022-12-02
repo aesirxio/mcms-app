@@ -29,7 +29,7 @@ const Categories = observer(
         },
         {
           Header: "Category",
-          accessor: "category",
+          accessor: "name",
           className:
             "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-start text-truncate",
           Cell: ({ value }) => {
@@ -38,7 +38,7 @@ const Categories = observer(
             );
           },
           width: "25%",
-          sortParams: "category",
+          sortParams: "name",
         },
         {
           Header: "Type",
@@ -129,7 +129,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "260",
-          category: "|-E-Commerce",
+          name: "|-E-Commerce",
           type: "Services",
 
           engagement: "40%",
@@ -141,7 +141,7 @@ const Categories = observer(
         {
           checkbox: false,
           id: "261",
-          category: "|-|-E-commerce B2C",
+          name: "|-|-E-commerce B2C",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -152,7 +152,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "262",
-          category: "|-|-E-commerce B2B",
+          name: "|-|-E-commerce B2B",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -163,7 +163,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "263",
-          category: "|-|-E-commerce Omnichannel",
+          name: "|-|-E-commerce Omnichannel",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -174,7 +174,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "264",
-          category: "|-Digital Experience Platform",
+          name: "|-Digital Experience Platform",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -185,7 +185,7 @@ const Categories = observer(
         {
           checkbox: false,
           id: "265",
-          category: "|-|-AesirX",
+          name: "|-|-AesirX",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -196,7 +196,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "266",
-          category: "|-|-PIM (Product Information Management)",
+          name: "|-|-PIM (Product Information Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -207,7 +207,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "267",
-          category: "|-|-DAM (Digital Asset Management)",
+          name: "|-|-DAM (Digital Asset Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -218,7 +218,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "267",
-          category: "|-|-DAM (Digital Asset Management)",
+          name: "|-|-DAM (Digital Asset Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -229,7 +229,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "267",
-          category: "|-|-DAM (Digital Asset Management)",
+          name: "|-|-DAM (Digital Asset Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -240,7 +240,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "267",
-          category: "|-|-DAM (Digital Asset Management)",
+          name: "|-|-DAM (Digital Asset Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -251,7 +251,7 @@ const Categories = observer(
         {
           checkbox: true,
           id: "267",
-          category: "|-|-DAM (Digital Asset Management)",
+          name: "|-|-DAM (Digital Asset Management)",
           type: "Services",
           engagement: "40%",
           visits: "100",
@@ -288,14 +288,15 @@ const Categories = observer(
           setDataFilter={setDataFilter}
           setFilterSearch={setFilterSearch}
           store={categoriesStore}
+          linkTo="/categories-create"
         />
-        <div className="py-3 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
+        <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
           <div className="fs-14 fw-semibold h-100">
             <Table
               columns={columnsTable}
               data={dataTable}
               canSort={true}
-              // store={itemsStore}
+              store={categoriesStore}
               pagination={true}
               selection={false}
               dragDrop={true}
