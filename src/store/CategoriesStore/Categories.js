@@ -4,7 +4,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { createContext } from "react";
 import history from "routes/history";
 
-export default class ItemstStore {
+export default class CategoriesStore {
   items = [];
   page = 1;
   limit = 10;
@@ -37,7 +37,7 @@ export default class ItemstStore {
       let arrDetails = new ItemsEntity(selectedMulptiRows[0]);
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
-          itemsStore.formPropsData = arrDetails.values;
+          categoriesStore.formPropsData = arrDetails.values;
         });
       }
     } catch (error) {
@@ -48,15 +48,15 @@ export default class ItemstStore {
   async saveData(data, redirect) {
     if (data) {
       if (data?.id) {
-        itemsStore.formPropsData = data;
+        categoriesStore.formPropsData = data;
         setTimeout(() => {
           notify("Success");
           if (redirect) {
-            history.push("/");
+            history.push("/categories");
           }
         }, 2000);
       } else {
-        itemsStore.dataDumyCreate = {
+        categoriesStore.dataDumyCreate = {
           checkbox: true,
           id: "113",
           name: data.name,
@@ -72,7 +72,7 @@ export default class ItemstStore {
         setTimeout(() => {
           notify("Success");
           if (redirect) {
-            history.push("/");
+            history.push("/categories");
           }
         }, 2000);
       }
@@ -82,9 +82,9 @@ export default class ItemstStore {
   }
   async clearData() {
     runInAction(() => {
-      itemsStore.formPropsData = [];
+      categoriesStore.formPropsData = [];
     });
   }
 }
-export const itemsStore = new ItemstStore();
-export const ItemsStoreContext = createContext(itemsStore);
+export const categoriesStore = new CategoriesStore();
+export const CategoriesStoreContext = createContext(categoriesStore);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Col, Row, Tab, Tabs } from "react-bootstrap";
 import { useTranslation, withTranslation } from "react-i18next";
 import ItemsFormActionBar from "./ItemsFormActionBar";

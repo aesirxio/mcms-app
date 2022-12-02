@@ -1,8 +1,40 @@
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import styles from "./index.module.scss";
-function TabBarComponent({ view, tabList, setFilterTab }) {
+function TabBarComponent({ view, setFilterTab }) {
   const [active, setActive] = useState({ target: { outerText: "All items" } });
+  const tabList = [
+    {
+      title: "All items",
+      slug: "all-items",
+      link: "/all-items",
+    },
+    {
+      title: "Published",
+      slug: "published",
+      link: "/published",
+    },
+    {
+      title: "Unpublished",
+      slug: "unpublished",
+      link: "/unpublished",
+    },
+    {
+      title: "Archived",
+      slug: "archived",
+      link: "/archived",
+    },
+    {
+      title: "Draft",
+      slug: "draft",
+      link: "/draft",
+    },
+    {
+      title: "Trashed",
+      slug: "trashed",
+      link: "/trashed",
+    },
+  ];
   return tabList ? (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {

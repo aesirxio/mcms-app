@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { Icon } from "@iconify/react";
-import { itemsStore, ItemsStoreContext } from "store/ItemsStore/Items";
+import { itemsStore } from "store/ItemsStore/Items";
 import history from "routes/history";
 
 const ItemsFormPage = lazy(() => import("./ItemsForm/ItemsFormPage"));
@@ -24,38 +24,6 @@ const Dashboard = observer(() => {
   }, []);
   const [filterTab, setFilterTab] = useState("");
   const { t } = useTranslation("common");
-  const tabList = [
-    {
-      title: "All items",
-      slug: "all-items",
-      link: "/all-items",
-    },
-    {
-      title: "Published",
-      slug: "published",
-      link: "/published",
-    },
-    {
-      title: "Unpublished",
-      slug: "unpublished",
-      link: "/unpublished",
-    },
-    {
-      title: "Archived",
-      slug: "archived",
-      link: "/archived",
-    },
-    {
-      title: "Draft",
-      slug: "draft",
-      link: "/draft",
-    },
-    {
-      title: "Trashed",
-      slug: "trashed",
-      link: "/trashed",
-    },
-  ];
   return (
     <div className="py-4 px-3 h-100 d-flex flex-column">
       <Route exact path={["/"]}>
@@ -79,19 +47,16 @@ const Dashboard = observer(() => {
           </Link>
         </div>
         <TabBarComponent
-          tabList={tabList}
           view={"all-items"}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
         />
-        <ItemsStoreContext.Provider value={itemsStore}>
-          <Items
-            t={t}
-            data={null}
-            setFilter={setFilterTab}
-            filterTab={filterTab}
-          />
-        </ItemsStoreContext.Provider>
+        <Items
+          t={t}
+          data={null}
+          setFilter={setFilterTab}
+          filterTab={filterTab}
+        />
       </Route>
       <Route exact path={["/items-create", "/items-edit/:id"]}>
         <ItemsFormPage />

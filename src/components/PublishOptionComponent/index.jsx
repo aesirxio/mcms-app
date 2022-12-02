@@ -72,7 +72,7 @@ const PushlishOptionComponent = ({ formPropsData, viewModel, ...props }) => {
       </h3>
       {data.map((item, index) => {
         return (
-          <div className={`${index && "mt-24 pt-16 border-top"}`}>
+          <div key={index} className={`${index && "mt-24 pt-16 border-top"}`}>
             {item.name && (
               <h4 className="fs-6 fw-semibold mb-16">{item.name}</h4>
             )}
