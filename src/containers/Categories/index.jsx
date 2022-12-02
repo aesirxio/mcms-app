@@ -21,49 +21,6 @@ const Categories = observer(() => {
     id: 1,
     groups: [
       {
-        name: "",
-        fields: [
-          {
-            label: "Hero Text",
-            key: "hero_text",
-            type: FORM_FIELD_TYPE.INPUT,
-            value: categoriesStore.formPropsData?.author ?? "",
-            className: "col-12",
-            required: true,
-            changed: (data) => {
-              categoriesStore.formPropsData["author"] = data.target.value;
-            },
-            validation: "required",
-          },
-          {
-            label: "Intro text",
-            key: "intro_text",
-            type: FORM_FIELD_TYPE.INPUT,
-            value: categoriesStore.formPropsData
-              ? categoriesStore.formPropsData["name"]
-              : "",
-            className: "col-12",
-            changed: (data) => {
-              categoriesStore.formPropsData["name"] = data.target.value;
-            },
-          },
-          {
-            label: "Thumb Image",
-            key: "thumb_image",
-            type: FORM_FIELD_TYPE.IMAGE,
-            value: "",
-            className: "col-12",
-          },
-          {
-            label: "Image",
-            key: "image",
-            type: FORM_FIELD_TYPE.IMAGE,
-            value: "",
-            className: "col-12",
-          },
-        ],
-      },
-      {
         name: "SEO",
         fields: [
           {
