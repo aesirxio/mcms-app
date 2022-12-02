@@ -28,7 +28,7 @@ const FieldsComponent = (props) => {
           {
             label: "Intro text",
             key: "intro_text",
-            type: FORM_FIELD_TYPE.INPUT,
+            type: FORM_FIELD_TYPE.EDITOR,
             value: itemsStore.formPropsData
               ? itemsStore.formPropsData["name"]
               : "",
@@ -114,7 +114,7 @@ const FieldsComponent = (props) => {
             className: "col-12",
           },
           {
-            label: "Meta Language Setting",
+            label: "Meta LanEDITORguage Setting",
             key: "meta_language_setting",
             type: FORM_FIELD_TYPE.TEXTAREA,
             value: itemsStore.formPropsData?.languages ?? "",

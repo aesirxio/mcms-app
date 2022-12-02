@@ -163,6 +163,7 @@ $utilities: (
       25: 25%,
       40: 40%,
       50: 50%,
+      65: 65%,
       75: 75%,
       100: 100%,
       fit: fit-content,
@@ -244,5 +245,10 @@ $utilities: (
       circle: 50%,
       pill: $border-radius-pill,
     ),
+  ),
+  "white-space": (
+    property: white-space,
+    class: ws,
+    values: normal nowrap pre pre-line pre-wrap initial inherit,
   ),
 );

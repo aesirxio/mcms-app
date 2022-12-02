@@ -23,9 +23,10 @@ const FORM_FIELD_TYPE = {
   AGE: 22,
   LOCATION: 23,
   TIMEZONE: 24,
+  EDITOR: 25,
 };
 
-const FORMAT_DATE = "dd/MM/yyyy";
-const FORMAT_TIME = "HH:mm";
+const FORMAT_DATE = "yyyy-MM-dd";
+const FORMAT_TIME = "HH:mm:ss";
 
 export { FORM_FIELD_TYPE, FORMAT_DATE, FORMAT_TIME };

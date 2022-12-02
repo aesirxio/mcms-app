@@ -31,6 +31,7 @@ class FormSelectDropdown extends Component {
             ? this.field.placeholderComponent
             : components.Placeholder,
         }}
+        className={this.field.classNameInput}
         async={this.field.async ?? false}
         loadOptions={this.field.loadOptions ?? null}
         cacheOptions
