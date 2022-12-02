@@ -2,7 +2,7 @@ import FormComponent from "components/Form";
 import { FORM_FIELD_TYPE } from "constants/FormFieldType";
 import React from "react";
 
-function GeneralInformation({ formPropsData, viewModel }) {
+function GeneralInformation({ store, viewModel }) {
   const generateFormSetting = () => {
     return [
       {
@@ -11,12 +11,12 @@ function GeneralInformation({ formPropsData, viewModel }) {
             label: "Name",
             key: "name",
             type: FORM_FIELD_TYPE.INPUT,
-            value: formPropsData ? formPropsData.name : "",
+            value: store?.formPropsData ? store?.formPropsData.name : "",
             className: "col-12",
             required: true,
             validation: "required",
             changed: (data) => {
-              formPropsData["name"] = data.target.value;
+              store.formPropsData["name"] = data.target.value;
             },
           },
           {
@@ -88,7 +88,7 @@ function GeneralInformation({ formPropsData, viewModel }) {
     <div className="rounded-1 bg-white p-24 shadow-sm">
       <FormComponent
         key={Math.random(40, 200)}
-        formPropsData={formPropsData}
+        formPropsData={store?.formPropsData}
         viewModel={viewModel}
         generateFormSetting={() => generateFormSetting()}
       />

@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { withRouter } from "react-router-dom";
 class ItemsFormActionBar extends Component {
   render() {
-    const { t, history, path, itemsStore } = this.props;
+    const { t, history, path, store } = this.props;
     const redirect = true;
     return (
       <div className="d-flex">
@@ -17,15 +17,13 @@ class ItemsFormActionBar extends Component {
         </button>
         <button
           className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
-          onClick={() =>
-            itemsStore.saveData(itemsStore.formPropsData, redirect)
-          }
+          onClick={() => store.saveData(store.formPropsData, redirect)}
         >
           {t("txt_save_close")}
         </button>
         <button
           className="btn btn-success px-16 py-11 text-capitalize fw-semibold rounded-1 d-flex align-items-center"
-          onClick={() => itemsStore.saveData(itemsStore.formPropsData)}
+          onClick={() => store.saveData(store.formPropsData)}
         >
           <Icon className="me-1" icon="teenyicons:save-outline" />
           {t("txt_save")}

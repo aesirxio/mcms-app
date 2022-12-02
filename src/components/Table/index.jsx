@@ -20,6 +20,7 @@ import Spinner from "components/Spinner";
 import { Dropdown } from "react-bootstrap";
 import { faColumns } from "@fortawesome/free-solid-svg-icons/faColumns";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import moment from "moment";
 
 const Table = ({
   columns,
@@ -514,9 +515,11 @@ const Table = ({
         loading ? (
           <Spinner />
         ) : (
-          <div className="pagination position-absolute pt-3 d-flex col-12">
+          <div className="pagination position-absolute mt-3 d-flex col-12">
             <div className="col-4">
+              <span className="pe-1 text-gray-800">Showing</span>
               <select
+                className="border-select"
                 value={pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
@@ -524,7 +527,7 @@ const Table = ({
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
                   <option key={pageSize} value={pageSize}>
-                    Show {pageSize}
+                    {pageSize} Items
                   </option>
                 ))}
               </select>
