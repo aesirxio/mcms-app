@@ -4,6 +4,8 @@ import { FORM_FIELD_TYPE } from "../constants/FormFieldType";
 import { Form } from "react-bootstrap";
 import FormAgeField from "../components/Form/FormAgeField";
 import FormLocationField from "../components/Form/FormLocationField";
+import FormEditor from "components/Form/FormEditor";
+import FormDatePublish from "components/Form/FormDatePublish";
 
 const FormDateRangePicker = lazy(() =>
   import("../components/Form/FormDateRangePicker")
@@ -67,6 +69,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                     defaultValue={field.value}
                     required={field.required ?? false}
                     id={field.key}
+                    className={field.classNameInput}
                     onChange={field.changed ?? undefined}
                     onBlur={field.blurred ?? undefined}
                   />
@@ -90,6 +93,32 @@ const renderingGroupFieldHandler = (group, validator) => {
                   field={field}
                   validator={validator}
                 />
+              );
+
+            case FORM_FIELD_TYPE.DATE:
+              return (
+                <Form.Group
+                  key={Math.random(40, 200)}
+                  className={`mb-24 ${className}`}
+                >
+                  <Label
+                    labelClassName={field.labelClassName}
+                    text={field.label}
+                  />
+                  <FormDatePublish
+                    changed={(date) => field.changed(date)}
+                    field={field}
+                  />
+                  {field.validation &&
+                    validator.message(
+                      field.label,
+                      field.value,
+                      field.validation,
+                      {
+                        className: "text-danger",
+                      }
+                    )}
+                </Form.Group>
               );
             case FORM_FIELD_TYPE.IMAGE:
               return (
@@ -324,7 +353,40 @@ const renderingGroupFieldHandler = (group, validator) => {
                     text={field.label}
                     required={field.required ?? false}
                   />
-                  <FormCheckBoxField field={field} validator={validator} />
+                  <FormCheckBoxField field={field} />
+                  {field.validation &&
+                    validator.message(
+                      field.label,
+                      field.value,
+                      field.validation,
+                      {
+                        className: "text-danger",
+                      }
+                    )}
+                </Form.Group>
+              );
+
+            case FORM_FIELD_TYPE.EDITOR:
+              return (
+                <Form.Group
+                  key={Math.random(40, 200)}
+                  className={`mb-24 ${className}`}
+                >
+                  <Label
+                    labelClassName={field.labelClassName}
+                    text={field.label}
+                    required={field.required ?? false}
+                  />
+                  <FormEditor field={field} />
+                  {field.validation &&
+                    validator.message(
+                      field.label,
+                      field.value,
+                      field.validation,
+                      {
+                        className: "text-danger",
+                      }
+                    )}
                 </Form.Group>
               );
             default:

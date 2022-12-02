@@ -20,7 +20,7 @@ const FormImage = ({ field }) => {
     <div className={`${styles["border"]} position-relative p-sm`}>
       {file && (
         <div
-          className={`position-absolute top-0 start-100 text-end cursor-auto`}
+          className={`position-absolute top-0 start-100 text-end cursor-pointer`}
         >
           <div className="bg-danger p-sm" onClick={() => setFile(null)}>
             <Icon
