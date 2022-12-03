@@ -1,4 +1,3 @@
-import ListThumb from "components/ListThumb";
 import Table from "components/Table";
 import React, { useContext, useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
@@ -8,12 +7,7 @@ import { observer } from "mobx-react-lite";
 const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
   const itemsStore = useContext(ItemsStoreContext);
   const [newStatus, setNewStatus] = useState();
-  const [selectedMulptiRows, setSelectedMulptiRows] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [dataAction, setDataAction] = useState([]);
-  const [dataActionAllrows, setDataActionAllrows] = useState();
-  const [dataFilter, setDataFilter] = useState();
-  const [filterSearch, setFilterSearch] = useState("");
 
   const columnsTable = React.useMemo(
     () => [
@@ -575,40 +569,21 @@ const Items = observer(({ t, data = [], filterTab, setFilterTab }) => {
 
   return (
     <>
-      <ListThumb
-        setLoading={setLoading}
-        loading={loading}
-        setDataAction={setDataAction}
-        dataAction={dataAction}
-        selectedMulptiRows={selectedMulptiRows}
-        setDataActionAllrows={setDataActionAllrows}
-        setDataFilter={setDataFilter}
-        setFilterSearch={setFilterSearch}
-        store={itemsStore}
-        linkTo="/items-create"
-      />
-      <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
-        <div className="fs-14 fw-semibold h-100">
-          <Table
-            columns={columnsTable}
-            data={dataTable}
-            canSort={true}
-            store={itemsStore}
-            pagination={true}
-            selection={false}
-            dragDrop={true}
-            setLoading={setLoading}
-            loading={loading}
-            setDataAction={setDataAction}
-            dataAction={dataAction}
-            filterTab={filterTab}
-            setFilterTab={setFilterTab}
-            setSelectedMulptiRows={setSelectedMulptiRows}
-            dataActionAllrows={dataActionAllrows}
-            dataFilter={dataFilter}
-            filterSearch={filterSearch}
-          ></Table>
-        </div>
+      <div className="fs-14 fw-semibold h-100">
+        <Table
+          columns={columnsTable}
+          data={dataTable}
+          canSort={true}
+          store={itemsStore}
+          pagination={true}
+          selection={false}
+          dragDrop={true}
+          setLoading={setLoading}
+          loading={loading}
+          filterTab={filterTab}
+          setFilterTab={setFilterTab}
+          linkTo="/items-create"
+        ></Table>
       </div>
     </>
   );

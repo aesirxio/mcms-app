@@ -18,6 +18,7 @@ export default class CategoriesStore {
   loading = false;
   totalItems = 0;
   dataDumyCreate = {};
+  idDummyDelete = [];
   constructor() {
     makeAutoObservable(this);
   }
@@ -78,6 +79,18 @@ export default class CategoriesStore {
     } else {
       console.log("Error");
     }
+  }
+  async handleDelete(data) {
+    console.log("data", data);
+    if (data) {
+      categoriesStore.idDummyDelete = data;
+      setTimeout(() => {
+        notify("Success");
+      }, 2000);
+    }
+    // runInAction(() => {
+    //   itemsStore.items = data;
+    // });
   }
   async clearData() {
     runInAction(() => {

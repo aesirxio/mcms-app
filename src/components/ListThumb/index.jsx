@@ -6,6 +6,10 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import SelectComponent from "../Select";
 import { notify } from "components/Toast";
 import history from "routes/history";
+import { Dropdown } from "react-bootstrap";
+import { faChevronDown, faColumns } from "@fortawesome/free-solid-svg-icons";
+import "./index.scss";
+
 const optionAction = [
   { value: "edit", label: "Edit" },
   { value: "delete", label: "Delete" },
@@ -19,13 +23,13 @@ const optionFilterColumns = [
 
 const ListThumb = ({
   setLoading,
-  setDataAction,
   selectedMulptiRows,
-  setDataActionAllrows,
   setDataFilter,
   setFilterSearch,
   store,
   linkTo,
+  allColumns,
+  setIdDummyDelete,
 }) => {
   const [action, setAction] = useState("");
   const [filterColum, setFilterColum] = useState("");
@@ -43,8 +47,8 @@ const ListThumb = ({
       }
       setLoading(true);
       setAction(e);
-      setDataActionAllrows(selectedMulptiRows);
-      setDataAction(selectedMulptiRows);
+      setIdDummyDelete(selectedMulptiRows);
+      store.handleDelete(selectedMulptiRows);
       setTimeout(() => {
         setLoading(false);
         notify("Success");
@@ -102,6 +106,44 @@ const ListThumb = ({
                   className="text-green"
                   plColor="rgba(8, 18, 64, 0.8)"
                 />
+              </div>
+              <div className="col-2 border-end-1">
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant="info"
+                    id="actions"
+                    className={`btn_toggle`}
+                  >
+                    <i>
+                      <FontAwesomeIcon icon={faColumns} />
+                    </i>
+                    <span className="p-1 text-blue-0 opacity-75">Columns</span>
+                    <i className="text-green">
+                      <FontAwesomeIcon icon={faChevronDown} />
+                    </i>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="pt-3 px-2 border-0 shadow select-option">
+                    {allColumns?.map(
+                      (column) =>
+                        column.id !== "selection" &&
+                        column.Header &&
+                        column.id !== "drag" && (
+                          <div
+                            key={column.id}
+                            id={column.Header}
+                            className="mb-2"
+                          >
+                            <input
+                              type="checkbox"
+                              className="form-check-input me-1"
+                              {...column.getToggleHiddenProps()}
+                            />
+                            {column.Header}
+                          </div>
+                        )
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
               <div className="col-2 border-end-1">
                 <div className="d-flex align-items-center">
