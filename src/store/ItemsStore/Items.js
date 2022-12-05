@@ -1,8 +1,8 @@
-import { notify } from "components/Toast";
-import ItemsEntity from "entites/items";
-import { makeAutoObservable, runInAction } from "mobx";
-import { createContext } from "react";
-import history from "routes/history";
+import { notify } from 'components/Toast';
+import ItemsEntity from 'entites/items';
+import { makeAutoObservable, runInAction } from 'mobx';
+import { createContext } from 'react';
+import history from 'routes/history';
 
 export default class ItemstStore {
   items = [];
@@ -10,7 +10,7 @@ export default class ItemstStore {
   limit = 10;
   totalPages = 1;
   filter = {};
-  filterSearch = "search";
+  filterSearch = 'search';
   formPropsData = [];
   imageData = [];
   files = [];
@@ -23,13 +23,13 @@ export default class ItemstStore {
     makeAutoObservable(this);
   }
 
-  async getItems(redirect = false) {
+  async getItems() {
     try {
       runInAction(() => {
         this.items = [];
       });
     } catch (error) {
-      console.log("API - Get Content: " + error);
+      console.log('API - Get Content: ' + error);
       return null;
     }
   }
@@ -42,7 +42,7 @@ export default class ItemstStore {
         });
       }
     } catch (error) {
-      console.log("API - Get Content: " + error);
+      console.log('API - Get Content: ' + error);
       return null;
     }
   }
@@ -51,42 +51,42 @@ export default class ItemstStore {
       if (data?.id) {
         itemsStore.formPropsData = data;
         setTimeout(() => {
-          notify("Success");
+          notify('Success');
           if (redirect) {
-            history.push("/");
+            history.push('/');
           }
         }, 2000);
       } else {
         itemsStore.dataDumyCreate = {
           checkbox: true,
-          id: "113",
+          id: '113',
           name: data.name,
-          type: "Services",
-          categories: "News",
+          type: 'Services',
+          categories: 'News',
           author: data.author,
-          engagement: "40%",
-          visits: "100",
-          languages: "English (en), Vietnam...",
+          engagement: '40%',
+          visits: '100',
+          languages: 'English (en), Vietnam...',
           status: true,
           check: true,
         };
         setTimeout(() => {
-          notify("Success");
+          notify('Success');
           if (redirect) {
-            history.push("/");
+            history.push('/');
           }
         }, 2000);
       }
     } else {
-      console.log("Error");
+      console.log('Error');
     }
   }
   async handleDelete(data) {
-    console.log("data", data);
+    console.log('data', data);
     if (data) {
       itemsStore.idDummyDelete = data;
       setTimeout(() => {
-        notify("Success");
+        notify('Success');
       }, 2000);
     }
     // runInAction(() => {

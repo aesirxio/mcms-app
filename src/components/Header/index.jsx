@@ -1,18 +1,13 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons/faQuestionCircle";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
-
-import "./index.scss";
-
-import DropdownAvatar from "../DropdownAvatar";
-
-import ComponentHambuger from "../ComponentHambuger";
-import ComponentImage from "../ComponentImage";
-import Search from "components/Search";
-import SwitchThemes from "components/SwitchThemes";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import './index.scss';
+import DropdownAvatar from '../DropdownAvatar';
+import ComponentHambuger from '../ComponentHambuger';
+import ComponentImage from '../ComponentImage';
+import SwitchThemes from 'components/SwitchThemes';
 
 class Header extends React.Component {
   constructor(props) {
@@ -24,14 +19,14 @@ class Header extends React.Component {
 
   handleCollap = () => {
     let { isMini } = this.state;
-    document.body.classList.toggle("mini_left");
+    document.body.classList.toggle('mini_left');
     this.setState({
       isMini: !isMini,
     });
   };
 
   handleMenuLeft = () => {
-    document.body.classList.toggle("show_menu_left");
+    document.body.classList.toggle('show_menu_left');
   };
 
   render() {
@@ -44,9 +39,9 @@ class Header extends React.Component {
       >
         <ComponentHambuger handleAction={this.handleMenuLeft} />
         <div className="wrapper_header_logo bg-dark w-248 h-80 d-flex align-items-center">
-          <a href="/" className={`header_logo d-block ${isMini ? "" : "mx-3"}`}>
+          <a href="/" className={`header_logo d-block ${isMini ? '' : 'mx-3'}`}>
             <ComponentImage
-              className={`logo_white ${isMini ? "pe-0" : "pe-3 pe-lg-6"}`}
+              className={`logo_white ${isMini ? 'pe-0' : 'pe-3 pe-lg-6'}`}
               src="/assets/images/logo/logo-white.svg"
               alt="R Digital"
             />
@@ -76,9 +71,7 @@ class Header extends React.Component {
               <div className="wr_help_center ps-3 pe-3 d-none">
                 <span className="item_help d-flex align-items-center text-blue-0 cursor-pointer">
                   <FontAwesomeIcon icon={faQuestionCircle} />
-                  <span className="text white-spacing-nowrap ps-2">
-                    {t("txt_help_center")}
-                  </span>
+                  <span className="text white-spacing-nowrap ps-2">{t('txt_help_center')}</span>
                 </span>
               </div>
               <div className="switch-theme-button col-auto py-2">
@@ -95,4 +88,4 @@ class Header extends React.Component {
   }
 }
 
-export default withTranslation("common")(Header);
+export default withTranslation('common')(Header);
