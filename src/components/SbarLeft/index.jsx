@@ -1,16 +1,14 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
 // import i18n from 'translations/i18n';
-
-import "./index.scss";
-import Menu from "../Menu";
-import SwitchThemes from "components/SwitchThemes";
+import './index.scss';
+import Menu from '../Menu';
 // import { Dropdown } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
-import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
-import { observer } from "mobx-react";
-import { NavLink } from "react-router-dom";
+import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
+import { observer } from 'mobx-react';
+import { NavLink } from 'react-router-dom';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
     constructor(props) {
@@ -18,9 +16,7 @@ const SbarLeft = observer(
       this.state = {};
       const { viewModel } = props;
       this.viewModel = viewModel ? viewModel : null;
-      this.biListViewModel = this.viewModel
-        ? this.viewModel.biListViewModel
-        : null;
+      this.biListViewModel = this.viewModel ? this.viewModel.biListViewModel : null;
     }
 
     render() {
@@ -71,7 +67,7 @@ const SbarLeft = observer(
             </Dropdown> */}
             <NavLink
               exact={true}
-              to={"/help-center"}
+              to={'/help-center'}
               className={`d-block px-24 py-16 link_menu text-white text-decoration-none `}
               activeClassName={`active`}
             >
@@ -79,12 +75,10 @@ const SbarLeft = observer(
                 className="icon d-inline-block align-text-bottom"
                 style={{
                   WebkitMaskImage: `url(/assets/images/help-center.svg)`,
-                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskRepeat: 'no-repeat',
                 }}
               ></span>
-              <span className="ms-16 text d-inline-block">
-                {t("txt_menu_help_center")}
-              </span>
+              <span className="ms-16 text d-inline-block">{t('txt_menu_help_center')}</span>
             </NavLink>
 
             {/* <a href="/" className="d-flex align-items-center py-2 px-3">
@@ -100,4 +94,4 @@ const SbarLeft = observer(
   }
 );
 
-export default withTranslation("common")(withBiViewModel(SbarLeft));
+export default withTranslation('common')(withBiViewModel(SbarLeft));

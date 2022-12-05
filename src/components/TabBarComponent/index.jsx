@@ -1,38 +1,38 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // import { Link } from "react-router-dom";
-import styles from "./index.module.scss";
-function TabBarComponent({ view, setFilterTab }) {
-  const [active, setActive] = useState({ target: { outerText: "All items" } });
+import styles from './index.module.scss';
+function TabBarComponent({ setFilterTab }) {
+  const [active, setActive] = useState({ target: { outerText: 'All items' } });
   const tabList = [
     {
-      title: "All items",
-      slug: "all-items",
-      link: "/all-items",
+      title: 'All items',
+      slug: 'all-items',
+      link: '/all-items',
     },
     {
-      title: "Published",
-      slug: "published",
-      link: "/published",
+      title: 'Published',
+      slug: 'published',
+      link: '/published',
     },
     {
-      title: "Unpublished",
-      slug: "unpublished",
-      link: "/unpublished",
+      title: 'Unpublished',
+      slug: 'unpublished',
+      link: '/unpublished',
     },
     {
-      title: "Archived",
-      slug: "archived",
-      link: "/archived",
+      title: 'Archived',
+      slug: 'archived',
+      link: '/archived',
     },
     {
-      title: "Draft",
-      slug: "draft",
-      link: "/draft",
+      title: 'Draft',
+      slug: 'draft',
+      link: '/draft',
     },
     {
-      title: "Trashed",
-      slug: "trashed",
-      link: "/trashed",
+      title: 'Trashed',
+      slug: 'trashed',
+      link: '/trashed',
     },
   ];
   return tabList ? (
@@ -43,8 +43,8 @@ function TabBarComponent({ view, setFilterTab }) {
             key={index}
             className={`${
               active.target?.outerText === item.title
-                ? `${styles["active"]} fw-bold position-relative`
-                : styles["list-item"]
+                ? `${styles['active']} fw-bold position-relative`
+                : styles['list-item']
             } pb-16 me-4 cursor-pointer`}
             onClick={(e) => {
               setFilterTab(e);
@@ -59,7 +59,7 @@ function TabBarComponent({ view, setFilterTab }) {
       })}
     </ul>
   ) : (
-    ""
+    ''
   );
 }
 

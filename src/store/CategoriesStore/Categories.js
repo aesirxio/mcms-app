@@ -1,8 +1,8 @@
-import { notify } from "components/Toast";
-import Categories from "entites/Categories";
-import { makeAutoObservable, runInAction } from "mobx";
-import { createContext } from "react";
-import history from "routes/history";
+import { notify } from 'components/Toast';
+import Categories from 'entites/Categories';
+import { makeAutoObservable, runInAction } from 'mobx';
+import { createContext } from 'react';
+import history from 'routes/history';
 
 export default class CategoriesStore {
   items = [];
@@ -10,7 +10,7 @@ export default class CategoriesStore {
   limit = 10;
   totalPages = 1;
   filter = {};
-  filterSearch = "search";
+  filterSearch = 'search';
   formPropsData = [];
   imageData = [];
   files = [];
@@ -23,13 +23,13 @@ export default class CategoriesStore {
     makeAutoObservable(this);
   }
 
-  async getItems(redirect = false) {
+  async getItems() {
     try {
       runInAction(() => {
         this.items = [];
       });
     } catch (error) {
-      console.log("API - Get Content: " + error);
+      console.log('API - Get Content: ' + error);
       return null;
     }
   }
@@ -42,7 +42,7 @@ export default class CategoriesStore {
         });
       }
     } catch (error) {
-      console.log("API - Get Content: " + error);
+      console.log('API - Get Content: ' + error);
       return null;
     }
   }
@@ -51,41 +51,41 @@ export default class CategoriesStore {
       if (data?.id) {
         categoriesStore.formPropsData = data;
         setTimeout(() => {
-          notify("Success");
+          notify('Success');
           if (redirect) {
-            history.push("/categories");
+            history.push('/categories');
           }
         }, 2000);
       } else {
         categoriesStore.dataDumyCreate = {
           checkbox: true,
-          id: "114",
+          id: '114',
           name: data.name,
-          type: "Test add",
-          engagement: "100%",
-          visits: "100",
+          type: 'Test add',
+          engagement: '100%',
+          visits: '100',
           languages: data.languages,
           status: true,
           check: true,
         };
 
         setTimeout(() => {
-          notify("Success");
+          notify('Success');
           if (redirect) {
-            history.push("/categories");
+            history.push('/categories');
           }
         }, 2000);
       }
     } else {
-      console.log("Error");
+      console.log('Error');
     }
   }
   async handleDelete(data) {
-    console.log("data", data);
+    console.log('data', data);
     if (data) {
       categoriesStore.idDummyDelete = data;
       setTimeout(() => {
-        notify("Success");
+        notify('Success');
       }, 2000);
     }
     // runInAction(() => {
