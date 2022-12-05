@@ -4,7 +4,7 @@ import React from 'react';
 // import '@kakahuy113/aesirx-dam-app/dist/index.css.map';
 
 const Categories = () => {
-  const onSelect = () => {};
+  // const onSelect = () => {};
   return (
     <div className="py-4 px-3 h-100 d-flex flex-column">
       <div className="d-flex align-items-center justify-content-between mb-24 flex-wrap">
