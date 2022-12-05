@@ -12,6 +12,7 @@ import DropdownAvatar from "../DropdownAvatar";
 import ComponentHambuger from "../ComponentHambuger";
 import ComponentImage from "../ComponentImage";
 import Search from "components/Search";
+import SwitchThemes from "components/SwitchThemes";
 
 class Header extends React.Component {
   constructor(props) {
@@ -80,7 +81,9 @@ class Header extends React.Component {
                   </span>
                 </span>
               </div>
-
+              <div className="switch-theme-button col-auto py-2">
+                <SwitchThemes />
+              </div>
               <div className="ps-3 pe-3">
                 <DropdownAvatar />
               </div>

@@ -17,16 +17,17 @@ const Categories = observer(
           Header: "ID",
           accessor: "id",
           width: "auto",
-          className: "px-24 py-2 fs-12 opacity-50 border-bottom-1",
+          className:
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 ",
           Cell: ({ value }) => {
-            return <div className="px-24">{value}</div>;
+            return <div className="px-24 ps-2">{value}</div>;
           },
         },
         {
           Header: "Category",
           accessor: "name",
           className:
-            "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-start text-truncate",
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate",
           Cell: ({ value }) => {
             return (
               <div className="px-24 text-start text-truncate">{value}</div>
@@ -38,7 +39,8 @@ const Categories = observer(
         {
           Header: "Type",
           accessor: "type",
-          className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center",
+          className:
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center",
           Cell: ({ value }) => {
             return <div className="px-24">{value}</div>;
           },
@@ -49,7 +51,7 @@ const Categories = observer(
           Header: "Engagement",
           accessor: "engagement",
           className:
-            "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-truncate",
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-truncate",
           Cell: ({ value }) => {
             return <div className="px-24 text-truncate">{value}</div>;
           },
@@ -59,7 +61,7 @@ const Categories = observer(
           Header: "Visits",
           accessor: "visits",
           className:
-            "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center text-truncate",
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center text-truncate",
           Cell: ({ value }) => {
             return <div className="px-24">{value}</div>;
           },
@@ -68,7 +70,8 @@ const Categories = observer(
         {
           Header: "Languages",
           accessor: "languages",
-          className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center ",
+          className:
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center ",
           Cell: ({ value }) => {
             return <div className="px-24 text-truncate">{value}</div>;
           },
@@ -77,7 +80,8 @@ const Categories = observer(
         {
           Header: "Status",
           accessor: "status",
-          className: "px-24 py-2 fs-12 opacity-50 border-bottom-1 text-center",
+          className:
+            "px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center",
           Cell: ({ value }) => {
             return (
               <div className="px-24">{value ? "Published" : "UnPublished"}</div>
@@ -88,11 +92,11 @@ const Categories = observer(
         {
           Header: "",
           accessor: "check",
-          className: "px-24 py-2 fs-12  border-bottom-1 text-center",
+          className: "px-24 py-2 fs-16  border-bottom-1 text-center",
           Cell: ({ row }) => {
             return (
               <div
-                className="px-24 cursor-pointer"
+                className="px-24 cursor-pointer text-center"
                 onClick={(e) => {
                   setNewStatus(row);
                 }}

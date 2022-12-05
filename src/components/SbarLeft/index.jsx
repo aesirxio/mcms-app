@@ -86,9 +86,6 @@ const SbarLeft = observer(
                 {t("txt_menu_help_center")}
               </span>
             </NavLink>
-            <div className="switch-theme-button col-auto py-2">
-              <SwitchThemes />
-            </div>
 
             {/* <a href="/" className="d-flex align-items-center py-2 px-3">
               <ComponentImage src="/assets/images/help-icon.svg" />

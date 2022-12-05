@@ -30,6 +30,7 @@ $grays: (
 // fusv-enable
 
 $blue: #005f89 !default;
+$blue-200: #0a083b !default;
 $dark-blue: #3e545e !default;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
@@ -57,6 +58,7 @@ $color-blue-9: #f0f3fb;
 // scss-docs-start colors-map
 $colors: (
   "blue": $blue,
+  "blue-200": $blue-200,
   "indigo": $indigo,
   "purple": $purple,
   "pink": $pink,
@@ -157,6 +159,7 @@ $font-sizes: (
   6: $h6-font-size,
   14: $h7-font-size,
   12: $h8-font-size,
+  16: $font-size-root,
   sm: $font-size-sm,
 ) !default;
 // scss-docs-end font-sizes
