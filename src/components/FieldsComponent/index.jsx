@@ -1,7 +1,7 @@
-import React from "react";
-import { Col, ListGroup, Row, Tab } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
-import FormComponent from "components/Form";
+import React from 'react';
+import { Col, ListGroup, Row, Tab } from 'react-bootstrap';
+import { withTranslation } from 'react-i18next';
+import FormComponent from 'components/Form';
 
 const FieldsComponent = (props) => {
   const { t, dataForm } = props;
@@ -11,17 +11,13 @@ const FieldsComponent = (props) => {
         <Col lg={4}>
           <div className="bg-white shadow-sm rounded-1 overflow-hidden">
             <h3 className="mb-0 fw-bold fs-6 pt-24 px-24 pb-16 border-bottom text-uppercase">
-              {t("txt_menu_field_gr")}
+              {t('txt_menu_field_gr')}
             </h3>
             <ListGroup variant="flush">
               {dataForm?.groups?.map((item, index) => {
                 return (
-                  <ListGroup.Item
-                    className="fs-14 cursor-pointer"
-                    eventKey={index}
-                    key={index}
-                  >
-                    {item.name ? item.name : "Non grouped"}
+                  <ListGroup.Item className="fs-14 cursor-pointer" eventKey={index} key={index}>
+                    {item.name ? item.name : 'Non grouped'}
                   </ListGroup.Item>
                 );
               })}
@@ -35,7 +31,7 @@ const FieldsComponent = (props) => {
                 <Tab.Pane eventKey={index} key={index}>
                   <div className="rounded-1 bg-white shadow-sm p-24">
                     <h3 className="fs-6 mb-24 fw-bold pb-16 border-bottom text-uppercase">
-                      {item.name ? item.name : "Non grouped"}
+                      {item.name ? item.name : 'Non grouped'}
                     </h3>
 
                     <FormComponent
@@ -54,4 +50,4 @@ const FieldsComponent = (props) => {
   );
 };
 
-export default withTranslation("common")(FieldsComponent);
+export default withTranslation('common')(FieldsComponent);
