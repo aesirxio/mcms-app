@@ -9,6 +9,7 @@ import Menu from '../Menu';
 import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
 import { observer } from 'mobx-react';
 import { NavLink } from 'react-router-dom';
+// import { AesirXDamStorage } from '@kakahuy113/aesirx-dam-app';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
     constructor(props) {
@@ -37,8 +38,10 @@ const SbarLeft = observer(
           <>
             <Menu />
           </>
-
-          <div className="d-flex align-items-center justify-content-between bottom-0 w-100 pt-1 button-language item_menu">
+          {/* <div>
+            <AesirXDamStorage />
+          </div> */}
+          <div className="d-flex align-items-center justify-content-between bottom-0 w-100  button-language item_menu">
             {/* <Dropdown as={'div'} className="col py-2 px-3">
               <Dropdown.Toggle
                 variant="dark"
@@ -65,6 +68,7 @@ const SbarLeft = observer(
                 })}
               </Dropdown.Menu>
             </Dropdown> */}
+
             <NavLink
               exact={true}
               to={'/help-center'}
