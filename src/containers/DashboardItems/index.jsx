@@ -51,7 +51,7 @@ const Dashboard = observer(() => {
             value: itemsStore.formPropsData ? itemsStore.formPropsData['name'] : '',
             className: 'col-12',
             changed: (data) => {
-              itemsStore.formPropsData['name'] = data.target.value;
+              itemsStore.formPropsData['name'] = data;
             },
           },
           {
