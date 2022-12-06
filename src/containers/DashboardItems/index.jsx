@@ -3,16 +3,18 @@ import { observer } from 'mobx-react';
 import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
 import { Route, withRouter } from 'react-router-dom';
 import TabBarComponent from 'components/TabBarComponent';
-import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
 import history from 'routes/history';
 import { ItemsStoreContext } from 'store/ItemsStore/Items';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
+import Select from 'components/Select';
+import { Button } from 'react-bootstrap';
 
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 const Items = lazy(() => import('./Component/Items'));
+const Modal = lazy(() => import('components/Modal'));
 
 const Dashboard = observer(() => {
   const itemsStore = useContext(ItemsStoreContext);
@@ -24,7 +26,9 @@ const Dashboard = observer(() => {
     };
     fetchData();
   }, []);
+
   const [filterTab, setFilterTab] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation('common');
   const data = {
     id: 1,
@@ -235,35 +239,68 @@ const Dashboard = observer(() => {
     ];
   };
   return (
-    <div className="py-4 px-3 h-100 d-flex flex-column">
-      <Route exact path={['/']}>
-        <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
-          <div>
-            <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_items')}</h2>
-            <p className="mb-0 text-color fs-14">{t('txt_dashboard_below')}</p>
+    <>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        body={
+          <Select
+            className="border border-1 bg-white rounded-1"
+            placeholder={'--Select ContentType--'}
+            options={[
+              { label: 'Landing page', value: 'lading_page' },
+              { label: 'Packages', value: 'packages' },
+            ]}
+          />
+        }
+        header={'Select a type'}
+        footer={
+          <div className="d-flex justify-content-between w-100 mt-2">
+            <Button
+              className="px-16 py-1 text-capitalize fw-semibold rounded-1"
+              variant={'outline-secondary'}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="px-16 py-1 text-capitalize fw-semibold rounded-1"
+              variant={'success'}
+            >
+              Proceed
+            </Button>
           </div>
-          <Link
-            to="/items-create"
-            className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-            onClick={() => itemsStore.clearData()}
-          >
-            <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
-            {t('txt_add_new_item')}
-          </Link>
-        </div>
-        <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
-        <Items t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
-      </Route>
-      <Route exact path={['/items-create', '/items-edit/:id']}>
-        <ItemsFormPage
-          store={itemsStore}
-          dataForm={data}
-          generateFormSetting={generateFormSetting}
-          path="/"
-          title="txt_add_item"
-        />
-      </Route>
-    </div>
+        }
+      />
+      <div className="py-4 px-3 h-100 d-flex flex-column">
+        <Route exact path={['/']}>
+          <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
+            <div>
+              <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_items')}</h2>
+              <p className="mb-0 text-color fs-14">{t('txt_dashboard_below')}</p>
+            </div>
+            <Button
+              variant={'success'}
+              className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+              onClick={() => setShowModal(true)}
+            >
+              <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
+              {t('txt_add_new_item')}
+            </Button>
+          </div>
+          <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
+          <Items t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+        </Route>
+        <Route exact path={['/items-create', '/items-edit/:id']}>
+          <ItemsFormPage
+            store={itemsStore}
+            dataForm={data}
+            generateFormSetting={generateFormSetting}
+            path="/"
+            title="txt_add_item"
+          />
+        </Route>
+      </div>
+    </>
   );
 });
 
