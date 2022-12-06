@@ -1,10 +1,10 @@
 import { notify } from 'components/Toast';
-import CategoriesEntity from 'entites/Categories';
+import ContentEntity from 'entites/Content';
 import { makeAutoObservable, runInAction } from 'mobx';
 import { createContext } from 'react';
 import history from 'routes/history';
 
-export default class CategoriesStore {
+export default class ContentStore {
   items = [];
   page = 1;
   limit = 10;
@@ -35,10 +35,10 @@ export default class CategoriesStore {
   }
   async getDetail(selectedMulptiRows) {
     try {
-      let arrDetails = new CategoriesEntity(selectedMulptiRows[0]);
+      let arrDetails = new ContentEntity(selectedMulptiRows[0]);
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
-          categoriesStore.formPropsData = arrDetails.values;
+          contentStore.formPropsData = arrDetails.values;
         });
       }
     } catch (error) {
@@ -49,30 +49,31 @@ export default class CategoriesStore {
   async saveData(data, redirect) {
     if (data) {
       if (data?.id) {
-        categoriesStore.formPropsData = data;
+        contentStore.formPropsData = data;
         setTimeout(() => {
           notify('Success');
           if (redirect) {
-            history.push('/categories');
+            history.push('/');
           }
         }, 2000);
       } else {
-        categoriesStore.dataDumyCreate = {
+        contentStore.dataDumyCreate = {
           checkbox: true,
-          id: '114',
+          id: '113',
           name: data.name,
-          type: 'Test add',
-          engagement: '100%',
+          type: 'Services',
+          categories: 'News',
+          author: data.author,
+          engagement: '40%',
           visits: '100',
-          languages: data.languages,
+          languages: 'English (en), Vietnam...',
           status: true,
           check: true,
         };
-
         setTimeout(() => {
           notify('Success');
           if (redirect) {
-            history.push('/categories');
+            history.push('/');
           }
         }, 2000);
       }
@@ -83,20 +84,20 @@ export default class CategoriesStore {
   async handleDelete(data) {
     console.log('data', data);
     if (data) {
-      categoriesStore.idDummyDelete = data;
+      contentStore.idDummyDelete = data;
       setTimeout(() => {
         notify('Success');
       }, 2000);
     }
     // runInAction(() => {
-    //   itemsStore.items = data;
+    //   contentStore.items = data;
     // });
   }
   async clearData() {
     runInAction(() => {
-      categoriesStore.formPropsData = [];
+      contentStore.formPropsData = [];
     });
   }
 }
-export const categoriesStore = new CategoriesStore();
-export const CategoriesStoreContext = createContext(categoriesStore);
+export const contentStore = new ContentStore();
+export const ContentStoreContext = createContext(contentStore);

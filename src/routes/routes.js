@@ -42,7 +42,7 @@ const mainRoutes = [
     main: () => <FieldsPage />,
   },
   {
-    path: '/fields-gr',
+    path: '/fields-group',
     exact: true,
     main: () => <FieldsGroupPage />,
   },
