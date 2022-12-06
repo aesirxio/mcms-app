@@ -15,7 +15,7 @@ const Categories = observer(() => {
   const [filterTab, setFilterTab] = useState('');
   const [entriesFound, setEntriesFound] = useState(0);
   const { t } = useTranslation('common');
-  console.log('tttttttt', t);
+
   const data = {
     id: 1,
     groups: [

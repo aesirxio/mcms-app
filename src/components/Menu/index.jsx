@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { withTranslation } from "react-i18next";
-import "./index.scss";
-import { Collapse, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { observer } from "mobx-react-lite";
+import React, { useEffect, useState } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
+import './index.scss';
+import { Collapse, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { observer } from 'mobx-react-lite';
 const dataMenuSetup = [
   {
-    text: "txt_menu_field",
-    link: "/fields",
-    icons: "/assets/images/field.png",
-    icons_color: "/assets/images/field.png",
+    text: 'txt_menu_field',
+    link: '/fields',
+    icons: '/assets/images/field.png',
+    icons_color: '/assets/images/field.png',
   },
   {
-    text: "txt_menu_field_gr",
-    link: "/fields-gr",
-    icons: "/assets/images/field_gr.png",
-    icons_color: "/assets/images/field_gr.png",
+    text: 'txt_menu_field_gr',
+    link: '/fields-group',
+    icons: '/assets/images/field_gr.png',
+    icons_color: '/assets/images/field_gr.png',
   },
   {
-    text: "txt_menu_content",
-    link: "/content",
-    icons: "/assets/images/content.png",
-    icons_color: "/assets/images/content.png",
+    text: 'txt_menu_content',
+    link: '/content',
+    icons: '/assets/images/content.png',
+    icons_color: '/assets/images/content.png',
   },
   {
-    text: "txt_menu_setting",
-    link: "/setting",
-    icons: "/assets/images/setting.svg",
-    icons_color: "/assets/images/setting.svg",
+    text: 'txt_menu_setting',
+    link: '/setting',
+    icons: '/assets/images/setting.svg',
+    icons_color: '/assets/images/setting.svg',
     submenu: [
       {
-        text: "txt_menu_setting",
+        text: 'txt_menu_setting',
         link: `/setting`,
       },
     ],
   },
 ];
 const Menu = observer((props) => {
-  const [isOpenCollapse, setIsOpenCollapse] = useState("default");
+  const [isOpenCollapse, setIsOpenCollapse] = useState('default');
   const handleOpen = (clickedIndex, parentIndex) => {
     if (isOpenCollapse === clickedIndex.toString()) {
       if (parentIndex) {
@@ -56,10 +56,10 @@ const Menu = observer((props) => {
     }
   };
   const checkActiveMenu = () => {
-    if (window.location.pathname === "/") {
-      document.getElementById("wr_list_menu").classList.remove("wr_list_menu");
+    if (window.location.pathname === '/') {
+      document.getElementById('wr_list_menu').classList.remove('wr_list_menu');
     } else {
-      document.getElementById("wr_list_menu").classList.add("wr_list_menu");
+      document.getElementById('wr_list_menu').classList.add('wr_list_menu');
     }
   };
 
@@ -69,23 +69,23 @@ const Menu = observer((props) => {
 
   const dataMenu = [
     {
-      text: "txt_menu_items",
+      text: 'txt_menu_items',
       // link: `/data-${dataStreamActive}`,
       link: `/`,
-      icons: "/assets/images/dashboard.svg",
-      icons_color: "/assets/images/items.png",
+      icons: '/assets/images/dashboard.svg',
+      icons_color: '/assets/images/items.png',
     },
     {
-      text: "txt_menu_cate",
+      text: 'txt_menu_cate',
       link: `/categories`,
-      icons: "/assets/images/dashboard.svg",
-      icons_color: "/assets/images/dashboard.svg",
+      icons: '/assets/images/dashboard.svg',
+      icons_color: '/assets/images/dashboard.svg',
     },
     {
-      text: "txt_menu_dam",
+      text: 'txt_menu_dam',
       link: `/dam`,
-      icons: "/assets/images/image.png",
-      icons_color: "/assets/images/image.png",
+      icons: '/assets/images/image.png',
+      icons_color: '/assets/images/image.png',
       // submenu: [
       //   {
       //     text: "txt_menu_overview",
@@ -103,17 +103,13 @@ const Menu = observer((props) => {
   return (
     <>
       <nav className="main-menu py-24 mt-0">
-        <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-          {t("txt_content")}
-        </p>
+        <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('txt_content')}</p>
         <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
           {dataMenu.map((menuList, menuListkey) => {
             return (
               <li
                 key={menuListkey}
-                className={`item_menu ${
-                  menuList.className ? menuList.className : ""
-                }`}
+                className={`item_menu ${menuList.className ? menuList.className : ''}`}
               >
                 {!menuList.submenu ? (
                   <>
@@ -128,12 +124,10 @@ const Menu = observer((props) => {
                           className="icon d-inline-block align-text-bottom"
                           style={{
                             WebkitMaskImage: `url(${menuList.icons_color})`,
-                            WebkitMaskRepeat: "no-repeat",
+                            WebkitMaskRepeat: 'no-repeat',
                           }}
                         ></span>
-                        <span className="ms-16 text d-inline-block">
-                          {t(menuList.text)}
-                        </span>
+                        <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
                       </NavLink>
                     )}
                   </>
@@ -144,38 +138,36 @@ const Menu = observer((props) => {
                       onClick={() => handleOpen(menuListkey)}
                       className={`d-flex align-items-center justify-content-start rounded-2 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none ${
                         isOpenCollapse === menuListkey.toString() ||
-                        isOpenCollapse?.includes(menuListkey + "-")
-                          ? "active"
-                          : ""
+                        isOpenCollapse?.includes(menuListkey + '-')
+                          ? 'active'
+                          : ''
                       }`}
                       aria-controls="wr_list_submenu"
                       aria-expanded={
                         isOpenCollapse === menuListkey.toString() ||
-                        isOpenCollapse?.includes(menuListkey + "-")
+                        isOpenCollapse?.includes(menuListkey + '-')
                       }
                     >
                       <span
                         className="icon d-inline-block align-text-bottom"
                         style={{
                           WebkitMaskImage: `url(${menuList.icons_color})`,
-                          WebkitMaskRepeat: "no-repeat",
+                          WebkitMaskRepeat: 'no-repeat',
                         }}
                       ></span>
-                      <span className="ms-16 text d-inline-block">
-                        {t(menuList.text)}
-                      </span>
+                      <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
                       <span
                         className="icon arrow d-inline-block align-text-bottom ms-auto"
                         style={{
                           WebkitMaskImage: `url(/assets/images/arrow-right.svg)`,
-                          WebkitMaskRepeat: "no-repeat",
+                          WebkitMaskRepeat: 'no-repeat',
                         }}
                       ></span>
                     </Button>
                     <Collapse
                       in={
                         isOpenCollapse === menuListkey.toString() ||
-                        isOpenCollapse?.includes(menuListkey + "-")
+                        isOpenCollapse?.includes(menuListkey + '-')
                       }
                     >
                       <ul id="wr_list_submenu" className="list-unstyled">
@@ -196,9 +188,7 @@ const Menu = observer((props) => {
                                   <i className="icon-submenu text-white">
                                     <FontAwesomeIcon icon={faCircle} />
                                   </i>
-                                  <span className="text d-inline-block">
-                                    {t(value.text)}
-                                  </span>
+                                  <span className="text d-inline-block">{t(value.text)}</span>
                                 </NavLink>
                               )}
                             </li>
@@ -214,18 +204,11 @@ const Menu = observer((props) => {
         </ul>
       </nav>
       <nav className="border-top border-dark-blue py-2 mt-0 mb-auto">
-        <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">
-          {t("txt_set_up")}
-        </p>
+        <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('txt_set_up')}</p>
         <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
           {dataMenuSetup.map((value, key) => {
             return (
-              <li
-                key={key}
-                className={`item_menu ${
-                  value.className ? value.className : ""
-                }`}
-              >
+              <li key={key} className={`item_menu ${value.className ? value.className : ''}`}>
                 {!value?.submenu ? (
                   <NavLink
                     exact={true}
@@ -237,12 +220,10 @@ const Menu = observer((props) => {
                       className="icon d-inline-block align-text-bottom"
                       style={{
                         WebkitMaskImage: `url(${value.icons_color})`,
-                        WebkitMaskRepeat: "no-repeat",
+                        WebkitMaskRepeat: 'no-repeat',
                       }}
                     ></span>
-                    <span className="ms-16 text d-inline-block">
-                      {t(value.text)}
-                    </span>
+                    <span className="ms-16 text d-inline-block">{t(value.text)}</span>
                   </NavLink>
                 ) : (
                   <>
@@ -250,40 +231,33 @@ const Menu = observer((props) => {
                       variant=""
                       onClick={() => handleOpen(key)}
                       className={`d-flex align-items-center justify-content-start rounded-2 link_menu text-decoration-none text-break w-100 px-24 py-16 shadow-none ${
-                        isOpenCollapse === key.toString() ||
-                        isOpenCollapse?.includes(key + "-")
-                          ? "active"
-                          : ""
+                        isOpenCollapse === key.toString() || isOpenCollapse?.includes(key + '-')
+                          ? 'active'
+                          : ''
                       }`}
                       aria-controls="wr_list_submenu"
                       aria-expanded={
-                        isOpenCollapse === key.toString() ||
-                        isOpenCollapse?.includes(key + "-")
+                        isOpenCollapse === key.toString() || isOpenCollapse?.includes(key + '-')
                       }
                     >
                       <span
                         className="icon d-inline-block align-text-bottom"
                         style={{
                           WebkitMaskImage: `url(${value.icons_color})`,
-                          WebkitMaskRepeat: "no-repeat",
+                          WebkitMaskRepeat: 'no-repeat',
                         }}
                       ></span>
-                      <span className="ms-16 text d-inline-block">
-                        {t(value.text)}
-                      </span>
+                      <span className="ms-16 text d-inline-block">{t(value.text)}</span>
                       <span
                         className="icon arrow d-inline-block align-text-bottom ms-auto"
                         style={{
                           WebkitMaskImage: `url(/assets/images/arrow-right.svg)`,
-                          WebkitMaskRepeat: "no-repeat",
+                          WebkitMaskRepeat: 'no-repeat',
                         }}
                       ></span>
                     </Button>
                     <Collapse
-                      in={
-                        isOpenCollapse === key.toString() ||
-                        isOpenCollapse?.includes(key + "-")
-                      }
+                      in={isOpenCollapse === key.toString() || isOpenCollapse?.includes(key + '-')}
                     >
                       <ul id="wr_list_submenu" className="list-unstyled">
                         {value.submenu.map((value, menuListSubkey) => {
@@ -303,9 +277,7 @@ const Menu = observer((props) => {
                                   <i className="icon-submenu text-white">
                                     <FontAwesomeIcon icon={faCircle} />
                                   </i>
-                                  <span className="text d-inline-block">
-                                    {t(value.text)}
-                                  </span>
+                                  <span className="text d-inline-block">{t(value.text)}</span>
                                 </NavLink>
                               )}
                             </li>
@@ -324,4 +296,4 @@ const Menu = observer((props) => {
   );
 });
 
-export default withTranslation("common")(withRouter(Menu));
+export default withTranslation('common')(withRouter(Menu));
