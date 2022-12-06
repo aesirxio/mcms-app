@@ -1,21 +1,28 @@
-import React from 'react';
+import ClassicEditor from 'ckeditor5-custom-build/build/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React from 'react';
 
-function FormEditor({ field }) {
+const Editor = ({ field }) => {
   return (
-    <CKEditor
-      editor={ClassicEditor}
-      data={field.value}
-      onReady={() => {
-        // You can store the "editor" and use when it is needed.
-      }}
-      onChange={(event, editor) => {
-        const data = editor.getData();
-        console.log({ event, editor, data });
-      }}
-    />
+    <div key={field.key}>
+      <CKEditor
+        editor={ClassicEditor}
+        data={field?.value ?? ''}
+        onReady={(editor) => {
+          editor.editing.view.change((writer) => {
+            writer.setStyle(
+              { 'max-height': '400px', 'min-height': '200px' },
+              editor.editing.view.document.getRoot()
+            );
+          });
+        }}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          field.changed(data);
+        }}
+      />
+    </div>
   );
-}
+};
 
-export default FormEditor;
+export default Editor;
