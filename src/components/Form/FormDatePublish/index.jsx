@@ -1,15 +1,14 @@
-import React, { useState, lazy } from "react";
-import { Icon } from "@iconify/react";
-import { FORMAT_DATE, FORMAT_TIME } from "../../../constants/FormFieldType";
-import "./index.scss";
+import React, { useState, lazy } from 'react';
+import { Icon } from '@iconify/react';
+import { FORMAT_DATE, FORMAT_TIME } from '../../../constants/FormFieldType';
+import './index.scss';
 
-const DatePicker = lazy(() => import("react-datepicker"));
+const DatePicker = lazy(() => import('react-datepicker'));
 
 const FormDatePushlish = ({ field }) => {
   const [startDate, setStartDate] = useState(
     field.defaultValue ? new Date(field.defaultValue) : null
   );
-  console.log(startDate);
   return (
     <div className="d-flex align-items-center bg-white position-relative date-picker">
       <div className="calendar-icon calendar-icon-end position-absolute top-50 translate-middle-y">

@@ -1,11 +1,10 @@
 import Table from 'components/Table';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { CategoriesStoreContext } from 'store/CategoriesStore/Categories';
-
+import CategoriesStore from 'store/CategoriesStore/Categories';
+const categoriesStore = new CategoriesStore();
 const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
-  const categoriesStore = useContext(CategoriesStoreContext);
   // const [newStatus, setNewStatus] = useState();
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
@@ -258,7 +257,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      await categoriesStore.getItems();
+      // await categoriesStore.getItems();
       setLoading(false);
     };
     fetchData();

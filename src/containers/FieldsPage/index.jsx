@@ -5,7 +5,9 @@ import React, { lazy, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Route } from 'react-router-dom';
 import { FieldsStoreContext } from 'store/FieldsStore/Fields';
+
 const Fields = lazy(() => import('./Component/Fields'));
+
 const FieldsPage = observer(() => {
   const fieldsStore = useContext(FieldsStoreContext);
   const { t } = useTranslation('common');

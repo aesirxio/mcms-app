@@ -1,0 +1,4 @@
+const CMS_PRODUCT_DETAIL_FIELD_KEY = {
+  ID: 'id',
+};
+export { CMS_PRODUCT_DETAIL_FIELD_KEY };

@@ -4,8 +4,7 @@ import { Icon } from '@iconify/react';
 import { withRouter } from 'react-router-dom';
 class ItemsFormActionBar extends Component {
   render() {
-    const { t, history, path, store, validator } = this.props;
-    console.log('validatorvalidator', validator);
+    const { t, history, path, store, validator, caregoriesDetailViewModel } = this.props;
     const redirect = true;
     return (
       <div className="d-flex">
@@ -18,7 +17,19 @@ class ItemsFormActionBar extends Component {
         </button>
         <button
           className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
-          onClick={() => store.saveData(store.formPropsData, redirect)}
+          onClick={async () => {
+            if (validator.allValid()) {
+              if (this.isEdit) {
+                await caregoriesDetailViewModel.updateCategories();
+              } else {
+                await caregoriesDetailViewModel.createCategories();
+              }
+            } else {
+              validator.showMessages();
+            }
+            store.saveData(store.formPropsData, redirect);
+            this.forceUpdate();
+          }}
         >
           {t('txt_save_close')}
         </button>
