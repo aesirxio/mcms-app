@@ -1,18 +1,20 @@
-import React from "react";
-import { Col, Row, Tab, Tabs } from "react-bootstrap";
-import { useTranslation, withTranslation } from "react-i18next";
-import ItemsFormActionBar from "./ItemsFormActionBar";
-import PublishOptionComponent from "components/PublishOptionComponent";
-import FieldsComponent from "components/FieldsComponent";
-import GeneralInformation from "components/GeneralInfomationComponent";
+import React from 'react';
+import { Col, Row, Tab, Tabs } from 'react-bootstrap';
+import { useTranslation, withTranslation } from 'react-i18next';
+import ItemsFormActionBar from './ItemsFormActionBar';
+import PublishOptionComponent from 'components/PublishOptionComponent';
+import FieldsComponent from 'components/FieldsComponent';
+import GeneralInformation from 'components/GeneralInfomationComponent';
 const ItemsFormPage = ({
   store,
   dataForm,
   generateFormSetting,
   path,
   title,
+  validator,
+  caregoriesDetailViewModel,
 }) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -20,7 +22,12 @@ const ItemsFormPage = ({
         <div>
           <h2 className="fw-bold text-capitalize">{t(title)}</h2>
         </div>
-        <ItemsFormActionBar store={store} path={path} />
+        <ItemsFormActionBar
+          store={store}
+          path={path}
+          validator={validator}
+          caregoriesDetailViewModel={caregoriesDetailViewModel}
+        />
       </div>
       <Row>
         <Col lg={9} className="mb-24">
@@ -28,14 +35,14 @@ const ItemsFormPage = ({
             <Tab
               tabClassName="border-0 bg-transparent p-0 pb-16 me-4"
               eventKey="fields"
-              title={t("txt_menu_field")}
+              title={t('txt_menu_field')}
             >
               <FieldsComponent dataForm={dataForm} />
             </Tab>
             <Tab
               tabClassName="border-0 bg-transparent p-0 pb-16"
               eventKey="general-information"
-              title={t("txt_general_information")}
+              title={t('txt_general_information')}
             >
               <GeneralInformation
                 store={store}
@@ -53,4 +60,4 @@ const ItemsFormPage = ({
   );
 };
 
-export default withTranslation("common")(ItemsFormPage);
+export default withTranslation('common')(ItemsFormPage);

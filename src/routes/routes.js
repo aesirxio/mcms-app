@@ -12,6 +12,7 @@ const FieldsGroupPage = lazy(() => import('../containers/FieldsGroupPage'));
 const ContentPage = lazy(() => import('../containers/ContentPage'));
 const SettingPage = lazy(() => import('../containers/DashboardItems'));
 const HelpCenterPage = lazy(() => import('../containers/DashboardItems'));
+const EditCategories = lazy(() => import('../containers/Categories/edit'));
 const authRoutes = [
   {
     path: '/login',
@@ -27,9 +28,19 @@ const mainRoutes = [
     main: () => <DashboardPage />,
   },
   {
-    path: ['/categories', '/categories-create', '/categories-edit/:id'],
+    path: '/categories',
     exact: true,
     main: () => <CategoriesPage />,
+  },
+  {
+    path: '/categories-edit/:id',
+    exact: true,
+    main: ({ match }) => <EditCategories match={match} />,
+  },
+  {
+    path: '/categories-create',
+    exact: true,
+    main: () => <EditCategories />,
   },
   {
     path: '/dam',
@@ -42,7 +53,7 @@ const mainRoutes = [
     main: () => <FieldsPage />,
   },
   {
-    path: '/fields-gr',
+    path: '/fields-group',
     exact: true,
     main: () => <FieldsGroupPage />,
   },

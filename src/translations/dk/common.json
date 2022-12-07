@@ -51,5 +51,7 @@
  "txt_apply": "Apply",
  "txt_add_new_cate": "Add New Category",
  "txt_add_cate": "Add Category",
- "txt_fields": "Fields"
+ "txt_fields": "Fields",
+ "txt_fields_gr": "Field Groups",
+ "txt_content_page": "Content Type"
 }

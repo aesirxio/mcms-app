@@ -1,44 +1,46 @@
 import { notify } from 'components/Toast';
-import Categories from 'entites/Categories';
-import { makeAutoObservable, runInAction } from 'mobx';
-import { createContext } from 'react';
+import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
+import { runInAction } from 'mobx';
 import history from 'routes/history';
 
 export default class CategoriesStore {
-  items = [];
-  page = 1;
-  limit = 10;
-  totalPages = 1;
-  filter = {};
-  filterSearch = 'search';
-  formPropsData = [];
-  imageData = [];
-  files = [];
-  sortBy = {};
-  loading = false;
-  totalItems = 0;
-  dataDumyCreate = {};
-  idDummyDelete = [];
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  async getItems() {
+  async getList(callbackOnSuccess, callbackOnError) {
     try {
-      runInAction(() => {
-        this.items = [];
-      });
+      const results = true;
+
+      if (results) {
+        const getListInfoAPIService = new AesirxCmsCategoryApiService();
+
+        const respondedData = await getListInfoAPIService.getList();
+
+        if (respondedData) {
+          runInAction(() => {
+            callbackOnSuccess(respondedData);
+          });
+        } else {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        }
+      }
     } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
+      runInAction(() => {
+        callbackOnError(error);
+      });
     }
   }
-  async getDetail(selectedMulptiRows) {
+  async getDetail(selectedMulptiRows, callbackOnSuccess, callbackOnError) {
     try {
-      let arrDetails = new Categories(selectedMulptiRows[0]);
+      let arrDetails = new selectedMulptiRows[0]();
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
-          categoriesStore.formPropsData = arrDetails.values;
+          callbackOnSuccess(arrDetails);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
         });
       }
     } catch (error) {
@@ -47,6 +49,7 @@ export default class CategoriesStore {
     }
   }
   async saveData(data, redirect) {
+    console.log('redirect', data, redirect);
     if (data) {
       if (data?.id) {
         categoriesStore.formPropsData = data;
@@ -99,4 +102,3 @@ export default class CategoriesStore {
   }
 }
 export const categoriesStore = new CategoriesStore();
-export const CategoriesStoreContext = createContext(categoriesStore);

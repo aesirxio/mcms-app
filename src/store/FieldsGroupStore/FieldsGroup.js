@@ -3,7 +3,7 @@ import { runInAction } from 'mobx';
 import { createContext } from 'react';
 import history from 'routes/history';
 
-export default class ItemstStore {
+export default class FieldsGroupStore {
   async getItems() {
     try {
       runInAction(() => {
@@ -19,7 +19,7 @@ export default class ItemstStore {
       let arrDetails = new selectedMulptiRows[0]();
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
-          itemsStore.formPropsData = arrDetails.values;
+          fieldsGroupStore.formPropsData = arrDetails.values;
         });
       }
     } catch (error) {
@@ -30,7 +30,7 @@ export default class ItemstStore {
   async saveData(data, redirect) {
     if (data) {
       if (data?.id) {
-        itemsStore.formPropsData = data;
+        fieldsGroupStore.formPropsData = data;
         setTimeout(() => {
           notify('Success');
           if (redirect) {
@@ -38,7 +38,7 @@ export default class ItemstStore {
           }
         }, 2000);
       } else {
-        itemsStore.dataDumyCreate = {
+        fieldsGroupStore.dataDumyCreate = {
           checkbox: true,
           id: '113',
           name: data.name,
@@ -65,7 +65,7 @@ export default class ItemstStore {
   async handleDelete(data) {
     console.log('data', data);
     if (data) {
-      itemsStore.idDummyDelete = data;
+      fieldsGroupStore.idDummyDelete = data;
       setTimeout(() => {
         notify('Success');
       }, 2000);
@@ -76,9 +76,9 @@ export default class ItemstStore {
   }
   async clearData() {
     runInAction(() => {
-      itemsStore.formPropsData = [];
+      fieldsGroupStore.formPropsData = [];
     });
   }
 }
-export const itemsStore = new ItemstStore();
-export const ItemsStoreContext = createContext(itemsStore);
+export const fieldsGroupStore = new FieldsGroupStore();
+export const FieldsGroupStoreContext = createContext(fieldsGroupStore);
