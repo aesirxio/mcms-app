@@ -8,7 +8,6 @@ const Input = ({ field }) => {
       field.changed(e);
     }
   };
-  console.log('field.required', field.required);
   return (
     <>
       <Form.Control

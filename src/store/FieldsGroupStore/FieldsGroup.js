@@ -1,28 +1,9 @@
 import { notify } from 'components/Toast';
-import FieldsGroupEntity from 'entites/FieldsGroup';
-import { makeAutoObservable, runInAction } from 'mobx';
+import { runInAction } from 'mobx';
 import { createContext } from 'react';
 import history from 'routes/history';
 
 export default class FieldsGroupStore {
-  items = [];
-  page = 1;
-  limit = 10;
-  totalPages = 1;
-  filter = {};
-  filterSearch = 'search';
-  formPropsData = [];
-  imageData = [];
-  files = [];
-  sortBy = {};
-  loading = false;
-  totalItems = 0;
-  dataDumyCreate = {};
-  idDummyDelete = [];
-  constructor() {
-    makeAutoObservable(this);
-  }
-
   async getItems() {
     try {
       runInAction(() => {
@@ -35,7 +16,7 @@ export default class FieldsGroupStore {
   }
   async getDetail(selectedMulptiRows) {
     try {
-      let arrDetails = new FieldsGroupEntity(selectedMulptiRows[0]);
+      let arrDetails = new selectedMulptiRows[0]();
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
           fieldsGroupStore.formPropsData = arrDetails.values;
