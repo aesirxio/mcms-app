@@ -45,6 +45,15 @@ class CategoriesDetailViewModel {
       this.callbackOnCreateSuccessHandler
     );
   };
+ deleteCategories = (id) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handleDelete(
+      id,
+      this.callbackOnDeleteSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
   updateCategories = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getDetail(
@@ -81,6 +90,14 @@ class CategoriesDetailViewModel {
         this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
           result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
       });
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnDeleteSuccessHandler = (id) => {
+    if (id) {
+      this.categoriesDetailViewModel.idDelete= id
+      notify('Delete successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

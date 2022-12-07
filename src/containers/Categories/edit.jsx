@@ -22,11 +22,12 @@ const EditCategories = observer(
   class EditCategories extends Component {
     caregoriesDetailViewModel = null;
     formPropsData = {};
+    idDelete = '';
     isEdit = false;
     constructor(props) {
       super(props);
       this.viewModel = categoriesViewModel ? categoriesViewModel : null;
-      this.state = { dataStatus: '' };
+      this.state = { dataStatus: {} };
       this.validator = new SimpleReactValidator({
         autoForceUpdate: this,
       });
@@ -35,7 +36,6 @@ const EditCategories = observer(
         : null;
       this.caregoriesDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
-      console.log(props.match.params);
     }
 
     async componentDidMount() {
@@ -65,14 +65,14 @@ const EditCategories = observer(
                 value: { label: 'Use Global', value: 'use_global' },
                 className: 'col-12',
                 changed: (data) => {
-                  categoriesStore.formPropsData['meta_data'] = data.value;
+                  this.formPropsData['meta_data'] = data.value;
                 },
               },
               {
                 label: 'SEO Page Title',
                 key: 'seo_page_title',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: categoriesStore.formPropsData ? categoriesStore.formPropsData?.name : '',
+                value: this.formPropsData ? this.formPropsData?.name : '',
                 className: 'col-12',
                 changed: () => {
                   // formPropsData.formPropsData.name = data.value;
@@ -86,13 +86,6 @@ const EditCategories = observer(
                 className: 'col-12',
               },
               {
-                label: 'SEO Page Description',
-                key: 'seo_page_description',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: '',
-                className: 'col-12',
-              },
-              {
                 label: 'Canonical Url',
                 key: 'canonical_url',
                 type: FORM_FIELD_TYPE.INPUT,
@@ -100,10 +93,17 @@ const EditCategories = observer(
                 className: 'col-12',
               },
               {
-                label: 'SEO Page Keywords',
-                key: 'seo_page_keywords',
+                label: 'Meta Description',
+                key: 'meta_description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: '',
+                className: 'col-12',
+              },
+              {
+                label: 'Meta Keywords',
+                key: 'meta_keywords',
+                type: FORM_FIELD_TYPE.TEXTAREA,
+                value: categoriesStore.formPropsData?.languages ?? '',
                 className: 'col-12',
               },
               {
@@ -192,25 +192,38 @@ const EditCategories = observer(
               placeholder: 'Inherit',
             },
             {
-              label: 'Category',
-              key: 'category',
+              label: 'Related category',
+              key: 'related_category',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: '',
               className: 'col-12',
             },
             {
-              label: 'Tags',
-              key: 'tags',
-              type: FORM_FIELD_TYPE.INPUT,
+              label: 'Category image',
+              key: 'category_image',
+              type: FORM_FIELD_TYPE.IMAGE,
               value: '',
               className: 'col-12',
             },
             {
-              label: 'Version Note',
-              key: 'version_note',
-              type: FORM_FIELD_TYPE.INPUT,
+              label: 'Intro text',
+              key: 'intro_text',
+              type: FORM_FIELD_TYPE.EDITOR,
               value: '',
-              className: 'col-12 mb-0',
+              className: 'col-12',
+              changed: (data) => {
+                console.log(data);
+              },
+            },
+            {
+              label: 'Full text',
+              key: 'full_text',
+              type: FORM_FIELD_TYPE.EDITOR,
+              value: '',
+              className: 'col-12',
+              changed: (data) => {
+                console.log(data);
+              },
             },
           ],
         },
@@ -223,66 +236,36 @@ const EditCategories = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: { label: 'test1', value: 1 },
+              value: { label: 'Publish', value: 1 },
               className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
               required: true,
               validation: 'required',
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
               option: [
-                { label: 'test1', value: 1 },
-                { label: 'test2', value: 2 },
+                { label: 'Publish', value: 1 },
+                { label: 'UnPublish', value: 2 },
               ],
               changed: (data) => {
                 // eslint-disable-next-line react/no-direct-mutation-state
                 this.state.dataStatus = data.value;
               },
             },
-            {
-              label: 'Access',
-              key: 'access',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
-              labelClassName: 'fw-normal me-24 ws-nowrap',
-              classNameInput: 'w-65',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
-            },
           ],
         },
         {
-          name: 'Featured',
+          name: 'Full Category Path for SEF',
           fields: [
             {
               label: '',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
-              value: 'no',
+              value: '',
               className: 'col-12 mb-16',
               option: [
                 { label: 'Yes', value: 'yes' },
                 { label: 'No', value: 'no' },
               ],
-            },
-            {
-              label: 'Start publish',
-              key: 'start_publish',
-              type: FORM_FIELD_TYPE.DATE,
-              value: '',
-              labelClassName: 'fw-normal me-24 ws-nowrap',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
-              defaultValue: new Date(),
-              changed: (date) => {
-                console.log('awdawdawd', date);
-              },
-            },
-            {
-              label: 'Author',
-              key: 'author',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
-              labelClassName: 'fw-normal me-24 ws-nowrap',
-              classNameInput: 'w-65',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
             },
           ],
         },
@@ -296,6 +279,7 @@ const EditCategories = observer(
           {this.caregoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
             <Spinner className="spinner-overlay" />
           )}
+          {console.log(this.caregoriesDetailViewModel.formStatus)}
           <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
             <Form>
               <ItemsFormPage

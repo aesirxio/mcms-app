@@ -12,6 +12,7 @@ import ComponentImage from 'components/ComponentImage';
 import BTable from 'react-bootstrap/Table';
 import Spinner from 'components/Spinner';
 import ListThumb from 'components/ListThumb';
+import history from 'routes/history';
 
 const Table = ({
   columns,
@@ -214,7 +215,18 @@ const Table = ({
       >
         {newRowCells.map((cell, index) => {
           return cell.column.id !== 'drag' ? (
-            <td key={index} {...cell.getCellProps({ className: 'py-14' })}>
+            <td
+              key={index}
+              {...cell.getCellProps({ className: 'py-14 cursor-pointer' })}
+              onClick={async () => {
+                setLoading(true);
+                store.getDetailCategories(cell?.row?.values);
+                setTimeout(() => {
+                  setLoading(false);
+                  history.push(linkTo);
+                }, 2000);
+              }}
+            >
               {cell.render('Cell')}
             </td>
           ) : (
@@ -246,7 +258,6 @@ const Table = ({
             setDataFilter={setDataFilter}
             setFilterSearch={setFilterSearch}
             store={store}
-            linkTo={linkTo}
             allColumns={allColumns}
             setIdDummyDelete={setIdDummyDelete}
           />

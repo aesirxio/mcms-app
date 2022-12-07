@@ -20,7 +20,7 @@ class ItemsFormActionBar extends Component {
             e.preventDefault();
             if (validator.allValid()) {
               if (this.isEdit) {
-                await caregoriesDetailViewModel.updateCategories();
+                await caregoriesDetailViewModel.getDetailCategories();
               } else {
                 await caregoriesDetailViewModel.createCategories();
               }
