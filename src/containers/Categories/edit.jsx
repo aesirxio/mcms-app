@@ -147,6 +147,9 @@ const EditCategories = observer(
               changed: (data) => {
                 this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
+              blurred: () => {
+                this.validator.showMessageFor('Product Name');
+              },
             },
             {
               label: 'Alias',
@@ -220,7 +223,7 @@ const EditCategories = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.state.dataStatus ?? '',
+              value: { label: 'test1', value: 1 },
               className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
               required: true,
               validation: 'required',

@@ -17,17 +17,15 @@ class ItemsFormActionBar extends Component {
         <button
           className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
           onClick={async (e) => {
+            e.preventDefault();
             if (validator.allValid()) {
               if (this.isEdit) {
-                console.log('111111');
                 await caregoriesDetailViewModel.updateCategories();
               } else {
-                console.log('22222');
                 await caregoriesDetailViewModel.createCategories();
               }
             } else {
               validator.showMessages();
-              e.preventDefault();
             }
             this.forceUpdate();
           }}
