@@ -1,304 +1,42 @@
-import React, { lazy, useContext, useEffect, useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { observer } from 'mobx-react';
 import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import TabBarComponent from 'components/TabBarComponent';
 
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
-import history from 'routes/history';
-import { ItemsStoreContext } from 'store/ItemsStore/Items';
-import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
-import Select from 'components/Select';
+// import history from 'routes/history';
 import { Button } from 'react-bootstrap';
+import SelectContentType from './Component/SelectContentType';
 
-const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
-const Items = lazy(() => import('./Component/Items'));
-const Modal = lazy(() => import('components/Modal'));
+const ListItemsComponent = lazy(() => import('./Component/Items'));
 
 const Dashboard = observer(() => {
-  const itemsStore = useContext(ItemsStoreContext);
-  useEffect(() => {
-    let fetchData = async () => {
-      if (history.location.pathname === '/' || !history.location.pathname) {
-        history.push(`/`);
-      }
-    };
-    fetchData();
-  }, []);
-
   const [filterTab, setFilterTab] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const { t } = useTranslation('common');
-  const data = {
-    id: 1,
-    groups: [
-      {
-        name: '',
-        fields: [
-          {
-            label: 'Hero Text',
-            key: 'hero_text',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: itemsStore.formPropsData?.author ?? '',
-            className: 'col-12',
-            required: true,
-            changed: (data) => {
-              itemsStore.formPropsData['author'] = data.target.value;
-            },
-            validation: 'required',
-          },
-          {
-            label: 'Intro text',
-            key: 'intro_text',
-            type: FORM_FIELD_TYPE.EDITOR,
-            value: itemsStore.formPropsData ? itemsStore.formPropsData['name'] : '',
-            className: 'col-12',
-            changed: (data) => {
-              itemsStore.formPropsData['name'] = data;
-            },
-          },
-          {
-            label: 'Thumb Image',
-            key: 'thumb_image',
-            type: FORM_FIELD_TYPE.IMAGE,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'Image',
-            key: 'image',
-            type: FORM_FIELD_TYPE.IMAGE,
-            value: '',
-            className: 'col-12',
-          },
-        ],
-      },
-      {
-        name: 'SEO',
-        fields: [
-          {
-            label: 'Append To Global Meta Data',
-            key: 'meta_data',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            option: [
-              { label: 'Use Global', value: 'use_global' },
-              { label: 'Append', value: 'append' },
-              { label: 'Prepend', value: 'prepend' },
-              { label: 'Replace', value: 'replace' },
-              { label: 'None', value: 'none' },
-            ],
-            value: { label: 'Use Global', value: 'use_global' },
-            className: 'col-12',
-            changed: (data) => {
-              itemsStore.formPropsData['meta_data'] = data.value;
-            },
-          },
-          {
-            label: 'SEO Page Title',
-            key: 'seo_page_title',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: itemsStore.formPropsData ? itemsStore.formPropsData?.name : '',
-            className: 'col-12',
-            changed: () => {
-              // formPropsData.formPropsData.name = data.value;
-            },
-          },
-          {
-            label: 'SEO Page Heading',
-            key: 'seo_page_heading',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'SEO Page Description',
-            key: 'seo_page_description',
-            type: FORM_FIELD_TYPE.TEXTAREA,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'Canonical Url',
-            key: 'canonical_url',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'SEO Page Keywords',
-            key: 'seo_page_keywords',
-            type: FORM_FIELD_TYPE.TEXTAREA,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'Meta Language Setting',
-            key: 'meta_language_setting',
-            type: FORM_FIELD_TYPE.TEXTAREA,
-            value: itemsStore.formPropsData?.languages ?? '',
-            className: 'col-12',
-          },
-          {
-            label: 'Robots',
-            key: 'robots',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            option: [
-              { label: 'Use Global', value: 'use_global' },
-              { label: 'index, follow', value: 'index_follow' },
-              { label: 'noindex, follow', value: 'noindex_follow' },
-              { label: 'index, nofollow', value: 'index_nofollow' },
-              { label: 'noindex, nofollow', value: 'noindex_nofollow' },
-            ],
-            value: { label: 'Use Global', value: 'use_global' },
-            className: 'col-12',
-          },
-        ],
-      },
-    ],
-  };
-  const generateFormSetting = () => {
-    return [
-      {
-        fields: [
-          {
-            label: 'Name',
-            key: 'name',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: itemsStore?.formPropsData ? itemsStore?.formPropsData.name : '',
-            className: 'col-12',
-            required: true,
-            validation: 'required',
-            changed: (data) => {
-              itemsStore.formPropsData['name'] = data.target.value;
-            },
-          },
-          {
-            label: 'Alias',
-            key: 'alias',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: '',
-            className: 'col-12',
-          },
 
-          {
-            label: 'Organisation',
-            key: 'organisation',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            value: '',
-            className: 'col-12',
-            placeholder: 'Select Organisation',
-          },
-          {
-            label: 'Content Type',
-            key: 'content_type',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            value: '',
-            className: 'col-12',
-            placeholder: 'Select Content Type',
-          },
-          {
-            label: 'Parent Category',
-            key: 'parent_category',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            value: '',
-            className: 'col-12',
-            placeholder: 'Top Level',
-          },
-          {
-            label: 'Default Template',
-            key: 'default_template',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            value: '',
-            className: 'col-12',
-            placeholder: 'Inherit',
-          },
-          {
-            label: 'Category',
-            key: 'category',
-            type: FORM_FIELD_TYPE.DROPDOWN,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'Tags',
-            key: 'tags',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: '',
-            className: 'col-12',
-          },
-          {
-            label: 'Version Note',
-            key: 'version_note',
-            type: FORM_FIELD_TYPE.INPUT,
-            value: '',
-            className: 'col-12 mb-0',
-          },
-        ],
-      },
-    ];
-  };
+  const { t } = useTranslation('common');
   return (
     <>
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        body={
-          <Select
-            className="border border-1 bg-white rounded-1"
-            placeholder={'--Select ContentType--'}
-            options={[
-              { label: 'Landing page', value: 'lading_page' },
-              { label: 'Packages', value: 'packages' },
-            ]}
-          />
-        }
-        header={'Select a type'}
-        footer={
-          <div className="d-flex justify-content-between w-100 mt-2">
-            <Button
-              className="px-16 py-1 text-capitalize fw-semibold rounded-1"
-              variant={'outline-secondary'}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="px-16 py-1 text-capitalize fw-semibold rounded-1"
-              variant={'success'}
-            >
-              Proceed
-            </Button>
-          </div>
-        }
-      />
+      <SelectContentType showModal={showModal} setShowModal={setShowModal} />
       <div className="py-4 px-3 h-100 d-flex flex-column">
-        <Route exact path={['/']}>
-          <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
-            <div>
-              <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_items')}</h2>
-              <p className="mb-0 text-color fs-14">{t('txt_dashboard_below')}</p>
-            </div>
-            <Button
-              variant={'success'}
-              className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-              onClick={() => setShowModal(true)}
-            >
-              <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
-              {t('txt_add_new_item')}
-            </Button>
+        <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
+          <div>
+            <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_items')}</h2>
+            <p className="mb-0 text-color fs-14">{t('txt_dashboard_below')}</p>
           </div>
-          <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
-          <Items t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
-        </Route>
-        <Route exact path={['/items-create', '/items-edit/:id']}>
-          <ItemsFormPage
-            store={itemsStore}
-            dataForm={data}
-            generateFormSetting={generateFormSetting}
-            path="/"
-            title="txt_add_item"
-          />
-        </Route>
+          <Button
+            variant={'success'}
+            className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+            onClick={() => setShowModal(true)}
+          >
+            <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
+            {t('txt_add_new_item')}
+          </Button>
+        </div>
+        <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
+        <ListItemsComponent t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
       </div>
     </>
   );

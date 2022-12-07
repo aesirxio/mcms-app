@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import PAGE_STATUS from '../../../constants/PageStatus';
+import PAGE_STATUS from 'constants/PageStatus';
 import { makeAutoObservable } from 'mobx';
-import { notify } from '../../../components/Toast';
-import { PIM_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/PimConstant';
-class ItemsViewModel {
+import { notify } from 'components/Toast';
+import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+class ItemsListViewModel {
   itemsStore = null;
   formStatus = PAGE_STATUS.READY;
-  productDetailViewModel = null;
+  itemsListViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
@@ -21,14 +21,14 @@ class ItemsViewModel {
     this.itemsStore = itemsStore;
   }
 
-  setForm = (productDetailViewModel) => {
-    this.productDetailViewModel = productDetailViewModel;
+  setForm = (itemsDetailViewModel) => {
+    this.itemsDetailViewModel = itemsDetailViewModel;
   };
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getProductDetail(
-      this.productDetailViewModel.formPropsData[PIM_PRODUCT_DETAIL_FIELD_KEY.ID],
+    await this.itemsStore.getItemsDetail(
+      this.itemsDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -41,19 +41,23 @@ class ItemsViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnCreateSuccessHandler = (result) => {
-    if (result) {
-      notify('Create successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
+
+  callbackOnGetItemsSuccessHandler = (result) => {
+    if (result) {
+      Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
+        this.itemsDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
+          result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
+      });
+    }
+
+    this.formStatus = PAGE_STATUS.READY;
+  };
 }
 
-export default ItemsViewModel;
+export default ItemsListViewModel;

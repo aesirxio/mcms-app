@@ -13,6 +13,7 @@ const ContentPage = lazy(() => import('../containers/ContentPage'));
 const SettingPage = lazy(() => import('../containers/DashboardItems'));
 const HelpCenterPage = lazy(() => import('../containers/DashboardItems'));
 const EditCategories = lazy(() => import('../containers/Categories/edit'));
+const EditItems = lazy(() => import('../containers/DashboardItems/edit'));
 const authRoutes = [
   {
     path: '/login',
@@ -23,9 +24,19 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: ['/', '/items-create', '/items-edit/:id'],
+    path: ['/'],
     exact: true,
     main: () => <DashboardPage />,
+  },
+  {
+    path: '/items-edit/:id',
+    exact: true,
+    main: ({ match }) => <EditItems match={match} />,
+  },
+  {
+    path: '/items-create',
+    exact: true,
+    main: () => <EditItems />,
   },
   {
     path: '/categories',
