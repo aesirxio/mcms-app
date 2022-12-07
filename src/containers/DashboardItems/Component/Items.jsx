@@ -13,97 +13,97 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'ID',
         accessor: 'id',
-        width: 'auto',
-        className: 'px-24 py-2 fs-16 border-bottom-1 opacity-80 text-blue-200',
+        className: 'fs-6 fw-semibold border-bottom-1 opacity-80 text-blue-200',
         Cell: ({ value }) => {
-          return <div className="px-24 ps-2">{value}</div>;
+          return <div>{value}</div>;
         },
       },
       {
         Header: 'Name',
         accessor: 'name',
-        className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24 text-start text-truncate">{value}</div>;
+          return <div className="fw-semibold text-start text-truncate">{value}</div>;
         },
-        width: '25%',
         sortParams: 'name',
       },
       {
         Header: 'Type',
         accessor: 'type',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Categories',
         accessor: 'categories',
-        className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-truncate',
         Cell: ({ value }) => {
-          return <div className="px-24 text-start">{value}</div>;
+          return <div className=" text-start">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Author',
         accessor: 'author',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-truncate',
+        className:
+          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-truncate text-center',
         Cell: ({ value }) => {
-          return <div className="px-24 text-truncate">{value}</div>;
+          return <div className="text-center text-truncate">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Engagement',
         accessor: 'engagement',
         className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center text-truncate',
+          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
-          return <div className="px-24 text-end">{value}</div>;
+          return <div className=" text-end">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Visits',
         accessor: 'visits',
         className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center text-truncate',
+          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="text-end">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Languages',
         accessor: 'languages',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center ',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end ',
         Cell: ({ value }) => {
-          return <div className="px-24 text-truncate">{value}</div>;
+          return <div className="text-end text-truncate">{value}</div>;
         },
-        width: '15%',
       },
       {
         Header: 'Status',
         accessor: 'status',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end',
         Cell: ({ value }) => {
-          return <div className="px-24">{value ? 'Published' : 'UnPublished'}</div>;
+          return (
+            <div className="text-end">
+              <span
+                className={`${
+                  value ? 'bg-status_publish' : 'bg-status_unPublish'
+                } m-0 py-8px px-12 d-inline-block rounded-1 fw-semibold`}
+              >
+                {value ? 'Published' : 'UnPublished'}
+              </span>
+            </div>
+          );
         },
-        width: 'auto',
       },
       {
         Header: '',
         accessor: 'check',
-        className: 'px-24 py-2 fs-16  border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold border-bottom-1 text-center',
         Cell: ({ row }) => {
           return (
             <div
-              className="px-24 cursor-pointer"
+              className=" cursor-pointer px-16 text-center"
               // onClick={(e) => {
               // }}
             >
@@ -123,7 +123,6 @@ const Items = observer(({ filterTab, setFilterTab }) => {
             </div>
           );
         },
-        width: 'auto',
       },
     ],
     []
@@ -565,7 +564,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
 
   return (
     <>
-      <div className="fs-14 fw-semibold h-100">
+      <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
           data={dataTable}

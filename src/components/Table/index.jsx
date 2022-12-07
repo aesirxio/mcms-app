@@ -79,35 +79,34 @@ const Table = ({
     usePagination,
     useRowSelect,
     (hooks) => {
+      if (dragDrop) {
+        !selection &&
+          hooks.visibleColumns.push((columns) => [
+            {
+              id: 'drag',
+              className: 'border-bottom-1',
+            },
+            ...columns,
+          ]);
+      }
       !selection &&
         hooks.visibleColumns.push((columns) => [
           {
             id: 'selection',
-            className: 'px-24 py-2 border-bottom-1 text-uppercase ps-3',
-            width: '50px',
+            className: 'border-bottom-1 text-uppercase text-center',
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
               <div>
                 <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
               </div>
             ),
             Cell: ({ row }) => (
-              <div className="wrapper_checkbox px-24">
+              <div className="ps-16 wrapper_checkbox">
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
           },
           ...columns,
         ]);
-      if (dragDrop) {
-        hooks.visibleColumns.push((columns) => [
-          {
-            id: 'drag',
-            width: 'auto',
-            className: 'px-24 py-2 ',
-          },
-          ...columns,
-        ]);
-      }
     }
   );
 
@@ -146,9 +145,9 @@ const Table = ({
   //   setLoading(false);
   // };
   //handle rows drag and drop
-  const moveRow = async (dragIndex, hoverIndex) => {
+  const moveRow = (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];
-    await setRecords(
+    setRecords(
       update(records, {
         $splice: [
           [dragIndex, 1],
@@ -213,38 +212,27 @@ const Table = ({
         //   onRightClickItem(e, row.original);
         // }}
       >
-        <td ref={dragRef}>
-          <ComponentImage
-            src={'/assets/images/moveIcon.png'}
-            alt={'/assets/images/moveIcon.png'}
-            className="py-2 ps-2"
-          />
-        </td>
-
         {newRowCells.map((cell, index) => {
-          return (
-            cell.column.id !== 'drag' && (
-              <td
-                key={index}
-                {...cell.getCellProps({
-                  style: { width: cell.column.width },
-                })}
-                className={`py-2 align-baseline ${
-                  cell.column.id === 'status'
-                    ? cell?.value
-                      ? 'bg-status_publish'
-                      : 'bg-status_unPublish'
-                    : ''
-                }`}
-              >
-                {cell.render('Cell')}
-              </td>
-            )
+          return cell.column.id !== 'drag' ? (
+            <td key={index} {...cell.getCellProps({ className: 'py-14' })}>
+              {cell.render('Cell')}
+            </td>
+          ) : (
+            <td ref={dragRef}>
+              <ComponentImage
+                src={'/assets/images/moveIcon.png'}
+                alt={'/assets/images/moveIcon.png'}
+                width={16}
+                height={16}
+                style={{ objectFit: 'contain' }}
+              />
+            </td>
           );
         })}
       </tr>
     );
   };
+
   return (
     <DndProvider backend={HTML5Backend}>
       {loading ? (
@@ -262,7 +250,7 @@ const Table = ({
             allColumns={allColumns}
             setIdDummyDelete={setIdDummyDelete}
           />
-          <div className="py-2 bg-white rounded-3 shadow-sm h-100 overflow-scroll">
+          <div className="bg-white rounded-3 shadow-sm h-100 overflow-scroll">
             <div className="bg-white fs-14 text-color position-relative h-100">
               <div className="px-2 border-end-1"></div>
               {page.length ? (
@@ -271,7 +259,7 @@ const Table = ({
                   // bordered
                   hover
                   {...getTableProps()}
-                  className={`w-100 ${classNameTable}`}
+                  className={`w-100 align-middle table-borderless ${classNameTable}`}
                 >
                   <thead>
                     {headerGroups.map((headerGroup, index) => {
@@ -301,7 +289,7 @@ const Table = ({
                                       : columnInside && columnInside.getSortByToggleProps()
                                   ),
                                 })}
-                                className={`${column.className} ${
+                                className={`py-16 ${column.className} ${
                                   sortAPI && sortParams !== 'number' && sortParams !== 'selection'
                                     ? 'cursor-pointer'
                                     : ''

@@ -81,9 +81,9 @@ const ListThumb = ({
                 <div className="input-group mb-0">
                   <input
                     type="text"
-                    placeholder="Search"
+                    placeholder="Search your content"
                     aria-describedby="button-search"
-                    className="form-control border-end-0 pe-2 border-0"
+                    className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14"
                     onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
                   />
                   <button
@@ -103,8 +103,7 @@ const ListThumb = ({
                   options={optionAction}
                   isBorder={false}
                   placeholder="Choose an action"
-                  className="text-green"
-                  plColor="rgba(8, 18, 64, 0.8)"
+                  className="text-green fw-semibold text-blue-0"
                 />
               </div>
               <div className="col-2 border-end-1">
@@ -113,7 +112,7 @@ const ListThumb = ({
                     <i>
                       <FontAwesomeIcon icon={faColumns} />
                     </i>
-                    <span className="p-1 text-blue-0 opacity-75">Columns</span>
+                    <span className="p-1 text-blue-0 fs-14 fw-semibold">Columns</span>
                     <i className="text-green">
                       <FontAwesomeIcon icon={faChevronDown} />
                     </i>
@@ -149,8 +148,7 @@ const ListThumb = ({
                       options={optionFilterColumns}
                       isBorder={false}
                       placeholder="Filter"
-                      className="text-green"
-                      plColor="rgba(8, 18, 64, 0.8)"
+                      className="fw-semibold"
                     />
                   </div>
                 </div>

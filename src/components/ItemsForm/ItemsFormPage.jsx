@@ -36,7 +36,7 @@ const ItemsFormPage = ({
               eventKey="fields"
               title={t('txt_menu_field')}
             >
-              <FieldsComponent dataForm={dataForm} />
+              <FieldsComponent validator={validator} dataForm={dataForm} />
             </Tab>
             <Tab
               tabClassName="border-0 bg-transparent p-0 pb-16"
