@@ -5,7 +5,7 @@ import { notify } from 'components/Toast';
 class CategoriesDetailViewModel {
   categoriesStore = null;
   formStatus = PAGE_STATUS.READY;
-  CategoriesDetailViewModel = null;
+  categoriesDetailViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
@@ -16,8 +16,8 @@ class CategoriesDetailViewModel {
     this.categoriesStore = categoriesStore;
   }
 
-  setForm = (CategoriesDetailViewModel) => {
-    this.CategoriesDetailViewModel = CategoriesDetailViewModel;
+  setForm = (categoriesDetailViewModel) => {
+    this.categoriesDetailViewModel = categoriesDetailViewModel;
   };
 
   initializeData = async () => {
@@ -31,17 +31,24 @@ class CategoriesDetailViewModel {
   createCategories = () => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.saveData(
-      this.CategoriesDetailViewModel.formPropsData,
+      this.categoriesDetailViewModel.formPropsData,
       true
       // this.callbackOnSuccessHandler,
       // this.callbackOnCreateSuccessHandler
     );
   };
-
+  getDetailCategories = (data) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.getDetail(
+      data,
+      this.callbackOnGetProductSuccessHandler,
+      this.callbackOnCreateSuccessHandler
+    );
+  };
   updateCategories = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getDetail(
-      this.CategoriesDetailViewModel.formPropsData,
+      this.categoriesDetailViewModel.formPropsData,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -71,11 +78,10 @@ class CategoriesDetailViewModel {
   callbackOnGetProductSuccessHandler = (result) => {
     if (result) {
       Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
-        this.CategoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
+        this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
           result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
       });
     }
-
     this.formStatus = PAGE_STATUS.READY;
   };
 }

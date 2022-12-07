@@ -7,7 +7,9 @@ import { Icon } from '@iconify/react';
 import CategoriesStore from 'store/CategoriesStore/Categories';
 
 const CategoriesComponent = lazy(() => import('./Component/Categories'));
+
 const categoriesStore = new CategoriesStore();
+
 const Categories = observer(() => {
   const [filterTab, setFilterTab] = useState('');
   const [entriesFound, setEntriesFound] = useState(0);

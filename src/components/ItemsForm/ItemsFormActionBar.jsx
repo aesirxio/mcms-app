@@ -4,8 +4,7 @@ import { Icon } from '@iconify/react';
 import { withRouter } from 'react-router-dom';
 class ItemsFormActionBar extends Component {
   render() {
-    const { t, history, path, store, validator, caregoriesDetailViewModel } = this.props;
-    const redirect = true;
+    const { t, history, path, validator, caregoriesDetailViewModel } = this.props;
     return (
       <div className="d-flex">
         <button
@@ -17,17 +16,19 @@ class ItemsFormActionBar extends Component {
         </button>
         <button
           className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
-          onClick={async () => {
+          onClick={async (e) => {
             if (validator.allValid()) {
               if (this.isEdit) {
+                console.log('111111');
                 await caregoriesDetailViewModel.updateCategories();
               } else {
+                console.log('22222');
                 await caregoriesDetailViewModel.createCategories();
               }
             } else {
               validator.showMessages();
+              e.preventDefault();
             }
-            store.saveData(store.formPropsData, redirect);
             this.forceUpdate();
           }}
         >
@@ -35,7 +36,7 @@ class ItemsFormActionBar extends Component {
         </button>
         <button
           className="btn btn-success px-16 py-11 text-capitalize fw-semibold rounded-1 d-flex align-items-center"
-          onClick={() => store.saveData(store.formPropsData)}
+          onClick={() => {}}
         >
           <Icon className="me-1" icon="teenyicons:save-outline" />
           {t('txt_save')}

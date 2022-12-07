@@ -21,7 +21,6 @@ const Input = lazy(() => import('../components/Form/Input'));
 const FormCheckBoxField = lazy(() => import('../components/Form/FormCheckBoxField'));
 
 const renderingGroupFieldHandler = (group, validator) => {
-  let isFieldFocus = true;
   return Object.keys(group.fields)
     .map((fieldIndex) => {
       return [...Array(group.fields[fieldIndex])].map((field) => {
@@ -41,9 +40,6 @@ const renderingGroupFieldHandler = (group, validator) => {
                     validator.message(field.label, field.value, field.validation, {
                       className: 'text-danger',
                     })}
-                  {isFieldFocus && field.validation && validator.fields[field.label] === false
-                    ? (isFieldFocus = false)
-                    : null}{' '}
                 </Form.Group>
               );
             case FORM_FIELD_TYPE.BUTTON:

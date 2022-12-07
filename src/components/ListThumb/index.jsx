@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
-import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
-import SelectComponent from "../Select";
-import { notify } from "components/Toast";
-import history from "routes/history";
-import { Dropdown } from "react-bootstrap";
-import { faChevronDown, faColumns } from "@fortawesome/free-solid-svg-icons";
-import "./index.scss";
+import React, { useState } from 'react';
+import { withTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
+import SelectComponent from '../Select';
+import { notify } from 'components/Toast';
+import history from 'routes/history';
+import { Dropdown } from 'react-bootstrap';
+import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
+import './index.scss';
 
 const optionAction = [
-  { value: "edit", label: "Edit" },
-  { value: "delete", label: "Delete" },
+  { value: 'edit', label: 'Edit' },
+  { value: 'delete', label: 'Delete' },
   // { value: "action-3", label: "Action 3" },
 ];
 
 const optionFilterColumns = [
-  { value: true, label: "Published" },
-  { value: false, label: "UnPublished" },
+  { value: true, label: 'Published' },
+  { value: false, label: 'UnPublished' },
 ];
 
 const ListThumb = ({
@@ -31,18 +31,18 @@ const ListThumb = ({
   allColumns,
   setIdDummyDelete,
 }) => {
-  const [action, setAction] = useState("");
-  const [filterColum, setFilterColum] = useState("");
+  const [action, setAction] = useState('');
+  const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
-    if (e.value === "edit" && selectedMulptiRows?.length === 1) {
+    if (e.value === 'edit' && selectedMulptiRows?.length === 1) {
       setLoading(true);
-      store.getDetail(selectedMulptiRows);
+      store.getDetailCategories(selectedMulptiRows);
       setTimeout(() => {
         setLoading(false);
         history.push(linkTo);
       }, 2000);
     } else {
-      if (selectedMulptiRows?.length < 1 || e.value === "edit") {
+      if (selectedMulptiRows?.length < 1 || e.value === 'edit') {
         return;
       }
       setLoading(true);
@@ -51,7 +51,7 @@ const ListThumb = ({
       store.handleDelete(selectedMulptiRows);
       setTimeout(() => {
         setLoading(false);
-        notify("Success");
+        notify('Success');
       }, 2000);
     }
   };
@@ -84,7 +84,7 @@ const ListThumb = ({
                     placeholder="Search"
                     aria-describedby="button-search"
                     className="form-control border-end-0 pe-2 border-0"
-                    onKeyDown={(e) => e.key === "Enter" && handleSearch(e)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
                   />
                   <button
                     type="button"
@@ -109,11 +109,7 @@ const ListThumb = ({
               </div>
               <div className="col-2 border-end-1">
                 <Dropdown>
-                  <Dropdown.Toggle
-                    variant="info"
-                    id="actions"
-                    className={`btn_toggle`}
-                  >
+                  <Dropdown.Toggle variant="info" id="actions" className={`btn_toggle`}>
                     <i>
                       <FontAwesomeIcon icon={faColumns} />
                     </i>
@@ -125,14 +121,10 @@ const ListThumb = ({
                   <Dropdown.Menu className="pt-3 px-2 border-0 shadow select-option">
                     {allColumns?.map(
                       (column) =>
-                        column.id !== "selection" &&
+                        column.id !== 'selection' &&
                         column.Header &&
-                        column.id !== "drag" && (
-                          <div
-                            key={column.id}
-                            id={column.Header}
-                            className="mb-2"
-                          >
+                        column.id !== 'drag' && (
+                          <div key={column.id} id={column.Header} className="mb-2">
                             <input
                               type="checkbox"
                               className="form-check-input me-1"
@@ -171,4 +163,4 @@ const ListThumb = ({
   );
 };
 
-export default withTranslation("common")(ListThumb);
+export default withTranslation('common')(ListThumb);

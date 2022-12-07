@@ -1,15 +1,18 @@
-import FormComponent from "components/Form";
-import React from "react";
+import React from 'react';
+import { renderingGroupFieldHandler } from 'utils/form';
 
-function GeneralInformation({ store, viewModel, generateFormSetting }) {
+function GeneralInformation({ validator, generateFormSetting }) {
   return (
     <div className="rounded-1 bg-white p-24 shadow-sm">
-      <FormComponent
-        key={Math.random(40, 200)}
-        formPropsData={store?.formPropsData}
-        viewModel={viewModel}
-        generateFormSetting={() => generateFormSetting()}
-      />
+      {Object.keys(generateFormSetting)
+        .map((groupIndex) => {
+          return [...Array(generateFormSetting[groupIndex])].map((group) => {
+            return renderingGroupFieldHandler(group, validator);
+          });
+        })
+        .reduce((arr, el) => {
+          return arr.concat(el);
+        }, [])}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default class ContentStore {
   }
   async getDetail(selectedMulptiRows) {
     try {
-      let arrDetails = new selectedMulptiRows[0]();
+      let arrDetails = selectedMulptiRows[0];
       if (selectedMulptiRows[0].values.id && arrDetails) {
         runInAction(() => {
           contentStore.formPropsData = arrDetails.values;

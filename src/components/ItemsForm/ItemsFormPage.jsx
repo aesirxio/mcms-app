@@ -6,13 +6,13 @@ import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
 const ItemsFormPage = ({
-  store,
   dataForm,
   generateFormSetting,
   path,
   title,
   validator,
   caregoriesDetailViewModel,
+  formPublish,
 }) => {
   const { t } = useTranslation('common');
 
@@ -23,7 +23,6 @@ const ItemsFormPage = ({
           <h2 className="fw-bold text-capitalize">{t(title)}</h2>
         </div>
         <ItemsFormActionBar
-          store={store}
           path={path}
           validator={validator}
           caregoriesDetailViewModel={caregoriesDetailViewModel}
@@ -44,16 +43,12 @@ const ItemsFormPage = ({
               eventKey="general-information"
               title={t('txt_general_information')}
             >
-              <GeneralInformation
-                store={store}
-                viewModel={null}
-                generateFormSetting={generateFormSetting}
-              />
+              <GeneralInformation validator={validator} generateFormSetting={generateFormSetting} />
             </Tab>
           </Tabs>
         </Col>
         <Col lg={3}>
-          <PublishOptionComponent />
+          <PublishOptionComponent validator={validator} formPublish={formPublish} />
         </Col>
       </Row>
     </>

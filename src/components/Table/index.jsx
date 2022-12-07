@@ -229,7 +229,7 @@ const Table = ({
                 {...cell.getCellProps({
                   style: { width: cell.column.width },
                 })}
-                className={`py-2 ${
+                className={`py-2 align-baseline ${
                   cell.column.id === 'status'
                     ? cell?.value
                       ? 'bg-status_publish'

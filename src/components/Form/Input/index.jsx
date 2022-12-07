@@ -14,7 +14,6 @@ const Input = ({ field }) => {
         as="input"
         defaultValue={field.value ?? ''}
         type={field.typeFormat ? (field.typeFormat === 11 ? 'password' : 'text') : 'text'}
-        required={true}
         id={field.key}
         onChange={(e) => handleChange(e)}
         onPaste={field.pasted ?? undefined}
