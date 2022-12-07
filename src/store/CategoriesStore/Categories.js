@@ -12,7 +12,6 @@ export default class CategoriesStore {
         const getListInfoAPIService = new AesirxCmsCategoryApiService();
 
         const respondedData = await getListInfoAPIService.getList();
-
         if (respondedData) {
           runInAction(() => {
             callbackOnSuccess(respondedData);
@@ -24,17 +23,19 @@ export default class CategoriesStore {
         }
       }
     } catch (error) {
-      runInAction(() => {
-        callbackOnError(error);
+      callbackOnError({
+        message: 'Something went wrong from Server response',
       });
     }
   }
-  async getDetail(selectedMulptiRows, callbackOnSuccess, callbackOnError) {
+  async getDetail(data, callbackOnSuccess, callbackOnError) {
     try {
-      let arrDetails = new selectedMulptiRows[0]();
-      if (selectedMulptiRows[0].values.id && arrDetails) {
+      // call api
+      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const respondedData = await getListInfoAPIService.getDetail(data[0].values.id);
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess(arrDetails);
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
@@ -49,7 +50,6 @@ export default class CategoriesStore {
     }
   }
   async saveData(data, redirect) {
-    console.log('redirect', data, redirect);
     if (data) {
       if (data?.id) {
         categoriesStore.formPropsData = data;

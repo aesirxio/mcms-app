@@ -56,6 +56,7 @@ class AesirxCmsCategoryApiService extends Component {
 
   getDetail = async (id = 0) => {
     try {
+      console.log('id getDetail', id);
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {

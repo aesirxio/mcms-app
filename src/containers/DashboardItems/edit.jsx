@@ -170,87 +170,158 @@ const EditItems = observer(
           },
         ],
       };
-      const generateFormSetting = () => {
-        return [
-          {
-            fields: [
-              {
-                label: 'Name',
-                key: 'name',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData[GENERAL_INFORMATION.NAME],
-                className: 'col-12',
-                required: true,
-                validation: 'required',
-                changed: (data) => {
-                  console.log(data);
-                },
+      const generateFormSetting = [
+        {
+          fields: [
+            {
+              label: 'Name',
+              key: 'name',
+              type: FORM_FIELD_TYPE.INPUT,
+              value: this.formPropsData[GENERAL_INFORMATION.NAME],
+              className: 'col-12',
+              required: true,
+              validation: 'required',
+              changed: (data) => {
+                console.log(data);
               },
-              {
-                label: 'Alias',
-                key: 'alias',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData[GENERAL_INFORMATION.ALIAS],
-                className: 'col-12',
-              },
+            },
+            {
+              label: 'Alias',
+              key: 'alias',
+              type: FORM_FIELD_TYPE.INPUT,
+              value: this.formPropsData[GENERAL_INFORMATION.ALIAS],
+              className: 'col-12',
+            },
 
-              {
-                label: 'Organisation',
-                key: 'organisation',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                value: this.formPropsData[GENERAL_INFORMATION.ORGANISATION],
-                className: 'col-12',
-                placeholder: 'Select Organisation',
+            {
+              label: 'Organisation',
+              key: 'organisation',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.formPropsData[GENERAL_INFORMATION.ORGANISATION],
+              className: 'col-12',
+              placeholder: 'Select Organisation',
+            },
+            {
+              label: 'Content Type',
+              key: 'content_type',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE],
+              className: 'col-12',
+              placeholder: 'Select Content Type',
+            },
+            {
+              label: 'Parent Category',
+              key: 'parent_category',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY],
+              className: 'col-12',
+              placeholder: 'Top Level',
+            },
+            {
+              label: 'Default Template',
+              key: 'default_template',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE],
+              className: 'col-12',
+              placeholder: 'Inherit',
+            },
+            {
+              label: 'Category',
+              key: 'category',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.formPropsData[GENERAL_INFORMATION.CATEGORY],
+              className: 'col-12',
+            },
+            {
+              label: 'Tags',
+              key: 'tags',
+              type: FORM_FIELD_TYPE.INPUT,
+              value: this.formPropsData[GENERAL_INFORMATION.TAGS],
+              className: 'col-12',
+            },
+            {
+              label: 'Version Note',
+              key: 'version_note',
+              type: FORM_FIELD_TYPE.INPUT,
+              value: this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE],
+              className: 'col-12 mb-0',
+            },
+          ],
+        },
+      ];
+
+      const formPublish = [
+        {
+          name: '',
+          fields: [
+            {
+              label: 'Status',
+              key: 'status',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: this.state.dataStatus ?? '',
+              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              required: true,
+              validation: 'required',
+              labelClassName: 'fw-normal me-24 ws-nowrap',
+              classNameInput: 'w-65',
+              option: [
+                { label: 'test1', value: 1 },
+                { label: 'test2', value: 2 },
+              ],
+              changed: (data) => {
+                // eslint-disable-next-line react/no-direct-mutation-state
+                this.state.dataStatus = data.value;
               },
-              {
-                label: 'Content Type',
-                key: 'content_type',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                value: this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE],
-                className: 'col-12',
-                placeholder: 'Select Content Type',
+            },
+            {
+              label: 'Access',
+              key: 'access',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: '',
+              labelClassName: 'fw-normal me-24 ws-nowrap',
+              classNameInput: 'w-65',
+              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+            },
+          ],
+        },
+        {
+          name: 'Featured',
+          fields: [
+            {
+              label: '',
+              key: 'featured',
+              type: FORM_FIELD_TYPE.CHECKBOX,
+              value: 'no',
+              className: 'col-12 mb-16',
+              option: [
+                { label: 'Yes', value: 'yes' },
+                { label: 'No', value: 'no' },
+              ],
+            },
+            {
+              label: 'Start publish',
+              key: 'start_publish',
+              type: FORM_FIELD_TYPE.DATE,
+              value: '',
+              labelClassName: 'fw-normal me-24 ws-nowrap',
+              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              defaultValue: new Date(),
+              changed: (date) => {
+                console.log('', date);
               },
-              {
-                label: 'Parent Category',
-                key: 'parent_category',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                value: this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY],
-                className: 'col-12',
-                placeholder: 'Top Level',
-              },
-              {
-                label: 'Default Template',
-                key: 'default_template',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                value: this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE],
-                className: 'col-12',
-                placeholder: 'Inherit',
-              },
-              {
-                label: 'Category',
-                key: 'category',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                value: this.formPropsData[GENERAL_INFORMATION.CATEGORY],
-                className: 'col-12',
-              },
-              {
-                label: 'Tags',
-                key: 'tags',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData[GENERAL_INFORMATION.TAGS],
-                className: 'col-12',
-              },
-              {
-                label: 'Version Note',
-                key: 'version_note',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE],
-                className: 'col-12 mb-0',
-              },
-            ],
-          },
-        ];
-      };
+            },
+            {
+              label: 'Author',
+              key: 'author',
+              type: FORM_FIELD_TYPE.DROPDOWN,
+              value: '',
+              labelClassName: 'fw-normal me-24 ws-nowrap',
+              classNameInput: 'w-65',
+              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+            },
+          ],
+        },
+      ];
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
           {this.itemsViewModel.formStatus === PAGE_STATUS.LOADING && (
@@ -265,6 +336,7 @@ const EditItems = observer(
               title="txt_add_item"
               validator={this.validator}
               caregoriesDetailViewModel={this.itemsViewModel}
+              formPublish={formPublish}
             />
           </ItemsViewModelContextProvider>
         </div>

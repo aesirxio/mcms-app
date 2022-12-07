@@ -1,15 +1,15 @@
 import CategoriesDetailViewModel from './CategoriesDetailViewModel';
 
 class CategoriesViewModel {
-  CategoriesDetailViewModel = null;
+  categoriesDetailViewModel = null;
 
   constructor(categoriesStore) {
     if (categoriesStore) {
-      this.CategoriesDetailViewModel = new CategoriesDetailViewModel(categoriesStore);
+      this.categoriesDetailViewModel = new CategoriesDetailViewModel(categoriesStore);
     }
   }
 
-  getCategoriesDetailViewModel = () => this.CategoriesDetailViewModel;
+  getCategoriesDetailViewModel = () => this.categoriesDetailViewModel;
 }
 
 export default CategoriesViewModel;

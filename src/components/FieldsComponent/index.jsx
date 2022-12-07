@@ -33,7 +33,6 @@ const FieldsComponent = (props) => {
                     <h3 className="fs-6 mb-24 fw-bold pb-16 border-bottom text-uppercase">
                       {item.name ? item.name : 'Non grouped'}
                     </h3>
-
                     <FormComponent
                       key={Math.random(40, 200)}
                       viewModel={null}

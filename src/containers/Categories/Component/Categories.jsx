@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import CategoriesStore from 'store/CategoriesStore/Categories';
+import CategoriesViewModel from 'ViewModel/Categories/CategoriesViewModel';
+
 const categoriesStore = new CategoriesStore();
+const categoriesViewModel = new CategoriesViewModel(categoriesStore);
+
 const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   // const [newStatus, setNewStatus] = useState();
   const [loading, setLoading] = useState(false);
@@ -257,7 +261,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      // await categoriesStore.getItems();
+      // await categoriesStore.getList();
       setLoading(false);
     };
     fetchData();
@@ -271,7 +275,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={categoriesStore}
+          store={categoriesViewModel.getCategoriesDetailViewModel()}
           pagination={true}
           selection={false}
           dragDrop={true}

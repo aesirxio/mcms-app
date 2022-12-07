@@ -7,8 +7,16 @@ import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
 class CmsCategoriesRoute extends BaseRoute {
-  option = 'reditem-item_pim_product_59';
+  option = '';
 
+  getList = (dataFilter = {}) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: this.option,
+        ...dataFilter,
+      })
+    );
+  };
   getDetail = (id = 0, dataFilter = {}) => {
     return AesirxApiInstance.get(
       this.createRequestURL({

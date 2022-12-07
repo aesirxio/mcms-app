@@ -36,7 +36,7 @@ const ListThumb = ({
   const handleAnAction = async (e) => {
     if (e.value === 'edit' && selectedMulptiRows?.length === 1) {
       setLoading(true);
-      store.getDetail(selectedMulptiRows);
+      store.getDetailCategories(selectedMulptiRows);
       setTimeout(() => {
         setLoading(false);
         history.push(linkTo);

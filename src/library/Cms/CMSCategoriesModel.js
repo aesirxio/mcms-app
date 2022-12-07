@@ -15,11 +15,24 @@ class CategoryModel extends BaseModel {
 
 class CategoriesItemModel extends BaseItemModel {
   id = null;
-
+  check = false;
+  engagement = '';
+  languages = '';
+  name = '';
+  status = '';
+  type = '';
+  visits = '';
   constructor(entity) {
     super(entity);
     if (entity) {
       this.id = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] ?? '';
+      this.check = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.CHECK] ?? '';
+      this.engagement = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.ENGAGEMENT] ?? '';
+      this.languages = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.LANGUAGES] ?? '';
+      this.name = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] ?? '';
+      this.status = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.STATUS] ?? '';
+      this.type = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.TYPE] ?? '';
+      this.visits = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.VISITS] ?? '';
     }
   }
 
@@ -31,6 +44,13 @@ class CategoriesItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [CMS_PRODUCT_DETAIL_FIELD_KEY.ID]: this.id,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.CHECK]: this.check,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.ENGAGEMENT]: this.engagement,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.LANGUAGES]: this.languages,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]: this.name,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.STATUS]: this.status,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.TYPE]: this.type,
+      [CMS_PRODUCT_DETAIL_FIELD_KEY.VISITS]: this.visits,
     };
   };
 
