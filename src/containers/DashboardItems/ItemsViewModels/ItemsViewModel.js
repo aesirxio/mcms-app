@@ -1,18 +1,18 @@
 import ItemsDetailViewModel from './ItemsDetailViewModel';
-// import ItemsListViewModel from './ItemsListViewModel';
+import ItemsListViewModel from './ItemsListViewModel';
 
 class ItemsViewModel {
   itemsDetailViewModel = null;
-  // itemsListViewModel = null;
+  itemsListViewModel = null;
 
   constructor(itemsStore) {
     if (itemsStore) {
       this.itemsDetailViewModel = new ItemsDetailViewModel(itemsStore);
-      // this.itemsListViewModel = new ItemsListViewModel(itemsStore);
+      this.itemsListViewModel = new ItemsListViewModel(itemsStore);
     }
   }
 
-  // getItemsListViewModel = () => this.itemsListViewModel;
+  getItemsListViewModel = () => this.itemsListViewModel;
   getItemsDetailViewModel = () => this.itemsDetailViewModel;
 }
 

@@ -8,6 +8,20 @@ const CMS_PRODUCT_DETAIL_FIELD_KEY = {
   TYPE: 'type',
   VISITS: 'visits',
 };
+const CMS_ITEMS_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  NAME: 'name',
+  TYPE: 'type',
+  CATEGORY: 'category_name',
+  STATUS: 'status',
+  ACCESS: 'access',
+  FEATURED: 'featured',
+  START_PUBLISH: 'created_time',
+  AUTHOR: 'created_user_name',
+  ENGAGEMENT: 'engagement',
+  VISITS: 'visits',
+  LANGUAGES: 'languages',
+};
 
 const GENERAL_INFORMATION = {
   NAME: 'name',
@@ -19,10 +33,6 @@ const GENERAL_INFORMATION = {
   CATEGORY: 'category',
   TAGS: 'tags',
   VERSION_NOTE: 'version_note',
-  STATUS: 'status',
-  CREATED_USER_NAME: 'created_user_name',
-  CREATED_TIME: 'created_time',
-  PUBLISH_UP: 'publish_up',
 };
 
-export { CMS_PRODUCT_DETAIL_FIELD_KEY, GENERAL_INFORMATION };
+export { CMS_PRODUCT_DETAIL_FIELD_KEY, GENERAL_INFORMATION, CMS_ITEMS_DETAIL_FIELD_KEY };
