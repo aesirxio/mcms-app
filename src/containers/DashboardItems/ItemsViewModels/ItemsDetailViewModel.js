@@ -52,6 +52,19 @@ class ItemsViewModel {
     );
   };
 
+  getDetail = (data) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.getDetail(
+      data,
+      this.callbackOnSuccessHandler,
+      this.callbackOnCreateSuccessHandler
+    );
+  };
+  handleDelete = (id) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handleDelete(id, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+  };
+
   callbackOnErrorHandler = (error) => {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;

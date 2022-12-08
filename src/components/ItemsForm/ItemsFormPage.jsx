@@ -11,7 +11,7 @@ const ItemsFormPage = ({
   path,
   title,
   validator,
-  caregoriesDetailViewModel,
+  categoriesDetailViewModel,
   formPublish,
 }) => {
   const { t } = useTranslation('common');
@@ -25,7 +25,7 @@ const ItemsFormPage = ({
         <ItemsFormActionBar
           path={path}
           validator={validator}
-          caregoriesDetailViewModel={caregoriesDetailViewModel}
+          categoriesDetailViewModel={categoriesDetailViewModel}
         />
       </div>
       <Row>

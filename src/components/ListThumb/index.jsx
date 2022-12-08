@@ -30,18 +30,18 @@ const ListThumb = ({
   const [action, setAction] = useState('');
   const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
-      if (selectedMulptiRows?.length < 1 || e.value === 'edit') {
-        return;
-      }
-      setLoading(true);
-      setAction(e);
-      store.deleteCategories(selectedMulptiRows[0].values.id);
-      setTimeout(() => {
-        setLoading(false);
-        notify('Success');
-      }, 2000);
+    if (selectedMulptiRows?.length < 1) {
+      return;
     }
-  
+    setLoading(true);
+    setAction(e);
+    store.handleDelete(selectedMulptiRows[0].values.id);
+    setTimeout(() => {
+      setLoading(false);
+      notify('Success');
+    }, 2000);
+  };
+
   const handleSearch = (e) => {
     setLoading(true);
     setFilterSearch(e.target.value);

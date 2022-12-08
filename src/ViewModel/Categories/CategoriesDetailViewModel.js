@@ -28,16 +28,16 @@ class CategoriesDetailViewModel {
     );
   };
 
-  createCategories = () => {
+  createCategories = (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.saveData(
       this.categoriesDetailViewModel.formPropsData,
-      true
-      // this.callbackOnSuccessHandler,
-      // this.callbackOnCreateSuccessHandler
+      redirect ? redirect : null,
+      this.callbackOnCreateSuccessHandler,
+      this.callbackOnErrorHandler
     );
   };
-  getDetailCategories = (data) => {
+  getDetail = (data) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.getDetail(
       data,
@@ -45,7 +45,7 @@ class CategoriesDetailViewModel {
       this.callbackOnCreateSuccessHandler
     );
   };
- deleteCategories = (id) => {
+  handleDelete = (id) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.handleDelete(
       id,
@@ -96,7 +96,7 @@ class CategoriesDetailViewModel {
 
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
-      this.categoriesDetailViewModel.idDelete= id
+      this.categoriesDetailViewModel.idDelete = id;
       notify('Delete successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;

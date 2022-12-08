@@ -101,7 +101,7 @@ const Table = ({
               </div>
             ),
             Cell: ({ row }) => (
-              <div className="ps-16 wrapper_checkbox">
+              <div className="ps-16 wrapper_checkbox" onClick={(e) => e.stopPropagation()}>
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
@@ -220,7 +220,7 @@ const Table = ({
               {...cell.getCellProps({ className: 'py-14 cursor-pointer' })}
               onClick={async () => {
                 setLoading(true);
-                store.getDetailCategories(cell?.row?.values);
+                store.getDetail(cell?.row?.values);
                 setTimeout(() => {
                   setLoading(false);
                   history.push(linkTo);

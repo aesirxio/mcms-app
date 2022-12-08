@@ -7,7 +7,6 @@ export default class CategoriesStore {
   async getList(callbackOnSuccess, callbackOnError) {
     try {
       const results = true;
-
       if (results) {
         const getListInfoAPIService = new AesirxCmsCategoryApiService();
 
@@ -50,24 +49,23 @@ export default class CategoriesStore {
       return null;
     }
   }
-  async saveData(data, redirect) {
+  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
-      if (data?.id) {
-        setTimeout(() => {
-          notify('Success');
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
-      } else {
-        setTimeout(() => {
-          notify('Success');
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
-      }
+      runInAction(() => {
+        callbackOnSuccess(data);
+      });
+      setTimeout(() => {
+        notify('Success');
+        if (redirect) {
+          history.push('/categories');
+        }
+      }, 2000);
     } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
       console.log('Error');
     }
   }

@@ -335,7 +335,7 @@ const EditItems = observer(
               path="/"
               title="txt_add_item"
               validator={this.validator}
-              caregoriesDetailViewModel={this.itemsViewModel}
+              categoriesDetailViewModel={this.itemsViewModel}
               formPublish={formPublish}
             />
           </ItemsViewModelContextProvider>

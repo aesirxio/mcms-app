@@ -4,11 +4,8 @@ import { observer } from 'mobx-react';
 import TabBarComponent from 'components/TabBarComponent';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import CategoriesStore from 'store/CategoriesStore/Categories';
 
 const CategoriesComponent = lazy(() => import('./Component/Categories'));
-
-const categoriesStore = new CategoriesStore();
 
 const Categories = observer(() => {
   const [filterTab, setFilterTab] = useState('');
@@ -27,7 +24,7 @@ const Categories = observer(() => {
         <Link
           to="/categories-create"
           className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-          onClick={() => categoriesStore.clearData()}
+          onClick={() => {}}
         >
           <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
           {t('txt_add_new_cate')}

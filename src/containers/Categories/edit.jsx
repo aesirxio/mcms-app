@@ -20,7 +20,7 @@ const categoriesViewModel = new CategoriesViewModel(categoriesStore);
 
 const EditCategories = observer(
   class EditCategories extends Component {
-    caregoriesDetailViewModel = null;
+    categoriesDetailViewModel = null;
     formPropsData = {};
     idDelete = '';
     isEdit = false;
@@ -31,16 +31,16 @@ const EditCategories = observer(
       this.validator = new SimpleReactValidator({
         autoForceUpdate: this,
       });
-      this.caregoriesDetailViewModel = this.viewModel
+      this.categoriesDetailViewModel = this.viewModel
         ? this.viewModel.getCategoriesDetailViewModel()
         : null;
-      this.caregoriesDetailViewModel.setForm(this);
+      this.categoriesDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
       this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      await this.caregoriesDetailViewModel.initializeData();
+      await this.categoriesDetailViewModel.initializeData();
       this.forceUpdate();
     }
 
@@ -276,10 +276,9 @@ const EditCategories = observer(
 
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.caregoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
+          {this.categoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
             <Spinner className="spinner-overlay" />
           )}
-          {console.log(this.caregoriesDetailViewModel.formStatus)}
           <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
             <Form>
               <ItemsFormPage
@@ -289,7 +288,7 @@ const EditCategories = observer(
                 path="/categories"
                 title="txt_add_cate"
                 validator={this.validator}
-                caregoriesDetailViewModel={this.caregoriesDetailViewModel}
+                categoriesDetailViewModel={this.categoriesDetailViewModel}
               />
             </Form>
           </CategoriesViewModelContextProvider>

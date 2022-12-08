@@ -1,11 +1,14 @@
 import Table from 'components/Table';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { withTranslation } from 'react-i18next';
-import { ItemsStoreContext } from 'store/ItemsStore/Items';
 import { observer } from 'mobx-react-lite';
+import ItemsStore from '../ItemsStore/ItemsStore';
+import ItemsViewModel from '../ItemsViewModels/ItemsViewModel';
+
+const itemsStore = new ItemsStore();
+const itemsViewModel = new ItemsViewModel(itemsStore);
 
 const Items = observer(({ filterTab, setFilterTab }) => {
-  const itemsStore = useContext(ItemsStoreContext);
   const [loading, setLoading] = useState(false);
 
   const columnsTable = React.useMemo(
@@ -549,18 +552,14 @@ const Items = observer(({ filterTab, setFilterTab }) => {
     ],
     []
   );
-  if (itemsStore.dataDumyCreate?.id) {
-    dataTable.unshift(itemsStore.dataDumyCreate);
-  }
 
-  useEffect(() => {
-    let fetchData = async () => {
-      setLoading(true);
-      await itemsStore.getItems();
-      setLoading(false);
-    };
-    fetchData();
-  }, [itemsStore]);
+  // useEffect(() => {
+  //   let fetchData = async () => {
+  //     setLoading(true);
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -569,7 +568,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={itemsStore}
+          store={itemsViewModel.getItemsDetailViewModel()}
           pagination={true}
           selection={false}
           dragDrop={true}
