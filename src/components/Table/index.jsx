@@ -203,9 +203,9 @@ const Table = ({
 
     return (
       <tr
+        key={Math.random(40, 200)}
         ref={dropRef}
         style={{ opacity }}
-        key={row.getRowProps().key}
         // eslint-disable-next-line react/no-unknown-property
         moveRow={() => moveRow()}
         {...row.getRowProps()}
@@ -213,24 +213,24 @@ const Table = ({
         //   onRightClickItem(e, row.original);
         // }}
       >
-        {newRowCells.map((cell, index) => {
+        {newRowCells.map((cell) => {
           return cell.column.id !== 'drag' ? (
             <td
-              key={index}
+              key={Math.random(40, 200)}
               {...cell.getCellProps({ className: 'py-14 cursor-pointer' })}
               onClick={async () => {
                 setLoading(true);
                 store.getDetail(cell?.row?.values);
                 setTimeout(() => {
                   setLoading(false);
-                  history.push(linkTo);
+                  history.push(linkTo + cell?.row?.values?.id);
                 }, 2000);
               }}
             >
               {cell.render('Cell')}
             </td>
           ) : (
-            <td ref={dragRef}>
+            <td ref={dragRef} key={Math.random(40, 200)}>
               <ComponentImage
                 src={'/assets/images/moveIcon.png'}
                 alt={'/assets/images/moveIcon.png'}
@@ -273,7 +273,7 @@ const Table = ({
                   className={`w-100 align-middle table-borderless ${classNameTable}`}
                 >
                   <thead>
-                    {headerGroups.map((headerGroup, index) => {
+                    {headerGroups.map((headerGroup) => {
                       let newHeaderGroup = '';
 
                       dataList
@@ -283,8 +283,8 @@ const Table = ({
                         : (newHeaderGroup = headerGroup.headers);
 
                       return (
-                        <tr key={index} {...headerGroup.getHeaderGroupProps()}>
-                          {newHeaderGroup.map((column, index) => {
+                        <tr key={Math.random(40, 200)} {...headerGroup.getHeaderGroupProps()}>
+                          {newHeaderGroup.map((column) => {
                             let sortParams = column.sortParams ?? column.id;
                             let columnInside = '';
                             if (column.rowSpan && canSort && !sortAPI) {
@@ -292,7 +292,7 @@ const Table = ({
                             }
                             return (
                               <th
-                                key={index}
+                                key={Math.random(40, 200)}
                                 {...(!sortAPI && {
                                   ...column.getHeaderProps(
                                     canSort && !column.rowSpan
@@ -424,7 +424,7 @@ const Table = ({
 
                         return (
                           <Row
-                            key={index}
+                            key={Math.random(40, 200)}
                             index={index}
                             row={row}
                             moveRow={moveRow}
@@ -465,7 +465,7 @@ const Table = ({
                 }}
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
+                  <option key={Math.random(40, 200)} value={pageSize}>
                     {pageSize} Items
                   </option>
                 ))}

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Col, Row, Tab, Tabs } from 'react-bootstrap';
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import ItemsFormActionBar from './ItemsFormActionBar';
 import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
+
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -13,6 +14,7 @@ const ItemsFormPage = ({
   validator,
   categoriesDetailViewModel,
   formPublish,
+  isEdit,
 }) => {
   const { t } = useTranslation('common');
 
@@ -26,6 +28,7 @@ const ItemsFormPage = ({
           path={path}
           validator={validator}
           categoriesDetailViewModel={categoriesDetailViewModel}
+          isEdit={isEdit}
         />
       </div>
       <Row>
@@ -55,4 +58,4 @@ const ItemsFormPage = ({
   );
 };
 
-export default withTranslation('common')(ItemsFormPage);
+export default ItemsFormPage;

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+// import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class CategoriesDetailViewModel {
@@ -9,6 +9,8 @@ class CategoriesDetailViewModel {
   successResponse = {
     state: true,
     content_id: '',
+    data: [],
+    dataDetail: [],
   };
 
   constructor(categoriesStore) {
@@ -22,15 +24,12 @@ class CategoriesDetailViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.getList(
-      this.callbackOnGetProductSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    await this.categoriesStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
 
-  createCategories = (redirect) => {
+  createCategories = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.saveData(
+    await this.categoriesStore.saveData(
       this.categoriesDetailViewModel.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
@@ -41,8 +40,8 @@ class CategoriesDetailViewModel {
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.getDetail(
       data,
-      this.callbackOnGetProductSuccessHandler,
-      this.callbackOnCreateSuccessHandler
+      this.callbackOnGetDetailSuccessHandler,
+      this.callbackOnErrorHandler
     );
   };
   handleDelete = (id) => {
@@ -53,12 +52,30 @@ class CategoriesDetailViewModel {
       this.callbackOnErrorHandler
     );
   };
+  handleSearch = (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handleSearch(
+      value,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
 
-  updateCategories = async () => {
+  handleDeleteMultiple = (arrId) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handleDeleteMultiple(
+      arrId,
+      this.callbackOnDeleteSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  updateCategories = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getDetail(
       this.categoriesDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
+      redirect ? redirect : null,
+      this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
@@ -71,33 +88,49 @@ class CategoriesDetailViewModel {
   };
 
   callbackOnCreateSuccessHandler = (result) => {
+    console.log('datadatadatadata', result);
     if (result) {
       notify('Create successfully', 'success');
+      this.successResponse.data = result;
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
-      notify('Update successfully', 'success');
+      notify('Successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnGetProductSuccessHandler = (result) => {
-    if (result) {
-      Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
-        this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
-          result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
-      });
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
+  // callbackOnGetProductSuccessHandler = (result) => {
+  //   if (result) {
+  //     Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
+  //       this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
+  //         result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
+  //     });
+  //   }
+  //   this.formStatus = PAGE_STATUS.READY;
+  // };
 
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
-      this.categoriesDetailViewModel.idDelete = id;
       notify('Delete successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+  callbackOnGetDetailSuccessHandler = (result) => {
+    if (result) {
+      console.log('result', result);
+      this.successResponse.dataDetail = result;
+      notify('GetDetail successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+  callbackOnUpdateSuccessHandler = (result) => {
+    if (result) {
+      console.log('result', result);
+      notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

@@ -2,19 +2,22 @@ import React, { Component, lazy } from 'react';
 import Spinner from '../../components/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
-import CategoriesStore from 'store/CategoriesStore/Categories';
-import CategoriesViewModel from 'ViewModel/Categories/CategoriesViewModel';
+
 import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
-import {
-  CategoriesViewModelContextProvider,
-  withCategoriesViewModel,
-} from 'ViewModel/Categories/CategoriesViewModelContextProvider';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
+import CategoriesStore from './CategoriesStore/Categories';
+import {
+  CategoriesViewModelContextProvider,
+  withCategoriesViewModel,
+} from './CategoriesViewModels/CategoriesViewModelContextProvider';
+import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
+
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
+
 const categoriesStore = new CategoriesStore();
 const categoriesViewModel = new CategoriesViewModel(categoriesStore);
 
@@ -289,6 +292,7 @@ const EditCategories = observer(
                 title="txt_add_cate"
                 validator={this.validator}
                 categoriesDetailViewModel={this.categoriesDetailViewModel}
+                isEdit={this.isEdit}
               />
             </Form>
           </CategoriesViewModelContextProvider>
