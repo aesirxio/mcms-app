@@ -1,12 +1,12 @@
 import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useCategoriesViewModel } from 'ViewModel/Categories/CategoriesViewModelContextProvider';
+import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
 
 const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
-  const useStore = useCategoriesViewModel();
+  const categoriesViewModel = useCategoriesViewModel();
   const columnsTable = React.useMemo(
     () => [
       {
@@ -262,12 +262,12 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   // }
 
   useEffect(() => {
-    // let fetchData = async () => {
-    //   setLoading(true);
-    //   setLoading(false);
-    // };
-    // fetchData();
-
+    let fetchData = async () => {
+      setLoading(true);
+      await categoriesViewModel.categoriesDetailViewModel.initializeData();
+      setLoading(false);
+    };
+    fetchData();
     setEntriesFound(dataTable?.length);
   }, []);
   return (
@@ -277,7 +277,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={useStore.categoriesDetailViewModel}
+          store={categoriesViewModel.categoriesDetailViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}

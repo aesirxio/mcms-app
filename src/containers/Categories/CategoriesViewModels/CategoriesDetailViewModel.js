@@ -52,6 +52,14 @@ class CategoriesDetailViewModel {
       this.callbackOnErrorHandler
     );
   };
+  handleSearch = (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handleSearch(
+      value,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
 
   handleDeleteMultiple = (arrId) => {
     this.formStatus = PAGE_STATUS.LOADING;
@@ -62,11 +70,12 @@ class CategoriesDetailViewModel {
     );
   };
 
-  updateCategories = async () => {
+  updateCategories = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getDetail(
       this.categoriesDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
+      redirect ? redirect : null,
+      this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
@@ -115,6 +124,13 @@ class CategoriesDetailViewModel {
       console.log('result', result);
       this.successResponse.dataDetail = result;
       notify('GetDetail successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+  callbackOnUpdateSuccessHandler = (result) => {
+    if (result) {
+      console.log('result', result);
+      notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

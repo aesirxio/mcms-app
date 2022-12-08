@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
 import { withRouter } from 'react-router-dom';
-import { withCategoriesViewModel } from 'ViewModel/Categories/CategoriesViewModelContextProvider';
+import { withCategoriesViewModel } from 'containers/Categories/CategoriesViewModels/CategoriesViewModelContextProvider';
 
 const ItemsFormActionBar = observer(
   class ItemsFormActionBar extends Component {
@@ -28,7 +28,7 @@ const ItemsFormActionBar = observer(
               e.preventDefault();
               if (validator.allValid()) {
                 if (isEdit) {
-                  await categoriesDetailViewModel.getDetail(redirect);
+                  await categoriesDetailViewModel.updateCategories(redirect);
                 } else {
                   await categoriesDetailViewModel.createCategories(redirect);
                 }

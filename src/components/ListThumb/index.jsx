@@ -50,6 +50,7 @@ const ListThumb = ({
   const handleSearch = (e) => {
     setLoading(true);
     setFilterSearch(e.target.value);
+    store.handleSearch(e.target.value);
     setTimeout(() => {
       setLoading(false);
     }, 2000);

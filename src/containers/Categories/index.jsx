@@ -4,12 +4,12 @@ import { observer } from 'mobx-react';
 import TabBarComponent from 'components/TabBarComponent';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import CategoriesStore from './CategoriesStore/Categories';
 import {
   CategoriesViewModelContextProvider,
   withCategoriesViewModel,
-} from 'ViewModel/Categories/CategoriesViewModelContextProvider';
-import CategoriesStore from 'store/CategoriesStore/Categories';
-import CategoriesViewModel from 'ViewModel/Categories/CategoriesViewModel';
+} from './CategoriesViewModels/CategoriesViewModelContextProvider';
+import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
 
 const CategoriesComponent = lazy(() => import('./Component/Categories'));
 const categoriesStore = new CategoriesStore();

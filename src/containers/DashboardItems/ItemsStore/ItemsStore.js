@@ -33,7 +33,7 @@ export default class ItemsStore {
     try {
       // call api
       console.log('getDetail', data);
-      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const getListInfoAPIService = new AesirxCmsCItemsApiService();
       const respondedData = await getListInfoAPIService.getDetail(data.id);
       if (respondedData) {
         runInAction(() => {

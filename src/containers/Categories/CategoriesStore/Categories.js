@@ -32,7 +32,7 @@ export default class CategoriesStore {
       });
     }
   }
-  async getDetail(data, callbackOnSuccess, callbackOnError) {
+  async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
@@ -41,6 +41,11 @@ export default class CategoriesStore {
         runInAction(() => {
           callbackOnSuccess(data);
         });
+        setTimeout(() => {
+          if (redirect) {
+            history.push('/categories');
+          }
+        }, 2000);
       } else {
         runInAction(() => {
           callbackOnError({
@@ -123,6 +128,28 @@ export default class CategoriesStore {
     }
   }
 
+  async handleSearch(value, callbackOnSuccess, callbackOnError) {
+    console.log('valueSearch', value);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (value) {
+        runInAction(() => {
+          callbackOnSuccess(value);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong !',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
   async clearData() {
     runInAction(() => {
       // categoriesStore.formPropsData = [];
