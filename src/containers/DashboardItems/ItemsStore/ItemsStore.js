@@ -1,5 +1,5 @@
 import { notify } from 'components/Toast';
-import AesirxCmsCategoryApiService from 'library/Cms/Items/CMSItems';
+import AesirxCmsCItemsApiService from 'library/Cms/Items/CMSItems';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
@@ -9,7 +9,7 @@ export default class ItemsStore {
       const results = true;
 
       if (results) {
-        const getListInfoAPIService = new AesirxCmsCategoryApiService();
+        const getListInfoAPIService = new AesirxCmsCItemsApiService();
 
         const respondedData = await getListInfoAPIService.getList();
 

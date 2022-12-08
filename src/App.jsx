@@ -10,6 +10,7 @@ import {
   ThemesContext,
   ThemesContextProvider,
 } from "themes/ThemeContextProvider";
+import '@kakahuy113/aesirx-dam-app/dist/index.css';
 
 class App extends React.Component {
   constructor(props) {

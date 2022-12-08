@@ -1,7 +1,5 @@
 import React from 'react';
 import { AesirXDam } from '@kakahuy113/aesirx-dam-app';
-import '@kakahuy113/aesirx-dam-app/dist/index.css';
-import '@kakahuy113/aesirx-dam-app/dist/index.css.map';
 import Modal from 'components/Modal';
 
 function ModalDAMComponent({ show, onHide, onSelect }) {
