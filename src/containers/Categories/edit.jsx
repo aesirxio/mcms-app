@@ -289,6 +289,7 @@ const EditCategories = observer(
                 title="txt_add_cate"
                 validator={this.validator}
                 categoriesDetailViewModel={this.categoriesDetailViewModel}
+                isEdit={this.isEdit}
               />
             </Form>
           </CategoriesViewModelContextProvider>

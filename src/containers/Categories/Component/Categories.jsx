@@ -1,18 +1,12 @@
 import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
-import { withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import CategoriesStore from 'store/CategoriesStore/Categories';
-import CategoriesViewModel from 'ViewModel/Categories/CategoriesViewModel';
-
-const categoriesStore = new CategoriesStore();
-const categoriesViewModel = new CategoriesViewModel(categoriesStore);
+import { useCategoriesViewModel } from 'ViewModel/Categories/CategoriesViewModelContextProvider';
 
 const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
-  // const [newStatus, setNewStatus] = useState();
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
-
+  const useStore = useCategoriesViewModel();
   const columnsTable = React.useMemo(
     () => [
       {
@@ -124,7 +118,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
     ],
     []
   );
-  // const dataTable = React.useMemo(() => [...data], [data]);
+
   const dataTable = React.useMemo(
     () => [
       {
@@ -263,20 +257,19 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
     ],
     []
   );
+  // if (categoriesStore.dataDumyCreate?.id) {
+  //   dataTable.unshift(categoriesStore.dataDumyCreate);
+  // }
 
-  if (categoriesStore.dataDumyCreate?.id) {
-    dataTable.unshift(categoriesStore.dataDumyCreate);
-  }
   useEffect(() => {
-    let fetchData = async () => {
-      setLoading(true);
-      // await categoriesViewModel.getCategoriesDetailViewModel().initializeData();
-      setLoading(false);
-    };
-    fetchData();
-    setEntriesFound(dataTable?.length);
-  }, [categoriesStore]);
+    // let fetchData = async () => {
+    //   setLoading(true);
+    //   setLoading(false);
+    // };
+    // fetchData();
 
+    setEntriesFound(dataTable?.length);
+  }, []);
   return (
     <>
       <div className="fs-14 fw-semibold h-100">
@@ -284,7 +277,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={categoriesViewModel.getCategoriesDetailViewModel()}
+          store={useStore.categoriesDetailViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}
@@ -294,10 +287,10 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           dataAction={dataAction}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          linkTo="/categories-create"
+          linkTo="/categories-edit/"
         ></Table>
       </div>
     </>
   );
 });
-export default withTranslation('common')(Categories);
+export default Categories;

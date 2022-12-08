@@ -1,5 +1,4 @@
-import { notify } from 'components/Toast';
-import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
+// import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
@@ -8,12 +7,18 @@ export default class CategoriesStore {
     try {
       const results = true;
       if (results) {
-        const getListInfoAPIService = new AesirxCmsCategoryApiService();
+        // const getListInfoAPIService = new AesirxCmsCategoryApiService();
 
-        const respondedData = await getListInfoAPIService.getList();
-        if (respondedData) {
+        // const respondedData = await getListInfoAPIService.getList();
+        if (results) {
           runInAction(() => {
-            callbackOnSuccess(respondedData);
+            callbackOnSuccess({
+              id: '261',
+              name: '|-|-E-commerce B2C',
+              type: 'Services',
+              engagement: '40%',
+              visits: '100',
+            });
           });
         } else {
           callbackOnError({
@@ -30,12 +35,11 @@ export default class CategoriesStore {
   async getDetail(data, callbackOnSuccess, callbackOnError) {
     try {
       // call api
-      console.log('getDetail', data);
-      const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      const respondedData = await getListInfoAPIService.getDetail(data.id);
-      if (respondedData) {
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(data.id);
+      if (data) {
         runInAction(() => {
-          callbackOnSuccess(respondedData);
+          callbackOnSuccess(data);
         });
       } else {
         runInAction(() => {
@@ -52,10 +56,15 @@ export default class CategoriesStore {
   async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
       runInAction(() => {
-        callbackOnSuccess(data);
+        callbackOnSuccess({
+          id: '261',
+          name: data.name,
+          type: 'Services',
+          engagement: '40%',
+          visits: '100',
+        });
       });
       setTimeout(() => {
-        notify('Success');
         if (redirect) {
           history.push('/categories');
         }
@@ -91,6 +100,29 @@ export default class CategoriesStore {
       return null;
     }
   }
+  async handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
+    console.log('arrId', arrId);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (arrId) {
+        runInAction(() => {
+          callbackOnSuccess(arrId);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong !',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
   async clearData() {
     runInAction(() => {
       // categoriesStore.formPropsData = [];

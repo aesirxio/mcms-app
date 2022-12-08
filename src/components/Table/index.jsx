@@ -223,7 +223,7 @@ const Table = ({
                 store.getDetail(cell?.row?.values);
                 setTimeout(() => {
                   setLoading(false);
-                  history.push(linkTo);
+                  history.push(linkTo + cell?.row?.values?.id);
                 }, 2000);
               }}
             >

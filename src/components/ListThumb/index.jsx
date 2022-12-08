@@ -35,7 +35,12 @@ const ListThumb = ({
     }
     setLoading(true);
     setAction(e);
-    store.handleDelete(selectedMulptiRows[0].values.id);
+    if (selectedMulptiRows?.length === 1) {
+      store.handleDelete(selectedMulptiRows[0].values.id);
+    } else if (selectedMulptiRows?.length > 1) {
+      store.handleDeleteMultiple(selectedMulptiRows);
+    }
+
     setTimeout(() => {
       setLoading(false);
       notify('Success');
