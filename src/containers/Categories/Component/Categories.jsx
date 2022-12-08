@@ -76,11 +76,20 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
       {
         Header: 'Status',
         accessor: 'status',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end',
         Cell: ({ value }) => {
-          return <div className="px-24">{value ? 'Published' : 'UnPublished'}</div>;
+          return (
+            <div className="text-end">
+              <span
+                className={`${
+                  value ? 'bg-status_publish' : 'bg-status_unPublish'
+                } m-0 py-8px px-12 d-inline-block rounded-1 fw-semibold`}
+              >
+                {value ? 'Published' : 'UnPublished'}
+              </span>
+            </div>
+          );
         },
-        width: 'auto',
       },
       {
         Header: '',
@@ -254,14 +263,14 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
     ],
     []
   );
+
   if (categoriesStore.dataDumyCreate?.id) {
     dataTable.unshift(categoriesStore.dataDumyCreate);
   }
-
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      // await categoriesStore.getList();
+      // await categoriesViewModel.getCategoriesDetailViewModel().initializeData();
       setLoading(false);
     };
     fetchData();

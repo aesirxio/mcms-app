@@ -7,7 +7,6 @@ export default class CategoriesStore {
   async getList(callbackOnSuccess, callbackOnError) {
     try {
       const results = true;
-
       if (results) {
         const getListInfoAPIService = new AesirxCmsCategoryApiService();
 
@@ -31,8 +30,9 @@ export default class CategoriesStore {
   async getDetail(data, callbackOnSuccess, callbackOnError) {
     try {
       // call api
+      console.log('getDetail', data);
       const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      const respondedData = await getListInfoAPIService.getDetail(data[0].values.id);
+      const respondedData = await getListInfoAPIService.getDetail(data.id);
       if (respondedData) {
         runInAction(() => {
           callbackOnSuccess(respondedData);
@@ -49,56 +49,51 @@ export default class CategoriesStore {
       return null;
     }
   }
-  async saveData(data, redirect) {
+  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
-      if (data?.id) {
-        categoriesStore.formPropsData = data;
-        setTimeout(() => {
-          notify('Success');
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
-      } else {
-        categoriesStore.dataDumyCreate = {
-          checkbox: true,
-          id: '114',
-          name: data.name,
-          type: 'Test add',
-          engagement: '100%',
-          visits: '100',
-          languages: data.languages,
-          status: true,
-          check: true,
-        };
-
-        setTimeout(() => {
-          notify('Success');
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
-      }
+      runInAction(() => {
+        callbackOnSuccess(data);
+      });
+      setTimeout(() => {
+        notify('Success');
+        if (redirect) {
+          history.push('/categories');
+        }
+      }, 2000);
     } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
       console.log('Error');
     }
   }
-  async handleDelete(data) {
-    console.log('data', data);
-    if (data) {
-      categoriesStore.idDummyDelete = data;
-      setTimeout(() => {
-        notify('Success');
-      }, 2000);
+  async handleDelete(id, callbackOnSuccess, callbackOnError) {
+    console.log('id', id);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (id) {
+        runInAction(() => {
+          callbackOnSuccess(id);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
     }
-    // runInAction(() => {
-    //   itemsStore.items = data;
-    // });
   }
   async clearData() {
     runInAction(() => {
-      categoriesStore.formPropsData = [];
+      // categoriesStore.formPropsData = [];
     });
   }
 }
-export const categoriesStore = new CategoriesStore();

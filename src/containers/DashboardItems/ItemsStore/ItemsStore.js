@@ -29,12 +29,15 @@ export default class ItemsStore {
       });
     }
   }
-  async getDetail(selectedMulptiRows, callbackOnSuccess, callbackOnError) {
+  async getDetail(data, callbackOnSuccess, callbackOnError) {
     try {
-      let arrDetails = new selectedMulptiRows[0]();
-      if (selectedMulptiRows[0].values.id && arrDetails) {
+      // call api
+      console.log('getDetail', data);
+      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const respondedData = await getListInfoAPIService.getDetail(data.id);
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess(arrDetails);
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
@@ -83,21 +86,31 @@ export default class ItemsStore {
       console.log('Error');
     }
   }
-  async handleDelete(data) {
-    console.log('data', data);
-    if (data) {
-      itemsStore.idDummyDelete = data;
-      setTimeout(() => {
-        notify('Success');
-      }, 2000);
+  async handleDelete(id, callbackOnSuccess, callbackOnError) {
+    console.log('id', id);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (id) {
+        runInAction(() => {
+          callbackOnSuccess(id);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
     }
-    // runInAction(() => {
-    //   itemsStore.items = data;
-    // });
   }
   async clearData() {
     runInAction(() => {
-      itemsStore.formPropsData = [];
+      // itemsStore.formPropsData = [];
     });
   }
 }

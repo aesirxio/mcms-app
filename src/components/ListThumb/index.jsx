@@ -5,13 +5,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import SelectComponent from '../Select';
 import { notify } from 'components/Toast';
-import history from 'routes/history';
 import { Dropdown } from 'react-bootstrap';
 import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 
 const optionAction = [
-  { value: 'edit', label: 'Edit' },
   { value: 'delete', label: 'Delete' },
   // { value: "action-3", label: "Action 3" },
 ];
@@ -27,34 +25,23 @@ const ListThumb = ({
   setDataFilter,
   setFilterSearch,
   store,
-  linkTo,
   allColumns,
-  setIdDummyDelete,
 }) => {
   const [action, setAction] = useState('');
   const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
-    if (e.value === 'edit' && selectedMulptiRows?.length === 1) {
-      setLoading(true);
-      store.getDetailCategories(selectedMulptiRows);
-      setTimeout(() => {
-        setLoading(false);
-        history.push(linkTo);
-      }, 2000);
-    } else {
-      if (selectedMulptiRows?.length < 1 || e.value === 'edit') {
-        return;
-      }
-      setLoading(true);
-      setAction(e);
-      setIdDummyDelete(selectedMulptiRows);
-      store.handleDelete(selectedMulptiRows);
-      setTimeout(() => {
-        setLoading(false);
-        notify('Success');
-      }, 2000);
+    if (selectedMulptiRows?.length < 1) {
+      return;
     }
+    setLoading(true);
+    setAction(e);
+    store.handleDelete(selectedMulptiRows[0].values.id);
+    setTimeout(() => {
+      setLoading(false);
+      notify('Success');
+    }, 2000);
   };
+
   const handleSearch = (e) => {
     setLoading(true);
     setFilterSearch(e.target.value);
