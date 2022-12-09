@@ -1,32 +1,18 @@
-import React from "react";
-import "./index.scss";
-// import listThemes from "./index.module.scss";
-import { ThemesContext } from "themes/ThemeContextProvider";
-import ComponentImage from "components/ComponentImage";
+import React from 'react';
+import './index.scss';
+
+import { withThemeContext } from 'themes/ThemeContextProvider';
+import ThemeMode from 'SVG/ThemeMode';
 
 class SwitchThemes extends React.Component {
   render() {
-    const { theme, changeTheme } = this.context;
+    const { theme, changeTheme } = this.props;
     return (
-      <div className="cursor-pointer">
-        <ComponentImage
-          src={
-            theme === "light"
-              ? "/assets/images/night_mode.svg"
-              : "/assets/images/light_mode.svg"
-          }
-          alt={
-            theme === "light"
-              ? "/assets/images/night_mode.svg"
-              : "/assets/images/light_mode.svg"
-          }
-          className="py-2 ps-2 color-white"
-          value={theme}
-          onClick={() => changeTheme(theme === "light" ? "dark" : "light")}
-        />
+      <div className=" position-relative cursor-pointer">
+        <ThemeMode fill={theme.color} onClick={() => changeTheme(theme)} />
       </div>
     );
   }
 }
-SwitchThemes.contextType = ThemesContext;
-export default SwitchThemes;
+
+export default withThemeContext(SwitchThemes);

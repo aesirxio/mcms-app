@@ -9,8 +9,7 @@ import InputPassword from '../../components/inputPassword';
 import ComponentImage from 'components/ComponentImage';
 import { Link } from 'react-router-dom';
 import Checkbox from 'components/Checkbox';
-import GoogleLoginButton from 'components/GoogleLogin';
-import FaceLoginButton from 'components/FacebookLogin';
+
 // import ComponentImage from 'components/ComponentImage';
 const dataSlider = [
   {
@@ -108,8 +107,7 @@ class LoginPage extends React.Component {
                   </div>
                 </button>
               ))}
-              <FaceLoginButton className="w-100 text-center mt-16 fs-18px fw-normal text-black" />
-              <GoogleLoginButton className="w-100 mt-16 fs-18px fw-normal rounded-1" />
+
               <p className="line">
                 <span className="fs-6 fw-medium">OR</span>
               </p>

@@ -28,5 +28,8 @@ data-stream.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#ckeditor
 /ckeditor/build
 /ckeditor/node_modules
+/ckeditor/package-lock.json

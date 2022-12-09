@@ -6,6 +6,7 @@ import { Collapse, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { observer } from 'mobx-react-lite';
+import ComponentImage from 'components/ComponentImage';
 const dataMenuSetup = [
   {
     text: 'txt_menu_field',
@@ -120,13 +121,7 @@ const Menu = observer((props) => {
                         className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
                         activeClassName={`active`}
                       >
-                        <span
-                          className="icon d-inline-block align-text-bottom"
-                          style={{
-                            WebkitMaskImage: `url(${menuList.icons_color})`,
-                            WebkitMaskRepeat: 'no-repeat',
-                          }}
-                        ></span>
+                        <ComponentImage src={menuList.icons_color} alt={t(menuList.text)} />
                         <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
                       </NavLink>
                     )}
@@ -148,21 +143,14 @@ const Menu = observer((props) => {
                         isOpenCollapse?.includes(menuListkey + '-')
                       }
                     >
-                      <span
-                        className="icon d-inline-block align-text-bottom"
-                        style={{
-                          WebkitMaskImage: `url(${menuList.icons_color})`,
-                          WebkitMaskRepeat: 'no-repeat',
-                        }}
-                      ></span>
+                      <ComponentImage src={menuList.icons_color} alt={t(menuList.text)} />
                       <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
-                      <span
-                        className="icon arrow d-inline-block align-text-bottom ms-auto"
-                        style={{
-                          WebkitMaskImage: `url(/assets/images/arrow-right.svg)`,
-                          WebkitMaskRepeat: 'no-repeat',
-                        }}
-                      ></span>
+
+                      <ComponentImage
+                        wrapperClassName="icon arrow d-inline-block align-text-bottom ms-auto"
+                        src={'/assets/images/arrow-right.svg'}
+                        alt={t(menuList.text)}
+                      />
                     </Button>
                     <Collapse
                       in={
@@ -216,14 +204,8 @@ const Menu = observer((props) => {
                     className={`d-block px-24 py-16 link_menu text-white text-decoration-none `}
                     activeClassName={`active`}
                   >
-                    <span
-                      className="icon d-inline-block align-text-bottom"
-                      style={{
-                        WebkitMaskImage: `url(${value.icons_color})`,
-                        WebkitMaskRepeat: 'no-repeat',
-                      }}
-                    ></span>
-                    <span className="ms-16 text d-inline-block">{t(value.text)}</span>
+                    <ComponentImage src={value.icons_color} alt={t(value.text)} />
+                    <span className="ms-16 text-white d-inline-block">{t(value.text)}</span>
                   </NavLink>
                 ) : (
                   <>
@@ -240,21 +222,14 @@ const Menu = observer((props) => {
                         isOpenCollapse === key.toString() || isOpenCollapse?.includes(key + '-')
                       }
                     >
-                      <span
-                        className="icon d-inline-block align-text-bottom"
-                        style={{
-                          WebkitMaskImage: `url(${value.icons_color})`,
-                          WebkitMaskRepeat: 'no-repeat',
-                        }}
-                      ></span>
-                      <span className="ms-16 text d-inline-block">{t(value.text)}</span>
-                      <span
-                        className="icon arrow d-inline-block align-text-bottom ms-auto"
-                        style={{
-                          WebkitMaskImage: `url(/assets/images/arrow-right.svg)`,
-                          WebkitMaskRepeat: 'no-repeat',
-                        }}
-                      ></span>
+                      <ComponentImage src={value.icons_color} alt={t(value.text)} />
+                      <span className="ms-16 text-white d-inline-block">{t(value.text)}</span>
+
+                      <ComponentImage
+                        wrapperClassName="icon align-text-bottom ms-auto"
+                        src={'/assets/images/arrow-right.svg'}
+                        alt={t(value.text)}
+                      />
                     </Button>
                     <Collapse
                       in={isOpenCollapse === key.toString() || isOpenCollapse?.includes(key + '-')}
