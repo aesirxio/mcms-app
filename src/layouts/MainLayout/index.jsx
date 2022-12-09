@@ -1,17 +1,17 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
 
-import { Route, Redirect } from "react-router-dom";
-import { mainRoutes } from "../../routes/routes";
+import { Route, Redirect } from 'react-router-dom';
+import { mainRoutes } from '../../routes/routes';
 
-import Spinner from "../../components/Spinner";
-import Header from "../../components/Header";
-import SbarLeft from "../../components/SbarLeft";
-import Welcome from "../../components/Welcome";
-import { isLogin } from "../../auth";
+import Spinner from '../../components/Spinner';
+import Header from '../../components/Header';
+import SbarLeft from '../../components/SbarLeft';
+import Welcome from '../../components/Welcome';
+import { isLogin } from '../../auth';
 
 const MainLayout = () => {
   return isLogin() ? (
-    <div className="container-fluid">
+    <div className="container-fluid main-layout">
       <div className="row">
         <main className="p-0">
           <Header />
@@ -20,9 +20,7 @@ const MainLayout = () => {
             <div className="flex-1 bg-blue mh-100 overflow-hidden overflow-y-auto position-relative main-content">
               <Suspense fallback={<Spinner />}>
                 {mainRoutes.map(({ path, exact, main }, i) => {
-                  return (
-                    <Route key={i} exact={exact} path={path} component={main} />
-                  );
+                  return <Route key={i} exact={exact} path={path} component={main} />;
                 })}
               </Suspense>
             </div>

@@ -8,7 +8,7 @@ import Menu from '../Menu';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
 import { observer } from 'mobx-react';
-import { NavLink } from 'react-router-dom';
+import ComponentImage from 'components/ComponentImage';
 // import { AesirXDamStorage } from '@kakahuy113/aesirx-dam-app';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
@@ -42,53 +42,10 @@ const SbarLeft = observer(
             <AesirXDamStorage />
           </div> */}
           <div className="d-flex align-items-center justify-content-between bottom-0 w-100  button-language item_menu">
-            {/* <Dropdown as={'div'} className="col py-2 px-3">
-              <Dropdown.Toggle
-                variant="dark"
-                id="dropdown-basic"
-                className="bg-transparent border-0 p-0"
-              >
-                <FontAwesomeIcon icon={faGlobe} /> {currentLanguage[0]?.title}
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                {listLanguages.map((item, index) => {
-                  return (
-                    <Dropdown.Item
-                      key={index}
-                      href="#"
-                      className=""
-                      onClick={() => {
-                        i18n.changeLanguage(item.language);
-                      }}
-                    >
-                      {item.title}
-                    </Dropdown.Item>
-                  );
-                })}
-              </Dropdown.Menu>
-            </Dropdown> */}
-
-            <NavLink
-              exact={true}
-              to={'/help-center'}
-              className={`d-block px-24 py-16 link_menu text-white text-decoration-none `}
-              activeClassName={`active`}
-            >
-              <span
-                className="icon d-inline-block align-text-bottom"
-                style={{
-                  WebkitMaskImage: `url(/assets/images/help-center.svg)`,
-                  WebkitMaskRepeat: 'no-repeat',
-                }}
-              ></span>
-              <span className="ms-16 text d-inline-block">{t('txt_menu_help_center')}</span>
-            </NavLink>
-
-            {/* <a href="/" className="d-flex align-items-center py-2 px-3">
+            <a href="/" className="d-flex align-items-center py-2 px-3">
               <ComponentImage src="/assets/images/help-icon.svg" />
               <span className="text-white ps-3">{t('txt_help_center')}</span>
-            </a> */}
+            </a>
           </div>
 
           <div></div>

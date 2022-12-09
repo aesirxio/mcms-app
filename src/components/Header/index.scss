@@ -1,4 +1,4 @@
-@import "../../scss/utils/bootstrap.scss";
+@import '../../scss/utils/bootstrap.scss';
 
 .wr_input_search {
   width: 656px !important;
@@ -149,10 +149,13 @@
   .wr_input_search {
     width: 300px !important;
   }
+  .main-layout {
+    transition: 0.5s all ease-in-out;
+  }
 
   .show_menu_left {
     transform: translateX(260px);
-
+    transition: 0.5s all ease-in-out;
     .wrapper_header {
       .item_hambuger {
         &:first-child {
