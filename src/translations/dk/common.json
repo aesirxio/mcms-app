@@ -53,5 +53,8 @@
  "txt_add_cate": "Add Category",
  "txt_fields": "Fields",
  "txt_fields_gr": "Field Groups",
- "txt_content_page": "Content Type"
+ "txt_content_page": "Content Type",
+ "txt_add_fields": "Add Fields",
+ "txt_add_fields_gr": "Add Fields Group",
+ "txt_add_content": "Add Content Type"
 }

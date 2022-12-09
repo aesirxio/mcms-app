@@ -1,16 +1,14 @@
 import { Icon } from '@iconify/react';
 import TabBarComponent from 'components/TabBarComponent';
 import { observer } from 'mobx-react';
-import React, { lazy, useContext, useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Route } from 'react-router-dom';
-import { ContentStoreContext } from 'store/ContentStore/Content';
 // import { withTranslation } from "react-i18next";
 
 const ContentPage = lazy(() => import('./Component/ContentPage'));
 
 const Categories = observer(() => {
-  const contentStore = useContext(ContentStoreContext);
   const { t } = useTranslation('common');
   const [filterTab, setFilterTab] = useState('');
   const [entriesFound, setEntriesFound] = useState(0);
@@ -27,7 +25,7 @@ const Categories = observer(() => {
           <Link
             to="/fields-create"
             className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-            onClick={() => contentStore.clearData()}
+            onClick={() => {}}
           >
             <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
             {t('txt_add_new_item')}
@@ -37,14 +35,14 @@ const Categories = observer(() => {
           view={'all-items'}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          store={contentStore}
+          // store={contentStore}
         />
         <ContentPage
           t={t}
           data={null}
           setFilter={setFilterTab}
           filterTab={filterTab}
-          store={contentStore}
+          // store={contentStore}
           setEntriesFound={setEntriesFound}
         />
       </Route>

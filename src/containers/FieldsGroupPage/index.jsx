@@ -1,15 +1,13 @@
 import { Icon } from '@iconify/react';
 import TabBarComponent from 'components/TabBarComponent';
 import { observer } from 'mobx-react';
-import React, { lazy, useContext, useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Route } from 'react-router-dom';
-import { FieldsGroupStoreContext } from 'store/FieldsGroupStore/FieldsGroup';
 
 const FieldsGroup = lazy(() => import('./Component/FieldsGroup'));
 
 const FieldsGroupPage = observer(() => {
-  const FieldsGroupStore = useContext(FieldsGroupStoreContext);
   const { t } = useTranslation('common');
   const [filterTab, setFilterTab] = useState('');
   return (
@@ -23,7 +21,7 @@ const FieldsGroupPage = observer(() => {
           <Link
             to="/fields-create"
             className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
-            onClick={() => FieldsGroupStore.clearData()}
+            onClick={() => {}}
           >
             <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
             {t('txt_add_new_item')}
@@ -33,14 +31,14 @@ const FieldsGroupPage = observer(() => {
           view={'all-items'}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          store={FieldsGroupStore}
+          // store={FieldsGroupStore}
         />
         <FieldsGroup
           t={t}
           data={null}
           setFilter={setFilterTab}
           filterTab={filterTab}
-          store={FieldsGroupStore}
+          // store={FieldsGroupStore}
         />
       </Route>
     </div>

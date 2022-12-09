@@ -11,7 +11,7 @@ const ItemsFormActionBar = observer(
       super(props);
     }
     render() {
-      const { t, history, path, validator, categoriesDetailViewModel, isEdit } = this.props;
+      const { t, history, path, validator, store, isEdit } = this.props;
       const redirect = true;
       return (
         <div className="d-flex">
@@ -28,9 +28,9 @@ const ItemsFormActionBar = observer(
               e.preventDefault();
               if (validator.allValid()) {
                 if (isEdit) {
-                  await categoriesDetailViewModel.updateCategories(redirect);
+                  await store.handleUpdate(redirect);
                 } else {
-                  await categoriesDetailViewModel.createCategories(redirect);
+                  await store.handleCreate(redirect);
                 }
               } else {
                 validator.showMessages();
@@ -46,9 +46,9 @@ const ItemsFormActionBar = observer(
               e.preventDefault();
               if (validator.allValid()) {
                 if (this.isEdit) {
-                  await categoriesDetailViewModel.getDetail();
+                  await store.handleUpdate();
                 } else {
-                  await categoriesDetailViewModel.createCategories();
+                  await store.handleCreate();
                 }
               } else {
                 validator.showMessages();

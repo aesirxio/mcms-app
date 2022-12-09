@@ -2,138 +2,49 @@ import React, { Component, lazy } from 'react';
 import Spinner from '../../components/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
-
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
-import CategoriesStore from './CategoriesStore/Categories';
+import FieldsStore from './FieldsStore/Fields';
+import FieldsViewModel from './FieldsViewModels/FieldsViewModel';
 import {
-  CategoriesViewModelContextProvider,
-  withCategoriesViewModel,
-} from './CategoriesViewModels/CategoriesViewModelContextProvider';
-import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
+  FieldsViewModelContextProvider,
+  withFieldsViewModel,
+} from './FieldsViewModels/FieldsViewModelContextProvider';
+import { CMS_LIST_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 
-const categoriesStore = new CategoriesStore();
-const categoriesViewModel = new CategoriesViewModel(categoriesStore);
+const fieldssStore = new FieldsStore();
+const fieldsViewModel = new FieldsViewModel(fieldssStore);
 
-const EditCategories = observer(
-  class EditCategories extends Component {
-    categoriesDetailViewModel = null;
+const EditFields = observer(
+  class EditFields extends Component {
+    fieldsViewModel = null;
     formPropsData = {};
     idDelete = '';
     isEdit = false;
     constructor(props) {
       super(props);
-      this.viewModel = categoriesViewModel ? categoriesViewModel : null;
+      this.viewModel = fieldsViewModel ? fieldsViewModel : null;
       this.state = { dataStatus: {} };
       this.validator = new SimpleReactValidator({
         autoForceUpdate: this,
       });
-      this.categoriesDetailViewModel = this.viewModel
-        ? this.viewModel.getCategoriesDetailViewModel()
-        : null;
-      this.categoriesDetailViewModel.setForm(this);
+      this.fieldsViewModel = this.viewModel ? this.viewModel.getFieldsDetailViewModel() : null;
+      this.fieldsViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      await this.categoriesDetailViewModel.initializeData();
+      this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      await this.fieldsViewModel.initializeData();
       this.forceUpdate();
     }
 
     render() {
-      const data = {
-        id: 1,
-        groups: [
-          {
-            name: 'SEO',
-            fields: [
-              {
-                label: 'Append To Global Meta Data',
-                key: 'meta_data',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                option: [
-                  { label: 'Use Global', value: 'use_global' },
-                  { label: 'Append', value: 'append' },
-                  { label: 'Prepend', value: 'prepend' },
-                  { label: 'Replace', value: 'replace' },
-                  { label: 'None', value: 'none' },
-                ],
-                value: { label: 'Use Global', value: 'use_global' },
-                className: 'col-12',
-                changed: (data) => {
-                  this.formPropsData['meta_data'] = data.value;
-                },
-              },
-              {
-                label: 'SEO Page Title',
-                key: 'seo_page_title',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData ? this.formPropsData?.name : '',
-                className: 'col-12',
-                changed: () => {
-                  // formPropsData.formPropsData.name = data.value;
-                },
-              },
-              {
-                label: 'SEO Page Heading',
-                key: 'seo_page_heading',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'Canonical Url',
-                key: 'canonical_url',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'Meta Description',
-                key: 'meta_description',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'Meta Keywords',
-                key: 'meta_keywords',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: categoriesStore.formPropsData?.languages ?? '',
-                className: 'col-12',
-              },
-              {
-                label: 'Meta Language Setting',
-                key: 'meta_language_setting',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: categoriesStore.formPropsData?.languages ?? '',
-                className: 'col-12',
-              },
-              {
-                label: 'Robots',
-                key: 'robots',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                option: [
-                  { label: 'Use Global', value: 'use_global' },
-                  { label: 'index, follow', value: 'index_follow' },
-                  { label: 'noindex, follow', value: 'noindex_follow' },
-                  { label: 'index, nofollow', value: 'index_nofollow' },
-                  { label: 'noindex, nofollow', value: 'noindex_nofollow' },
-                ],
-                value: { label: 'Use Global', value: 'use_global' },
-                className: 'col-12',
-              },
-            ],
-          },
-        ],
-      };
       const generateFormSetting = [
         {
           fields: [
@@ -141,14 +52,14 @@ const EditCategories = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Product Name');
@@ -279,27 +190,26 @@ const EditCategories = observer(
 
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.categoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
+          {this.fieldsViewModel.formStatus === PAGE_STATUS.LOADING && (
             <Spinner className="spinner-overlay" />
           )}
-          <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
+          <FieldsViewModelContextProvider viewModel={fieldsViewModel}>
             <Form>
               <ItemsFormPage
-                dataForm={data}
                 formPublish={formPublish}
                 generateFormSetting={generateFormSetting}
-                path="/categories"
-                title="txt_add_cate"
+                path="/fields"
+                title="txt_add_fields"
                 validator={this.validator}
-                store={this.categoriesDetailViewModel}
+                store={this.fieldsViewModel}
                 isEdit={this.isEdit}
               />
             </Form>
-          </CategoriesViewModelContextProvider>
+          </FieldsViewModelContextProvider>
         </div>
       );
     }
   }
 );
 
-export default withTranslation('common')(withRouter(withCategoriesViewModel(EditCategories)));
+export default withTranslation('common')(withRouter(withFieldsViewModel(EditFields)));
