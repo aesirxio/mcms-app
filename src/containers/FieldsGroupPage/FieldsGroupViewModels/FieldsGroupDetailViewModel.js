@@ -2,10 +2,10 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
-class ItemsDetailViewModel {
-  itemsStore = null;
+class FieldsGroupDetailViewModel {
+  fieldsGroupStore = null;
   formStatus = PAGE_STATUS.READY;
-  categoriesDetailViewModel = null;
+  fieldsGroupDetailViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
@@ -13,19 +13,19 @@ class ItemsDetailViewModel {
     dataDetail: [],
   };
 
-  constructor(itemsStore) {
+  constructor(fieldsGroupStore) {
     makeAutoObservable(this);
-    this.itemsStore = itemsStore;
+    this.fieldsGroupStore = fieldsGroupStore;
   }
 
-  setForm = (categoriesDetailViewModel) => {
-    this.categoriesDetailViewModel = categoriesDetailViewModel;
+  setForm = (fieldsGroupDetailViewModel) => {
+    this.fieldsGroupDetailViewModel = fieldsGroupDetailViewModel;
   };
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getDetail(
-      this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
+    await this.fieldsGroupStore.getDetail(
+      this.fieldsGroupDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -34,8 +34,8 @@ class ItemsDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.saveData(
-      this.categoriesDetailViewModel?.formPropsData,
+    await this.fieldsGroupStore.saveData(
+      this.fieldsGroupDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
@@ -44,7 +44,7 @@ class ItemsDetailViewModel {
 
   getDetail = (data) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.getDetail(
+    this.fieldsGroupStore.getDetail(
       data,
       this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
@@ -53,8 +53,8 @@ class ItemsDetailViewModel {
 
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getDetail(
-      this.categoriesDetailViewModel?.formPropsData,
+    await this.fieldsGroupStore.getDetail(
+      this.fieldsGroupDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
@@ -63,7 +63,7 @@ class ItemsDetailViewModel {
 
   handleDelete = (id) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleDelete(
+    this.fieldsGroupStore.handleDelete(
       id,
       this.callbackOnDeleteSuccessHandler,
       this.callbackOnErrorHandler
@@ -72,7 +72,7 @@ class ItemsDetailViewModel {
 
   handleDeleteMultiple = (arrId) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleDeleteMultiple(
+    this.fieldsGroupStore.handleDeleteMultiple(
       arrId,
       this.callbackOnDeleteSuccessHandler,
       this.callbackOnErrorHandler
@@ -81,14 +81,11 @@ class ItemsDetailViewModel {
 
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleSearch(value, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
-  };
-
-  callbackOnSuccessHandler = (result) => {
-    if (result) {
-      notify('Successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
+    this.fieldsGroupStore.handleSearch(
+      value,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
   };
 
   callbackOnDeleteSuccessHandler = (id) => {
@@ -103,6 +100,13 @@ class ItemsDetailViewModel {
     if (result) {
       notify('Create successfully', 'success');
       this.successResponse.data = result;
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnSuccessHandler = (result) => {
+    if (result) {
+      notify('Successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
@@ -132,4 +136,4 @@ class ItemsDetailViewModel {
   };
 }
 
-export default ItemsDetailViewModel;
+export default FieldsGroupDetailViewModel;

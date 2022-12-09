@@ -29,7 +29,7 @@ const EditFields = observer(
     constructor(props) {
       super(props);
       this.viewModel = fieldsViewModel ? fieldsViewModel : null;
-      this.state = { dataStatus: {} };
+      this.state = { dataStatus: {}, field_type: 0 };
       this.validator = new SimpleReactValidator({
         autoForceUpdate: this,
       });
@@ -49,6 +49,13 @@ const EditFields = observer(
         {
           fields: [
             {
+              label: 'Types',
+              key: 'types',
+              type: FORM_FIELD_TYPE.INPUT,
+              value: '',
+              className: 'col-12',
+            },
+            {
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
@@ -62,82 +69,182 @@ const EditFields = observer(
                 this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
-                this.validator.showMessageFor('Product Name');
+                this.validator.showMessageFor('Eorror !!!');
               },
             },
             {
-              label: 'Alias',
-              key: 'alias',
-              type: FORM_FIELD_TYPE.INPUT,
-              value: '',
-              className: 'col-12',
-            },
-
-            {
-              label: 'Organisation',
-              key: 'organisation',
+              label: 'Field Type',
+              key: 'field_type',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: [
+                { label: 'Category Related', value: 0 },
+                { label: 'Image', value: 1 },
+              ].filter((v) => v.value === this.state.field_type)?.[0],
               className: 'col-12',
               placeholder: 'Select Organisation',
+              option: [
+                { label: 'Category Related', value: 0 },
+                { label: 'Image', value: 1 },
+              ],
+              changed: (data) => this.setState({ field_type: data.value }),
             },
+            ...(this.state.field_type === 1
+              ? [
+                  {
+                    label: 'Allow chose from media',
+                    key: 'Allow_chose_from_media',
+                    type: FORM_FIELD_TYPE.CHECKBOX,
+                    value: '',
+                    className: 'col-12 bg-blue-9 rounded-1 p-1',
+                    labelClassName: 'd-flex',
+                    option: [
+                      { label: 'Yes', value: 'yes' },
+                      { label: 'No', value: 'no' },
+                    ],
+                  },
+                  {
+                    label: 'Upload max filesize',
+                    key: 'Upload_max_filesize',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Allowed mimes',
+                    key: 'Allowed_mimes',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Allowed file extensions',
+                    key: 'Allowed_file_extensions',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Preview width (px)',
+                    key: 'Preview_width',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Preview height (px)',
+                    key: 'Preview_height',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Enable Cropping',
+                    key: 'Enable_Cropping',
+                    type: FORM_FIELD_TYPE.CHECKBOX,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                    labelClassName: 'd-flex',
+                    option: [
+                      { label: 'Yes', value: 'yes' },
+                      { label: 'No', value: 'no' },
+                    ],
+                  },
+                  {
+                    label: 'Preview height (px)',
+                    key: 'Preview_height_2',
+                    type: FORM_FIELD_TYPE.INPUT,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                  },
+                  {
+                    label: 'Crop on upload',
+                    key: 'Crop_on_upload',
+                    type: FORM_FIELD_TYPE.CHECKBOX,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                    labelClassName: 'd-flex',
+                    option: [
+                      { label: 'Yes', value: 'yes' },
+                      { label: 'No', value: 'no' },
+                    ],
+                  },
+                ]
+              : [
+                  {
+                    label: 'Default Value',
+                    key: 'default_value',
+                    type: FORM_FIELD_TYPE.DROPDOWN,
+                    value: '',
+                    className: 'col-12 p-1 bg-blue-9 rounded-1',
+                    placeholder: 'Select Content Type',
+                  },
+                ]),
             {
-              label: 'Content Type',
-              key: 'content_type',
+              label: 'Field Group',
+              key: 'default_value',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: '',
               className: 'col-12',
               placeholder: 'Select Content Type',
+              option: [
+                { label: 'New services', value: 0 },
+                { label: 'Old services', value: 1 },
+              ],
             },
             {
-              label: 'Parent Category',
-              key: 'parent_category',
-              type: FORM_FIELD_TYPE.DROPDOWN,
+              label: 'Unique',
+              key: 'unique',
+              type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
-              className: 'col-12',
-              placeholder: 'Top Level',
+              className: 'col-12 mb-16',
+              labelClassName: 'd-flex',
+              option: [
+                { label: 'Yes', value: 'yes' },
+                { label: 'No', value: 'no' },
+              ],
             },
             {
-              label: 'Default Template',
-              key: 'default_template',
-              type: FORM_FIELD_TYPE.DROPDOWN,
+              label: 'Is filterable?',
+              key: 'filterable',
+              type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
-              className: 'col-12',
-              placeholder: 'Inherit',
+              className: 'col-12 mb-16',
+              labelClassName: 'd-flex',
+              option: [
+                { label: 'Yes', value: 'yes' },
+                { label: 'No', value: 'no' },
+              ],
             },
             {
-              label: 'Related category',
-              key: 'related_category',
-              type: FORM_FIELD_TYPE.DROPDOWN,
+              label: 'Search on Backend',
+              key: 'search_on_backend',
+              type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
-              className: 'col-12',
+              className: 'col-12 mb-16',
+              labelClassName: 'd-flex',
+              option: [
+                { label: 'Yes', value: 'yes' },
+                { label: 'No', value: 'no' },
+              ],
             },
             {
-              label: 'Category image',
-              key: 'category_image',
-              type: FORM_FIELD_TYPE.IMAGE,
+              label: 'Search on Frontend',
+              key: 'search_on_frontendd',
+              type: FORM_FIELD_TYPE.CHECKBOX,
+              labelClassName: 'd-flex',
               value: '',
-              className: 'col-12',
+              className: 'col-12 mb-16',
+              option: [
+                { label: 'Yes', value: 'yes' },
+                { label: 'No', value: 'no' },
+              ],
             },
             {
-              label: 'Intro text',
-              key: 'intro_text',
-              type: FORM_FIELD_TYPE.EDITOR,
+              label: 'Version Note',
+              key: 'version_note',
+              type: FORM_FIELD_TYPE.TEXTAREA,
               value: '',
               className: 'col-12',
-              changed: (data) => {
-                console.log(data);
-              },
-            },
-            {
-              label: 'Full text',
-              key: 'full_text',
-              type: FORM_FIELD_TYPE.EDITOR,
-              value: '',
-              className: 'col-12',
-              changed: (data) => {
-                console.log(data);
-              },
             },
           ],
         },
@@ -171,10 +278,11 @@ const EditFields = observer(
           name: 'Full Category Path for SEF',
           fields: [
             {
-              label: '',
+              label: 'Full Category Path for SEF',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
+              labelClassName: 'd-flex',
               className: 'col-12 mb-16',
               option: [
                 { label: 'Yes', value: 'yes' },

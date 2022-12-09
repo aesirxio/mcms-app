@@ -7,11 +7,12 @@ import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import { CMS_PRODUCT_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
-import {
-  withItemsViewModel,
-  ItemsViewModelContextProvider,
-} from './ItemsViewModels/ItemsViewModelContextProvider';
+
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
+import {
+  ItemsViewModelContextProvider,
+  withItemsViewModel,
+} from './ItemsViewModels/ItemsViewModelContextProvider';
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 
 const itemsStore = new ItemsStore();
@@ -19,7 +20,7 @@ const itemsViewModel = new ItemsViewModel(itemsStore);
 
 const EditItems = observer(
   class EditItems extends Component {
-    itemsViewModel = null;
+    itemsDetailViewModel = null;
     formPropsData = {};
     isEdit = false;
 
@@ -28,15 +29,15 @@ const EditItems = observer(
       this.viewModel = itemsViewModel ? itemsViewModel : null;
       this.state = { key: 'commonInformation' };
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-      this.itemsViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
-      this.itemsViewModel.setForm(this);
+      this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
+      this.itemsDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
       if (this.isEdit) {
         this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-        await this.itemsViewModel.initializeData();
+        await this.itemsDetailViewModel.initializeData();
         this.forceUpdate();
       }
     }
@@ -55,11 +56,11 @@ const EditItems = observer(
                 type: FORM_FIELD_TYPE.INPUT,
                 value: '',
                 className: 'col-12',
-                required: true,
+                // required: true,
                 changed: (data) => {
                   console.log(data);
                 },
-                validation: 'required',
+                // validation: 'required',
               },
               {
                 label: 'Intro text',
@@ -177,12 +178,14 @@ const EditItems = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[GENERAL_INFORMATION.NAME],
+              value: this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
+                : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                console.log(data);
+                this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
             },
             {
@@ -323,23 +326,22 @@ const EditItems = observer(
         },
       ];
       return (
-        <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.itemsViewModel.formStatus === PAGE_STATUS.LOADING && (
-            <Spinner className="spinner-overlay" />
-          )}
-          <ItemsViewModelContextProvider viewModel={itemsViewModel}>
+        <ItemsViewModelContextProvider viewModel={itemsViewModel}>
+          <div className="py-4 px-3 h-100 d-flex flex-column">
+            {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
+              <Spinner className="spinner-overlay" />
+            )}
             <ItemsFormPage
-              store={itemsStore}
+              store={this.itemsDetailViewModel}
               dataForm={data}
               generateFormSetting={generateFormSetting}
               path="/"
               title="txt_add_item"
               validator={this.validator}
-              categoriesDetailViewModel={this.itemsViewModel}
               formPublish={formPublish}
             />
-          </ItemsViewModelContextProvider>
-        </div>
+          </div>
+        </ItemsViewModelContextProvider>
       );
     }
   }

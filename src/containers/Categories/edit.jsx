@@ -260,10 +260,11 @@ const EditCategories = observer(
           name: 'Full Category Path for SEF',
           fields: [
             {
-              label: '',
+              label: 'Full Category Path for SEF',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
+              labelClassName: 'd-flex',
               className: 'col-12 mb-16',
               option: [
                 { label: 'Yes', value: 'yes' },
