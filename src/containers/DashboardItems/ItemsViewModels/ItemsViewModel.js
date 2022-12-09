@@ -12,8 +12,8 @@ class ItemsViewModel {
     }
   }
 
-  getItemsListViewModel = () => this.itemsListViewModel;
   getItemsDetailViewModel = () => this.itemsDetailViewModel;
+  getItemsListViewModel = () => this.itemsListViewModel;
 }
 
 export default ItemsViewModel;

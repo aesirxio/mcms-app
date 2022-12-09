@@ -1,19 +1,16 @@
-/*
- * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
- * @license     GNU General Public License version 3, see LICENSE.
- */
-
-import PAGE_STATUS from 'constants/PageStatus';
 import { makeAutoObservable } from 'mobx';
-import { notify } from 'components/Toast';
 import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
-class ItemsViewModel {
+import PAGE_STATUS from 'constants/PageStatus';
+import { notify } from 'components/Toast';
+class ItemsDetailViewModel {
   itemsStore = null;
   formStatus = PAGE_STATUS.READY;
-  itemsDetailViewModel = null;
+  categoriesDetailViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
+    data: [],
+    dataDetail: [],
   };
 
   constructor(itemsStore) {
@@ -21,33 +18,26 @@ class ItemsViewModel {
     this.itemsStore = itemsStore;
   }
 
-  setForm = (itemsDetailViewModel) => {
-    this.itemsDetailViewModel = itemsDetailViewModel;
+  setForm = (categoriesDetailViewModel) => {
+    this.categoriesDetailViewModel = categoriesDetailViewModel;
   };
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getItemsDetail(
-      this.itemsDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
+    await this.itemsStore.getDetail(
+      this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
     );
+    this.formStatus = PAGE_STATUS.READY;
   };
 
-  createItem = () => {
+  handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.createItem(
-      this.itemsDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
-      this.callbackOnCreateSuccessHandler
-    );
-  };
-
-  updateItem = async () => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.updateItem(
-      this.itemsDetailViewModel.formPropsData,
-      this.callbackOnSuccessHandler,
+    await this.itemsStore.saveData(
+      this.categoriesDetailViewModel?.formPropsData,
+      redirect ? redirect : null,
+      this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
@@ -56,13 +46,65 @@ class ItemsViewModel {
     this.formStatus = PAGE_STATUS.LOADING;
     this.itemsStore.getDetail(
       data,
-      this.callbackOnSuccessHandler,
-      this.callbackOnCreateSuccessHandler
+      this.callbackOnGetDetailSuccessHandler,
+      this.callbackOnErrorHandler
     );
   };
+
+  handleUpdate = async (redirect) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.getDetail(
+      this.categoriesDetailViewModel?.formPropsData,
+      redirect ? redirect : null,
+      this.callbackOnUpdateSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
   handleDelete = (id) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleDelete(id, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+    this.itemsStore.handleDelete(
+      id,
+      this.callbackOnDeleteSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  handleDeleteMultiple = (arrId) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handleDeleteMultiple(
+      arrId,
+      this.callbackOnDeleteSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  handleSearch = (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handleSearch(value, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+  };
+
+  callbackOnSuccessHandler = (result) => {
+    if (result) {
+      notify('Successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnDeleteSuccessHandler = (id) => {
+    if (id) {
+      notify('Delete successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnCreateSuccessHandler = (result) => {
+    console.log('datadatadatadata', result);
+    if (result) {
+      notify('Create successfully', 'success');
+      this.successResponse.data = result;
+    }
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnErrorHandler = (error) => {
@@ -72,30 +114,22 @@ class ItemsViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnCreateSuccessHandler = (result) => {
+  callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      notify('Create successfully', 'success');
+      console.log('result', result);
+      this.successResponse.dataDetail = result;
+      notify('GetDetail successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnSuccessHandler = (result) => {
+  callbackOnUpdateSuccessHandler = (result) => {
     if (result) {
+      console.log('result', result);
       notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
-
-  callbackOnGetItemsSuccessHandler = (result) => {
-    if (result) {
-      Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
-        this.itemsDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] =
-          result[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
-      });
-    }
-
-    this.formStatus = PAGE_STATUS.READY;
-  };
 }
 
-export default ItemsViewModel;
+export default ItemsDetailViewModel;
