@@ -37,6 +37,7 @@ export default class CategoriesStore {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
+      console.log('getDetail', data);
       if (data) {
         runInAction(() => {
           callbackOnSuccess(data);

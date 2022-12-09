@@ -2,7 +2,7 @@
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
-export default class FieldsStore {
+export default class FieldsGroupStore {
   async getList(callbackOnSuccess, callbackOnError) {
     try {
       const results = true;
@@ -38,13 +38,14 @@ export default class FieldsStore {
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
       console.log('getDetail', data);
+      console.log('getDetail', data);
       if (data) {
         runInAction(() => {
           callbackOnSuccess(data);
         });
         setTimeout(() => {
           if (redirect) {
-            history.push('/fields');
+            history.push('/fields-group');
           }
         }, 2000);
       } else {
@@ -72,7 +73,7 @@ export default class FieldsStore {
       });
       setTimeout(() => {
         if (redirect) {
-          history.push('/fields');
+          history.push('/fields-group');
         }
       }, 2000);
     } else {
