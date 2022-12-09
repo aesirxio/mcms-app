@@ -7,6 +7,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
   const categoriesViewModel = useCategoriesViewModel();
+
   const columnsTable = React.useMemo(
     () => [
       {
@@ -260,11 +261,10 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   // if (categoriesStore.dataDumyCreate?.id) {
   //   dataTable.unshift(categoriesStore.dataDumyCreate);
   // }
-
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      await categoriesViewModel.categoriesDetailViewModel.initializeData();
+      await categoriesViewModel.categoriesListViewModel.initializeData();
       setLoading(false);
     };
     fetchData();

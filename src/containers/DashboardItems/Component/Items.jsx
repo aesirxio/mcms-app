@@ -576,7 +576,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
           loading={loading}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          linkTo="/items-create"
+          linkTo="/items-edit/"
         ></Table>
       </div>
     </>

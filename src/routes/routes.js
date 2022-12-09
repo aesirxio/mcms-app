@@ -14,6 +14,8 @@ const SettingPage = lazy(() => import('../containers/DashboardItems'));
 const HelpCenterPage = lazy(() => import('../containers/DashboardItems'));
 const EditCategories = lazy(() => import('../containers/Categories/edit'));
 const EditItems = lazy(() => import('../containers/DashboardItems/edit'));
+const EditFields = lazy(() => import('../containers/FieldsPage/edit'));
+
 const authRoutes = [
   {
     path: '/login',
@@ -62,6 +64,16 @@ const mainRoutes = [
     path: '/fields',
     exact: true,
     main: () => <FieldsPage />,
+  },
+  {
+    path: '/fields-edit/:id',
+    exact: true,
+    main: ({ match }) => <EditFields match={match} />,
+  },
+  {
+    path: '/fields-create',
+    exact: true,
+    main: () => <EditFields />,
   },
   {
     path: '/fields-group',
