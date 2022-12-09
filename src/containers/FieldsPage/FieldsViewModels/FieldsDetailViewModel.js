@@ -2,8 +2,8 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
-class CategoriesDetailViewModel {
-  categoriesStore = null;
+class FieldsDetailViewModel {
+  fieldsStore = null;
   formStatus = PAGE_STATUS.READY;
   categoriesDetailViewModel = null;
   successResponse = {
@@ -13,9 +13,9 @@ class CategoriesDetailViewModel {
     dataDetail: [],
   };
 
-  constructor(categoriesStore) {
+  constructor(fieldsStore) {
     makeAutoObservable(this);
-    this.categoriesStore = categoriesStore;
+    this.fieldsStore = fieldsStore;
   }
 
   setForm = (categoriesDetailViewModel) => {
@@ -24,7 +24,7 @@ class CategoriesDetailViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.getDetail(
+    await this.fieldsStore.getDetail(
       this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
@@ -34,7 +34,7 @@ class CategoriesDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.saveData(
+    await this.fieldsStore.saveData(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
@@ -44,7 +44,7 @@ class CategoriesDetailViewModel {
 
   getDetail = (data) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.getDetail(
+    this.fieldsStore.getDetail(
       data,
       this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
@@ -53,7 +53,7 @@ class CategoriesDetailViewModel {
 
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.getDetail(
+    await this.fieldsStore.getDetail(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
@@ -63,7 +63,7 @@ class CategoriesDetailViewModel {
 
   handleDelete = (id) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDelete(
+    this.fieldsStore.handleDelete(
       id,
       this.callbackOnDeleteSuccessHandler,
       this.callbackOnErrorHandler
@@ -72,7 +72,7 @@ class CategoriesDetailViewModel {
 
   handleDeleteMultiple = (arrId) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDeleteMultiple(
+    this.fieldsStore.handleDeleteMultiple(
       arrId,
       this.callbackOnDeleteSuccessHandler,
       this.callbackOnErrorHandler
@@ -81,18 +81,11 @@ class CategoriesDetailViewModel {
 
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleSearch(
+    this.fieldsStore.handleSearch(
       value,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-  };
-
-  callbackOnSuccessHandler = (result) => {
-    if (result) {
-      notify('Successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnDeleteSuccessHandler = (id) => {
@@ -107,6 +100,13 @@ class CategoriesDetailViewModel {
     if (result) {
       notify('Create successfully', 'success');
       this.successResponse.data = result;
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnSuccessHandler = (result) => {
+    if (result) {
+      notify('Successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
@@ -136,4 +136,4 @@ class CategoriesDetailViewModel {
   };
 }
 
-export default CategoriesDetailViewModel;
+export default FieldsDetailViewModel;
