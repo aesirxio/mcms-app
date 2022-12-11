@@ -1,5 +1,5 @@
 .dark {
-  $white: #fff;
+  $white: #3e545e;
   $gray-100: #f6f8fa;
   $gray-200: #e9ecef;
   $gray-300: #495057;
@@ -86,7 +86,7 @@
   );
 
   $body-color: #eeeeee;
-  $body-bg: #263c5c;
+  $body-bg: #1a2226;
   color: $body-color;
   background-color: $body-bg;
 
@@ -129,7 +129,7 @@
   $color-blue-1: #3b5998;
   $color-blue-2: #00acee;
   $color-blue-3: #3b7ab5;
-  $color-blue-4: #282831;
+  $color-blue-4: #0f1414;
   $color-blue-5: #e8f1f6;
   $color-blue-6: #282831;
   $color-blue-7: #199ce3;
@@ -137,30 +137,6 @@
 
   //BORDER COLOR
   $border-color: #d5d5d5;
-
-  //SPACER
-  $spacer: 1rem;
-  $spacers: (
-    24: 24px,
-    0: 0,
-    sm: 5px,
-    7px: 7px,
-    8px: 8px,
-    1: 10px,
-    11: 11px,
-    12: 12px,
-    14: 14px,
-    15: 15px,
-    16: 16px,
-    2: 20px,
-    3: 30px,
-    32: 32px,
-    4: 40px,
-    5: 50px,
-    6: 60px,
-    7: 70px,
-    8: 80px,
-  ) !default;
 
   $accordion-button-bg: $color-blue-5;
   $accordion-button-active-bg: $color-blue-6;
@@ -187,6 +163,8 @@
   }
 
   /* end of redefine theme color variables */
+
+  // scss-doc-end dropdown variable
 
   // scss-docs-start btn-variant-loops
   @each $color, $value in $theme-colors {
