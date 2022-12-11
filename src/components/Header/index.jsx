@@ -12,7 +12,7 @@ import ComponentImage from '../ComponentImage';
 import SwitchThemes from 'components/SwitchThemes/index';
 import Select from 'components/Select/index';
 import i18n from 'translations/i18n';
-import Search from 'components/Search';
+// import Search from 'components/Search';
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +79,7 @@ class Header extends React.Component {
             <FontAwesomeIcon icon={faChevronLeft} />
           </span>
           <div className="d-flex flex-1 align-items-center">
-            <Search />
+            {/* <Search /> */}
             <div className="ms-auto d-flex align-items-center">
               <FontAwesomeIcon icon={faGlobe} className="text-body" />
               <Select

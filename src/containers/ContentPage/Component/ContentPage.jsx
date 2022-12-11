@@ -2,9 +2,11 @@ import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
+import { useContentViewModel } from '../ContentViewModels/ContentViewModelContextProvider';
 
 const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) => {
   const [loading, setLoading] = useState(false);
+  const contentViewModel = useContentViewModel();
 
   const columnsTable = React.useMemo(
     () => [
@@ -19,14 +21,14 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
       },
       {
         Header: 'Content Name',
-        accessor: 'content_name',
+        accessor: 'name',
         className:
           'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate',
         Cell: ({ value }) => {
           return <div className="px-24 text-start text-truncate">{value}</div>;
         },
         width: 'auto',
-        sortParams: 'field_name',
+        sortParams: 'name',
       },
       {
         Header: 'Description',
@@ -46,98 +48,95 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
       {
         checkbox: true,
         id: '501',
-        content_name: 'Customer',
+        name: 'Customer',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Brancher slider',
+        name: 'Brancher slider',
         description:
           'In mattis auctor nunc, et egestas sapien hendrerit eu. Nunc non ante odio. Cras lacinia facilisis elit',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Category type',
+        name: 'Category type',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'News',
+        name: 'News',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'B2B Solutions',
+        name: 'B2B Solutions',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'About Us',
+        name: 'About Us',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: '	Contact Us',
+        name: '	Contact Us',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Career',
+        name: 'Career',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Package',
+        name: 'Package',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Team',
+        name: 'Team',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Services price',
+        name: 'Services price',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
       {
         checkbox: true,
         id: '501',
-        content_name: 'Services Lv4',
+        name: 'Services Lv4',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
       },
     ],
     []
   );
-  if (store.dataDumyCreate?.id) {
-    dataTable.unshift(store.dataDumyCreate);
-  }
 
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      await store.getItems();
+      await contentViewModel.contentListViewModel.initializeData();
       setLoading(false);
     };
     fetchData();
@@ -151,7 +150,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={store}
+          store={contentViewModel.contentDetailViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}
@@ -159,7 +158,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
           loading={loading}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          linkTo="/items-create"
+          linkTo="/content-edit/"
         ></Table>
       </div>
     </>

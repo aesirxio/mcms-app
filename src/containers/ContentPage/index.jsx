@@ -1,20 +1,23 @@
 import { Icon } from '@iconify/react';
-import TabBarComponent from 'components/TabBarComponent';
+// import TabBarComponent from 'components/TabBarComponent';
 import { observer } from 'mobx-react';
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, Route } from 'react-router-dom';
-// import { withTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
+import ContentStore from './ContentStore/Content';
+import ContentViewModel from './ContentViewModels/ContentViewModel';
+import { ContentViewModelContextProvider } from './ContentViewModels/ContentViewModelContextProvider';
 
 const ContentPage = lazy(() => import('./Component/ContentPage'));
-
+const contentStore = new ContentStore();
+const contentViewModel = new ContentViewModel(contentStore);
 const Categories = observer(() => {
   const { t } = useTranslation('common');
   const [filterTab, setFilterTab] = useState('');
   const [entriesFound, setEntriesFound] = useState(0);
   return (
-    <div className="py-4 px-3 h-100 d-flex flex-column">
-      <Route exact path={['/content']}>
+    <ContentViewModelContextProvider viewModel={contentViewModel}>
+      <div className="py-4 px-3 h-100 d-flex flex-column">
         <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
           <div>
             <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_content_page')}</h2>
@@ -23,7 +26,7 @@ const Categories = observer(() => {
             </p>
           </div>
           <Link
-            to="/fields-create"
+            to="/content-create"
             className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
             onClick={() => {}}
           >
@@ -31,22 +34,21 @@ const Categories = observer(() => {
             {t('txt_add_new_item')}
           </Link>
         </div>
-        <TabBarComponent
-          view={'all-items'}
-          filterTab={filterTab}
-          setFilterTab={setFilterTab}
-          // store={contentStore}
-        />
+        {/* <TabBarComponent
+            view={'all-items'}
+            filterTab={filterTab}
+            setFilterTab={setFilterTab}
+            // store={contentStore}
+          /> */}
         <ContentPage
           t={t}
           data={null}
           setFilter={setFilterTab}
           filterTab={filterTab}
-          // store={contentStore}
           setEntriesFound={setEntriesFound}
         />
-      </Route>
-    </div>
+      </div>
+    </ContentViewModelContextProvider>
   );
 });
 export default Categories;

@@ -2,9 +2,11 @@ import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
+import { useFieldsGroupViewModel } from '../FieldsGroupViewModels/FieldsGroupViewModelContextProvider';
 
 const Fields = observer(({ filterTab, setFilterTab, store }) => {
   const [loading, setLoading] = useState(false);
+  const fieldsGroupViewModel = useFieldsGroupViewModel();
 
   const columnsTable = React.useMemo(
     () => [
@@ -19,14 +21,14 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       },
       {
         Header: 'Field name',
-        accessor: 'field_name',
+        accessor: 'name',
         className:
           'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate',
         Cell: ({ value }) => {
           return <div className="px-24 text-start text-truncate">{value}</div>;
         },
         width: 'auto',
-        sortParams: 'field_name',
+        sortParams: 'name',
       },
       {
         Header: 'Date',
@@ -131,7 +133,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '501',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -143,7 +145,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: false,
         id: '502',
-        field_name: 'By Team',
+        name: 'By Team',
         date: '28/09/2022 11:26',
         types: 'B2B Solutions',
         engagement: '40%',
@@ -155,7 +157,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '503',
-        field_name: 'Related news',
+        name: 'Related news',
         date: '28/09/2022 11:26',
         types: 'Solutions, Blog',
         engagement: '40%',
@@ -167,7 +169,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '504',
-        field_name: 'Services',
+        name: 'Services',
         date: '28/09/2022 11:26',
         types: 'Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -179,7 +181,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '505',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -191,7 +193,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: false,
         id: '506',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -203,7 +205,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '507',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -215,7 +217,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '508',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -227,7 +229,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: false,
         id: '509',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -239,7 +241,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '512301',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -251,7 +253,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '5031',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -263,7 +265,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
       {
         checkbox: true,
         id: '501231',
-        field_name: 'OG-Image',
+        name: 'OG-Image',
         date: '28/09/2022 11:26',
         types: 'Category, Services, Solutions, Projects, Blog',
         engagement: '40%',
@@ -275,14 +277,11 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
     ],
     []
   );
-  if (store.dataDumyCreate?.id) {
-    dataTable.unshift(store.dataDumyCreate);
-  }
 
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
-      await store.getItems();
+      await fieldsGroupViewModel.fieldsGroupListViewModel.initializeData();
       setLoading(false);
     };
     fetchData();
@@ -295,7 +294,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
           columns={columnsTable}
           data={dataTable}
           canSort={true}
-          store={store}
+          store={fieldsGroupViewModel.fieldsGroupDetailViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}
@@ -303,7 +302,7 @@ const Fields = observer(({ filterTab, setFilterTab, store }) => {
           loading={loading}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
-          linkTo="/items-create"
+          linkTo="/fields-group-edit/"
         ></Table>
       </div>
     </>
