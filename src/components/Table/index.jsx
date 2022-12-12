@@ -48,6 +48,7 @@ const Table = ({
   const [dataFilter, setDataFilter] = useState();
   const [filterSearch, setFilterSearch] = useState('');
   const [idDummyDelete, setIdDummyDelete] = useState(null);
+  const paginate = [];
   const {
     getTableProps,
     getTableBodyProps,
@@ -61,10 +62,11 @@ const Table = ({
     gotoPage,
     nextPage,
     selectedFlatRows,
-    state: { pageIndex, pageSize },
+    // state :{pageIndex},
+    state: { pageSize },
     setPageSize,
     allColumns,
-    pageCount,
+    // pageCount,
   } = useTable(
     {
       columns,
@@ -241,6 +243,24 @@ const Table = ({
       </tr>
     );
   };
+  {
+    pageOptions?.forEach((v, i) => {
+      if (i === 4 && pageOptions?.length > 7) {
+        paginate?.push(<a key={Math.random(40, 200)}>...</a>);
+        i = pageOptions?.length - 3;
+      }
+      paginate?.push(
+        <button
+          onClick={() => {
+            gotoPage(i), store.handlePagination(i);
+          }}
+          key={Math.random(40, 200)}
+        >
+          <a>{i + 1}</a>
+        </button>
+      );
+    });
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -445,7 +465,7 @@ const Table = ({
           </div>
         </>
       )}
-      {pagination && pageOptions.length ? (
+      {pagination && pageOptions?.length ? (
         loading ? (
           <Spinner />
         ) : (
@@ -466,26 +486,29 @@ const Table = ({
                 ))}
               </select>
             </div>
-            <div className="col-8 text-end pe-5 button_pagination">
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            <div className="col-8 text-end button_pagination">
+              {/* <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                 {'<<'}
-              </button>{' '}
-              <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                {'<'}
-              </button>{' '}
-              <button onClick={() => nextPage()} disabled={!canNextPage}>
-                {'>'}
-              </button>{' '}
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+              </button>{' '} */}
+              <div className="bg-white border_pagination">
+                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                  {'<'}
+                </button>
+                <span className="">{paginate}</span>
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                  {'>'}
+                </button>
+              </div>
+              {/* <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
                 {'>>'}
-              </button>{' '}
-              <span>
+              </button>{' '} */}
+              {/* <span>
                 Page{' '}
                 <strong>
                   {pageIndex + 1} of {pageOptions.length}
                 </strong>{' '}
-              </span>
-              <span>
+              </span> */}
+              {/* <span>
                 | Go to page:{' '}
                 <input
                   type="number"
@@ -496,7 +519,7 @@ const Table = ({
                   }}
                   style={{ width: '100px' }}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
         )
