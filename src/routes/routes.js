@@ -17,6 +17,7 @@ const EditItems = lazy(() => import('../containers/DashboardItems/edit'));
 const EditFields = lazy(() => import('../containers/FieldsPage/edit'));
 const EditFieldsGroup = lazy(() => import('../containers/FieldsGroupPage/edit'));
 const EditContent = lazy(() => import('../containers/ContentPage/edit'));
+const DmaPage = lazy(() => import('../containers/DmaPage'));
 
 const authRoutes = [
   {
@@ -61,6 +62,11 @@ const mainRoutes = [
     path: '/dam',
     exact: true,
     main: () => <DamPage />,
+  },
+  {
+    path: '/dma',
+    exact: true,
+    main: () => <DmaPage />,
   },
   {
     path: '/fields',
