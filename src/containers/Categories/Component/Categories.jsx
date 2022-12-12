@@ -13,65 +13,57 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
       {
         Header: 'ID',
         accessor: 'id',
-        width: 'auto',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 ',
+        className: 'fs-6 fw-semibold border-bottom-1 opacity-80',
         Cell: ({ value }) => {
-          return <div className="px-24 ps-2">{value}</div>;
+          return <div>{value}</div>;
         },
       },
       {
         Header: 'Category',
         accessor: 'name',
-        className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24 text-start text-truncate">{value}</div>;
+          return <div className="fw-semibold text-start text-truncate">{value}</div>;
         },
-        width: '25%',
         sortParams: 'name',
       },
       {
         Header: 'Type',
         accessor: 'type',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div>{value}</div>;
         },
-        width: 'auto',
       },
 
       {
         Header: 'Engagement',
         accessor: 'engagement',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
-          return <div className="px-24 text-truncate">{value}</div>;
+          return <div className=" text-end">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Visits',
         accessor: 'visits',
-        className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div className="text-end">{value}</div>;
         },
-        width: 'auto',
       },
       {
         Header: 'Languages',
         accessor: 'languages',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-center ',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end ',
         Cell: ({ value }) => {
-          return <div className="px-24 text-truncate">{value}</div>;
+          return <div className="text-end text-truncate">{value}</div>;
         },
-        width: '15%',
       },
       {
         Header: 'Status',
         accessor: 'status',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end',
         Cell: ({ value }) => {
           return (
             <div className="text-end">
@@ -89,13 +81,12 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
       {
         Header: '',
         accessor: 'check',
-        className: 'px-24 py-2 fs-16  border-bottom-1 text-center',
+        className: 'fs-6 fw-semibold border-bottom-1 text-center',
         Cell: ({ row }) => {
           return (
             <div
-              className="px-24 cursor-pointer text-center"
+              className=" cursor-pointer px-16 text-center"
               // onClick={(e) => {
-              //   setNewStatus(row);
               // }}
             >
               <svg
@@ -114,7 +105,6 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
             </div>
           );
         },
-        width: 'auto',
       },
     ],
     []
@@ -272,7 +262,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   }, []);
   return (
     <>
-      <div className="fs-14 fw-semibold h-100">
+      <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
           data={dataTable}
