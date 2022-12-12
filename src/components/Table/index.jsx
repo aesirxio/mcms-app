@@ -102,7 +102,7 @@ const Table = ({
               </div>
             ),
             Cell: ({ row }) => (
-              <div className="ps-16 wrapper_checkbox" onClick={(e) => e.stopPropagation()}>
+              <div className="wrapper_checkbox text-center" onClick={(e) => e.stopPropagation()}>
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
@@ -278,14 +278,14 @@ const Table = ({
             allColumns={allColumns}
             setIdDummyDelete={setIdDummyDelete}
           />
-          <div className="rounded-3 shadow-sm h-100 overflow-scroll">
-            <div className="fs-14 text-color position-relative h-100">
+          <div className="rounded-3 shadow-sm overflow-hidden mb-24">
+            <div className="text-color position-relative">
               <div className="px-2 border-end-1"></div>
               {page.length ? (
                 <BTable
                   hover
                   {...getTableProps()}
-                  className={`w-100 align-middle table-borderless ${classNameTable}`}
+                  className={`w-100 align-middle table-borderless mb-0 ${classNameTable}`}
                 >
                   <thead className="bg-white">
                     {headerGroups.map((headerGroup) => {
@@ -315,7 +315,7 @@ const Table = ({
                                       : columnInside && columnInside.getSortByToggleProps()
                                   ),
                                 })}
-                                className={`py-16 ${column.className} ${
+                                className={`p-16 ${column.className} ${
                                   sortAPI && sortParams !== 'number' && sortParams !== 'selection'
                                     ? 'cursor-pointer'
                                     : ''

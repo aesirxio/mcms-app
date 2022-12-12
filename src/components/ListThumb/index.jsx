@@ -73,7 +73,7 @@ const ListThumb = ({
               type="text"
               placeholder="Search your content"
               aria-describedby="button-search"
-              className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg"
+              className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent"
               onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
             />
             <button
@@ -99,7 +99,11 @@ const ListThumb = ({
         </div>
         <div className="col-auto border-end-1">
           <Dropdown>
-            <Dropdown.Toggle id="actions" variant="white" className={`btn_toggle `}>
+            <Dropdown.Toggle
+              id="actions"
+              variant="white"
+              className={`btn_toggle bg-transparent border-0`}
+            >
               <i>
                 <FontAwesomeIcon icon={faColumns} />
               </i>

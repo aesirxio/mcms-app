@@ -45,7 +45,7 @@ function TabBarComponent({ setFilterTab }) {
               active.target?.outerText === item.title
                 ? `${styles['active']} fw-bold position-relative`
                 : styles['list-item']
-            } pb-16 me-4 cursor-pointer`}
+            } pb-16 me-40 cursor-pointer`}
             onClick={(e) => {
               setFilterTab(e);
               setActive(e);

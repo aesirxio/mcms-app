@@ -34,7 +34,7 @@ const Dashboard = observer(() => {
             </div>
             <Button
               variant={'success'}
-              className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+              className="btn btn-success btn btn-success px-16 py-7px lh-lg text-capitalize fw-semibold rounded-1 text-capitalize fw-semibold rounded-1"
               onClick={() => setShowModal(true)}
             >
               <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
