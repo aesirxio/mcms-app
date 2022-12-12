@@ -94,6 +94,12 @@ const Menu = observer((props) => {
       //   },
       // ],
     },
+    {
+      text: 'txt_menu_dma',
+      link: `/dma`,
+      icons: '/assets/images/image.png',
+      icons_color: '/assets/images/image.png',
+    },
   ];
 
   useEffect(() => {
