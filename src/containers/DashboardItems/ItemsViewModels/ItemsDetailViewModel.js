@@ -84,6 +84,16 @@ class ItemsDetailViewModel {
     this.itemsStore.handleSearch(value, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
 
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');

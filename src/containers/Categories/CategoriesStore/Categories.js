@@ -151,6 +151,30 @@ export default class CategoriesStore {
       return null;
     }
   }
+
+  async handlePagination(page, callbackOnSuccess, callbackOnError) {
+    console.log('handlePagination', page);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (page) {
+        runInAction(() => {
+          callbackOnSuccess(page);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong !',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
   async clearData() {
     runInAction(() => {
       // categoriesStore.formPropsData = [];

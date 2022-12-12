@@ -88,6 +88,16 @@ class CategoriesDetailViewModel {
     );
   };
 
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');

@@ -1,4 +1,4 @@
-@import "../../scss/utils/bootstrap.scss";
+@import '../../scss/utils/bootstrap.scss';
 .sort-icon {
   height: 20px;
 }
@@ -6,15 +6,15 @@
   background: rgba(50, 177, 151, 0.15);
   color: $success;
 }
-.bg-status_unPublish{
+.bg-status_unPublish {
   background: rgba(199, 54, 44, 0.15);
   color: $danger;
 }
 .btn_toggle::after {
   border: none !important;
 }
-.button_pagination > button {
-  border: none;
+.button_pagination  {
+ padding-right: 60px !important;
 }
 .border-select {
   border: none;
@@ -23,4 +23,10 @@
 }
 .border-select:focus-visible {
   border: none !important;
+}
+.border_pagination  button   {
+  border: 1px solid #ebebeb !important;
+  min-width: 38px;
+  min-height: 38px;
+  background: white;
 }

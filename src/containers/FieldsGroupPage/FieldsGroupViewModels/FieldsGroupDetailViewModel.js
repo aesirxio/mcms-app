@@ -88,6 +88,16 @@ class FieldsGroupDetailViewModel {
     );
   };
 
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.fieldsGroupStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
       notify('Delete successfully', 'success');
