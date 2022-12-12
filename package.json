@@ -13,7 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.12",
-    "@kakahuy113/aesirx-dam-app": "^1.1.4",
+    "aesirx-dam-app": "aesirxio/dam-app",
     "aesirx-dma-lib": "https://github.com/aesirxio/dma-lib.git#develop",
     "aesirx_analytics": "https://github.com/aesirxio/analytics.git#develop",
     "axios": "^0.21.0",

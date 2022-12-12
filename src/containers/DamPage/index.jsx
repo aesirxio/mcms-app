@@ -1,4 +1,4 @@
-import { AesirXDam } from '@kakahuy113/aesirx-dam-app';
+import { AesirXDam } from 'aesirx-dam-app';
 import React from 'react';
 import './index.scss';
 
