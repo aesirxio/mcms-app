@@ -210,9 +210,7 @@ const Table = ({
         // eslint-disable-next-line react/no-unknown-property
         moveRow={() => moveRow()}
         {...row.getRowProps()}
-        // onContextMenu={(e) => {
-        //   onRightClickItem(e, row.original);
-        // }}
+        className={index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}
       >
         {newRowCells.map((cell) => {
           return cell.column.id !== 'drag' ? (
@@ -280,18 +278,16 @@ const Table = ({
             allColumns={allColumns}
             setIdDummyDelete={setIdDummyDelete}
           />
-          <div className="bg-white rounded-3 shadow-sm h-100 overflow-scroll">
-            <div className="bg-white fs-14 text-color position-relative h-100">
+          <div className="rounded-3 shadow-sm h-100 overflow-scroll">
+            <div className="fs-14 text-color position-relative h-100">
               <div className="px-2 border-end-1"></div>
               {page.length ? (
                 <BTable
-                  striped
-                  // bordered
                   hover
                   {...getTableProps()}
                   className={`w-100 align-middle table-borderless ${classNameTable}`}
                 >
-                  <thead>
+                  <thead className="bg-white">
                     {headerGroups.map((headerGroup) => {
                       let newHeaderGroup = '';
 

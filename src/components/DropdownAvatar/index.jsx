@@ -1,22 +1,22 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-import { Dropdown } from "react-bootstrap";
-import Storage from "aesirx-dma-lib/src/Utils/Storage";
-import { AUTHORIZATION_KEY } from "aesirx-dma-lib/src/Constant/Constant";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+import { Dropdown } from 'react-bootstrap';
+import Storage from 'aesirx-dma-lib/src/Utils/Storage';
+import { AUTHORIZATION_KEY } from 'aesirx-dma-lib/src/Constant/Constant';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 
-import "./index.scss";
+import './index.scss';
 
-import { logout } from "../../auth";
-import Helper from "../../utils/helper";
-import ComponentImage from "../ComponentImage";
+import { logout } from '../../auth';
+import Helper from '../../utils/helper';
+import ComponentImage from '../ComponentImage';
 
 const data = [
   {
     key: 1,
-    text: "txt_profile",
-    link: "/profile",
+    text: 'txt_profile',
+    link: '/profile',
   },
 ];
 
@@ -41,17 +41,16 @@ class DropdownAvatar extends React.Component {
         src={
           Helper.isValidUrl(Storage.getItem(AUTHORIZATION_KEY.AVATAR))
             ? Storage.getItem(AUTHORIZATION_KEY.AVATAR)
-            : "/assets/images/avatar.png"
+            : '/assets/images/avatar.png'
         }
         alt=""
         className="img-avatar rounded-circle object-fit-cover h-45"
       />
       <div className="text ps-3 pe-3">
         <p className="mb-0 text-blue-0 fs-14 fw-bold">
-          {localStorage.getItem("profile") &&
-          JSON.parse(localStorage.getItem("profile"))
-            ? JSON.parse(localStorage.getItem("profile"))?.email
-            : Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME) ?? "Admin"}
+          {localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile'))
+            ? JSON.parse(localStorage.getItem('profile'))?.email
+            : Storage.getItem(AUTHORIZATION_KEY.MEMBER_FULL_NAME) ?? 'Admin'}
         </p>
         {/* <p className="mb-0 text-blue-0 fs-14 opacity-75">Small business owner</p> */}
       </div>
@@ -91,7 +90,7 @@ class DropdownAvatar extends React.Component {
               onClick={logout}
               className="d-flex align-items-center p-16 text-green border-gray cursor-pointer"
             >
-              <span className="px-16">{t("txt_sign_out")}</span>
+              <span className="px-16">{t('txt_sign_out')}</span>
             </div>
           </Dropdown.Menu>
         </Dropdown>
@@ -100,4 +99,4 @@ class DropdownAvatar extends React.Component {
   }
 }
 
-export default withTranslation("common")(DropdownAvatar);
+export default withTranslation('common')(DropdownAvatar);
