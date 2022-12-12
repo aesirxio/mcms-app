@@ -1,4 +1,4 @@
-@import "../../scss/utils/bootstrap.scss";
+@import '../../scss/utils/bootstrap.scss';
 
 .wrapper_banner_left {
   @include bg;
@@ -7,7 +7,8 @@
 .content_banner_left {
   background-color: rgba(0, 0, 0, 0.7);
   background: url(./background.jpg) no-repeat;
-
+  background-position: right;
+  background-size: cover;
   .swiper-pagination-bullet {
     background: $white;
     opacity: 1;
