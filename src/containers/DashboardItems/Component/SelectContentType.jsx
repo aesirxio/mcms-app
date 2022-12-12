@@ -27,13 +27,13 @@ function SelectContentType({ showModal, setShowModal }) {
         <div className="d-flex justify-content-between w-100 mt-2">
           <button
             onClick={() => setShowModal(false)}
-            className="btn btn-outline-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+            className="btn btn-outline-success btn btn-success px-16 py-7px lh-lg text-capitalize fw-semibold rounded-1 text-capitalize fw-semibold rounded-1"
           >
             Cancel
           </button>
           <button
             onClick={handleClick}
-            className="btn btn-success px-16 py-1 text-capitalize fw-semibold rounded-1"
+            className="btn btn-success btn btn-success px-16 py-7px lh-lg text-capitalize fw-semibold rounded-1 text-capitalize fw-semibold rounded-1"
           >
             Proceed
           </button>

@@ -189,7 +189,7 @@ $border-widths: (
 $border-color: $gray-300 !default;
 
 $border-radius: 0.25rem !default;
-$border-radius-sm: 0.2rem !default;
+$border-radius-sm: 5px !default;
 $border-radius-lg: 0.3rem !default;
 $border-radius-pill: 50rem !default;
 
@@ -238,7 +238,6 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
   6: 60px,
-  24: 24px,
   sm: 5px,
   7px: 7px,
   8px: 8px,
@@ -247,6 +246,9 @@ $spacers: (
   14: 14px,
   15: 15px,
   16: 16px,
+  24: 24px,
+  32: 32px,
+  40: 40px,
 );
 
 $form-switch-width: 2.5em !default;

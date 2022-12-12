@@ -15,7 +15,7 @@ const customStyles = (isBorder, isShadow = true) => {
           borderColor: isBorder ? 'var(--bs-success)' : 'transparent',
         },
 
-        backgroundColor: 'var(--bs-white)',
+        backgroundColor: 'transparent',
         cursor: 'pointer',
         borderRadius: 0,
         width: 'auto',

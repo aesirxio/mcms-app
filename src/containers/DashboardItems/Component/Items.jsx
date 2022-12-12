@@ -12,7 +12,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'ID',
         accessor: 'id',
-        className: 'fs-6 fw-semibold border-bottom-1 opacity-80 text-blue-200',
+        className: 'fs-6 fw-semibold border-bottom-1 opacity-80',
         Cell: ({ value }) => {
           return <div>{value}</div>;
         },
@@ -20,7 +20,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Name',
         accessor: 'name',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
           return <div className="fw-semibold text-start text-truncate">{value}</div>;
         },
@@ -29,15 +29,15 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Type',
         accessor: 'type',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="">{value}</div>;
+          return <div>{value}</div>;
         },
       },
       {
         Header: 'Categories',
         accessor: 'categories',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate',
         Cell: ({ value }) => {
           return <div className=" text-start">{value}</div>;
         },
@@ -45,8 +45,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Author',
         accessor: 'author',
-        className:
-          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-truncate text-center',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate text-center',
         Cell: ({ value }) => {
           return <div className="text-center text-truncate">{value}</div>;
         },
@@ -54,8 +53,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Engagement',
         accessor: 'engagement',
-        className:
-          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
           return <div className=" text-end">{value}</div>;
         },
@@ -63,8 +61,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Visits',
         accessor: 'visits',
-        className:
-          'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
         Cell: ({ value }) => {
           return <div className="text-end">{value}</div>;
         },
@@ -72,7 +69,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Languages',
         accessor: 'languages',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end ',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end ',
         Cell: ({ value }) => {
           return <div className="text-end text-truncate">{value}</div>;
         },
@@ -80,7 +77,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       {
         Header: 'Status',
         accessor: 'status',
-        className: 'fs-6 fw-semibold opacity-80 text-blue-200 border-bottom-1 text-end',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end',
         Cell: ({ value }) => {
           return (
             <div className="text-end">

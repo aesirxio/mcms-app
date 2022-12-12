@@ -31,7 +31,7 @@ const ItemsFormPage = ({
           {dataForm ? (
             <Tabs defaultActiveKey="fields" className="mb-24 custom-tabs">
               <Tab
-                tabClassName="border-0 bg-transparent p-0 pb-16 me-4"
+                tabClassName="border-0 bg-transparent p-0 pb-16 me-40"
                 eventKey="fields"
                 title={t('txt_menu_field')}
               >

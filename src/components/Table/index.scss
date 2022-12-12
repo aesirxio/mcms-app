@@ -3,11 +3,15 @@
   height: 20px;
 }
 .bg-status_publish {
-  background: rgba(50, 177, 151, 0.15);
+  background: rgba($success, 0.15);
   color: $success;
 }
 .bg-status_unPublish{
-  background: rgba(199, 54, 44, 0.15);
+  background: rgba($warning, 0.15);
+  color: $warning;
+}
+.bg-status_trashed{
+  background: rgba($danger, 0.15);
   color: $danger;
 }
 .btn_toggle::after {

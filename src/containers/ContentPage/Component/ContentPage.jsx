@@ -13,31 +13,27 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
       {
         Header: 'ID',
         accessor: 'id',
-        width: 'auto',
-        className: 'px-24 py-2 fs-16 border-bottom-1 opacity-80 text-blue-200',
+        className: 'fs-6 fw-semibold border-bottom-1 opacity-80',
         Cell: ({ value }) => {
-          return <div className="px-24 ps-2">{value}</div>;
+          return <div>{value}</div>;
         },
       },
       {
         Header: 'Content Name',
         accessor: 'name',
-        className:
-          'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start text-truncate',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24 text-start text-truncate">{value}</div>;
+          return <div className="fw-semibold text-start text-truncate">{value}</div>;
         },
-        width: 'auto',
         sortParams: 'name',
       },
       {
         Header: 'Description',
         accessor: 'description',
-        className: 'px-24 py-2 fs-16 opacity-80 text-blue-200 border-bottom-1 text-start',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value }) => {
-          return <div className="px-24">{value}</div>;
+          return <div>{value}</div>;
         },
-        width: 'auto',
       },
     ],
     []
@@ -145,7 +141,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
 
   return (
     <>
-      <div className="fs-14 fw-semibold h-100">
+      <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
           data={dataTable}
