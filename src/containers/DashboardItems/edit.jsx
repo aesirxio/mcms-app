@@ -291,11 +291,13 @@ const EditItems = observer(
           name: 'Featured',
           fields: [
             {
-              label: '',
+              label: 'Featured',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
               value: 'no',
-              className: 'col-12 mb-16',
+              labelClassName: 'fw-normal me-24 ws-nowrap',
+              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              classNameInput: 'w-65',
               option: [
                 { label: 'Yes', value: 'yes' },
                 { label: 'No', value: 'no' },

@@ -62,5 +62,6 @@
   "txt_City": "City",
   "txt_State": "State",
   "txt_Country": "Country",
-  "txt_Zipcode": "Zipcode"
+  "txt_Zipcode": "Zipcode",
+  "txt_menu_dma": "DMA"
 }
