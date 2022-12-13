@@ -1,6 +1,6 @@
 import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
 import BaseModel from 'aesirx-dma-lib/src/Abstract/BaseModel';
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 
 class ItemsModel extends BaseModel {
   constructor(entities) {
@@ -15,11 +15,33 @@ class ItemsModel extends BaseModel {
 
 class ItemsItemModel extends BaseItemModel {
   id = null;
+  name = null;
+  type = null;
+  category_name = null;
+  status = null;
+  access = null;
+  featured = null;
+  created_time = null;
+  created_user_name = null;
+  engagement = null;
+  visits = null;
+  languages = null;
 
   constructor(entity) {
     super(entity);
     if (entity) {
-      this.id = entity[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] ?? '';
+      this.id = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ID] ?? '';
+      this.name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] ?? '';
+      this.type = entity[CMS_ITEMS_DETAIL_FIELD_KEY.TYPE] ?? '';
+      this.category_name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY] ?? '';
+      this.status = this.transformStatus(entity[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]);
+      this.access = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS] ?? '';
+      this.featured = entity[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED] ?? '';
+      this.created_time = entity[CMS_ITEMS_DETAIL_FIELD_KEY.START_PUBLISH] ?? '';
+      this.created_user_name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR] ?? '';
+      this.engagement = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ENGAGEMENT] ?? '';
+      this.visits = entity[CMS_ITEMS_DETAIL_FIELD_KEY.VISITS] ?? '';
+      this.languages = entity[CMS_ITEMS_DETAIL_FIELD_KEY.LANGUAGES] ?? '';
     }
   }
 
@@ -30,24 +52,52 @@ class ItemsItemModel extends BaseItemModel {
   toJSON = () => {
     return {
       ...this.baseToJSON(),
-      [CMS_PRODUCT_DETAIL_FIELD_KEY.ID]: this.id,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.ID]: this.id,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: this.name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.TYPE]: this.type,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY]: this.category_name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]: this.status,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS]: this.access,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED]: this.featured,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.START_PUBLISH]: this.created_time,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR]: this.created_user_name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.ENGAGEMENT]: this.engagement,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.VISITS]: this.visits,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.LANGUAGES]: this.languages,
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
-    let formData = new FormData();
-    // const excluded = [CMS_PRODUCT_DETAIL_FIELD_KEY.ID];
-    // Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
-    // if (!excluded.includes(index) && data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]) {
-    //   formData.append(
-    //     [CMS_PRODUCT_DETAIL_FIELD_KEY[index]],
-    //     data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]
-    //   );
-    // }
-    // });
-    formData.append([CMS_PRODUCT_DETAIL_FIELD_KEY.ID], data[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] ?? 0);
-    return formData;
+  transformStatus = (status) => {
+    switch (status) {
+      case 1:
+        return 'published';
+      case 0:
+        return 'unpublished';
+      case 100:
+        return 'draft';
+      case 2:
+        return 'archived';
+      case -2:
+        return 'trashed';
+
+      default:
+        return 'published';
+    }
   };
+  // static __transformItemToApiOfCreation = (data) => {
+  //   let formData = new FormData();
+  //   // const excluded = [CMS_PRODUCT_DETAIL_FIELD_KEY.ID];
+  //   // Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
+  //   // if (!excluded.includes(index) && data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]) {
+  //   //   formData.append(
+  //   //     [CMS_PRODUCT_DETAIL_FIELD_KEY[index]],
+  //   //     data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]
+  //   //   );
+  //   // }
+  //   // });
+  //   formData.append([CMS_PRODUCT_DETAIL_FIELD_KEY.ID], data[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] ?? 0);
+  //   return formData;
+  // };
 
   // static __transformItemToApiOfUpdation = (data) => {
   //   let formData = {};

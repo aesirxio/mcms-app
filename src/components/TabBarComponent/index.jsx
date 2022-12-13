@@ -1,66 +1,57 @@
-import React, { useState } from 'react';
-// import { Link } from "react-router-dom";
+import { observer } from 'mobx-react';
+import React from 'react';
 import styles from './index.module.scss';
-function TabBarComponent({ setFilterTab }) {
-  const [active, setActive] = useState({ target: { outerText: 'All items' } });
-  const tabList = [
-    {
-      title: 'All items',
-      slug: 'all-items',
-      link: '/all-items',
-    },
-    {
-      title: 'Published',
-      slug: 'published',
-      link: '/published',
-    },
-    {
-      title: 'Unpublished',
-      slug: 'unpublished',
-      link: '/unpublished',
-    },
-    {
-      title: 'Archived',
-      slug: 'archived',
-      link: '/archived',
-    },
-    {
-      title: 'Draft',
-      slug: 'draft',
-      link: '/draft',
-    },
-    {
-      title: 'Trashed',
-      slug: 'trashed',
-      link: '/trashed',
-    },
-  ];
-  return tabList ? (
+const tabList = [
+  {
+    title: 'All items',
+    slug: 'all',
+  },
+  {
+    title: 'Published',
+    slug: 'published',
+  },
+  {
+    title: 'Unpublished',
+    slug: 'unpublished',
+  },
+  {
+    title: 'Archived',
+    slug: 'archived',
+  },
+  {
+    title: 'Draft',
+    slug: 'draft',
+  },
+  {
+    title: 'Trashed',
+    slug: 'trashed',
+  },
+];
+const TabBarComponent = observer(({ viewModel }) => {
+  const { filters, getListByFilter } = viewModel;
+
+  return (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {
         return (
           <li
             key={index}
             className={`${
-              active.target?.outerText === item.title
+              filters.views == item.slug
                 ? `${styles['active']} fw-bold position-relative`
                 : styles['list-item']
             } pb-16 me-40 cursor-pointer`}
-            onClick={(e) => {
-              setFilterTab(e);
-              setActive(e);
+            onClick={() => {
+              filters.views = item.slug;
+              getListByFilter();
             }}
           >
-            {/* <Link className={`text-decoration-none`}> */}
             {item.title}
-            {/* </Link> */}
           </li>
         );
       })}
     </ul>
-  ) : (
-    ''
   );
-}
+});
 
 export default TabBarComponent;

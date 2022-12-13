@@ -1,12 +1,18 @@
 import Table from 'components/Table';
-import React, { useEffect, useState } from 'react';
-import { withTranslation } from 'react-i18next';
-import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react';
 import { useItemsViewModel } from '../ItemsViewModels/ItemsViewModelContextProvider';
+import PAGE_STATUS from 'constants/PageStatus';
+import Spinner from 'components/Spinner';
+import history from 'routes/history';
 
-const Items = observer(({ filterTab, setFilterTab }) => {
-  const [loading, setLoading] = useState(false);
-  const itemsViewModel = useItemsViewModel();
+const Items = observer(() => {
+  const itemsListViewModel = useItemsViewModel();
+  const { tableData } = itemsListViewModel;
+  const handleEdit = (id) => {
+    history.push(`/items-edit/${id}`);
+  };
+
   const columnsTable = React.useMemo(
     () => [
       {
@@ -21,8 +27,15 @@ const Items = observer(({ filterTab, setFilterTab }) => {
         Header: 'Name',
         accessor: 'name',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
-        Cell: ({ value }) => {
-          return <div className="fw-semibold text-start text-truncate">{value}</div>;
+        Cell: ({ value, row }) => {
+          return (
+            <div
+              onClick={() => handleEdit(row.values.id)}
+              className="fw-semibold text-start text-truncate cursor-pointer"
+            >
+              {value}
+            </div>
+          );
         },
         sortParams: 'name',
       },
@@ -82,11 +95,9 @@ const Items = observer(({ filterTab, setFilterTab }) => {
           return (
             <div className="text-end">
               <span
-                className={`${
-                  value ? 'bg-status_publish' : 'bg-status_unPublish'
-                } m-0 py-8px px-12 d-inline-block rounded-1 fw-semibold`}
+                className={`bg-status_${value} m-0 text-capitalize py-8px px-12 d-inline-block rounded-1 fw-semibold`}
               >
-                {value ? 'Published' : 'UnPublished'}
+                {value}
               </span>
             </div>
           );
@@ -94,7 +105,7 @@ const Items = observer(({ filterTab, setFilterTab }) => {
       },
       {
         Header: '',
-        accessor: 'check',
+        accessor: 'featured',
         className: 'fs-6 fw-semibold border-bottom-1 text-center',
         Cell: ({ row }) => {
           return (
@@ -123,457 +134,30 @@ const Items = observer(({ filterTab, setFilterTab }) => {
     ],
     []
   );
-  // const dataTable = React.useMemo(() => [...data], [data]);
-  const dataTable = React.useMemo(
-    () => [
-      {
-        checkbox: true,
-        id: '260',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '261',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '262',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '263',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '264',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '265',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '266',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '268',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '2611',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '2632',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '2643',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '12',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '345',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '3452',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '2345',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '565',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '262341',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '65',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '897',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '4534',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '978',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '567',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '2344',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '657',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '2876861',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '89',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '5634',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '678',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: false,
-        id: '67987',
-        name: 'Social Media Marketing for Free, how to ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
-      },
-      {
-        checkbox: true,
-        id: '53',
-        name: 'Organic strategy, the lost discipline in digit...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-      {
-        checkbox: true,
-        id: '263667',
-        name: 'AesirX DMA: Open Source automation tool ...',
-        type: 'Services',
-        categories: 'News',
-        author: 'John Dee',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: true,
-        check: true,
-      },
-    ],
-    []
-  );
 
   useEffect(() => {
     let fetchData = async () => {
-      setLoading(true);
-      await itemsViewModel.itemsListViewModel.initializeData();
-      setLoading(false);
+      await itemsListViewModel.initializeData();
     };
     fetchData();
   }, []);
-
+  if (itemsListViewModel.formStatus === PAGE_STATUS.LOADING) {
+    return <Spinner />;
+  }
   return (
     <>
       <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
-          data={dataTable}
+          data={tableData}
           canSort={true}
-          store={itemsViewModel.itemsDetailViewModel}
+          viewModel={itemsListViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}
-          setLoading={setLoading}
-          loading={loading}
-          filterTab={filterTab}
-          setFilterTab={setFilterTab}
-          linkTo="/items-edit/"
-        ></Table>
+        />
       </div>
     </>
   );
 });
-export default withTranslation('common')(Items);
+export default Items;

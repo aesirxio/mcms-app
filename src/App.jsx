@@ -9,6 +9,10 @@ import { I18nextProvider } from 'react-i18next';
 import { ThemesContext, ThemesContextProvider } from 'themes/ThemeContextProvider';
 import 'aesirx-dam-app/dist/index.css';
 import 'aesirx-dam-app/dist/app.css';
+import { configure } from 'mobx';
+configure({
+  enforceActions: 'never',
+});
 
 class App extends React.Component {
   constructor(props) {

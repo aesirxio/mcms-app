@@ -19,21 +19,14 @@ const optionFilterColumns = [
   { value: false, label: 'UnPublished' },
 ];
 
-const ListThumb = ({
-  setLoading,
-  selectedMulptiRows,
-  setDataFilter,
-  setFilterSearch,
-  store,
-  allColumns,
-}) => {
+const ListThumb = ({ selectedMulptiRows, setDataFilter, setFilterSearch, store, allColumns }) => {
   const [action, setAction] = useState('');
   const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
     if (selectedMulptiRows?.length < 1) {
+      notify('Please choose items to delete', 'error');
       return;
     }
-    setLoading(true);
     setAction(e);
     if (selectedMulptiRows?.length === 1) {
       store.handleDelete(selectedMulptiRows[0].values.id);
@@ -42,26 +35,19 @@ const ListThumb = ({
     }
 
     setTimeout(() => {
-      setLoading(false);
       notify('Success');
     }, 2000);
   };
 
   const handleSearch = (e) => {
-    setLoading(true);
     setFilterSearch(e.target.value);
     store.handleSearch(e.target.value);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setTimeout(() => {}, 2000);
   };
   const handleFilterColum = (e) => {
-    setLoading(true);
     setFilterColum(e);
     setDataFilter(e);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setTimeout(() => {}, 2000);
   };
 
   return (
