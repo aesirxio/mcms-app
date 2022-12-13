@@ -3,21 +3,20 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const customStyles = (isBorder, isShadow = true) => {
+const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
   return {
     control: (provided) => {
       return {
         ...provided,
-        minHeight: 50,
+        minHeight: 48,
         boxShadow: isShadow ? '0 3px 5px rgb(0 0 0 / 5%)' : 'none',
         borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
         '&:hover': {
-          borderColor: isBorder ? 'var(--bs-success)' : 'transparent',
+          borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
         },
-
         backgroundColor: 'transparent',
         cursor: 'pointer',
-        borderRadius: 0,
+        borderRadius: '5px',
         width: 'auto',
       };
     },
@@ -27,12 +26,8 @@ const customStyles = (isBorder, isShadow = true) => {
         ...styles,
         top: 'calc(100% - 2px)',
         margin: 0,
-        border: 0,
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-        borderRight: '1px solid var(--bs-gray-select)',
+        border: '1px solid var(--bs-gray-select)',
         boxShadow: '0 3px 5px rgb(0 0 0 / 5%)',
-        borderTop: '1px solid var(--bs-gray-select)',
         backgroundColor: 'var(--dropdown-bg)',
         width: '100%',
       };
@@ -60,13 +55,13 @@ const customStyles = (isBorder, isShadow = true) => {
     singleValue: (provided) => ({
       ...provided,
       color: 'var(--bs-body-color)',
-      fontWeight: 600,
+      fontWeight: 400,
     }),
     placeholder: (defaultStyles) => {
       return {
         ...defaultStyles,
         color: 'var(--bs-body-color)',
-        fontWeight: 600,
+        fontWeight: isSemibold ? 600 : 400,
       };
     },
     multiValue: (styles) => {

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
-import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
 import SelectComponent from '../Select';
 import { notify } from 'components/Toast';
 import { Dropdown } from 'react-bootstrap';
 import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
+import { Icon } from '@iconify/react';
 
 const optionAction = [
   { value: 'delete', label: 'Delete' },
@@ -93,8 +93,9 @@ const ListThumb = ({
             options={optionAction}
             isBorder={false}
             isShadow={false}
+            isSemibold={true}
             placeholder="Choose an action"
-            className="text-green fw-semibold text-blue-0"
+            className="text-green text-blue-0"
           />
         </div>
         <div className="col-auto border-end-1">
@@ -102,12 +103,12 @@ const ListThumb = ({
             <Dropdown.Toggle
               id="actions"
               variant="white"
-              className={`btn_toggle bg-transparent border-0`}
+              className={`btn_toggle bg-transparent border-0 d-flex align-items-center`}
             >
-              <i>
+              <i className="text-blue-0">
                 <FontAwesomeIcon icon={faColumns} />
               </i>
-              <span className="p-1 text-blue-0 fs-14 fw-semibold">Columns</span>
+              <span className="px-7px text-blue-0 fs-14 fw-semibold">Columns</span>
               <i className="text-green">
                 <FontAwesomeIcon icon={faChevronDown} />
               </i>
@@ -132,19 +133,17 @@ const ListThumb = ({
           </Dropdown>
         </div>
         <div className="col-auto border-end-1">
-          <div className="d-flex align-items-center">
-            <i className="text-blue-0">
-              <FontAwesomeIcon icon={faFilter} />
-            </i>
-            <div className="w-260">
+          <div className="d-flex align-items-center ps-11">
+            <Icon className="text-blue-0" icon="ci:filter-outline" width={16} height={16} />
+            <div className="w-130px">
               <SelectComponent
                 value={filterColum}
                 onChange={(e) => handleFilterColum(e)}
                 options={optionFilterColumns}
                 isBorder={false}
                 isShadow={false}
+                isSemibold={true}
                 placeholder="Filter"
-                className="fw-semibold"
               />
             </div>
           </div>

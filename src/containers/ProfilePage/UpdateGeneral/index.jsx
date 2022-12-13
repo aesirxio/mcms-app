@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { withTranslation } from 'react-i18next';
 import SimpleReactValidator from 'simple-react-validator';
 import FormComponent from '../../../components/Form';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
+// import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 // import Spinner from '../../../components/Spinner';
 import { FORM_FIELD_TYPE } from '../../../constants/FormFieldType';
 import { UPDATE_GENERAL_FIELD_KEY } from '../../../constants/ProfileModule';
@@ -14,10 +14,12 @@ import '../index.scss';
 import SubmitButton from '../Layout/SubmitButton';
 import { witheProfileViewModel } from '../ProfileViewModel/ProfileViewModelContextProvider';
 import AvatarDAM from '../Layout/AvatarDAM';
-import ComponentImage from 'components/ComponentImage';
-import Button from 'components/Button';
+// import ComponentImage from 'components/ComponentImage';
+// import Button from 'components/Button';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import Spinner from 'components/Spinner';
+import FormImage from 'components/Form/FormImage';
+// import ComponentImage from 'components/ComponentImage';
 
 const UpdateGeneral = observer(
   class UpdateGeneral extends Component {
@@ -222,29 +224,37 @@ const UpdateGeneral = observer(
                       getUrlImage.length > 0 ? 'active_img' : ''
                     }`}
                   >
-                    {!getUrlImage ? (
-                      <div className="wr_img_thumbnail_dam position-relative m-2 ">
-                        <ComponentImage
-                          className={`rounded-circle them imgTab h-196`}
-                          src={this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM]}
-                          alt={this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME]}
-                        />
-                        <div className="position-absolute top-50 start-0 align-content-center fw-bold text-white imgcloud ">
-                          <FontAwesomeIcon icon={faCloudUploadAlt} className="d-block m-auto  " />
-                          <span className=" mx-3 my-5">Click to change image</span>
-                        </div>
-                      </div>
-                    ) : null}
-                    <div className="main_upload_images">
-                      <Button data={getUrlImage} changed={(data) => this.handleDamAssets(data)} />
-                    </div>
+                    {!getUrlImage && (
+                      <FormImage
+                        field={{
+                          value: {
+                            url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
+                            basename: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
+                          },
+                          changed: (data) => this.handleDamAssets(data),
+                        }}
+                        hiddenDelete={true}
+                      />
+                    )}
                     {getUrlImage ? (
-                      <div
-                        onClick={() => this.clearImage(memberInfo.avatar_dam)}
-                        className={'clear_image_button'}
-                      >
-                        <FontAwesomeIcon icon={faTimesCircle} className="text-white" />
-                      </div>
+                      <>
+                        <FormImage
+                          field={{
+                            value: {
+                              url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
+                              basename: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
+                            },
+                            changed: (data) => this.handleDamAssets(data),
+                          }}
+                          hiddenDelete={true}
+                        />
+                        <div
+                          onClick={() => this.clearImage(memberInfo.avatar_dam)}
+                          className={'clear_image_button'}
+                        >
+                          <FontAwesomeIcon icon={faTimesCircle} className="text-white" />
+                        </div>
+                      </>
                     ) : null}
                   </div>
                 </AvatarDAM>

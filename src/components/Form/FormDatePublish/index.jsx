@@ -10,7 +10,7 @@ const FormDatePushlish = ({ field }) => {
     field.defaultValue ? new Date(field.defaultValue) : null
   );
   return (
-    <div className="d-flex align-items-center bg-white position-relative date-picker">
+    <div className="d-flex align-items-center position-relative date-picker">
       <div className="calendar-icon calendar-icon-end position-absolute top-50 translate-middle-y">
         <Icon icon="bi:clock" className="text-gray-400" />
       </div>
@@ -23,7 +23,7 @@ const FormDatePushlish = ({ field }) => {
         }}
         showTimeSelect
         adjustDateOnChange
-        className={`${field.classNameInput} pe-3 ps-16 py-1 outline-none position-relative border-1 rounded-1`}
+        className={`${field.classNameInput} pe-3 ps-16 py-11 bg-transparent text-blue-0 outline-none position-relative border-1 rounded-1`}
       />
     </div>
   );
