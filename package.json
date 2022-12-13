@@ -64,7 +64,7 @@
   },
   "scripts": {
     "start": "npm run build && serve -s build",
-    "build": "npm run build:lib && npm run build:ckeditor && react-scripts build",
+    "build": "npm run build:ckeditor && npm run build:lib && react-scripts build",
     "build:lib": "cd node_modules/aesirx-dma-lib && npm i && npm run build && cd ../../",
     "build:ckeditor": "cd ckeditor && npm run build && cd ../",
     "test": "react-scripts test",
