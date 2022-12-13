@@ -49,6 +49,6 @@
         "*.eot",
         "*.png",
         "*.dist",
-        "*.ckeditor"
+        "*/ckeditor/*"
     ]
 }
