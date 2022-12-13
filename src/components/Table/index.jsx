@@ -63,7 +63,7 @@ const Table = ({
     nextPage,
     selectedFlatRows,
     // state :{pageIndex},
-    state: { pageSize },
+    state: { pageIndex, pageSize },
     setPageSize,
     allColumns,
     // pageCount,
@@ -260,7 +260,6 @@ const Table = ({
       );
     });
   }
-
   return (
     <DndProvider backend={HTML5Backend}>
       {loading ? (
@@ -490,11 +489,21 @@ const Table = ({
                 {'<<'}
               </button>{' '} */}
               <div className="border_pagination">
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                <button
+                  onClick={() => {
+                    previousPage(), store.handlePagination(pageIndex - 1);
+                  }}
+                  disabled={!canPreviousPage}
+                >
                   {'<'}
                 </button>
                 <span className="">{paginate}</span>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                <button
+                  onClick={() => {
+                    nextPage(), store.handlePagination(pageIndex + 1);
+                  }}
+                  disabled={!canNextPage}
+                >
                   {'>'}
                 </button>
               </div>
