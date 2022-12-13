@@ -17,12 +17,12 @@ class ItemsItemModel extends BaseItemModel {
   id = null;
   name = null;
   type = null;
-  category_name = null;
+  categories = null;
   status = null;
   access = null;
   featured = null;
   created_time = null;
-  created_user_name = null;
+  author = null;
   engagement = null;
   visits = null;
   languages = null;
@@ -33,12 +33,12 @@ class ItemsItemModel extends BaseItemModel {
       this.id = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ID] ?? '';
       this.name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] ?? '';
       this.type = entity[CMS_ITEMS_DETAIL_FIELD_KEY.TYPE] ?? '';
-      this.category_name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY] ?? '';
+      this.categories = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY] ?? '';
       this.status = this.transformStatus(entity[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]);
       this.access = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS] ?? '';
       this.featured = entity[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED] ?? '';
       this.created_time = entity[CMS_ITEMS_DETAIL_FIELD_KEY.START_PUBLISH] ?? '';
-      this.created_user_name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR] ?? '';
+      this.author = entity[CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR] ?? '';
       this.engagement = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ENGAGEMENT] ?? '';
       this.visits = entity[CMS_ITEMS_DETAIL_FIELD_KEY.VISITS] ?? '';
       this.languages = entity[CMS_ITEMS_DETAIL_FIELD_KEY.LANGUAGES] ?? '';
@@ -55,12 +55,12 @@ class ItemsItemModel extends BaseItemModel {
       [CMS_ITEMS_DETAIL_FIELD_KEY.ID]: this.id,
       [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: this.name,
       [CMS_ITEMS_DETAIL_FIELD_KEY.TYPE]: this.type,
-      [CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY]: this.category_name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY]: this.categories,
       [CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]: this.status,
       [CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS]: this.access,
       [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED]: this.featured,
       [CMS_ITEMS_DETAIL_FIELD_KEY.START_PUBLISH]: this.created_time,
-      [CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR]: this.created_user_name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.AUTHOR]: this.author,
       [CMS_ITEMS_DETAIL_FIELD_KEY.ENGAGEMENT]: this.engagement,
       [CMS_ITEMS_DETAIL_FIELD_KEY.VISITS]: this.visits,
       [CMS_ITEMS_DETAIL_FIELD_KEY.LANGUAGES]: this.languages,
