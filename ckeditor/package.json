@@ -35,6 +35,7 @@
     "@ckeditor/ckeditor5-table": "^35.3.2",
     "@ckeditor/ckeditor5-theme-lark": "^35.3.2",
     "@ckeditor/ckeditor5-typing": "^35.3.2",
+    "cheerio": "^1.0.0-rc.3",
     "css-loader": "^5.2.7",
     "postcss": "^8.4.19",
     "postcss-loader": "^4.3.0",

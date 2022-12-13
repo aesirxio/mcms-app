@@ -207,8 +207,7 @@ const Table = ({
         key={Math.random(40, 200)}
         ref={dropRef}
         style={{ opacity }}
-        // eslint-disable-next-line react/no-unknown-property
-        moveRow={() => moveRow()}
+        //  moveRow={() => moveRow()}
         {...row.getRowProps()}
         className={index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}
       >
@@ -469,7 +468,7 @@ const Table = ({
         loading ? (
           <Spinner />
         ) : (
-          <div className="pagination position-absolute mt-1 d-flex col-12">
+          <div className="pagination position-absolute d-flex col-12 pb-2">
             <div className="col-4">
               <span className="pe-1 text-gray-800">Showing</span>
               <select
@@ -490,7 +489,7 @@ const Table = ({
               {/* <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                 {'<<'}
               </button>{' '} */}
-              <div className="bg-white border_pagination">
+              <div className="border_pagination">
                 <button onClick={() => previousPage()} disabled={!canPreviousPage}>
                   {'<'}
                 </button>
