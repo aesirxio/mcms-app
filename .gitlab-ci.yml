@@ -25,9 +25,7 @@ stages:
     - echo REACT_APP_ENCRYPT=$REACT_APP_ENCRYPT >> .env
     - echo REACT_APP_LICENSE=$REACT_APP_LICENSE >> .env
     - echo REACT_APP_TEST_MODE=$REACT_APP_TEST_MODE >> .env
-    - rm -f package-lock.json
     - npm cache clean --force
-    - npm install
 test:
   <<: *build_before
   stage: test
