@@ -32,4 +32,3 @@ yarn-error.log*
 #ckeditor
 /ckeditor/build
 /ckeditor/node_modules
-/ckeditor/package-lock.json

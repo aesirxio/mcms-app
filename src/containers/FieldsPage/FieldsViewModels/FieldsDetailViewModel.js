@@ -98,6 +98,15 @@ class FieldsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
+  setFeatured = async (id, featured = 0) => {
+    await this.fieldsStore.updateFeatured(
+      { id: id.toString(), featured: featured.toString() },
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.fieldsStore.state = true;
+  };
+
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
       notify('Delete successfully', 'success');
