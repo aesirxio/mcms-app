@@ -25,10 +25,8 @@ stages:
     - echo REACT_APP_ENCRYPT=$REACT_APP_ENCRYPT >> .env
     - echo REACT_APP_LICENSE=$REACT_APP_LICENSE >> .env
     - echo REACT_APP_TEST_MODE=$REACT_APP_TEST_MODE >> .env
-    - npm cache clean --force
-    - rm -rf node_modules
-    - rm -f package-lock.json
-    - npm install
+    - rm yarn.lock
+    - yarn install --network-concurrency 1
 test:
   <<: *build_before
   stage: test
@@ -40,7 +38,7 @@ test:
   except:
     - master
   script:
-    - npm run build
+    - yarn run build
 
 
 dev:
@@ -54,6 +52,6 @@ dev:
   only:
     - master
   script:
-    - npm run build
+    - yarn run build
     - rsync -a --delete --progress --rsh='ssh -p4975' build/ dev@web1.aesir.io:/home/dev/domains/cms.dev.aesirx.io/public_html
 
