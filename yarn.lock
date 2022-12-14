@@ -3072,6 +3072,10 @@ adjust-sourcemap-loader@^4.0.0:
     url "^0.11.0"
     web-vitals "^2.1.4"
 
+"aesirx-dma-app@https://github.com/kakahuy113/dma-app#huy":
+  version "1.5.3-alpha.1"
+  resolved "https://github.com/kakahuy113/dma-app#78c72b550112ae102943dcac67e91e6ac19a03bd"
+
 aesirx-dma-lib@aesirxio/dma-lib:
   version "1.6.1-alpha.1"
   resolved "https://codeload.github.com/aesirxio/dma-lib/tar.gz/337481c528ac3ffc6417c700a3e494030c6109a5"

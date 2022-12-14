@@ -76,11 +76,9 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           return (
             <div className="text-end">
               <span
-                className={` bg-status_${value}${
-                  value ? 'bg-status_publish' : 'bg-status_unPublish'
-                } m-0 py-8px px-12 d-inline-block rounded-1 fw-semibold`}
+                className={`bg-status_${value} m-0 text-capitalize py-8px px-12 d-inline-block rounded-1 fw-semibold`}
               >
-                {value ? 'Published' : 'UnPublished'}
+                {value}
               </span>
             </div>
           );
@@ -136,7 +134,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: true,
-        check: true,
+        check: 'unpublished',
       },
       {
         checkbox: false,
@@ -146,8 +144,8 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: false,
-        check: false,
+        status: 'published',
+        check: 'unpublished',
       },
       {
         checkbox: true,
@@ -157,7 +155,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -168,7 +166,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'trashed',
         check: true,
       },
       {
@@ -179,7 +177,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -190,7 +188,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: false,
+        status: 'published',
         check: false,
       },
       {
@@ -201,7 +199,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -212,7 +210,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -223,7 +221,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -234,7 +232,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -245,7 +243,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
       {
@@ -256,7 +254,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
+        status: 'published',
         check: true,
       },
     ],
