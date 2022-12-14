@@ -1,7 +1,7 @@
 import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
-class CmsCategoriesRoute extends BaseRoute {
+class CmsFieldsRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
@@ -58,4 +58,4 @@ class CmsCategoriesRoute extends BaseRoute {
   };
 }
 
-export default CmsCategoriesRoute;
+export default CmsFieldsRoute;
