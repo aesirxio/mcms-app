@@ -1,7 +1,7 @@
-import PAGE_STATUS from "../../../constants/PageStatus";
-import { makeAutoObservable } from "mobx";
-import { logout } from "../../../auth";
-import { notify } from "../../../components/Toast";
+import PAGE_STATUS from '../../../constants/PageStatus';
+import { makeAutoObservable } from 'mobx';
+import { logout } from '../../../auth';
+import { notify } from '../../../components/Toast';
 
 class UpdatePasswordViewModel {
   profileStore = null;
@@ -9,7 +9,7 @@ class UpdatePasswordViewModel {
   updatePasswordViewModel = null;
   successResponse = {
     state: true,
-    content_id: "",
+    content_id: '',
   };
 
   constructor(profileStore) {
@@ -31,15 +31,12 @@ class UpdatePasswordViewModel {
 
   callbackOnErrorHandler = (error) => {
     this.successResponse.state = false;
-    this.successResponse.content_id = error.result.content_id;
+    this.successResponse.content_id = error.result?.content_id;
   };
 
   callbackOnSuccessHandler = () => {
     logout();
-    notify(
-      "Change password successfully, please re-login with your new password.",
-      "success"
-    );
+    notify('Change password successfully, please re-login with your new password.', 'success');
   };
 }
 

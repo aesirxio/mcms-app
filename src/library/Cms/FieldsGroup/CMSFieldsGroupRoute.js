@@ -1,7 +1,12 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+ */
+
 import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
-class CmsCategoriesRoute extends BaseRoute {
+class CmsFieldsGroupRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
@@ -58,4 +63,4 @@ class CmsCategoriesRoute extends BaseRoute {
   };
 }
 
-export default CmsCategoriesRoute;
+export default CmsFieldsGroupRoute;

@@ -90,11 +90,14 @@ const Fields = observer(({ filterTab, setFilterTab }) => {
         accessor: 'check',
         className: 'fs-6 fw-semibold border-bottom-1 text-center',
         Cell: ({ row }) => {
+          const isFeatured = row.values.featured ? 0 : 1;
           return (
             <div
               className=" cursor-pointer px-16 text-center"
-              // onClick={(e) => {
-              // }}
+              onClick={(e) => {
+                e.stopPropagation(),
+                  fieldsViewModel.fieldsDetailViewModel.setFeatured(row.values.id, isFeatured);
+              }}
             >
               <svg
                 width="20"
