@@ -98,6 +98,15 @@ class CategoriesDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
+  setFeatured = async (id, featured = 0) => {
+    await this.categoriesStore.updateFeatured(
+      { id: id.toString(), featured: featured.toString() },
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.successResponse.state = true;
+  };
+
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');
@@ -122,7 +131,7 @@ class CategoriesDetailViewModel {
   };
 
   callbackOnErrorHandler = (error) => {
-    notify('Update unsuccessfully', 'error');
+    notify('Unsuccessfully', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
     this.formStatus = PAGE_STATUS.READY;
