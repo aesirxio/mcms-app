@@ -5,10 +5,17 @@ import { useItemsViewModel } from '../ItemsViewModels/ItemsViewModelContextProvi
 import PAGE_STATUS from 'constants/PageStatus';
 import Spinner from 'components/Spinner';
 import history from 'routes/history';
+import TabBarComponent from 'components/TabBarComponent';
 
 const Items = observer(() => {
   const itemsListViewModel = useItemsViewModel();
-  const { tableData } = itemsListViewModel;
+  const { tableData, filters, getListByFilter } = itemsListViewModel;
+
+  const handleGetListByViews = (views) => {
+    filters.views = views;
+    getListByFilter();
+  };
+
   const handleEdit = (id) => {
     history.push(`/items-edit/${id}`);
   };
@@ -141,18 +148,19 @@ const Items = observer(() => {
     };
     fetchData();
   }, []);
+
   if (itemsListViewModel.formStatus === PAGE_STATUS.LOADING) {
     return <Spinner />;
   }
-  console.log("test",tableData)
   return (
     <>
+      <TabBarComponent views={filters.views} getListByFilter={handleGetListByViews} />
       <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
           data={tableData}
           canSort={true}
-          viewModel={itemsListViewModel}
+          store={itemsListViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}

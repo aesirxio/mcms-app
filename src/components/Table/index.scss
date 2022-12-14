@@ -14,6 +14,14 @@
   background: rgba($danger, 0.15);
   color: $danger;
 }
+.bg-status_draft {
+  background: rgba($gray-700, 0.15);
+  color: $gray-700;
+}
+.bg-status_archived {
+  background: rgba($color-blue-3, 0.15);
+  color: $color-blue-3;
+}
 .btn_toggle::after {
   border: none !important;
 }

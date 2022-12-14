@@ -30,19 +30,22 @@ class ItemsListViewModel {
 
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-
-    await this.itemsStore.getList(
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler,
-      this.filters
-    );
+    setTimeout(() => {
+      this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
+      // await this.itemsStore.getList(
+      //   this.callbackOnSuccessHandler,
+      //   this.callbackOnErrorHandler,
+      //   this.filters
+      // );
+      this.formStatus = PAGE_STATUS.READY;
+    }, 2000);
   };
 
   deleteItems = () => {};
 
-  callbackOnErrorHandler = (error) => {
-    console.log(error);
+  callbackOnErrorHandler = () => {
     notify('Update unsuccessfully', 'error');
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {

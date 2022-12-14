@@ -1,6 +1,5 @@
 import React, { lazy, useState } from 'react';
 import { observer } from 'mobx-react';
-import TabBarComponent from 'components/TabBarComponent';
 
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
@@ -38,7 +37,6 @@ const Dashboard = observer(() => {
               {t('txt_add_new_item')}
             </Button>
           </div>
-          <TabBarComponent viewModel={itemsListViewModel} />
           <ListItemsComponent />
         </div>
       </ItemsViewModelContextProvider>

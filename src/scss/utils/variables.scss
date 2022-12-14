@@ -13,7 +13,7 @@ $gray-300: #dedede !default;
 $gray-400: #c0c0c0 !default;
 $gray-500: #d2d2d2 !default;
 $gray-600: #8e8e8e !default;
-$gray-700: #c4c4c4 !default;
+$gray-700: #626276 !default;
 $gray-800: #949494 !default;
 $gray-900: #1a2226 !default;
 $gray-select: #e8e9ec !default;
@@ -269,6 +269,9 @@ $list-group-item-padding-x: 1.5rem;
 $list-group-color: $body-color;
 
 $form-check-input-width: 1em;
+
+$table-striped-bg: $white;
+$table-bg-accent: red;
 // for react-select
 :root {
   --dropdown-item-hover-color: #1ab394;

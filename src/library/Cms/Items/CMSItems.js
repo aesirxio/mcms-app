@@ -24,7 +24,7 @@ class AesirxCmsItemsApiService extends Component {
           engagement: '40%',
           visits: '100',
           languages: 'English (en), Vietnam...',
-          status: 1,
+          status: 100,
           featured: true,
         },
         {
@@ -36,7 +36,7 @@ class AesirxCmsItemsApiService extends Component {
           engagement: '40%',
           visits: '100',
           languages: 'English (en), Vietnam...',
-          status: 0,
+          status: -2,
           featured: false,
         },
         {
@@ -48,7 +48,7 @@ class AesirxCmsItemsApiService extends Component {
           engagement: '40%',
           visits: '100',
           languages: 'English (en), Vietnam...',
-          status: 0,
+          status: 2,
           featured: true,
         },
         {
@@ -410,6 +410,10 @@ class AesirxCmsItemsApiService extends Component {
         return { message: 'isCancel' };
       } else throw error;
     }
+  };
+
+  delete = (data) => {
+    console.log(data);
   };
 
   create = async (data) => {
