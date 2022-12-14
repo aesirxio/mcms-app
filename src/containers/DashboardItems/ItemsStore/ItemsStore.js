@@ -77,42 +77,19 @@ export default class ItemsStore {
       console.log('Error');
     }
   }
-  handleDelete(id, callbackOnSuccess, callbackOnError) {
-    console.log('id', id);
+  async deleteItems(data, callbackOnSuccess, callbackOnError) {
     try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (id) {
+      const getListInfoAPIService = new AesirxCmsItemstApiService();
+      const respondedData = await getListInfoAPIService.deleteItems(data);
+
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess(id);
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
           callbackOnError({
             message: 'Something went wrong from Server response',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-  handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
-    console.log('arrId', arrId);
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (arrId) {
-        runInAction(() => {
-          callbackOnSuccess(arrId);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
           });
         });
       }

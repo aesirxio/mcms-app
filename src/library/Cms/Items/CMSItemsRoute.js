@@ -46,18 +46,19 @@ class CmsItemsRoute extends BaseRoute {
       }
     );
   };
-  delete = (id) => {
-    return AesirxApiInstance.delete(
-      this.createRequestURL({
-        option: this.option,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: { id: id },
-      }
-    );
+  deleteItems = (data) => {
+    console.log(data);
+    // return AesirxApiInstance.delete(
+    //   this.createRequestURL({
+    //     option: this.option,
+    //   }),
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     data: { id: id },
+    //   }
+    // );
   };
 }
 

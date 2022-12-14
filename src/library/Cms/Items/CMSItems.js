@@ -412,8 +412,21 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  delete = (data) => {
-    console.log(data);
+  deleteItems = async (data) => {
+    try {
+      // const response = await this.route.deleteItems(data);
+      console.log('delete data', data);
+      const response = false;
+      if (response) {
+        return response;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
   };
 
   create = async (data) => {

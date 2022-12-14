@@ -15,9 +15,9 @@ const Editor = ({ field }) => {
       const modelFragment = editor.data.toModel(viewFragment);
       editor.model.insertContent(modelFragment);
     });
+    setEditor();
     setShow(false);
   };
-
   return (
     <div key={field.key} className="position-relative">
       <p

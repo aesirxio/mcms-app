@@ -147,25 +147,27 @@ const List = observer(() => {
       await itemsListViewModel.initializeData();
     };
     fetchData();
+    return () => itemsListViewModel.resetObservable();
   }, []);
 
-  if (itemsListViewModel.formStatus === PAGE_STATUS.LOADING) {
-    return <Spinner />;
-  }
   return (
     <>
       <TabBarComponent views={filters.views} getListByFilter={handleGetListByViews} />
-      <div className="fs-14 h-100">
-        <Table
-          columns={columnsTable}
-          data={tableData}
-          canSort={true}
-          store={itemsListViewModel}
-          pagination={true}
-          selection={false}
-          dragDrop={true}
-        />
-      </div>
+      {itemsListViewModel.formStatus === PAGE_STATUS.LOADING ? (
+        <Spinner />
+      ) : (
+        <div className="fs-14 h-100">
+          <Table
+            columns={columnsTable}
+            data={tableData}
+            canSort={true}
+            store={itemsListViewModel}
+            pagination={true}
+            selection={false}
+            dragDrop={true}
+          />
+        </div>
+      )}
     </>
   );
 });
