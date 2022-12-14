@@ -26,17 +26,11 @@ const ListThumb = ({ selectedMulptiRows, setDataFilter, setFilterSearch, store, 
     if (selectedMulptiRows?.length < 1) {
       notify('Please choose items to delete', 'error');
       return;
+    } else {
+      const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
+      setAction(e);
+      store.handleDelete(listSelectedItems);
     }
-    setAction(e);
-    if (selectedMulptiRows?.length === 1) {
-      store.handleDelete(selectedMulptiRows[0].values.id);
-    } else if (selectedMulptiRows?.length > 1) {
-      store.handleDeleteMultiple(selectedMulptiRows);
-    }
-
-    setTimeout(() => {
-      notify('Success');
-    }, 2000);
   };
 
   const handleSearch = (e) => {

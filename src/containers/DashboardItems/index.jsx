@@ -10,7 +10,7 @@ import ItemsStore from './ItemsStore/ItemsStore';
 import { ItemsViewModelContextProvider } from './ItemsViewModels/ItemsViewModelContextProvider';
 import ItemsListViewModel from './ItemsViewModels/ItemsListViewModel';
 
-const ListItemsComponent = lazy(() => import('./Component/Items'));
+const List = lazy(() => import('./Component/List'));
 const itemsStore = new ItemsStore();
 const itemsListViewModel = new ItemsListViewModel(itemsStore);
 
@@ -37,7 +37,7 @@ const Dashboard = observer(() => {
               {t('txt_add_new_item')}
             </Button>
           </div>
-          <ListItemsComponent />
+          <List />
         </div>
       </ItemsViewModelContextProvider>
     </>

@@ -7,7 +7,7 @@ import Spinner from 'components/Spinner';
 import history from 'routes/history';
 import TabBarComponent from 'components/TabBarComponent';
 
-const Items = observer(() => {
+const List = observer(() => {
   const itemsListViewModel = useItemsViewModel();
   const { tableData, filters, getListByFilter } = itemsListViewModel;
 
@@ -169,4 +169,4 @@ const Items = observer(() => {
     </>
   );
 });
-export default Items;
+export default List;

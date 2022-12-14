@@ -41,7 +41,9 @@ class ItemsListViewModel {
     }, 2000);
   };
 
-  deleteItems = () => {};
+  handleDelete = (data) => {
+    console.log(data);
+  };
 
   callbackOnErrorHandler = () => {
     notify('Update unsuccessfully', 'error');
