@@ -1,23 +1,17 @@
 import { runInAction } from 'mobx';
 import history from 'routes/history';
+import AesirxCmsItemstApiService from 'library/Cms/Items/CMSItems';
 
 export default class ItemsStore {
-  async getList(callbackOnSuccess, callbackOnError) {
+  async getList(callbackOnSuccess, callbackOnError, filters) {
     try {
       const results = true;
       if (results) {
-        // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-
-        // const respondedData = await getListInfoAPIService.getList();
+        const getListItemsAPIService = new AesirxCmsItemstApiService();
+        const results = await getListItemsAPIService.getList(filters);
         if (results) {
           runInAction(() => {
-            callbackOnSuccess({
-              id: '261',
-              name: '|-|-E-commerce B2C',
-              type: 'Services',
-              engagement: '40%',
-              visits: '100',
-            });
+            callbackOnSuccess(results);
           });
         } else {
           callbackOnError({
@@ -31,7 +25,7 @@ export default class ItemsStore {
       });
     }
   }
-  async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+  getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
@@ -58,7 +52,7 @@ export default class ItemsStore {
       return null;
     }
   }
-  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
+  saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
       runInAction(() => {
         callbackOnSuccess({
@@ -83,7 +77,7 @@ export default class ItemsStore {
       console.log('Error');
     }
   }
-  async handleDelete(id, callbackOnSuccess, callbackOnError) {
+  handleDelete(id, callbackOnSuccess, callbackOnError) {
     console.log('id', id);
     try {
       // call api
@@ -105,7 +99,7 @@ export default class ItemsStore {
       return null;
     }
   }
-  async handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
+  handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
     console.log('arrId', arrId);
     try {
       // call api
@@ -128,7 +122,7 @@ export default class ItemsStore {
     }
   }
 
-  async handleSearch(value, callbackOnSuccess, callbackOnError) {
+  handleSearch(value, callbackOnSuccess, callbackOnError) {
     console.log('valueSearch', value);
     try {
       // call api
@@ -150,7 +144,7 @@ export default class ItemsStore {
       return null;
     }
   }
-  async handlePagination(page, callbackOnSuccess, callbackOnError) {
+  handlePagination(page, callbackOnSuccess, callbackOnError) {
     console.log('handlePagination', page);
     try {
       // call api
@@ -173,7 +167,7 @@ export default class ItemsStore {
     }
   }
 
-  async clearData() {
+  clearData() {
     runInAction(() => {
       // categoriesStore.formPropsData = [];
     });

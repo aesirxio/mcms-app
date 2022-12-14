@@ -4,7 +4,7 @@ import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class ItemsDetailViewModel {
   itemsStore = null;
-  formStatus = PAGE_STATUS.READY;
+  formStatus = PAGE_STATUS.LOADING;
   categoriesDetailViewModel = null;
   successResponse = {
     state: true,
@@ -22,9 +22,9 @@ class ItemsDetailViewModel {
     this.categoriesDetailViewModel = categoriesDetailViewModel;
   };
 
-  initializeData = async () => {
+  initializeData = () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getDetail(
+    this.itemsStore.getDetail(
       this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
@@ -32,9 +32,9 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  handleCreate = async (redirect) => {
+  handleCreate = (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.saveData(
+    this.itemsStore.saveData(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
@@ -51,9 +51,9 @@ class ItemsDetailViewModel {
     );
   };
 
-  handleUpdate = async (redirect) => {
+  handleUpdate = (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getDetail(
+    this.itemsStore.getDetail(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,

@@ -2,17 +2,25 @@
 .sort-icon {
   height: 20px;
 }
-.bg-status_publish {
+.bg-status_published {
   background: rgba($success, 0.15);
   color: $success;
 }
-.bg-status_unPublish {
+.bg-status_unpublished {
   background: rgba($warning, 0.15);
   color: $warning;
 }
 .bg-status_trashed {
   background: rgba($danger, 0.15);
   color: $danger;
+}
+.bg-status_draft {
+  background: rgba($gray-700, 0.15);
+  color: $gray-700;
+}
+.bg-status_archived {
+  background: rgba($color-blue-3, 0.15);
+  color: $color-blue-3;
 }
 .btn_toggle::after {
   border: none !important;

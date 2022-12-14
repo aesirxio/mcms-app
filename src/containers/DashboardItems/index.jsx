@@ -1,8 +1,5 @@
 import React, { lazy, useState } from 'react';
 import { observer } from 'mobx-react';
-import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
-import { withRouter } from 'react-router-dom';
-import TabBarComponent from 'components/TabBarComponent';
 
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
@@ -11,20 +8,19 @@ import { Button } from 'react-bootstrap';
 import SelectContentType from './Component/SelectContentType';
 import ItemsStore from './ItemsStore/ItemsStore';
 import { ItemsViewModelContextProvider } from './ItemsViewModels/ItemsViewModelContextProvider';
-import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
+import ItemsListViewModel from './ItemsViewModels/ItemsListViewModel';
 
-const ListItemsComponent = lazy(() => import('./Component/Items'));
+const List = lazy(() => import('./Component/List'));
 const itemsStore = new ItemsStore();
-const itemsViewModel = new ItemsViewModel(itemsStore);
+const itemsListViewModel = new ItemsListViewModel(itemsStore);
 
 const Dashboard = observer(() => {
-  const [filterTab, setFilterTab] = useState('');
   const [showModal, setShowModal] = useState(false);
 
   const { t } = useTranslation('common');
   return (
     <>
-      <ItemsViewModelContextProvider viewModel={itemsViewModel}>
+      <ItemsViewModelContextProvider viewModel={itemsListViewModel}>
         <SelectContentType showModal={showModal} setShowModal={setShowModal} />
         <div className="py-4 px-3 h-100 d-flex flex-column">
           <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
@@ -41,12 +37,11 @@ const Dashboard = observer(() => {
               {t('txt_add_new_item')}
             </Button>
           </div>
-          <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
-          <ListItemsComponent t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+          <List />
         </div>
       </ItemsViewModelContextProvider>
     </>
   );
 });
 
-export default withRouter(withBiViewModel(Dashboard));
+export default Dashboard;

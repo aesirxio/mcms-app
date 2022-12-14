@@ -4,13 +4,14 @@ import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class ItemsListViewModel {
   itemsStore = null;
-  formStatus = PAGE_STATUS.READY;
-  itemsDetailViewModel = null;
-  successResponse = {
-    state: true,
-    content_id: '',
-    data: [],
-    dataDetail: [],
+  formStatus = PAGE_STATUS.LOADING;
+
+  tableData = [];
+
+  filters = {
+    views: 'all',
+    'list[limitstart]': 0,
+    'list[limit]': 10,
   };
 
   constructor(itemsStore) {
@@ -20,37 +21,40 @@ class ItemsListViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+    await this.itemsStore.getList(
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler,
+      this.filters
+    );
   };
 
-  callbackOnErrorHandler = (error) => {
+  getListByFilter = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    setTimeout(() => {
+      this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
+      // await this.itemsStore.getList(
+      //   this.callbackOnSuccessHandler,
+      //   this.callbackOnErrorHandler,
+      //   this.filters
+      // );
+      this.formStatus = PAGE_STATUS.READY;
+    }, 2000);
+  };
+
+  handleDelete = (data) => {
+    console.log(data);
+  };
+
+  callbackOnErrorHandler = () => {
     notify('Update unsuccessfully', 'error');
-    this.successResponse.state = false;
-    this.successResponse.content_id = error.result;
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {
-    if (result) {
-      notify('Successfully', 'success');
+    if (result?.items) {
+      this.tableData = result.items;
+      this.formStatus = PAGE_STATUS.READY;
     }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnGetDetailSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
-      notify('GetDetail successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-  callbackOnUpdateSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      notify('Update successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
   };
 }
 
