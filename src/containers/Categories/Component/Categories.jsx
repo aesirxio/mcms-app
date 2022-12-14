@@ -21,10 +21,18 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
       {
         Header: 'Category',
         accessor: 'name',
-        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
-        Cell: ({ value }) => {
-          return <div className="fw-semibold text-start text-truncate">{value}</div>;
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 ',
+        Cell: ({ value, row }) => {
+          return (
+            <div
+              onClick={() => categoriesViewModel.categoriesDetailViewModel.handleEdit(row.values)}
+              className="fw-semibold text-start text-truncate cursor-pointer"
+            >
+              {value}
+            </div>
+          );
         },
+
         sortParams: 'name',
       },
       {
@@ -68,7 +76,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
           return (
             <div className="text-end">
               <span
-                className={`${
+                className={` bg-status_${value}${
                   value ? 'bg-status_publish' : 'bg-status_unPublish'
                 } m-0 py-8px px-12 d-inline-block rounded-1 fw-semibold`}
               >
