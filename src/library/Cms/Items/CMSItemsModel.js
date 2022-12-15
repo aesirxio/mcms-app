@@ -86,38 +86,38 @@ class ItemsItemModel extends BaseItemModel {
   };
   // static __transformItemToApiOfCreation = (data) => {
   //   let formData = new FormData();
-  //   // const excluded = [CMS_PRODUCT_DETAIL_FIELD_KEY.ID];
-  //   // Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
-  //   // if (!excluded.includes(index) && data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]) {
+  //   // const excluded = [CMS_CATE_DETAIL_FIELD_KEY.ID];
+  //   // Object.keys(CMS_CATE_DETAIL_FIELD_KEY).forEach((index) => {
+  //   // if (!excluded.includes(index) && data[CMS_CATE_DETAIL_FIELD_KEY[index]]) {
   //   //   formData.append(
-  //   //     [CMS_PRODUCT_DETAIL_FIELD_KEY[index]],
-  //   //     data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]
+  //   //     [CMS_CATE_DETAIL_FIELD_KEY[index]],
+  //   //     data[CMS_CATE_DETAIL_FIELD_KEY[index]]
   //   //   );
   //   // }
   //   // });
-  //   formData.append([CMS_PRODUCT_DETAIL_FIELD_KEY.ID], data[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] ?? 0);
+  //   formData.append([CMS_CATE_DETAIL_FIELD_KEY.ID], data[CMS_CATE_DETAIL_FIELD_KEY.ID] ?? 0);
   //   return formData;
   // };
 
   // static __transformItemToApiOfUpdation = (data) => {
   //   let formData = {};
   //   const excluded = [
-  //     CMS_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
-  //     CMS_PRODUCT_DETAIL_FIELD_KEY.TAGS,
+  //     CMS_CATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
+  //     CMS_CATE_DETAIL_FIELD_KEY.TAGS,
   //   ];
-  //   Object.keys(CMS_PRODUCT_DETAIL_FIELD_KEY).forEach((index) => {
+  //   Object.keys(CMS_CATE_DETAIL_FIELD_KEY).forEach((index) => {
   //     if (
-  //       !excluded.includes(CMS_PRODUCT_DETAIL_FIELD_KEY[index]) &&
-  //       data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]]
+  //       !excluded.includes(CMS_CATE_DETAIL_FIELD_KEY[index]) &&
+  //       data[CMS_CATE_DETAIL_FIELD_KEY[index]]
   //     ) {
-  //       formData[CMS_PRODUCT_DETAIL_FIELD_KEY[index]] = data[CMS_PRODUCT_DETAIL_FIELD_KEY[index]];
+  //       formData[CMS_CATE_DETAIL_FIELD_KEY[index]] = data[CMS_CATE_DETAIL_FIELD_KEY[index]];
   //     }
   //   });
-  //   if (Object.keys(data[CMS_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length) {
-  //     formData['custom_fields'] = Object.keys(data[CMS_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS])
+  //   if (Object.keys(data[CMS_CATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length) {
+  //     formData['custom_fields'] = Object.keys(data[CMS_CATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS])
   //       .map((key) => {
   //         return {
-  //           [key]: data[CMS_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key],
+  //           [key]: data[CMS_CATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key],
   //         };
   //       })
   //       .reduce((prev, curr) => curr);

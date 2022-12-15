@@ -52,21 +52,28 @@ export default class CategoriesStore {
     return null;
   }
 
-  async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+  async getDetail(id, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('getDetail', data);
-      if (data) {
+      console.log('Store getDetail', id);
+      if (id) {
         runInAction(() => {
-          callbackOnSuccess(data);
+          callbackOnSuccess({
+            id: id,
+            name: 'Name response',
+            alias: 'alias response',
+            organisation: { label: 'test', value: 1 },
+            content_type: { label: 'test', value: 1 },
+            parent_category: { label: 'test', value: 1 },
+            default_template: { label: 'test', value: 1 },
+            related_category: { label: 'test', value: 1 },
+            category_image: 'test img',
+            intro_text: 'intro_text response',
+            full_text: 'full_text response',
+          });
         });
-        setTimeout(() => {
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
       } else {
         runInAction(() => {
           callbackOnError({
@@ -218,7 +225,7 @@ export default class CategoriesStore {
     }
   }
   async handleEdit(value, callbackOnSuccess, callbackOnError) {
-    console.log('data ', value);
+    console.log('dataDetail ', value);
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
