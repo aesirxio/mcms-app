@@ -5,19 +5,16 @@ import AesirxCmsItemstApiService from 'library/Cms/Items/CMSItems';
 export default class ItemsStore {
   async getList(callbackOnSuccess, callbackOnError, filters) {
     try {
-      const results = true;
+      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const results = await getListItemsAPIService.getList(filters);
       if (results) {
-        const getListItemsAPIService = new AesirxCmsItemstApiService();
-        const results = await getListItemsAPIService.getList(filters);
-        if (results) {
-          runInAction(() => {
-            callbackOnSuccess(results);
-          });
-        } else {
-          callbackOnError({
-            message: 'Something went wrong from Server response',
-          });
-        }
+        runInAction(() => {
+          callbackOnSuccess(results);
+        });
+      } else {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
       }
     } catch (error) {
       callbackOnError({
@@ -25,6 +22,7 @@ export default class ItemsStore {
       });
     }
   }
+
   getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
@@ -52,6 +50,7 @@ export default class ItemsStore {
       return null;
     }
   }
+
   saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
       runInAction(() => {
@@ -77,15 +76,14 @@ export default class ItemsStore {
       console.log('Error');
     }
   }
-  handleDelete(id, callbackOnSuccess, callbackOnError) {
-    console.log('id', id);
+  async deleteItems(data, callbackOnSuccess, callbackOnError) {
     try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (id) {
+      const getListInfoAPIService = new AesirxCmsItemstApiService();
+      const respondedData = await getListInfoAPIService.deleteItems(data);
+
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess(id);
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
@@ -99,29 +97,25 @@ export default class ItemsStore {
       return null;
     }
   }
-  handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
-    console.log('arrId', arrId);
+  async toggleFeatured(id, isFeatured, callbackOnSuccess, callbackOnError) {
     try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (arrId) {
+      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const results = await getListItemsAPIService.toggleFeatured(id, isFeatured);
+      if (results) {
         runInAction(() => {
-          callbackOnSuccess(arrId);
+          callbackOnSuccess(results);
         });
       } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
-          });
+        callbackOnError({
+          message: 'Something went wrong from Server response',
         });
       }
     } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
+      callbackOnError({
+        message: 'Something went wrong from Server response',
+      });
     }
   }
-
   handleSearch(value, callbackOnSuccess, callbackOnError) {
     console.log('valueSearch', value);
     try {
