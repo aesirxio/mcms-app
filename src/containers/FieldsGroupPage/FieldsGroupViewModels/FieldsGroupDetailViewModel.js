@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class FieldsGroupDetailViewModel {
@@ -25,7 +25,7 @@ class FieldsGroupDetailViewModel {
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.fieldsGroupStore.getDetail(
-      this.fieldsGroupDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
+      this.fieldsGroupDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
     );

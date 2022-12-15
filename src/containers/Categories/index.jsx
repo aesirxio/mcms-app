@@ -1,14 +1,11 @@
 import React, { lazy, useState } from 'react';
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react';
 import TabBarComponent from 'components/TabBarComponent';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import CategoriesStore from './CategoriesStore/Categories';
-import {
-  CategoriesViewModelContextProvider,
-  withCategoriesViewModel,
-} from './CategoriesViewModels/CategoriesViewModelContextProvider';
+import { CategoriesViewModelContextProvider } from './CategoriesViewModels/CategoriesViewModelContextProvider';
 import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
 
 const CategoriesComponent = lazy(() => import('./Component/Categories'));
@@ -55,4 +52,4 @@ const Categories = observer(() => {
   );
 });
 
-export default withTranslation('common')(withCategoriesViewModel(Categories));
+export default Categories;

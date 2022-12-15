@@ -4,7 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 import ItemsStore from './ItemsStore/ItemsStore';
 import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
-import { CMS_PRODUCT_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const EditItems = observer(
 
     async componentDidMount() {
       if (this.isEdit) {
-        this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+        this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
         await this.itemsDetailViewModel.initializeData();
         this.forceUpdate();
       }
@@ -178,14 +178,14 @@ const EditItems = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
             },
             {

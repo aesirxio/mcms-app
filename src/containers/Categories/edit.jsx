@@ -3,7 +3,7 @@ import Spinner from '../../components/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
@@ -42,7 +42,7 @@ const EditCategories = observer(
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.categoriesDetailViewModel.initializeData();
       this.forceUpdate();
     }
@@ -141,14 +141,14 @@ const EditCategories = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Product Name');

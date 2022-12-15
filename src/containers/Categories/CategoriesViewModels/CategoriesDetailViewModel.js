@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 import history from 'routes/history';
@@ -26,8 +26,8 @@ class CategoriesDetailViewModel {
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getDetail(
-      this.categoriesDetailViewModel.formPropsData[CMS_PRODUCT_DETAIL_FIELD_KEY.ID],
-      this.callbackOnGetProductSuccessHandler,
+      this.categoriesDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
+      this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
     );
     this.formStatus = PAGE_STATUS.READY;
@@ -39,15 +39,6 @@ class CategoriesDetailViewModel {
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  getDetail = (data) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.getDetail(
-      data,
-      this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
@@ -141,8 +132,8 @@ class CategoriesDetailViewModel {
 
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
+      console.log('result api', result);
+      this.categoriesDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
