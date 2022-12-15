@@ -2,8 +2,10 @@ import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
+import { Spinner } from 'react-bootstrap';
+import PAGE_STATUS from 'constants/PageStatus';
 
-const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
+const Categories = observer(({ setEntriesFound }) => {
   const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
   const categoriesViewModel = useCategoriesViewModel();
@@ -86,7 +88,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
       },
       {
         Header: '',
-        accessor: 'check',
+        accessor: 'featured',
         className: 'fs-6 fw-semibold border-bottom-1 text-center',
         Cell: ({ row }) => {
           const isFeatured = row.values.featured ? 0 : 1;
@@ -110,8 +112,8 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
               >
                 <path
                   d="M19.2831 7.27584L13.3323 6.411L10.6722 1.01803C10.5995 0.87037 10.48 0.750839 10.3323 0.678183C9.96199 0.49537 9.51199 0.647714 9.32684 1.01803L6.66668 6.411L0.715901 7.27584C0.551838 7.29928 0.401838 7.37662 0.286995 7.49381C0.148155 7.63651 0.0716479 7.8285 0.0742847 8.02758C0.0769216 8.22666 0.158487 8.41655 0.301057 8.55553L4.60653 12.7532L3.58934 18.6805C3.56549 18.8184 3.58074 18.9602 3.63338 19.0899C3.68602 19.2195 3.77394 19.3318 3.88716 19.4141C4.00038 19.4963 4.13437 19.5452 4.27395 19.5551C4.41352 19.5651 4.5531 19.5357 4.67684 19.4704L9.99949 16.6719L15.3222 19.4704C15.4675 19.5477 15.6362 19.5735 15.7979 19.5454C16.2057 19.4751 16.48 19.0883 16.4097 18.6805L15.3925 12.7532L19.6979 8.55553C19.8151 8.44068 19.8925 8.29068 19.9159 8.12662C19.9792 7.71646 19.6932 7.33678 19.2831 7.27584Z"
-                  fill={`${row?.values?.check ? '#1AB394' : 'transparent'}`}
-                  stroke={`${row?.values?.check ? 'transparent' : '#C0C0C0'}`}
+                  fill={`${row?.values?.featured ? '#1AB394' : 'transparent'}`}
+                  stroke={`${row?.values?.featured ? 'transparent' : '#C0C0C0'}`}
                 />
               </svg>
             </div>
@@ -133,8 +135,8 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         engagement: '40%',
         visits: '100',
         languages: 'English (en), Vietnam...',
-        status: true,
-        check: 'unpublished',
+        status: 'unpublished',
+        featured: false,
       },
       {
         checkbox: false,
@@ -145,7 +147,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: 'unpublished',
+        featured: false,
       },
       {
         checkbox: true,
@@ -156,7 +158,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -167,7 +169,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'trashed',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -178,7 +180,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: false,
@@ -189,7 +191,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: false,
+        featured: false,
       },
       {
         checkbox: true,
@@ -200,7 +202,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -211,7 +213,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -222,7 +224,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -233,7 +235,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -244,7 +246,7 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
       {
         checkbox: true,
@@ -255,14 +257,12 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
         visits: '100',
         languages: 'English (en), Vietnam...',
         status: 'published',
-        check: true,
+        featured: true,
       },
     ],
     []
   );
-  // if (categoriesStore.dataDumyCreate?.id) {
-  //   dataTable.unshift(categoriesStore.dataDumyCreate);
-  // }
+
   useEffect(() => {
     let fetchData = async () => {
       setLoading(true);
@@ -274,24 +274,27 @@ const Categories = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   }, []);
   return (
     <>
-      <div className="fs-14 h-100">
-        <Table
-          columns={columnsTable}
-          data={dataTable}
-          canSort={true}
-          store={categoriesViewModel.categoriesDetailViewModel}
-          pagination={true}
-          selection={false}
-          dragDrop={true}
-          setLoading={setLoading}
-          loading={loading}
-          setDataAction={setDataAction}
-          dataAction={dataAction}
-          filterTab={filterTab}
-          setFilterTab={setFilterTab}
-          linkTo="/categories-edit/"
-        ></Table>
-      </div>
+      {categoriesViewModel.categoriesListViewModel.formStatus == PAGE_STATUS.LOADING ? (
+        <Spinner />
+      ) : (
+        <div className="fs-14 h-100">
+          <Table
+            columns={columnsTable}
+            data={dataTable}
+            canSort={true}
+            store={categoriesViewModel.categoriesDetailViewModel}
+            listViewModel={categoriesViewModel.categoriesListViewModel}
+            pagination={true}
+            selection={false}
+            dragDrop={true}
+            setLoading={setLoading}
+            loading={loading}
+            setDataAction={setDataAction}
+            dataAction={dataAction}
+            linkTo="/categories-edit/"
+          ></Table>
+        </div>
+      )}
     </>
   );
 });

@@ -89,16 +89,6 @@ class CategoriesDetailViewModel {
     );
   };
 
-  handlePagination = (page) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handlePagination(
-      page,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.categoriesStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },

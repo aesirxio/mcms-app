@@ -32,6 +32,26 @@ export default class CategoriesStore {
       });
     }
   }
+
+  async getListByFilter(filter, callbackOnSuccess, callbackOnError) {
+    console.log('filter', filter);
+    if (filter) {
+      runInAction(() => {
+        callbackOnSuccess(filter);
+      });
+    } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
+    }
+  }
+  catch(error) {
+    console.log('API - Get Content: ' + error);
+    return null;
+  }
+
   async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api

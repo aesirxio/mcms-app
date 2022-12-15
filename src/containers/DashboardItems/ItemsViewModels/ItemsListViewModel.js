@@ -64,6 +64,16 @@ class ItemsListViewModel {
     );
   };
 
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   toggleFeatured = async (id, isFeatured) => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.itemsStore.toggleFeatured(

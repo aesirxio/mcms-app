@@ -9,17 +9,14 @@ import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 import { Icon } from '@iconify/react';
 
-const optionAction = [
-  { value: 'delete', label: 'Delete' },
-  // { value: "action-3", label: "Action 3" },
-];
+const optionAction = [{ value: 'delete', label: 'Delete' }];
 
 const optionFilterColumns = [
   { value: true, label: 'Published' },
   { value: false, label: 'UnPublished' },
 ];
 
-const ListThumb = ({ selectedMulptiRows, setDataFilter, setFilterSearch, store, allColumns }) => {
+const ListThumb = ({ selectedMulptiRows, store, allColumns, listViewModel }) => {
   const [action, setAction] = useState('');
   const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
@@ -34,14 +31,11 @@ const ListThumb = ({ selectedMulptiRows, setDataFilter, setFilterSearch, store, 
   };
 
   const handleSearch = (e) => {
-    setFilterSearch(e.target.value);
-    store.handleSearch(e.target.value);
-    setTimeout(() => {}, 2000);
+    listViewModel.handleGetListByFilter(null, e.target.value, null);
   };
   const handleFilterColum = (e) => {
     setFilterColum(e);
-    setDataFilter(e);
-    setTimeout(() => {}, 2000);
+    listViewModel.handleGetListByFilter(null, null, e.label);
   };
 
   return (

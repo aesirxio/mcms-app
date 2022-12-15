@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-// import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class CategoriesListViewModel {
@@ -12,6 +11,13 @@ class CategoriesListViewModel {
     data: [],
     dataDetail: [],
   };
+  filters = {
+    views: 'all',
+    search: '',
+    filterColum: '',
+    'list[limitstart]': 0,
+    'list[limit]': 10,
+  };
 
   constructor(categoriesStore) {
     makeAutoObservable(this);
@@ -21,6 +27,28 @@ class CategoriesListViewModel {
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+  };
+  handleGetListByFilter = async (tab, search, filterColum) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.filters.views = tab ?? 'all';
+    this.filters.search = search ?? '';
+    this.filters.filterColum = filterColum ?? '';
+    await this.categoriesStore.getListByFilter(
+      this.filters,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.categoriesStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnErrorHandler = (error) => {
