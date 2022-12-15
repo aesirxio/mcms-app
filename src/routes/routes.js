@@ -3,17 +3,17 @@ import React, { lazy } from 'react';
 
 const LoginPage = lazy(() => import('../containers/LoginPage'));
 const WelcomePage = lazy(() => import('../containers/WelcomePage'));
-const DashboardPage = lazy(() => import('../containers/DashboardItems'));
+const ItemsPage = lazy(() => import('../containers/ItemsPage'));
 const ProfilePage = lazy(() => import('../containers/ProfilePage'));
 const CategoriesPage = lazy(() => import('../containers/Categories'));
 const DamPage = lazy(() => import('../containers/DamPage'));
 const FieldsPage = lazy(() => import('../containers/FieldsPage'));
 const FieldsGroupPage = lazy(() => import('../containers/FieldsGroupPage'));
 const ContentPage = lazy(() => import('../containers/ContentPage'));
-const SettingPage = lazy(() => import('../containers/DashboardItems'));
-const HelpCenterPage = lazy(() => import('../containers/DashboardItems'));
+const SettingPage = lazy(() => import('../containers/ItemsPage'));
+const HelpCenterPage = lazy(() => import('../containers/ItemsPage'));
 const EditCategories = lazy(() => import('../containers/Categories/edit'));
-const EditItems = lazy(() => import('../containers/DashboardItems/edit'));
+const EditItems = lazy(() => import('../containers/ItemsPage/edit'));
 const EditFields = lazy(() => import('../containers/FieldsPage/edit'));
 const EditFieldsGroup = lazy(() => import('../containers/FieldsGroupPage/edit'));
 const EditContent = lazy(() => import('../containers/ContentPage/edit'));
@@ -29,9 +29,9 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: ['/'],
+    path: '/',
     exact: true,
-    main: () => <DashboardPage />,
+    main: () => <ItemsPage />,
   },
   {
     path: '/items-edit/:id',
@@ -39,7 +39,7 @@ const mainRoutes = [
     main: ({ match }) => <EditItems match={match} />,
   },
   {
-    path: '/items-create',
+    path: '/items-create/:content_type',
     exact: true,
     main: () => <EditItems />,
   },

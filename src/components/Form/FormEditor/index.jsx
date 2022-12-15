@@ -11,12 +11,11 @@ const Editor = ({ field }) => {
 
   const onSelect = (data) => {
     editor.model.change(() => {
-      const imgTag = `<img  src="${data[0]?.url}" alt="${data[0]?.basename}"></img>`;
+      const imgTag = `<img  src="${data[0]?.download_url}" alt="${data[0]?.name}"></img>`;
       const viewFragment = editor.data.processor.toView(imgTag);
       const modelFragment = editor.data.toModel(viewFragment);
       editor.model.insertContent(modelFragment);
     });
-    setEditor();
     setShow(false);
   };
   return (

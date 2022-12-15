@@ -2,8 +2,10 @@
 .border {
   border: 0;
   outline: none;
-  background-color: transparent;
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23BDBDBDFF' stroke-width='3' stroke-dasharray='14%2c 10' stroke-dashoffset='5' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-image: repeating-linear-gradient(0deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(90deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(180deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(270deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px);
+  background-size: 3px 100%, 100% 3px, 3px 100% , 100% 3px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
 }
 .limit-image{
   max-height: 400px;
