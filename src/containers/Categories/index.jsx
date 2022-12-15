@@ -16,7 +16,6 @@ const categoriesStore = new CategoriesStore();
 const categoriesViewModel = new CategoriesViewModel(categoriesStore);
 
 const Categories = observer(() => {
-  const [filterTab, setFilterTab] = useState('');
   const [entriesFound, setEntriesFound] = useState(0);
   const { t } = useTranslation('common');
 
@@ -40,12 +39,13 @@ const Categories = observer(() => {
           </Link>
         </div>
         <div className="h-100 d-flex flex-column">
-          <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
+          <TabBarComponent
+            views={categoriesViewModel.categoriesListViewModel.filters.views}
+            getListByFilter={categoriesViewModel.categoriesListViewModel.handleGetListByFilter}
+          />
           <CategoriesComponent
             t={t}
             data={null}
-            setFilter={setFilterTab}
-            filterTab={filterTab}
             setEntriesFound={setEntriesFound}
             categoriesViewModel={categoriesViewModel}
           />

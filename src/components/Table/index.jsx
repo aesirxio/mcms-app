@@ -24,7 +24,7 @@ const Table = ({
   canSort,
   sortAPI,
   dragDrop,
-  // filterTab,
+  listViewModel,
 }) => {
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
     const defaultRef = React.useRef();
@@ -40,9 +40,7 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
-  const [dataFilter, setDataFilter] = useState();
-  const [filterSearch, setFilterSearch] = useState('');
-  const [idDummyDelete, setIdDummyDelete] = useState(null);
+
   const paginate = [];
   const {
     getTableProps,
@@ -113,41 +111,6 @@ const Table = ({
     }
   );
 
-  useEffect(() => {
-    if (idDummyDelete && idDummyDelete?.length === 1) {
-      setRecords(data.filter((v) => v.id !== idDummyDelete?.[0]?.values?.id));
-      // setDataAction({});
-    } else if (idDummyDelete?.length > 1) {
-      setRecords(data.filter((v) => v.status === 'DeleteAll'));
-      // }
-      //  else if (filterTab) {
-      //   setRecords(
-      //     filterTab.target.innerText && filterTab.target.innerText !== 'All items'
-      //       ? data.filter(
-      //           (v) =>
-      //             v.status ===
-      //             (filterTab.target.innerText === 'Published'
-      //               ? true
-      //               : filterTab.target.innerText === 'Unpublished'
-      //               ? false
-      //               : null)
-      //         )
-      //       : data
-      //   );
-    } else if (dataFilter) {
-      setRecords(data.filter((v) => v.status === dataFilter?.value));
-    } else if (filterSearch) {
-      setRecords(data.filter((v) => v.name?.toLowerCase().includes(filterSearch?.toLowerCase())));
-    } else {
-      setRecords(data);
-    }
-  }, [data, dataFilter, filterSearch, idDummyDelete]);
-
-  // const handlePagination = async (pageIndex) => {
-  //   setLoading(true);
-  //   await store.goToPage(pageIndex);
-  //   setLoading(false);
-  // };
   //handle rows drag and drop
   const moveRow = (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];
@@ -241,7 +204,7 @@ const Table = ({
       paginate?.push(
         <button
           onClick={() => {
-            gotoPage(i), store.handlePagination(i);
+            gotoPage(i), listViewModel.handlePagination(i);
           }}
           key={Math.random(40, 200)}
         >
@@ -255,11 +218,9 @@ const Table = ({
       <>
         <ListThumb
           selectedMulptiRows={selectedFlatRows}
-          setDataFilter={setDataFilter}
-          setFilterSearch={setFilterSearch}
           store={store}
           allColumns={allColumns}
-          setIdDummyDelete={setIdDummyDelete}
+          listViewModel={listViewModel}
         />
         {page.length ? (
           <div className="rounded-3 shadow-sm overflow-hidden mb-24 text-color">
@@ -462,7 +423,7 @@ const Table = ({
               <div className="border_pagination">
                 <button
                   onClick={() => {
-                    previousPage(), store.handlePagination(pageIndex - 1);
+                    previousPage(), listViewModel.handlePagination(pageIndex - 1);
                   }}
                   disabled={!canPreviousPage}
                 >
@@ -471,7 +432,7 @@ const Table = ({
                 <span className="">{paginate}</span>
                 <button
                   onClick={() => {
-                    nextPage(), store.handlePagination(pageIndex + 1);
+                    nextPage(), listViewModel.handlePagination(pageIndex + 1);
                   }}
                   disabled={!canNextPage}
                 >
