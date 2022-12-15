@@ -412,8 +412,39 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  delete = (data) => {
-    console.log(data);
+  deleteItems = async (data) => {
+    try {
+      // const response = await this.route.deleteItems(data);
+      console.log('delete data', data);
+      const response = true;
+      if (response) {
+        return response;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  toggleFeatured = async (id, isFeatured) => {
+    try {
+      // const response = await this.route.toggleFeatured(id, isFeatured);
+      console.log('items', id, isFeatured);
+      const response = true;
+      if (response) {
+        return response;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log('toggleFeatured', error);
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
   };
 
   create = async (data) => {

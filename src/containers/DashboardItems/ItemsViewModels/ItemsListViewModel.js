@@ -21,6 +21,24 @@ class ItemsListViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
+    await this.getListItems();
+  };
+
+  resetFilter = () => {
+    this.filters = {
+      views: 'all',
+      'list[limitstart]': 0,
+      'list[limit]': 10,
+    };
+  };
+
+  resetObservable = () => {
+    this.resetFilter();
+    this.tableData = [];
+    this.formStatus = PAGE_STATUS.LOADING;
+  };
+
+  getListItems = async () => {
     await this.itemsStore.getList(
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler,
@@ -32,28 +50,54 @@ class ItemsListViewModel {
     this.formStatus = PAGE_STATUS.LOADING;
     setTimeout(() => {
       this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
-      // await this.itemsStore.getList(
-      //   this.callbackOnSuccessHandler,
-      //   this.callbackOnErrorHandler,
-      //   this.filters
-      // );
+      // await getListItems();
       this.formStatus = PAGE_STATUS.READY;
     }, 2000);
   };
 
-  handleDelete = (data) => {
-    console.log(data);
+  handleDelete = async (data) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.deleteItems(
+      data,
+      this.callbackOnSuccessDeleteHandler,
+      this.callbackOnErrorHandler
+    );
   };
 
-  callbackOnErrorHandler = () => {
-    notify('Update unsuccessfully', 'error');
-    this.formStatus = PAGE_STATUS.READY;
+  toggleFeatured = async (id, isFeatured) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.toggleFeatured(
+      id,
+      isFeatured,
+      this.callbackOnSuccessToggleFeatured,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  callbackOnSuccessToggleFeatured = async () => {
+    await this.getListItems();
+    notify('Set featured successfully !');
+  };
+
+  callbackOnSuccessDeleteHandler = async () => {
+    this.resetFilter();
+    await this.getListItems();
+    notify('Delete successfully !');
+  };
+
+  callbackOnErrorHandler = ({ message }) => {
+    notify(message, 'error');
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1000);
   };
 
   callbackOnSuccessHandler = (result) => {
     if (result?.items) {
       this.tableData = result.items;
-      this.formStatus = PAGE_STATUS.READY;
+      setTimeout(() => {
+        this.formStatus = PAGE_STATUS.READY;
+      }, 1500);
     }
   };
 }
