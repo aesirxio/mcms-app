@@ -12,11 +12,11 @@ Find out more in [https://cms.aesirx.io](https://cms.aesirx.io)
 1. Rename the `.env.dist` file to `.env`.
 1. Replace the `REACT_APP_CLIENT_SECRET` in the `.env` file with the one provided in your profile account.
 
-#### `npm run dev`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-##### `npm build`
+### `yarn build`
 
 Get a full build and install it in your favorite web server.

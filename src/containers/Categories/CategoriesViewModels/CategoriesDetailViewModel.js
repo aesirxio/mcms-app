@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_PRODUCT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+import history from 'routes/history';
 class CategoriesDetailViewModel {
   categoriesStore = null;
   formStatus = PAGE_STATUS.READY;
@@ -105,6 +106,17 @@ class CategoriesDetailViewModel {
       this.callbackOnErrorHandler
     );
     this.successResponse.state = true;
+  };
+
+  handleEdit = async (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    history.push(`/categories-edit/${value?.id}`);
+    await this.categoriesStore.handleEdit(
+      value,
+      this.callbackOnUpdateSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {

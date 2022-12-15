@@ -1,9 +1,10 @@
-import ClassicEditor from 'ckeditor5-custom-build/build/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useState } from 'react';
 import ModalDAMComponent from 'components/ModalDamComponent';
 import { Icon } from '@iconify/react';
 import styles from './index.module.scss';
+const ClassicEditor = require('ckeditor/build/ckeditor');
+
 const Editor = ({ field }) => {
   const [editor, setEditor] = useState('');
   const [show, setShow] = useState(false);
