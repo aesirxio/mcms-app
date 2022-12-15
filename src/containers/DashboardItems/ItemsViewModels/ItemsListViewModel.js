@@ -31,11 +31,13 @@ class ItemsListViewModel {
       'list[limit]': 10,
     };
   };
+
   resetObservable = () => {
     this.resetFilter();
     this.tableData = [];
     this.formStatus = PAGE_STATUS.LOADING;
   };
+
   getListItems = async () => {
     await this.itemsStore.getList(
       this.callbackOnSuccessHandler,
@@ -62,11 +64,27 @@ class ItemsListViewModel {
     );
   };
 
+  toggleFeatured = async (id, isFeatured) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.toggleFeatured(
+      id,
+      isFeatured,
+      this.callbackOnSuccessToggleFeatured,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  callbackOnSuccessToggleFeatured = async () => {
+    await this.getListItems();
+    notify('Set featured successfully !');
+  };
+
   callbackOnSuccessDeleteHandler = async () => {
     this.resetFilter();
     await this.getListItems();
     notify('Delete successfully !');
   };
+
   callbackOnErrorHandler = ({ message }) => {
     notify(message, 'error');
     setTimeout(() => {

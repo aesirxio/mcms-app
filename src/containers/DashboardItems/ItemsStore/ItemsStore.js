@@ -5,19 +5,16 @@ import AesirxCmsItemstApiService from 'library/Cms/Items/CMSItems';
 export default class ItemsStore {
   async getList(callbackOnSuccess, callbackOnError, filters) {
     try {
-      const results = true;
+      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const results = await getListItemsAPIService.getList(filters);
       if (results) {
-        const getListItemsAPIService = new AesirxCmsItemstApiService();
-        const results = await getListItemsAPIService.getList(filters);
-        if (results) {
-          runInAction(() => {
-            callbackOnSuccess(results);
-          });
-        } else {
-          callbackOnError({
-            message: 'Something went wrong from Server response',
-          });
-        }
+        runInAction(() => {
+          callbackOnSuccess(results);
+        });
+      } else {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
       }
     } catch (error) {
       callbackOnError({
@@ -25,6 +22,7 @@ export default class ItemsStore {
       });
     }
   }
+
   getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
@@ -52,6 +50,7 @@ export default class ItemsStore {
       return null;
     }
   }
+
   saveData(data, redirect, callbackOnSuccess, callbackOnError) {
     if (data) {
       runInAction(() => {
@@ -98,7 +97,25 @@ export default class ItemsStore {
       return null;
     }
   }
-
+  async toggleFeatured(id, isFeatured, callbackOnSuccess, callbackOnError) {
+    try {
+      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const results = await getListItemsAPIService.toggleFeatured(id, isFeatured);
+      if (results) {
+        runInAction(() => {
+          callbackOnSuccess(results);
+        });
+      } else {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      }
+    } catch (error) {
+      callbackOnError({
+        message: 'Something went wrong from Server response',
+      });
+    }
+  }
   handleSearch(value, callbackOnSuccess, callbackOnError) {
     console.log('valueSearch', value);
     try {

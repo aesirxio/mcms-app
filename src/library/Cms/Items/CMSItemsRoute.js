@@ -60,6 +60,15 @@ class CmsItemsRoute extends BaseRoute {
     //   }
     // );
   };
+  toggleFeatured = (id, isFeatured) => {
+    return AesirxApiInstance.post(
+      this.createRequestURL({
+        option: this.option,
+        id,
+        isFeatured,
+      })
+    );
+  };
 }
 
 export default CmsItemsRoute;
