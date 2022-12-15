@@ -2,16 +2,15 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+// import history from 'routes/history';
 class ItemsDetailViewModel {
   itemsStore = null;
   formStatus = PAGE_STATUS.LOADING;
   itemsDetailViewModel = null;
-  successResponse = {
-    state: true,
-    content_id: '',
-    data: [],
-    dataDetail: [],
-  };
+
+  listFields = [];
+  editMode = false;
+  contentType = null;
 
   constructor(itemsStore) {
     makeAutoObservable(this);
@@ -24,12 +23,15 @@ class ItemsDetailViewModel {
 
   initializeData = () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.getDetail(
-      this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
-      this.callbackOnGetProductSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    this.formStatus = PAGE_STATUS.READY;
+    if (!this.editMode) {
+      this.getFields(this.contentType);
+    } else {
+      this.itemsStore.getDetail(
+        this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
+        this.callbackOnGetDetailSuccessHandler,
+        this.callbackOnErrorHandler
+      );
+    }
   };
 
   handleCreate = (redirect) => {
@@ -41,12 +43,10 @@ class ItemsDetailViewModel {
       this.callbackOnErrorHandler
     );
   };
-
-  getDetail = (data) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.getDetail(
-      data,
-      this.callbackOnGetDetailSuccessHandler,
+  getFields = async (contentTypeId) => {
+    this.itemsStore.getFields(
+      contentTypeId,
+      this.callbackOnGetFieldsSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
@@ -61,36 +61,12 @@ class ItemsDetailViewModel {
     );
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  handleSearch = (value) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handleSearch(value, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
-  };
-
-  handlePagination = (page) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handlePagination(
-      page,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+  callbackOnGetFieldsSuccessHandler = (result) => {
+    if (result) {
+      this.listFields = result?.item;
+    } else {
+      // history.push('/');
+    }
     this.formStatus = PAGE_STATUS.READY;
   };
 
@@ -117,13 +93,11 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnGetDetailSuccessHandler = (result) => {
+  callbackOnGetDetailSuccessHandler = async (result) => {
     if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
-      notify('GetDetail successfully', 'success');
+      this.itemsDetailViewModel.formPropsData = result;
     }
-    this.formStatus = PAGE_STATUS.READY;
+    await this.getFields(this.itemsDetailViewModel.formPropsData.content_type_id);
   };
 
   callbackOnUpdateSuccessHandler = (result) => {
@@ -134,10 +108,10 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnErrorHandler = (error) => {
-    notify('Update unsuccessfully', 'error');
-    this.successResponse.state = false;
-    this.successResponse.content_id = error.result;
+  callbackOnErrorHandler = ({ message }) => {
+    notify(message, 'error');
+
+    // history.push('/');
     this.formStatus = PAGE_STATUS.READY;
   };
 }

@@ -19,24 +19,24 @@ const EditItems = observer(
   class EditItems extends Component {
     itemsDetailViewModel = null;
     formPropsData = {};
-    isEdit = false;
 
     constructor(props) {
       super(props);
       this.viewModel = itemsViewModel ? itemsViewModel : null;
-      this.state = { key: 'commonInformation' };
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
-      this.isEdit = props.match.params?.id ? true : false;
+      this.itemsDetailViewModel.editMode = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
-      if (this.isEdit) {
+      if (this.itemsDetailViewModel.editMode) {
         this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-        await this.itemsDetailViewModel.initializeData();
-        this.forceUpdate();
+      } else {
+        this.itemsDetailViewModel.contentType = this.props.match.params?.content_type;
       }
+      await this.itemsDetailViewModel.initializeData();
+      this.forceUpdate();
     }
 
     render() {
@@ -262,7 +262,7 @@ const EditItems = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.state.dataStatus ?? '',
+              value: '',
               className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
               required: true,
               validation: 'required',
@@ -328,23 +328,24 @@ const EditItems = observer(
           ],
         },
       ];
-      console.log(this.itemsDetailViewModel.itemsDetailViewModel);
+
       return (
         <ItemsViewModelContextProvider viewModel={itemsViewModel}>
-          <div className="py-4 px-3 h-100 d-flex flex-column">
-            {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
-              <Spinner className="spinner-overlay" />
-            )}
-            <ItemsFormPage
-              store={this.itemsDetailViewModel}
-              dataForm={data}
-              generateFormSetting={generateFormSetting}
-              path="/"
-              title="txt_add_item"
-              validator={this.validator}
-              formPublish={formPublish}
-            />
-          </div>
+          {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
+            <Spinner className="spinner-overlay" />
+          ) : (
+            <div className="py-4 px-3 h-100 d-flex flex-column">
+              <ItemsFormPage
+                store={this.itemsDetailViewModel}
+                dataForm={data}
+                generateFormSetting={generateFormSetting}
+                path="/"
+                title="txt_add_item"
+                validator={this.validator}
+                formPublish={formPublish}
+              />
+            </div>
+          )}
         </ItemsViewModelContextProvider>
       );
     }

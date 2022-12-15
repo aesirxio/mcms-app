@@ -22,7 +22,27 @@ export default class ItemsStore {
       });
     }
   }
+  async getFields(contentTypeId, callbackOnSuccess, callbackOnError) {
+    try {
+      const getFieldsAPIService = new AesirxCmsItemstApiService();
+      const respondedData = await getFieldsAPIService.getFields(contentTypeId);
 
+      if (respondedData) {
+        runInAction(() => {
+          callbackOnSuccess(respondedData);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
   getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
