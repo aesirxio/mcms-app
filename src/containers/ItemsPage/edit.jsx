@@ -4,15 +4,12 @@ import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 import ItemsStore from './ItemsStore/ItemsStore';
 import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
-import { CMS_CATE_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
-import { withRouter } from 'react-router-dom';
 
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
-import {
-  ItemsViewModelContextProvider,
-  withItemsViewModel,
-} from './ItemsViewModels/ItemsViewModelContextProvider';
+import { ItemsViewModelContextProvider } from './ItemsViewModels/ItemsViewModelContextProvider';
+
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 
 const itemsStore = new ItemsStore();
@@ -36,14 +33,13 @@ const EditItems = observer(
 
     async componentDidMount() {
       if (this.isEdit) {
-        this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+        this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
         await this.itemsDetailViewModel.initializeData();
         this.forceUpdate();
       }
     }
 
     render() {
-      // const { t } = this.props;
       const data = {
         id: 1,
         groups: [
@@ -78,6 +74,9 @@ const EditItems = observer(
                 type: FORM_FIELD_TYPE.IMAGE,
                 value: '',
                 className: 'col-12',
+                changed: (data) => {
+                  console.log(data);
+                },
               },
               {
                 label: 'Image',
@@ -85,6 +84,9 @@ const EditItems = observer(
                 type: FORM_FIELD_TYPE.IMAGE,
                 value: '',
                 className: 'col-12',
+                changed: (data) => {
+                  console.log(data);
+                },
               },
             ],
           },
@@ -178,14 +180,14 @@ const EditItems = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
             },
             {
@@ -252,7 +254,6 @@ const EditItems = observer(
           ],
         },
       ];
-
       const formPublish = [
         {
           name: '',
@@ -327,6 +328,7 @@ const EditItems = observer(
           ],
         },
       ];
+      console.log(this.itemsDetailViewModel.itemsDetailViewModel);
       return (
         <ItemsViewModelContextProvider viewModel={itemsViewModel}>
           <div className="py-4 px-3 h-100 d-flex flex-column">
@@ -349,4 +351,4 @@ const EditItems = observer(
   }
 );
 
-export default withRouter(withItemsViewModel(EditItems));
+export default EditItems;

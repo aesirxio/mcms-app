@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-// import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+// import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class ItemsListViewModel {
@@ -62,16 +62,6 @@ class ItemsListViewModel {
       this.callbackOnSuccessDeleteHandler,
       this.callbackOnErrorHandler
     );
-  };
-
-  handlePagination = (page) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.handlePagination(
-      page,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   toggleFeatured = async (id, isFeatured) => {

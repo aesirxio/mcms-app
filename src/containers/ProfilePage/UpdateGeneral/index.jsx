@@ -228,8 +228,8 @@ const UpdateGeneral = observer(
                       <FormImage
                         field={{
                           value: {
-                            url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
-                            basename: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
+                            download_url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
+                            name: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
                           },
                           changed: (data) => this.handleDamAssets(data),
                         }}
@@ -241,8 +241,8 @@ const UpdateGeneral = observer(
                         <FormImage
                           field={{
                             value: {
-                              url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
-                              basename: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
+                              download_url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
+                              name: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
                             },
                             changed: (data) => this.handleDamAssets(data),
                           }}

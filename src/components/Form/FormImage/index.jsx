@@ -35,7 +35,7 @@ const FormImage = ({ field, hiddenDelete = false }) => {
               onClick={() => setShow(true)}
               className={`${styles['limit-image']} text-center cursor-pointer zindex-1`}
             >
-              <ComponentImage src={file.url} alt={file?.basename ?? 'Image'} />
+              <ComponentImage src={file.download_url} alt={file?.name ?? 'Image'} />
             </div>
           ) : (
             <div className="d-flex flex-column align-items-center p-40 zindex-1">

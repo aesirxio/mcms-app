@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class ItemsDetailViewModel {
   itemsStore = null;
   formStatus = PAGE_STATUS.LOADING;
-  categoriesDetailViewModel = null;
+  itemsDetailViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
@@ -18,14 +18,14 @@ class ItemsDetailViewModel {
     this.itemsStore = itemsStore;
   }
 
-  setForm = (categoriesDetailViewModel) => {
-    this.categoriesDetailViewModel = categoriesDetailViewModel;
+  setForm = (itemsDetailViewModel) => {
+    this.itemsDetailViewModel = itemsDetailViewModel;
   };
 
   initializeData = () => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.itemsStore.getDetail(
-      this.categoriesDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
+      this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
       this.callbackOnGetProductSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -84,6 +84,16 @@ class ItemsDetailViewModel {
     this.itemsStore.handleSearch(value, this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
 
+  handlePagination = (page) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.itemsStore.handlePagination(
+      page,
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');
@@ -107,13 +117,6 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnErrorHandler = (error) => {
-    notify('Update unsuccessfully', 'error');
-    this.successResponse.state = false;
-    this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
       console.log('result', result);
@@ -128,6 +131,13 @@ class ItemsDetailViewModel {
       console.log('result', result);
       notify('Update successfully', 'success');
     }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnErrorHandler = (error) => {
+    notify('Update unsuccessfully', 'error');
+    this.successResponse.state = false;
+    this.successResponse.content_id = error.result;
     this.formStatus = PAGE_STATUS.READY;
   };
 }
