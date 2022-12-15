@@ -32,12 +32,47 @@ export default class FieldsStore {
       });
     }
   }
-  async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+  async getDetail(id, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('getDetail', data);
+      console.log('getDetail', id);
+      if (id) {
+        runInAction(() => {
+          callbackOnSuccess({
+            id: id,
+            name: 'Name response',
+            types: 'types response',
+            organisation: { label: 'test', value: 1 },
+            content_type: { label: 'test', value: 1 },
+            parent_category: { label: 'test', value: 1 },
+            default_template: { label: 'test', value: 1 },
+            related_category: { label: 'test', value: 1 },
+            category_image: 'test img',
+            intro_text: 'intro_text response',
+            full_text: 'full_text response',
+          });
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
+  async handleCreate(data, redirect, callbackOnSuccess, callbackOnError) {
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(data.id);
+      console.log('Store handleCreate', data);
       if (data) {
         runInAction(() => {
           callbackOnSuccess(data);
@@ -59,16 +94,15 @@ export default class FieldsStore {
       return null;
     }
   }
-  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
+
+  async updateDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+    console.log('data UpdateDetail', data);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
     if (data) {
       runInAction(() => {
-        callbackOnSuccess({
-          id: '261',
-          name: data.name,
-          type: 'Services',
-          engagement: '40%',
-          visits: '100',
-        });
+        callbackOnSuccess(data);
       });
       setTimeout(() => {
         if (redirect) {
@@ -84,6 +118,7 @@ export default class FieldsStore {
       console.log('Error');
     }
   }
+
   async handleDelete(id, callbackOnSuccess, callbackOnError) {
     console.log('id', id);
     try {
@@ -196,6 +231,28 @@ export default class FieldsStore {
       console.log('API - Get Content: ' + error);
       return null;
     }
+  }
+
+  async getListByFilter(filter, callbackOnSuccess, callbackOnError) {
+    console.log('filter', filter);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
+    if (filter) {
+      runInAction(() => {
+        callbackOnSuccess(filter);
+      });
+    } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
+    }
+  }
+  catch(error) {
+    console.log('API - Get Content: ' + error);
+    return null;
   }
 
   async clearData() {

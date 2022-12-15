@@ -25,11 +25,11 @@ class CategoriesListViewModel {
   }
 
   initializeData = async () => {
-    this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
   handleGetListByFilter = async (tab, search, filterColum) => {
     this.formStatus = PAGE_STATUS.LOADING;
+    this.formStatus = 1;
     this.filters.views = tab ?? 'all';
     this.filters.search = search ?? '';
     this.filters.filterColum = filterColum ?? '';
@@ -38,31 +38,31 @@ class CategoriesListViewModel {
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-    this.formStatus = PAGE_STATUS.READY;
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
-  handlePagination = (page) => {
-    this.formStatus = PAGE_STATUS.LOADING;
+  handlePagination = (page, pageLimit) => {
     this.categoriesStore.handlePagination(
-      page,
+      (this.filters['list[limitstart]'] = page),
+      (this.filters['list[limit]'] = pageLimit),
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-    this.formStatus = PAGE_STATUS.READY;
+    console.log(this.filters);
   };
 
   callbackOnErrorHandler = (error) => {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');
     }
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnGetDetailSuccessHandler = (result) => {
@@ -71,14 +71,12 @@ class CategoriesListViewModel {
       this.successResponse.dataDetail = result;
       notify('GetDetail successfully', 'success');
     }
-    this.formStatus = PAGE_STATUS.READY;
   };
   callbackOnUpdateSuccessHandler = (result) => {
     if (result) {
       console.log('result', result);
       notify('Update successfully', 'success');
     }
-    this.formStatus = PAGE_STATUS.READY;
   };
 }
 
