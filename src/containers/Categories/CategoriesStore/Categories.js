@@ -8,7 +8,6 @@ export default class CategoriesStore {
       const results = true;
       if (results) {
         // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-
         // const respondedData = await getListInfoAPIService.getList();
         if (results) {
           runInAction(() => {
@@ -35,6 +34,9 @@ export default class CategoriesStore {
 
   async getListByFilter(filter, callbackOnSuccess, callbackOnError) {
     console.log('filter', filter);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
     if (filter) {
       runInAction(() => {
         callbackOnSuccess(filter);
@@ -86,16 +88,43 @@ export default class CategoriesStore {
       return null;
     }
   }
-  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
+
+  async handleCreate(data, redirect, callbackOnSuccess, callbackOnError) {
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(data.id);
+      console.log('Store handleCreate', data);
+      if (data) {
+        runInAction(() => {
+          callbackOnSuccess(data);
+        });
+        setTimeout(() => {
+          if (redirect) {
+            history.push('/categories');
+          }
+        }, 2000);
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
+  async updateDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+    console.log('data UpdateDetail', data);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
     if (data) {
       runInAction(() => {
-        callbackOnSuccess({
-          id: '261',
-          name: data.name,
-          type: 'Services',
-          engagement: '40%',
-          visits: '100',
-        });
+        callbackOnSuccess(data);
       });
       setTimeout(() => {
         if (redirect) {
@@ -211,28 +240,6 @@ export default class CategoriesStore {
       if (id) {
         runInAction(() => {
           callbackOnSuccess(id);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-  async handleEdit(value, callbackOnSuccess, callbackOnError) {
-    console.log('dataDetail ', value);
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (value) {
-        runInAction(() => {
-          callbackOnSuccess(value);
         });
       } else {
         runInAction(() => {

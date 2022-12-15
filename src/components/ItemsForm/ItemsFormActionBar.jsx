@@ -45,7 +45,7 @@ const ItemsFormActionBar = observer(
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
-                if (this.isEdit) {
+                if (isEdit) {
                   await store.handleUpdate();
                 } else {
                   await store.handleCreate();

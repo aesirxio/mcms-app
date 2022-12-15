@@ -1,5 +1,7 @@
 import { Icon } from '@iconify/react';
+import Spinner from 'components/Spinner';
 import TabBarComponent from 'components/TabBarComponent';
+import PAGE_STATUS from 'constants/PageStatus';
 import { observer } from 'mobx-react';
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,8 +34,15 @@ const FieldsPage = observer(() => {
             {t('txt_add_new_item')}
           </Link>
         </div>
-        <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
-        <Fields t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+        <TabBarComponent
+          views={fieldsViewModel.fieldsListViewModel.filters.views}
+          getListByFilter={fieldsViewModel.fieldsListViewModel.handleGetListByFilter}
+        />
+        {fieldsViewModel.fieldsListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
+          <Spinner />
+        ) : (
+          <Fields t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+        )}
       </div>
     </FieldsViewModelContextProvider>
   );

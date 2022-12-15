@@ -35,7 +35,7 @@ class CategoriesDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.saveData(
+    await this.categoriesStore.handleCreate(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
@@ -45,12 +45,15 @@ class CategoriesDetailViewModel {
 
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.getDetail(
+    await this.categoriesStore.updateDetail(
       this.categoriesDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
   handleDelete = (id) => {
@@ -71,15 +74,6 @@ class CategoriesDetailViewModel {
     );
   };
 
-  handleSearch = (value) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleSearch(
-      value,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.categoriesStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },
@@ -92,12 +86,9 @@ class CategoriesDetailViewModel {
   handleEdit = async (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     history.push(`/categories-edit/${value?.id}`);
-    await this.categoriesStore.handleEdit(
-      value,
-      this.callbackOnUpdateSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    this.formStatus = PAGE_STATUS.READY;
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
   callbackOnSuccessHandler = (result) => {
