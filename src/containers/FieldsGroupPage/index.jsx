@@ -1,5 +1,7 @@
 import { Icon } from '@iconify/react';
+import Spinner from 'components/Spinner';
 import TabBarComponent from 'components/TabBarComponent';
+import PAGE_STATUS from 'constants/PageStatus';
 import { observer } from 'mobx-react';
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +26,7 @@ const FieldsGroupPage = observer(() => {
             <p className="mb-0 text-color fs-14">{t('txt_dashboard_below')}</p>
           </div>
           <Link
-            to="/fields-create"
+            to="/fields-group-create"
             className="btn btn-success px-16 py-7px lh-lg text-capitalize fw-semibold rounded-1"
             onClick={() => {}}
           >
@@ -32,8 +34,15 @@ const FieldsGroupPage = observer(() => {
             {t('txt_add_new_item')}
           </Link>
         </div>
-        <TabBarComponent view={'all-items'} filterTab={filterTab} setFilterTab={setFilterTab} />
-        <FieldsGroup t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+        <TabBarComponent
+          views={fieldsGroupViewModel.fieldsGroupListViewModel.filters.views}
+          getListByFilter={fieldsGroupViewModel.fieldsGroupListViewModel.handleGetListByFilter}
+        />
+        {fieldsGroupViewModel.fieldsGroupListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
+          <Spinner />
+        ) : (
+          <FieldsGroup t={t} data={null} setFilter={setFilterTab} filterTab={filterTab} />
+        )}
       </div>
     </FieldsGroupViewModelContextProvider>
   );

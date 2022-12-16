@@ -140,6 +140,7 @@ export default class CategoriesStore {
       console.log('Error');
     }
   }
+
   async handleDelete(id, callbackOnSuccess, callbackOnError) {
     console.log('id', id);
     try {

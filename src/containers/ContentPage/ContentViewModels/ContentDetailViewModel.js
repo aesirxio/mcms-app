@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+import history from 'routes/history';
 class ContentDetailViewModel {
   contentStore = null;
   formStatus = PAGE_STATUS.READY;
@@ -25,8 +26,8 @@ class ContentDetailViewModel {
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.contentStore.getDetail(
-      this.contentDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
-      this.callbackOnGetProductSuccessHandler,
+      this.contentDetailViewModel.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ID],
+      this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
     );
     this.formStatus = PAGE_STATUS.READY;
@@ -34,31 +35,24 @@ class ContentDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.contentStore.saveData(
+    await this.contentStore.handleCreate(
       this.contentDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
-
-  getDetail = (data) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.contentStore.getDetail(
-      data,
-      this.callbackOnGetDetailSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.contentStore.getDetail(
+    await this.contentStore.updateDetail(
       this.contentDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
   handleDelete = (id) => {
@@ -98,6 +92,23 @@ class ContentDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
+  handleEdit = async (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    history.push(`/content-edit/${value?.id}`);
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
+  };
+
+  callbackOnGetDetailSuccessHandler = (result) => {
+    if (result) {
+      console.log('result api', result);
+      this.contentDetailViewModel.formPropsData = result;
+      notify('GetDetail successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
       notify('Delete successfully', 'success');
@@ -125,15 +136,6 @@ class ContentDetailViewModel {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnGetDetailSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
-      notify('GetDetail successfully', 'success');
-    }
     this.formStatus = PAGE_STATUS.READY;
   };
 

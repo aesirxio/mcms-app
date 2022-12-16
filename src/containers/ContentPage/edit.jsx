@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
-import { CMS_LIST_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import ContentStore from './ContentStore/Content';
 import ContentViewModel from './ContentViewModels/ContentViewModel';
 import {
@@ -38,7 +38,7 @@ const EditContentGroup = observer(
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.contentViewModel.initializeData();
       this.forceUpdate();
     }
@@ -51,14 +51,14 @@ const EditContentGroup = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Eorror !!!');
@@ -68,12 +68,17 @@ const EditContentGroup = observer(
               label: 'Alias',
               key: 'alias',
               type: FORM_FIELD_TYPE.INPUT,
-              value: '',
+              value: this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALIAS]
+                ? this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALIAS]
+                : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALIAS] = data.target.value;
+              },
             },
             {
               label: 'Parent Type',
-              key: 'Parent_Type',
+              key: 'parent_type',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: [
                 { label: 'Top Level', value: 0 },
@@ -85,35 +90,49 @@ const EditContentGroup = observer(
                 { label: 'Top Level', value: 0 },
                 { label: 'Orther', value: 1 },
               ],
-              changed: (data) => this.setState({ field_type: data.value }),
+              changed: (data) => {
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.PARENT_TYPE] = data.label;
+              },
             },
             {
               label: 'Allow in frontend?',
-              key: 'Allow_frontend',
+              key: 'allow_frontend',
               type: FORM_FIELD_TYPE.CHECKBOX,
-              value: '',
+              value: this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALLOW_FRONTEND]
+                ? this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALLOW_FRONTEND]
+                : '',
               className: 'col-12 ',
               labelClassName: 'd-flex',
               option: [
                 { label: 'Yes', value: 'yes' },
                 { label: 'No', value: 'no' },
               ],
+              changed: (data) => {
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.ALLOW_FRONTEND] = data.value;
+              },
             },
             {
               label: 'upload new media',
               key: 'upload_new_media',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: '',
+              value: this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.UPLOAD_NEW_MEDIA]
+                ? this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.UPLOAD_NEW_MEDIA]
+                : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.UPLOAD_NEW_MEDIA] = data;
+              },
             },
             {
               label: 'Description',
               key: 'description',
               type: FORM_FIELD_TYPE.EDITOR,
-              value: '',
+              value: this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.DESCRIPTION]
+                ? this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.DESCRIPTION]
+                : '',
               className: 'col-12',
               changed: (data) => {
-                console.log(data);
+                this.formPropsData[CMS_CONTENT_DETAIL_FIELD_KEY.DESCRIPTION] = data;
               },
             },
           ],
@@ -179,9 +198,6 @@ const EditContentGroup = observer(
           ],
         },
       ];
-      if (status === PAGE_STATUS.LOADING) {
-        return <Spinner />;
-      }
 
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">

@@ -46,10 +46,30 @@ const CMS_FIELD_DETAIL_FIELD_KEY = {
   NAME: 'name',
   TYPES: 'types',
 };
+const CMS_FIELD_GR_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  NAME: 'name',
+  TYPES: 'types',
+  ALIAS: 'alias',
+  PARENT_FIELD_ROUP: 'parent_field_group',
+  DESCRIPTION: 'description',
+};
+
+const CMS_CONTENT_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  NAME: 'name',
+  ALIAS: 'alias',
+  DESCRIPTION: 'description',
+  PARENT_TYPE: 'parent_type',
+  ALLOW_FRONTEND: 'allow_frontend',
+  UPLOAD_NEW_MEDIA: 'upload_new_media',
+};
 export {
   CMS_CATE_DETAIL_FIELD_KEY,
   GENERAL_INFORMATION,
   CMS_ITEMS_DETAIL_FIELD_KEY,
   CMS_LIST_DETAIL_FIELD_KEY,
   CMS_FIELD_DETAIL_FIELD_KEY,
+  CMS_FIELD_GR_DETAIL_FIELD_KEY,
+  CMS_CONTENT_DETAIL_FIELD_KEY,
 };
