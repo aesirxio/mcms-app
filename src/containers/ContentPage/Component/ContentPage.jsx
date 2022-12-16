@@ -22,8 +22,15 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
         Header: 'Content Name',
         accessor: 'name',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
-        Cell: ({ value }) => {
-          return <div className="fw-semibold text-start text-truncate">{value}</div>;
+        Cell: ({ value, row }) => {
+          return (
+            <div
+              onClick={() => contentViewModel.contentDetailViewModel.handleEdit(row.values)}
+              className="fw-semibold text-start text-truncate cursor-pointer"
+            >
+              {value}
+            </div>
+          );
         },
         sortParams: 'name',
       },
@@ -147,6 +154,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
           data={dataTable}
           canSort={true}
           store={contentViewModel.contentDetailViewModel}
+          listViewModel={contentViewModel.contentListViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}

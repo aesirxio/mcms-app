@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
-import { CMS_LIST_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_FIELD_GR_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import FieldsGroupStore from './FieldsGroupStore/FieldsGroup';
 import FieldsGroupViewModel from './FieldsGroupViewModels/FieldsGroupViewModel';
 import {
@@ -40,7 +40,7 @@ const EditFieldsGroup = observer(
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.fieldsGroupViewModel.initializeData();
       this.forceUpdate();
     }
@@ -53,14 +53,14 @@ const EditFieldsGroup = observer(
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Eorror !!!');
@@ -70,12 +70,17 @@ const EditFieldsGroup = observer(
               label: 'Alias',
               key: 'alias',
               type: FORM_FIELD_TYPE.INPUT,
-              value: '',
+              value: this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.ALIAS]
+                ? this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.ALIAS]
+                : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.ALIAS] = data.target.value;
+              },
             },
             {
               label: 'Parent field group',
-              key: 'field_type',
+              key: 'parent_field_group',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: [
                 { label: 'Top Level', value: 0 },
@@ -87,14 +92,18 @@ const EditFieldsGroup = observer(
                 { label: 'Top Level', value: 0 },
                 { label: 'Orther', value: 1 },
               ],
-              changed: (data) => this.setState({ field_type: data.value }),
+              changed: (data) =>
+                (this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.ALIAS] = data.label),
             },
             {
               label: 'Description',
               key: 'description',
-              type: FORM_FIELD_TYPE.TEXTAREA,
+              type: FORM_FIELD_TYPE.EDITOR,
               value: '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_FIELD_GR_DETAIL_FIELD_KEY.DESCRIPTION] = data;
+              },
             },
           ],
         },
@@ -142,10 +151,6 @@ const EditFieldsGroup = observer(
           ],
         },
       ];
-      if (status === PAGE_STATUS.LOADING) {
-        return <Spinner />;
-      }
-
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
           {this.fieldsGroupViewModel.formStatus === PAGE_STATUS.LOADING && (

@@ -32,13 +32,112 @@ export default class ContentStore {
       });
     }
   }
-  async getDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+  async getDetail(id, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('getDetail', data);
-      console.log('getDetail', data);
+      console.log('Store getDetail', id);
+      if (id) {
+        runInAction(() => {
+          callbackOnSuccess({
+            id: id,
+            name: 'Name response',
+            alias: 'alias response',
+            organisation: { label: 'test', value: 1 },
+            description: 'description',
+            allow_frontend: 'true',
+            upload_new_media: 'data response',
+          });
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong from Server response',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
+  async getListByFilter(filter, callbackOnSuccess, callbackOnError) {
+    console.log('filter', filter);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
+    if (filter) {
+      runInAction(() => {
+        callbackOnSuccess(filter);
+      });
+    } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
+    }
+  }
+  catch(error) {
+    console.log('API - Get Content: ' + error);
+    return null;
+  }
+
+  async handlePagination(page, callbackOnSuccess, callbackOnError) {
+    console.log('handlePagination', page);
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(id);
+      if (page) {
+        runInAction(() => {
+          callbackOnSuccess(page);
+        });
+      } else {
+        runInAction(() => {
+          callbackOnError({
+            message: 'Something went wrong !',
+          });
+        });
+      }
+    } catch (error) {
+      console.log('API - Get Content: ' + error);
+      return null;
+    }
+  }
+
+  async updateDetail(data, redirect, callbackOnSuccess, callbackOnError) {
+    console.log('data UpdateDetail', data);
+    // call api
+    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    // const respondedData = await getListInfoAPIService.getDetail(data.id);
+    if (data) {
+      runInAction(() => {
+        callbackOnSuccess(data);
+      });
+      setTimeout(() => {
+        if (redirect) {
+          history.push('/content');
+        }
+      }, 2000);
+    } else {
+      runInAction(() => {
+        callbackOnError({
+          message: 'Something went wrong from Server response',
+        });
+      });
+      console.log('Error');
+    }
+  }
+
+  async handleCreate(data, redirect, callbackOnSuccess, callbackOnError) {
+    try {
+      // call api
+      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      // const respondedData = await getListInfoAPIService.getDetail(data.id);
+      console.log('Store handleCreate', data);
       if (data) {
         runInAction(() => {
           callbackOnSuccess(data);
@@ -60,31 +159,7 @@ export default class ContentStore {
       return null;
     }
   }
-  async saveData(data, redirect, callbackOnSuccess, callbackOnError) {
-    if (data) {
-      runInAction(() => {
-        callbackOnSuccess({
-          id: '261',
-          name: data.name,
-          type: 'Services',
-          engagement: '40%',
-          visits: '100',
-        });
-      });
-      setTimeout(() => {
-        if (redirect) {
-          history.push('/content');
-        }
-      }, 2000);
-    } else {
-      runInAction(() => {
-        callbackOnError({
-          message: 'Something went wrong from Server response',
-        });
-      });
-      console.log('Error');
-    }
-  }
+
   async handleDelete(id, callbackOnSuccess, callbackOnError) {
     console.log('id', id);
     try {
@@ -116,52 +191,6 @@ export default class ContentStore {
       if (arrId) {
         runInAction(() => {
           callbackOnSuccess(arrId);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-
-  async handleSearch(value, callbackOnSuccess, callbackOnError) {
-    console.log('valueSearch', value);
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (value) {
-        runInAction(() => {
-          callbackOnSuccess(value);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-
-  async handlePagination(page, callbackOnSuccess, callbackOnError) {
-    console.log('handlePagination', page);
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (page) {
-        runInAction(() => {
-          callbackOnSuccess(page);
         });
       } else {
         runInAction(() => {

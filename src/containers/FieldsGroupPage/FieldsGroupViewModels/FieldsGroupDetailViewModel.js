@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+import history from 'routes/history';
 class FieldsGroupDetailViewModel {
   fieldsGroupStore = null;
   formStatus = PAGE_STATUS.READY;
@@ -26,7 +27,7 @@ class FieldsGroupDetailViewModel {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.fieldsGroupStore.getDetail(
       this.fieldsGroupDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
-      this.callbackOnGetProductSuccessHandler,
+      this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
     );
     this.formStatus = PAGE_STATUS.READY;
@@ -34,7 +35,7 @@ class FieldsGroupDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.fieldsGroupStore.saveData(
+    await this.fieldsGroupStore.handleCreate(
       this.fieldsGroupDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
@@ -53,12 +54,15 @@ class FieldsGroupDetailViewModel {
 
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.fieldsGroupStore.getDetail(
+    await this.fieldsGroupStore.updateDetail(
       this.fieldsGroupDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
   handleDelete = (id) => {
@@ -107,6 +111,23 @@ class FieldsGroupDetailViewModel {
     this.successResponse.state = true;
   };
 
+  handleEdit = async (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    history.push(`/fields-group-edit/${value?.id}`);
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
+  };
+
+  callbackOnGetDetailSuccessHandler = (result) => {
+    if (result) {
+      console.log('result api', result);
+      this.fieldsGroupDetailViewModel.formPropsData = result;
+      notify('GetDetail successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
       notify('Delete successfully', 'success');
@@ -134,15 +155,6 @@ class FieldsGroupDetailViewModel {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnGetDetailSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
-      notify('GetDetail successfully', 'success');
-    }
     this.formStatus = PAGE_STATUS.READY;
   };
 

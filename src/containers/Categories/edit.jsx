@@ -299,7 +299,6 @@ const EditCategories = observer(
           ],
         },
       ];
-      console.log(this.categoriesDetailViewModel.formStatus);
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
           {this.categoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
