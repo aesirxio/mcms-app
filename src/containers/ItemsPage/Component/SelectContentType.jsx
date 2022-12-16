@@ -17,6 +17,8 @@ function SelectContentType({ showModal, setShowModal }) {
     <Modal
       show={showModal}
       onHide={() => setShowModal(false)}
+      centered={false}
+      dialogClassName={'mt-7rem'}
       body={
         <Select
           className="border border-1 bg-white rounded-1"

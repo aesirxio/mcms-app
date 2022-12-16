@@ -10,9 +10,10 @@ class AesirxCmsItemsApiService extends Component {
     super(props);
     this.route = new CMSItemsRoute();
   }
+  // List Page
   getList = async (filter) => {
     try {
-      // const data = await this.route.getListRequest(filter);
+      // const data = await this.route.getList(filter);
       let results = null;
       const data = [
         {
@@ -412,21 +413,6 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  getFields = async (contentTypeId) => {
-    try {
-      const response = await this.route.getFields(contentTypeId);
-      if (response) {
-        return response;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancel' };
-      } else throw error;
-    }
-  };
-
   deleteItems = async (data) => {
     try {
       // const response = await this.route.deleteItems(data);
@@ -462,9 +448,25 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  create = async (data) => {
+  // Create || Edit Page
+  getFields = async (contentTypeId) => {
     try {
-      const result = await this.route.create(data);
+      const response = await this.route.getFields(contentTypeId);
+      if (response) {
+        return response;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  createItem = async (data) => {
+    try {
+      const result = await this.route.createItem(data);
       if (result) {
         return result.result;
       }
@@ -476,9 +478,9 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  update = async (data) => {
+  updateItem = async (id, data) => {
     try {
-      const result = await this.route.update(data);
+      const result = await this.route.updateItem(id, data);
       console.log('resultenee', result);
       if (result) {
         return result.result;
@@ -491,7 +493,7 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  getDetail = async (id = 0) => {
+  getDetail = async (id) => {
     try {
       const data = await this.route.getDetail(id);
       let results = null;

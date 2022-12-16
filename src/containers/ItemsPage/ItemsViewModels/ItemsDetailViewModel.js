@@ -9,6 +9,7 @@ class ItemsDetailViewModel {
   itemsDetailViewModel = null;
 
   listFields = [];
+
   editMode = false;
   contentType = null;
 
@@ -31,31 +32,42 @@ class ItemsDetailViewModel {
         this.callbackOnGetDetailSuccessHandler,
         this.callbackOnErrorHandler
       );
+      this.getFields(this.itemsDetailViewModel.formPropsData.content_type_id);
     }
   };
 
-  handleCreate = (redirect) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.saveData(
-      this.categoriesDetailViewModel?.formPropsData,
-      redirect ? redirect : null,
-      this.callbackOnCreateSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
   getFields = async (contentTypeId) => {
-    this.itemsStore.getFields(
+    await this.itemsStore.getFields(
       contentTypeId,
       this.callbackOnGetFieldsSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
 
-  handleUpdate = (redirect) => {
+  save = async (redirect = false) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.itemsStore.getDetail(
-      this.categoriesDetailViewModel?.formPropsData,
-      redirect ? redirect : null,
+    if (this.editMode) {
+      await this.createItems(redirect);
+    } else {
+      await this.updateItems(redirect);
+    }
+  };
+
+  createItems = async (redirect) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.createItems(
+      this.itemsDetailViewModel.formPropsData,
+      redirect,
+      this.callbackOnCreateSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  updateItems = async (redirect) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.updateItems(
+      this.itemsDetailViewModel?.formPropsData,
+      redirect,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -77,13 +89,6 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   callbackOnCreateSuccessHandler = (result) => {
     console.log('datadatadatadata', result);
     if (result) {
@@ -93,11 +98,10 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnGetDetailSuccessHandler = async (result) => {
+  callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
       this.itemsDetailViewModel.formPropsData = result;
     }
-    await this.getFields(this.itemsDetailViewModel.formPropsData.content_type_id);
   };
 
   callbackOnUpdateSuccessHandler = (result) => {

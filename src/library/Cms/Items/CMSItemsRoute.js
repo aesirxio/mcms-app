@@ -7,7 +7,7 @@ import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
-  getListRequest = (filter) =>
+  getList = (filter) =>
     AesirxApiInstance.get(
       this.createRequestURL({
         option: 'items',
@@ -35,26 +35,28 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
-    return AesirxApiInstance.post(
-      this.createRequestURL({
-        option: this.option,
-      }),
-      data
-    );
+  createItem = (data) => {
+    console.log('create Items', data);
+    // return AesirxApiInstance.post(
+    //   this.createRequestURL({
+    //     option: this.option,
+    //   }),
+    //   data
+    // );
   };
-  update = (data) => {
-    return AesirxApiInstance.put(
-      this.createRequestURL({
-        option: this.option,
-      }),
-      data,
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      }
-    );
+  updateItem = (id, data) => {
+    console.log('update Items', id, data);
+    // return AesirxApiInstance.put(
+    //   this.createRequestURL({
+    //     option: this.option,
+    //   }),
+    //   data,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //   }
+    // );
   };
   deleteItems = (data) => {
     console.log(data);

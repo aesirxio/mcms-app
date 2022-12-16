@@ -11,8 +11,7 @@ const ItemsFormActionBar = observer(
       super(props);
     }
     render() {
-      const { t, history, path, validator, store, isEdit } = this.props;
-      const redirect = true;
+      const { t, history, path, validator, store } = this.props;
       return (
         <div className="d-flex">
           <button
@@ -27,15 +26,10 @@ const ItemsFormActionBar = observer(
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
-                if (isEdit) {
-                  await store.handleUpdate(redirect);
-                } else {
-                  await store.handleCreate(redirect);
-                }
+                await store.save(true);
               } else {
                 validator.showMessages();
               }
-              this.forceUpdate();
             }}
           >
             {t('txt_save_close')}
@@ -45,11 +39,7 @@ const ItemsFormActionBar = observer(
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
-                if (this.isEdit) {
-                  await store.handleUpdate();
-                } else {
-                  await store.handleCreate();
-                }
+                await store.save();
               } else {
                 validator.showMessages();
               }
