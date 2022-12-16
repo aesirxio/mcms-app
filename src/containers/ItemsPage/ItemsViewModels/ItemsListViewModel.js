@@ -11,7 +11,8 @@ class ItemsListViewModel {
   filters = {
     views: 'all',
     'list[limitstart]': 0,
-    'list[limit]': 10,
+    limit: 10,
+    page: 1,
   };
 
   constructor(itemsStore) {
@@ -28,7 +29,8 @@ class ItemsListViewModel {
     this.filters = {
       views: 'all',
       'list[limitstart]': 0,
-      'list[limit]': 10,
+      limit: 10,
+      page: 1,
     };
   };
 
@@ -48,9 +50,14 @@ class ItemsListViewModel {
 
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    setTimeout(() => {
+    await this.getListItems();
+
+    // Fake filter
+    if (this.filters.views !== 'all') {
       this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
-      // await getListItems();
+    }
+
+    setTimeout(async () => {
       this.formStatus = PAGE_STATUS.READY;
     }, 2000);
   };

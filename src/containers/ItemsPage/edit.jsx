@@ -19,24 +19,24 @@ const EditItems = observer(
   class EditItems extends Component {
     itemsDetailViewModel = null;
     formPropsData = {};
-    isEdit = false;
 
     constructor(props) {
       super(props);
       this.viewModel = itemsViewModel ? itemsViewModel : null;
-      this.state = { key: 'commonInformation' };
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
-      this.isEdit = props.match.params?.id ? true : false;
+      this.itemsDetailViewModel.editMode = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
-      if (this.isEdit) {
+      if (this.itemsDetailViewModel.editMode) {
         this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-        await this.itemsDetailViewModel.initializeData();
-        this.forceUpdate();
+      } else {
+        this.itemsDetailViewModel.contentType = this.props.match.params?.content_type;
       }
+      await this.itemsDetailViewModel.initializeData();
+      this.forceUpdate();
     }
 
     render() {
@@ -262,8 +262,9 @@ const EditItems = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.state.dataStatus ?? '',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              value: '',
+              className: 'col-12 mb-16',
+              isInline: true,
               required: true,
               validation: 'required',
               labelClassName: 'fw-normal me-24 ws-nowrap',
@@ -282,9 +283,10 @@ const EditItems = observer(
               key: 'access',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: '',
+              isInline: true,
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              className: 'col-12 mb-16',
             },
           ],
         },
@@ -296,8 +298,9 @@ const EditItems = observer(
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
               value: 'no',
-              labelClassName: 'fw-normal me-24 ws-nowrap',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              labelClassName:
+                'fw-normal me-24 ws-nowrap fw-semibold d-block border-top pt-16 me-0 mt-24',
+              className: 'col-12 mb-16',
               classNameInput: 'w-65',
               option: [
                 { label: 'Yes', value: 'yes' },
@@ -309,8 +312,9 @@ const EditItems = observer(
               key: 'start_publish',
               type: FORM_FIELD_TYPE.DATE,
               value: '',
+              isInline: true,
               labelClassName: 'fw-normal me-24 ws-nowrap',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              className: 'col-12 mb-16',
               defaultValue: new Date(),
               changed: (date) => {
                 console.log('', date);
@@ -321,30 +325,32 @@ const EditItems = observer(
               key: 'author',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: '',
+              isInline: true,
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              className: 'col-12 mb-16',
             },
           ],
         },
       ];
-      console.log(this.itemsDetailViewModel.itemsDetailViewModel);
+
       return (
         <ItemsViewModelContextProvider viewModel={itemsViewModel}>
-          <div className="py-4 px-3 h-100 d-flex flex-column">
-            {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
-              <Spinner className="spinner-overlay" />
-            )}
-            <ItemsFormPage
-              store={this.itemsDetailViewModel}
-              dataForm={data}
-              generateFormSetting={generateFormSetting}
-              path="/"
-              title="txt_add_item"
-              validator={this.validator}
-              formPublish={formPublish}
-            />
-          </div>
+          {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
+            <Spinner className="spinner-overlay" />
+          ) : (
+            <div className="py-4 px-3 h-100 d-flex flex-column">
+              <ItemsFormPage
+                store={this.itemsDetailViewModel}
+                dataForm={data}
+                generateFormSetting={generateFormSetting}
+                path="/"
+                title="txt_add_item"
+                validator={this.validator}
+                formPublish={formPublish}
+              />
+            </div>
+          )}
         </ItemsViewModelContextProvider>
       );
     }

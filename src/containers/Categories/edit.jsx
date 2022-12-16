@@ -265,7 +265,8 @@ const EditCategories = observer(
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: { label: 'Publish', value: 1 },
-              className: 'col-12 mb-16 d-flex justify-content-between align-items-center',
+              className: 'col-12 mb-16',
+              isInline: true,
               required: true,
               validation: 'required',
               labelClassName: 'fw-normal me-24 ws-nowrap',
@@ -289,7 +290,7 @@ const EditCategories = observer(
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
               value: '',
-              labelClassName: 'd-flex',
+              labelClassName: 'fw-semibold',
               className: 'col-12 mb-16',
               option: [
                 { label: 'Yes', value: 'yes' },

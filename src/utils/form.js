@@ -116,8 +116,14 @@ const renderingGroupFieldHandler = (group, validator) => {
             case FORM_FIELD_TYPE.DATE:
               return (
                 <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
-                  <Label labelClassName={field.labelClassName} text={field.label} />
-                  <FormDatePublish changed={(date) => field.changed(date)} field={field} />
+                  <div
+                    className={`${
+                      field?.isInline && 'd-flex justify-content-between align-items-center'
+                    }`}
+                  >
+                    <Label labelClassName={field.labelClassName} text={field.label} />
+                    <FormDatePublish changed={(date) => field.changed(date)} field={field} />
+                  </div>
                   {field.validation &&
                     validator.message(field.label, field.value, field.validation, {
                       className: 'text-danger',
@@ -176,14 +182,20 @@ const renderingGroupFieldHandler = (group, validator) => {
             case FORM_FIELD_TYPE.DROPDOWN:
               return (
                 <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
-                  {field.label && (
-                    <Label
-                      labelClassName={field.labelClassName}
-                      text={field.label}
-                      required={field.required ?? false}
-                    />
-                  )}
-                  <FormSelectDropdown field={field} />
+                  <div
+                    className={`${
+                      field?.isInline && 'd-flex justify-content-between align-items-center'
+                    }`}
+                  >
+                    {field.label && (
+                      <Label
+                        labelClassName={field.labelClassName}
+                        text={field.label}
+                        required={field.required ?? false}
+                      />
+                    )}
+                    <FormSelectDropdown field={field} />
+                  </div>
                   {field.validation &&
                     validator.message(field.label, field.value, field.validation, {
                       className: 'text-danger',

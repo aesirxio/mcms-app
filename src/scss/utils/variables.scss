@@ -231,6 +231,7 @@ $enable-negative-margins: true;
 //SPACER
 $spacer: 1rem;
 $spacers: (
+  24: 24px,
   0: 0,
   1: $spacer * 0.25,
   2: $spacer * 0.5,
@@ -246,9 +247,9 @@ $spacers: (
   14: 14px,
   15: 15px,
   16: 16px,
-  24: 24px,
   32: 32px,
   40: 40px,
+  7rem: 7rem,
 );
 
 $form-switch-width: 2.5em !default;

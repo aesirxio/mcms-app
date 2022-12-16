@@ -65,7 +65,7 @@ const UpdateGeneral = observer(
         this.setState({
           getUrlImage: data,
         });
-        this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM] = data[0].url;
+        this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM] = data[0].download_url;
       }
     }
 
