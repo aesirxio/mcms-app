@@ -2,14 +2,27 @@ import React, { observer } from 'mobx-react';
 import { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
+import history from 'routes/history';
+import { notifyHTML } from 'components/Toast';
 const ItemsFormActionBar = observer(
   class ItemsFormActionBar extends Component {
     constructor(props) {
       super(props);
     }
     render() {
-      const { t, history, path, validator, store, isEdit } = this.props;
+      const { t, path, validator, store, isEdit } = this.props;
       const redirect = true;
+
+      const showError = () => {
+        let listError = '';
+        Object.entries(validator.errorMessages).forEach((error) => {
+          const [, value] = error;
+          listError += `<p class="mb-0">${value}</p>`;
+        });
+        notifyHTML(listError, 'error');
+        validator.showMessages();
+      };
+
       return (
         <div className="d-flex">
           <button
@@ -30,7 +43,7 @@ const ItemsFormActionBar = observer(
                   await store.handleCreate(redirect);
                 }
               } else {
-                validator.showMessages();
+                showError();
               }
               this.forceUpdate();
             }}
@@ -48,7 +61,7 @@ const ItemsFormActionBar = observer(
                   await store.handleCreate();
                 }
               } else {
-                validator.showMessages();
+                showError();
               }
               this.forceUpdate();
             }}
