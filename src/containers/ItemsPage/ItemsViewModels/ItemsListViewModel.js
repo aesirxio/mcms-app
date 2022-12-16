@@ -74,6 +74,17 @@ class ItemsListViewModel {
     );
   };
 
+  handlePagination = (page, isSetPageSize) => {
+    this.itemsStore.handlePagination(
+      isSetPageSize
+        ? (this.filters['list[limit]'] = page)
+        : (this.filters['list[limitstart]'] = page),
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+    console.log(this.filters);
+  };
+
   callbackOnSuccessToggleFeatured = async () => {
     await this.getListItems();
     notify('Set featured successfully !');

@@ -40,6 +40,7 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
+  const isSetPageSize = true;
 
   const paginate = [];
   const {
@@ -407,7 +408,7 @@ const Table = ({
                 value={pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
-                  listViewModel.handlePagination(null, Number(e.target.value));
+                  listViewModel.handlePagination(Number(e.target.value), isSetPageSize);
                 }}
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (

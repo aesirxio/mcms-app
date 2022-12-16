@@ -28,6 +28,7 @@ const tabList = [
   },
 ];
 const TabBarComponent = observer(({ views, getListByFilter }) => {
+  const isFilterTab = true;
   return (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {
@@ -40,7 +41,7 @@ const TabBarComponent = observer(({ views, getListByFilter }) => {
                 : styles['list-item']
             } pb-16 me-40 cursor-pointer`}
             onClick={() => {
-              getListByFilter(item.slug);
+              getListByFilter(item.slug, isFilterTab);
             }}
           >
             {item.title}

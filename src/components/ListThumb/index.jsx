@@ -31,11 +31,11 @@ const ListThumb = ({ selectedMulptiRows, store, allColumns, listViewModel }) => 
   };
 
   const handleSearch = (e) => {
-    listViewModel.handleGetListByFilter(null, e.target.value, null);
+    listViewModel.handleGetListByFilter((listViewModel.filters.search = e.target.value));
   };
   const handleFilterColum = (e) => {
     setFilterColum(e);
-    listViewModel.handleGetListByFilter(null, null, e.label);
+    listViewModel.handleGetListByFilter((listViewModel.filters.filterColum = e.label));
   };
 
   return (
