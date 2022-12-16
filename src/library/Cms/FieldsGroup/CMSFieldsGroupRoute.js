@@ -10,7 +10,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         ...dataFilter,
@@ -18,7 +18,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -28,7 +28,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -36,7 +36,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -49,7 +49,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirxApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),

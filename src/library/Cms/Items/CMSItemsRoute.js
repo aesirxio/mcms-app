@@ -7,18 +7,19 @@ import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
-  getList = (filter) =>
-    AesirxApiInstance.get(
+  getList = (filter) => {
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'items',
         ...filter,
       })
     );
+  };
 
   getFields = (contentType) => {
     console.log('get Fields', contentType);
     return true;
-    // AesirxApiInstance.get(
+    // AesirxApiInstance().get(
     //   this.createRequestURL({
     //     option: 'items',
     //     id: contentType,
@@ -26,7 +27,7 @@ class CmsItemsRoute extends BaseRoute {
     // );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -37,7 +38,7 @@ class CmsItemsRoute extends BaseRoute {
 
   createItem = (data) => {
     console.log('create Items', data);
-    // return AesirxApiInstance.post(
+    // return AesirxApiInstance().post(
     //   this.createRequestURL({
     //     option: this.option,
     //   }),
@@ -46,7 +47,7 @@ class CmsItemsRoute extends BaseRoute {
   };
   updateItem = (id, data) => {
     console.log('update Items', id, data);
-    // return AesirxApiInstance.put(
+    // return AesirxApiInstance().put(
     //   this.createRequestURL({
     //     option: this.option,
     //   }),
@@ -60,7 +61,7 @@ class CmsItemsRoute extends BaseRoute {
   };
   deleteItems = (data) => {
     console.log(data);
-    // return AesirxApiInstance.delete(
+    // return AesirxApiInstance().delete(
     //   this.createRequestURL({
     //     option: this.option,
     //   }),
@@ -73,7 +74,7 @@ class CmsItemsRoute extends BaseRoute {
     // );
   };
   toggleFeatured = (id, isFeatured) => {
-    return AesirxApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         id,
