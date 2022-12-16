@@ -13,7 +13,7 @@ import {
   FieldsViewModelContextProvider,
   withFieldsViewModel,
 } from './FieldsViewModels/FieldsViewModelContextProvider';
-import { CMS_LIST_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_FIELD_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 
@@ -39,7 +39,7 @@ const EditFields = observer(
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.fieldsViewModel.initializeData();
       this.forceUpdate();
     }
@@ -52,21 +52,26 @@ const EditFields = observer(
               label: 'Types',
               key: 'types',
               type: FORM_FIELD_TYPE.INPUT,
-              value: '',
+              value: this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.TYPES]
+                ? this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.TYPES]
+                : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.TYPES] = data.target.value;
+              },
             },
             {
               label: 'Name',
               key: 'name',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.NAME]
+                ? this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.NAME]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_LIST_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.NAME] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Eorror !!!');

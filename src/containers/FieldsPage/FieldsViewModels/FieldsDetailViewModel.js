@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_FIELD_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+import history from 'routes/history';
 class FieldsDetailViewModel {
   fieldsStore = null;
   formStatus = PAGE_STATUS.READY;
-  categoriesDetailViewModel = null;
+  fieldsDetailViewModel = null;
   successResponse = {
     state: true,
     content_id: '',
@@ -18,15 +19,15 @@ class FieldsDetailViewModel {
     this.fieldsStore = fieldsStore;
   }
 
-  setForm = (categoriesDetailViewModel) => {
-    this.categoriesDetailViewModel = categoriesDetailViewModel;
+  setForm = (fieldsDetailViewModel) => {
+    this.fieldsDetailViewModel = fieldsDetailViewModel;
   };
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.fieldsStore.getDetail(
-      this.categoriesDetailViewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ID],
-      this.callbackOnGetProductSuccessHandler,
+      this.fieldsDetailViewModel.formPropsData[CMS_FIELD_DETAIL_FIELD_KEY.ID],
+      this.callbackOnGetDetailSuccessHandler,
       this.callbackOnErrorHandler
     );
     this.formStatus = PAGE_STATUS.READY;
@@ -34,31 +35,25 @@ class FieldsDetailViewModel {
 
   handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.fieldsStore.saveData(
-      this.categoriesDetailViewModel?.formPropsData,
+    await this.fieldsStore.handleCreate(
+      this.fieldsDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
 
-  getDetail = (data) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsStore.getDetail(
-      data,
-      this.callbackOnGetDetailSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.fieldsStore.getDetail(
-      this.categoriesDetailViewModel?.formPropsData,
+    await this.fieldsStore.updateDetail(
+      this.fieldsDetailViewModel?.formPropsData,
       redirect ? redirect : null,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
+    setTimeout(() => {
+      this.formStatus = PAGE_STATUS.READY;
+    }, 1500);
   };
 
   handleDelete = (id) => {
@@ -88,16 +83,6 @@ class FieldsDetailViewModel {
     );
   };
 
-  handlePagination = (page) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsStore.handlePagination(
-      page,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.fieldsStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },
@@ -105,6 +90,12 @@ class FieldsDetailViewModel {
       this.callbackOnErrorHandler
     );
     this.fieldsStore.state = true;
+  };
+
+  handleEdit = async (value) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    history.push(`/fields-edit/${value?.id}`);
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnDeleteSuccessHandler = (id) => {
@@ -115,7 +106,6 @@ class FieldsDetailViewModel {
   };
 
   callbackOnCreateSuccessHandler = (result) => {
-    console.log('datadatadatadata', result);
     if (result) {
       notify('Create successfully', 'success');
       this.successResponse.data = result;
@@ -139,8 +129,7 @@ class FieldsDetailViewModel {
 
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
+      this.fieldsDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;

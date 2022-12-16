@@ -407,6 +407,7 @@ const Table = ({
                 value={pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
+                  listViewModel.handlePagination(null, Number(e.target.value));
                 }}
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (

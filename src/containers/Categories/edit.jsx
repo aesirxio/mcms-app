@@ -158,23 +158,36 @@ const EditCategories = observer(
               label: 'Alias',
               key: 'alias',
               type: FORM_FIELD_TYPE.INPUT,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ALIAS]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ALIAS]
+                : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ALIAS] = data.target.value;
+              },
             },
 
             {
               label: 'Organisation',
               key: 'organisation',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION]
+                : '',
               className: 'col-12',
               placeholder: 'Select Organisation',
+              changed: (data) => {
+                console.log(data);
+                // this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION] = data;
+              },
             },
             {
               label: 'Content Type',
               key: 'content_type',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CONTENT_TYPE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CONTENT_TYPE]
+                : '',
               className: 'col-12',
               placeholder: 'Select Content Type',
             },
@@ -182,7 +195,9 @@ const EditCategories = observer(
               label: 'Parent Category',
               key: 'parent_category',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.PARENT_CATEGORY]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.PARENT_CATEGORY]
+                : '',
               className: 'col-12',
               placeholder: 'Top Level',
             },
@@ -190,7 +205,9 @@ const EditCategories = observer(
               label: 'Default Template',
               key: 'default_template',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DEFAULT_TEMPLATE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DEFAULT_TEMPLATE]
+                : '',
               className: 'col-12',
               placeholder: 'Inherit',
             },
@@ -198,34 +215,42 @@ const EditCategories = observer(
               label: 'Related category',
               key: 'related_category',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.RELATED_CATEGORY]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.RELATED_CATEGORY]
+                : '',
               className: 'col-12',
             },
             {
               label: 'Category image',
               key: 'category_image',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_IMAGE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_IMAGE]
+                : '',
               className: 'col-12',
             },
             {
               label: 'Intro text',
               key: 'intro_text',
               type: FORM_FIELD_TYPE.EDITOR,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.INTRO_TEXT]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.INTRO_TEXT]
+                : '<p></p>',
               className: 'col-12',
               changed: (data) => {
-                console.log(data);
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.INTRO_TEXT] = data;
               },
             },
             {
               label: 'Full text',
               key: 'full_text',
               type: FORM_FIELD_TYPE.EDITOR,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FULL_TEXT]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FULL_TEXT]
+                : '<p></p>',
               className: 'col-12',
               changed: (data) => {
-                console.log(data);
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FULL_TEXT] = data;
               },
             },
           ],
@@ -275,29 +300,26 @@ const EditCategories = observer(
           ],
         },
       ];
-      if (status === PAGE_STATUS.LOADING) {
-        return <Spinner />;
-      }
-
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.categoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING && (
+          {this.categoriesDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
             <Spinner className="spinner-overlay" />
+          ) : (
+            <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
+              <Form>
+                <ItemsFormPage
+                  dataForm={data}
+                  formPublish={formPublish}
+                  generateFormSetting={generateFormSetting}
+                  path="/categories"
+                  title="txt_add_cate"
+                  validator={this.validator}
+                  store={this.categoriesDetailViewModel}
+                  isEdit={this.isEdit}
+                />
+              </Form>
+            </CategoriesViewModelContextProvider>
           )}
-          <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
-            <Form>
-              <ItemsFormPage
-                dataForm={data}
-                formPublish={formPublish}
-                generateFormSetting={generateFormSetting}
-                path="/categories"
-                title="txt_add_cate"
-                validator={this.validator}
-                store={this.categoriesDetailViewModel}
-                isEdit={this.isEdit}
-              />
-            </Form>
-          </CategoriesViewModelContextProvider>
         </div>
       );
     }

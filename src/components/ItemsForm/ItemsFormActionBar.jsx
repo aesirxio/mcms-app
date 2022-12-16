@@ -2,16 +2,14 @@ import React, { observer } from 'mobx-react';
 import { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
-import { withRouter } from 'react-router-dom';
-import { withCategoriesViewModel } from 'containers/Categories/CategoriesViewModels/CategoriesViewModelContextProvider';
-
 const ItemsFormActionBar = observer(
   class ItemsFormActionBar extends Component {
     constructor(props) {
       super(props);
     }
     render() {
-      const { t, history, path, validator, store } = this.props;
+      const { t, history, path, validator, store, isEdit } = this.props;
+      const redirect = true;
       return (
         <div className="d-flex">
           <button
@@ -26,10 +24,15 @@ const ItemsFormActionBar = observer(
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
-                await store.save(true);
+                if (isEdit) {
+                  await store.handleUpdate(redirect);
+                } else {
+                  await store.handleCreate(redirect);
+                }
               } else {
                 validator.showMessages();
               }
+              this.forceUpdate();
             }}
           >
             {t('txt_save_close')}
@@ -39,7 +42,11 @@ const ItemsFormActionBar = observer(
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
-                await store.save();
+                if (isEdit) {
+                  await store.handleUpdate();
+                } else {
+                  await store.handleCreate();
+                }
               } else {
                 validator.showMessages();
               }
@@ -55,4 +62,4 @@ const ItemsFormActionBar = observer(
   }
 );
 
-export default withRouter(withTranslation('common')(withCategoriesViewModel(ItemsFormActionBar)));
+export default withTranslation('common')(ItemsFormActionBar);
