@@ -2,12 +2,13 @@
 .border {
   border: 0;
   outline: none;
-  background-image: repeating-linear-gradient(0deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(90deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(180deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px), repeating-linear-gradient(270deg, var(--bs-gray-select), var(--bs-gray-select) 14px, transparent 14px, transparent 24px, var(--bs-gray-select) 24px);
+  background-image: repeating-linear-gradient(0deg, var(--bs-border-color), var(--bs-border-color) 14px, transparent 14px, transparent 24px, var(--bs-border-color) 24px), repeating-linear-gradient(90deg, var(--bs-border-color), var(--bs-border-color) 14px, transparent 14px, transparent 24px, var(--bs-border-color) 24px), repeating-linear-gradient(180deg, var(--bs-border-color), var(--bs-border-color) 14px, transparent 14px, transparent 24px, var(--bs-border-color) 24px), repeating-linear-gradient(270deg, var(--bs-border-color), var(--bs-border-color) 14px, transparent 14px, transparent 24px, var(--bs-border-color) 24px);
   background-size: 3px 100%, 100% 3px, 3px 100% , 100% 3px;
   background-position: 0 0, 0 0, 100% 0, 0 100%;
   background-repeat: no-repeat;
+  padding: 5px;
 }
 .limit-image{
   max-height: 400px;
-  overflow: scroll;
+  padding: 5px;
 }

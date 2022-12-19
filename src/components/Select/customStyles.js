@@ -10,10 +10,10 @@ const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
         ...provided,
         minHeight: 48,
         boxShadow: isShadow ? '0 3px 5px rgb(0 0 0 / 5%)' : 'none',
-        borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
-        '&:hover': {
-          borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
-        },
+        // borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
+        // '&:hover': {
+        //   borderColor: isBorder ? 'var(--bs-gray-select)' : 'transparent',
+        // },
         backgroundColor: 'transparent',
         cursor: 'pointer',
         borderRadius: '5px',
@@ -26,9 +26,9 @@ const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
         ...styles,
         top: 'calc(100% - 2px)',
         margin: 0,
-        border: '1px solid var(--bs-gray-select)',
+        // border: '1px solid var(--bs-gray-select)',
         boxShadow: '0 3px 5px rgb(0 0 0 / 5%)',
-        backgroundColor: 'var(--dropdown-bg)',
+        // backgroundColor: 'var(--dropdown-bg)',
         width: '100%',
       };
     },
