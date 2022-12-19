@@ -28,9 +28,8 @@ class FieldsGroupListViewModel {
     await this.fieldsGroupStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
 
-  handleGetListByFilter = async (tab, isFilterTab) => {
+  getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    isFilterTab ? (this.filters.views = tab ?? 'all') : null;
     await this.fieldsGroupStore.getListByFilter(
       this.filters,
       this.callbackOnSuccessHandler,
@@ -41,11 +40,10 @@ class FieldsGroupListViewModel {
     }, 1500);
   };
 
-  handlePagination = (page, isSetPageSize) => {
+  handlePagination = () => {
+    this.formStatus = PAGE_STATUS.LOADING;
     this.fieldsGroupStore.handlePagination(
-      isSetPageSize
-        ? (this.filters['list[limit]'] = page)
-        : (this.filters['list[limitstart]'] = page),
+      this.filters,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );

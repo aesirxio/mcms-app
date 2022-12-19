@@ -27,10 +27,8 @@ class CategoriesListViewModel {
   initializeData = async () => {
     await this.categoriesStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
-  handleGetListByFilter = async (tab, isFilterTab) => {
+  getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.formStatus = 1;
-    isFilterTab ? (this.filters.views = tab ?? 'all') : null;
     await this.categoriesStore.getListByFilter(
       this.filters,
       this.callbackOnSuccessHandler,
@@ -41,11 +39,9 @@ class CategoriesListViewModel {
     }, 1500);
   };
 
-  handlePagination = (page, isSetPageSize) => {
+  handlePagination = () => {
     this.categoriesStore.handlePagination(
-      isSetPageSize
-        ? (this.filters['list[limit]'] = page)
-        : (this.filters['list[limitstart]'] = page),
+      this.filters,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );

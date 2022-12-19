@@ -40,7 +40,6 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
-  const isSetPageSize = true;
 
   const paginate = [];
   const {
@@ -205,7 +204,8 @@ const Table = ({
       paginate?.push(
         <button
           onClick={() => {
-            gotoPage(i), listViewModel.handlePagination(i);
+            gotoPage(i),
+              listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i));
           }}
           key={Math.random(40, 200)}
         >
@@ -408,7 +408,9 @@ const Table = ({
                 value={pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
-                  listViewModel.handlePagination(Number(e.target.value), isSetPageSize);
+                  listViewModel.handlePagination(
+                    (listViewModel.filters['list[limit]'] = Number(e.target.value))
+                  );
                 }}
               >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
@@ -425,7 +427,10 @@ const Table = ({
               <div className="border_pagination">
                 <button
                   onClick={() => {
-                    previousPage(), listViewModel.handlePagination(pageIndex - 1);
+                    previousPage(),
+                      listViewModel.handlePagination(
+                        (listViewModel.filters['list[limitstart]'] = pageIndex - 1)
+                      );
                   }}
                   disabled={!canPreviousPage}
                 >
@@ -434,7 +439,10 @@ const Table = ({
                 <span className="">{paginate}</span>
                 <button
                   onClick={() => {
-                    nextPage(), listViewModel.handlePagination(pageIndex + 1);
+                    nextPage(),
+                      listViewModel.handlePagination(
+                        (listViewModel.filters['list[limitstart]'] = pageIndex + 1)
+                      );
                   }}
                   disabled={!canNextPage}
                 >

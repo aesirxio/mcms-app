@@ -34,10 +34,7 @@ const FieldsPage = observer(() => {
             {t('txt_add_new_item')}
           </Link>
         </div>
-        <TabBarComponent
-          views={fieldsViewModel.fieldsListViewModel.filters.views}
-          getListByFilter={fieldsViewModel.fieldsListViewModel.handleGetListByFilter}
-        />
+        <TabBarComponent viewModel={fieldsViewModel.fieldsListViewModel} />
         {fieldsViewModel.fieldsListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
           <Spinner />
         ) : (

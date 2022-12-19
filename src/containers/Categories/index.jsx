@@ -37,10 +37,7 @@ const Categories = observer(() => {
           </Link>
         </div>
         <div className="h-100 d-flex flex-column">
-          <TabBarComponent
-            views={categoriesViewModel.categoriesListViewModel.filters.views}
-            getListByFilter={categoriesViewModel.categoriesListViewModel.handleGetListByFilter}
-          />
+          <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} />
           {categoriesViewModel.categoriesListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
             <Spinner />
           ) : (

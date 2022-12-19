@@ -34,10 +34,7 @@ const FieldsGroupPage = observer(() => {
             {t('txt_add_new_item')}
           </Link>
         </div>
-        <TabBarComponent
-          views={fieldsGroupViewModel.fieldsGroupListViewModel.filters.views}
-          getListByFilter={fieldsGroupViewModel.fieldsGroupListViewModel.handleGetListByFilter}
-        />
+        <TabBarComponent viewModel={fieldsGroupViewModel.fieldsGroupListViewModel} />
         {fieldsGroupViewModel.fieldsGroupListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
           <Spinner />
         ) : (

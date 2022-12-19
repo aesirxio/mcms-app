@@ -28,10 +28,8 @@ class ContentListViewModel {
     await this.contentStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
   };
 
-  handleGetListByFilter = async (tab, isFilterTab) => {
+  getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    this.formStatus = 1;
-    isFilterTab ? (this.filters.views = tab ?? 'all') : null;
     await this.contentStore.getListByFilter(
       this.filters,
       this.callbackOnSuccessHandler,
@@ -42,15 +40,12 @@ class ContentListViewModel {
     }, 1500);
   };
 
-  handlePagination = (page, isSetPageSize) => {
+  handlePagination = () => {
     this.contentStore.handlePagination(
-      isSetPageSize
-        ? (this.filters['list[limit]'] = page)
-        : (this.filters['list[limitstart]'] = page),
+      this.filters,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-    console.log(this.filters);
   };
 
   callbackOnErrorHandler = (error) => {
