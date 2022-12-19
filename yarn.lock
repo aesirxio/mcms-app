@@ -3004,9 +3004,9 @@ adjust-sourcemap-loader@^4.0.0:
     moment "^2.29.4"
     react-datepicker "^3.3.0"
 
-"aesirx-dma-app@https://github.com/kakahuy113/dma-app#huy":
+"aesirx-dma-app@https://github.com/aesirxio/dma-app#develop":
   version "1.5.3-alpha.1"
-  resolved "https://github.com/kakahuy113/dma-app#359e0c689a903349e52b3a3233d484f0252bc79f"
+  resolved "https://github.com/aesirxio/dma-app#79881c20dd726811b584a0d33110689a3cc57b9c"
   dependencies:
     date-fns "^2.16.1"
     date-fns-tz "^1.1.6"
@@ -6263,9 +6263,9 @@ identity-obj-proxy@3.0.0, identity-obj-proxy@^3.0.0:
     harmony-reflect "^1.4.6"
 
 ignore@^5.2.0:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.1.tgz#c2b1f76cb999ede1502f3a226a9310fdfe88d46c"
-  integrity sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.2.tgz#7e5f30224584b67aeeefe383a24a61dce4cb370d"
+  integrity sha512-m1MJSy4Z2NAcyhoYpxQeBsc1ZdNQwYjN0wGbLBlnVArdJ90Gtr8IhNSfZZcCoR0fM/0E0BJ0mf1KnLNDOCJP4w==
 
 immer@^9.0.7:
   version "9.0.16"

@@ -30,7 +30,6 @@ const EditCategories = observer(
     constructor(props) {
       super(props);
       this.viewModel = categoriesViewModel ? categoriesViewModel : null;
-      this.state = { dataStatus: {} };
       this.validator = new SimpleReactValidator({
         autoForceUpdate: this,
       });
@@ -65,56 +64,77 @@ const EditCategories = observer(
                   { label: 'Replace', value: 'replace' },
                   { label: 'None', value: 'none' },
                 ],
-                value: { label: 'Use Global', value: 'use_global' },
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DATA] ?? {
+                  label: 'Use Global',
+                  value: 'use_global',
+                },
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData['meta_data'] = data.value;
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DATA] = data;
                 },
               },
               {
                 label: 'SEO Page Title',
                 key: 'seo_page_title',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData ? this.formPropsData?.name : '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_TITLE] ?? '',
                 className: 'col-12',
-                changed: () => {
-                  // formPropsData.formPropsData.name = data.value;
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_TITLE] = data.target.value;
                 },
               },
               {
                 label: 'SEO Page Heading',
                 key: 'seo_page_heading',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_HEADING] ?? '',
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_HEADING] =
+                    data.target.value;
+                },
               },
               {
                 label: 'Canonical Url',
                 key: 'canonical_url',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CANONICAL_URL] ?? '',
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CANONICAL_URL] = data.target.value;
+                },
               },
               {
                 label: 'Meta Description',
                 key: 'meta_description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
-                value: '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DESCRIPTION] ?? '',
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DESCRIPTION] =
+                    data.target.value;
+                },
               },
               {
                 label: 'Meta Keywords',
                 key: 'meta_keywords',
                 type: FORM_FIELD_TYPE.TEXTAREA,
-                value: categoriesStore.formPropsData?.languages ?? '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_KEYWORDS] ?? '',
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_KEYWORDS] = data.target.value;
+                },
               },
               {
                 label: 'Meta Language Setting',
                 key: 'meta_language_setting',
                 type: FORM_FIELD_TYPE.TEXTAREA,
-                value: categoriesStore.formPropsData?.languages ?? '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_LANGUAGE_SETTING] ?? '',
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_LANGUAGE_SETTING] =
+                    data.target.value;
+                },
               },
               {
                 label: 'Robots',
@@ -127,8 +147,14 @@ const EditCategories = observer(
                   { label: 'index, nofollow', value: 'index_nofollow' },
                   { label: 'noindex, nofollow', value: 'noindex_nofollow' },
                 ],
-                value: { label: 'Use Global', value: 'use_global' },
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ROBOTS] ?? {
+                  label: 'Use Global',
+                  value: 'use_global',
+                },
                 className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ROBOTS] = data;
+                },
               },
             ],
           },
@@ -173,12 +199,11 @@ const EditCategories = observer(
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION]
                 ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION]
-                : '',
+                : {},
               className: 'col-12',
               placeholder: 'Select Organisation',
               changed: (data) => {
-                console.log(data);
-                // this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION] = data;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.ORGANISATION] = data;
               },
             },
             {
@@ -264,7 +289,7 @@ const EditCategories = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: { label: 'Publish', value: 1 },
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? {},
               className: 'col-12 mb-16',
               isInline: true,
               required: true,
@@ -276,8 +301,7 @@ const EditCategories = observer(
                 { label: 'UnPublish', value: 2 },
               ],
               changed: (data) => {
-                // eslint-disable-next-line react/no-direct-mutation-state
-                this.state.dataStatus = data.value;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] = data;
               },
             },
           ],
@@ -287,15 +311,21 @@ const EditCategories = observer(
           fields: [
             {
               label: 'Full Category Path for SEF',
-              key: 'featured',
+              key: 'category_path',
               type: FORM_FIELD_TYPE.CHECKBOX,
-              value: '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_PATH]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_PATH]
+                : 'No',
               labelClassName: 'fw-semibold',
               className: 'col-12 mb-16',
               option: [
-                { label: 'Yes', value: 'yes' },
-                { label: 'No', value: 'no' },
+                { label: 'Yes', value: 'Yes' },
+                { label: 'No', value: 'No' },
               ],
+              changed: (data) => {
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_PATH] = data?.target?.id;
+              },
+              getValueSelected: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_PATH] ?? 'No',
             },
           ],
         },
