@@ -10,6 +10,16 @@ const CMS_CATE_DETAIL_FIELD_KEY = {
   CATEGORY_IMAGE: 'category_image',
   INTRO_TEXT: 'intro_text',
   FULL_TEXT: 'full_text',
+  STATUS: 'status',
+  CATEGORY_PATH: 'category_path',
+  ROBOTS: 'robots',
+  META_LANGUAGE_SETTING: 'meta_language_setting',
+  META_KEYWORDS: 'meta_keywords',
+  META_DESCRIPTION: 'meta_description',
+  CANONICAL_URL: 'canonical_url',
+  SEO_PAGE_HEADING: 'seo_page_heading',
+  SEO_PAGE_TITLE: 'seo_page_title',
+  META_DATA: 'meta_data',
 };
 const CMS_ITEMS_DETAIL_FIELD_KEY = {
   ID: 'id',

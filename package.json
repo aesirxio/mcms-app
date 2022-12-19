@@ -16,7 +16,7 @@
     "aesirx_analytics": "https://github.com/aesirxio/analytics#develop",
     "aesirx-dam-app": "https://github.com/aesirxio/dam-app#develop",
     "aesirx-dma-lib": "aesirxio/dma-lib",
-    "aesirx-dma-app": "https://github.com/kakahuy113/dma-app#huy",
+    "aesirx-dma-app": "https://github.com/aesirxio/dma-app#develop",
     "axios": "^0.21.0",
     "bootstrap": "^5.2.2",
     "d3-fetch": "^3.0.1",
