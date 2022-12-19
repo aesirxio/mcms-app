@@ -81,11 +81,9 @@ class ItemsListViewModel {
     );
   };
 
-  handlePagination = (page, isSetPageSize) => {
+  handlePagination = () => {
     this.itemsStore.handlePagination(
-      isSetPageSize
-        ? (this.filters['list[limit]'] = page)
-        : (this.filters['list[limitstart]'] = page),
+      this.filters,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );

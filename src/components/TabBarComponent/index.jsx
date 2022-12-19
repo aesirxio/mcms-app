@@ -27,8 +27,8 @@ const tabList = [
     slug: 'trashed',
   },
 ];
-const TabBarComponent = observer(({ views, getListByFilter }) => {
-  const isFilterTab = true;
+const TabBarComponent = observer(({ viewModel }) => {
+  console.log(viewModel);
   return (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {
@@ -36,12 +36,12 @@ const TabBarComponent = observer(({ views, getListByFilter }) => {
           <li
             key={index}
             className={`${
-              views == item.slug
+              viewModel.filters.views == item.slug
                 ? `${styles['active']} fw-bold position-relative`
                 : styles['list-item']
             } pb-16 me-40 cursor-pointer`}
             onClick={() => {
-              getListByFilter(item.slug, isFilterTab);
+              viewModel.getListByFilter((viewModel.filters.views = item.slug));
             }}
           >
             {item.title}
