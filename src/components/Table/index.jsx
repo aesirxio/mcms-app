@@ -110,7 +110,6 @@ const Table = ({
         ]);
     }
   );
-
   //handle rows drag and drop
   const moveRow = (dragIndex, hoverIndex) => {
     const dragRecord = records[dragIndex];
@@ -203,6 +202,7 @@ const Table = ({
       }
       paginate?.push(
         <button
+          className={`${pageIndex == i && 'bg-black-50'} `}
           onClick={() => {
             gotoPage(i),
               listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i));
