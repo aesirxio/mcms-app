@@ -24,8 +24,7 @@ class ContentListViewModel {
   }
 
   initializeData = async () => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    await this.contentStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+    await this.contentStore.getList(this.callbackOnGetSuccessHandler, this.callbackOnErrorHandler);
   };
 
   getListByFilter = async () => {
@@ -52,15 +51,18 @@ class ContentListViewModel {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
-      this.successResponse.data = result;
       notify('Successfully', 'success');
     }
-    this.formStatus = PAGE_STATUS.READY;
+  };
+  callbackOnGetSuccessHandler = async (result) => {
+    if (result) {
+      this.successResponse.data = result;
+      notify('Get List Successfully', 'success');
+    }
   };
 }
 

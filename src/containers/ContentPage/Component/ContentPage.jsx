@@ -44,109 +44,24 @@ const Fields = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
     ],
     []
   );
-  // const dataTable = React.useMemo(
-  //   () => [
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Customer',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Brancher slider',
-  //       description:
-  //         'In mattis auctor nunc, et egestas sapien hendrerit eu. Nunc non ante odio. Cras lacinia facilisis elit',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Category type',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'News',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'B2B Solutions',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'About Us',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: '	Contact Us',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Career',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Package',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Team',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Services price',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //     {
-  //       checkbox: true,
-  //       id: '501',
-  //       name: 'Services Lv4',
-  //       description:
-  //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-  //     },
-  //   ],
-  //   []
-  // );
-
   useEffect(() => {
     const fetchData = async () => {
       await contentViewModel.contentListViewModel.initializeData();
     };
-    fetchData();
     setEntriesFound(contentViewModel?.contentListViewModel?.successResponse?.data?.length);
+    fetchData();
   }, []);
+  const dataTable = React.useMemo(
+    () => [...contentViewModel?.contentListViewModel?.successResponse?.data],
+    [contentViewModel?.contentListViewModel?.successResponse?.data]
+  );
+
   return (
     <>
       <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
-          data={contentViewModel?.contentListViewModel?.successResponse?.data}
+          data={dataTable}
           canSort={true}
           store={contentViewModel.contentDetailViewModel}
           listViewModel={contentViewModel.contentListViewModel}

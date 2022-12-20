@@ -297,28 +297,26 @@ const EditFields = observer(
           ],
         },
       ];
-      if (status === PAGE_STATUS.LOADING) {
-        return <Spinner />;
-      }
 
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.fieldsViewModel.formStatus === PAGE_STATUS.LOADING && (
+          {this.fieldsViewModel.formStatus === PAGE_STATUS.LOADING ? (
             <Spinner className="spinner-overlay" />
+          ) : (
+            <FieldsViewModelContextProvider viewModel={fieldsViewModel}>
+              <Form>
+                <ItemsFormPage
+                  formPublish={formPublish}
+                  generateFormSetting={generateFormSetting}
+                  path="/fields"
+                  title="txt_add_fields"
+                  validator={this.validator}
+                  store={this.fieldsViewModel}
+                  isEdit={this.isEdit}
+                />
+              </Form>
+            </FieldsViewModelContextProvider>
           )}
-          <FieldsViewModelContextProvider viewModel={fieldsViewModel}>
-            <Form>
-              <ItemsFormPage
-                formPublish={formPublish}
-                generateFormSetting={generateFormSetting}
-                path="/fields"
-                title="txt_add_fields"
-                validator={this.validator}
-                store={this.fieldsViewModel}
-                isEdit={this.isEdit}
-              />
-            </Form>
-          </FieldsViewModelContextProvider>
         </div>
       );
     }
