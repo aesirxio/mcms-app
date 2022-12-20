@@ -57,6 +57,7 @@ class ContentListViewModel {
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
+      this.successResponse.data = result;
       notify('Successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;

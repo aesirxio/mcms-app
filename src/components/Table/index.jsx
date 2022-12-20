@@ -202,7 +202,7 @@ const Table = ({
       }
       paginate?.push(
         <button
-          className={`${pageIndex == i && 'bg-black-50'} `}
+          className={`${pageIndex == i && 'bg-black-50'}`}
           onClick={() => {
             gotoPage(i),
               listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i));
