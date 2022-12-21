@@ -16,7 +16,7 @@ const FormImage = ({ field, hiddenDelete = false }) => {
   return (
     <>
       <ModalDAMComponent show={show} onHide={() => setShow(false)} onSelect={onSelect} />
-      <div className={`position-relative p-7px mb-24`}>
+      <div className={`position-relative mb-24`}>
         {file && !hiddenDelete && (
           <div className={`position-absolute top-0 start-100 text-end cursor-pointer`}>
             <div className="bg-danger p-sm" onClick={() => setFile(null)}>
@@ -24,11 +24,9 @@ const FormImage = ({ field, hiddenDelete = false }) => {
             </div>
           </div>
         )}
-        <div className="d-flex align-items-center justify-content-center cursor-auto">
-          <input
-            readOnly
-            className={`${styles['border']} position-absolute start-0 top-0 bottom-0 end-0 cursor-auto`}
-          />
+        <div
+          className={`${styles['border']} d-flex align-items-center justify-content-center cursor-auto `}
+        >
           {file ? (
             <div
               key={field.value}

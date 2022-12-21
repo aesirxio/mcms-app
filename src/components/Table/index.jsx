@@ -4,11 +4,10 @@ import { withTranslation } from 'react-i18next';
 import ComponentNoData from '../ComponentNoData';
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faSortUp, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
-import ComponentImage from 'components/ComponentImage';
 import BTable from 'react-bootstrap/Table';
 import ListThumb from 'components/ListThumb';
 
@@ -184,13 +183,7 @@ const Table = ({
             </td>
           ) : (
             <td ref={dragRef} key={Math.random(40, 200)}>
-              <ComponentImage
-                src={'/assets/images/moveIcon.png'}
-                alt={'/assets/images/moveIcon.png'}
-                width={16}
-                height={16}
-                style={{ objectFit: 'contain' }}
-              />
+              <FontAwesomeIcon icon={faArrowsAlt} width={16} height={16} />
             </td>
           );
         })}

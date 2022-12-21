@@ -100,7 +100,7 @@ const UpdatePassword = observer(
       this.validator.purgeFields();
       return (
         <div>
-          <div className="bg-white p-16">
+          <div className="bg-white p-24 rounded-3">
             <form>
               <div className="row">
                 <div className="col-4">

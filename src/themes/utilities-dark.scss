@@ -70,8 +70,55 @@ $utilities: (
           'green': $green,
           'red': $color-red,
           'transparent': transparent,
+          'gray-500': $gray-500,
+          'gray-300': $gray-300,
+          'gray-700': $gray-700,
         )
       ),
+  ),
+  'border': (
+    property: border,
+    values: (
+      null: $border-width solid $border-color,
+      0: 0,
+      1: 1px solid $border-color,
+      'da-1': 1px dashed $border-color,
+    ),
+  ),
+  'border-top': (
+    property: border-top,
+    values: (
+      null: $border-width solid $border-color,
+      0: 0,
+      1: 1px solid $border-color,
+    ),
+  ),
+  'border-bottom': (
+    property: border-bottom,
+    values: (
+      null: $border-width solid $border-color,
+      0: 0,
+      1: 1px solid $border-color,
+    ),
+  ),
+  'border-end': (
+    property: border-right,
+    class: border-end,
+    values: (
+      null: $border-width solid $border-color,
+      0: 0,
+      1: 1px solid $border-color,
+    ),
+  ),
+  'border-start': (
+    property: border-left,
+    class: border-start,
+    values: (
+      null: $border-width solid $border-color,
+      0: 0,
+      1: 1px solid $border-color,
+      5: 5px solid $border-color,
+    ),
   ),
   'shadow': (
     property: box-shadow,

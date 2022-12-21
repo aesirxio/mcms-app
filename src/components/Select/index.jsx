@@ -8,22 +8,25 @@ import React from 'react';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 import customStyles from './customStyles';
+import customClassName from './classNames';
 import { withThemeContext } from 'themes/ThemeContextProvider';
 import { withTranslation } from 'react-i18next';
 class SelectComponent extends React.Component {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {}
   render() {
     const { t } = this.props;
     let { isBorder, async, placeholder, isShadow, isSemibold } = this.props;
     let styles = customStyles(isBorder, isShadow, isSemibold);
+    let classNames = customClassName(isBorder);
+
     if (async) {
       return (
         <AsyncSelect
           {...this.props}
+          classNames={classNames}
           placeholder={placeholder ?? t('txt_select...')}
           styles={styles}
         />
@@ -31,7 +34,12 @@ class SelectComponent extends React.Component {
     }
 
     return (
-      <Select {...this.props} placeholder={placeholder ?? t('txt_select...')} styles={styles} />
+      <Select
+        {...this.props}
+        classNames={classNames}
+        placeholder={placeholder ?? t('txt_select...')}
+        styles={styles}
+      />
     );
   }
 }

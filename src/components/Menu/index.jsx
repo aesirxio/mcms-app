@@ -128,7 +128,9 @@ const Menu = observer((props) => {
                         activeClassName={`active`}
                       >
                         <ComponentImage src={menuList.icons_color} alt={t(menuList.text)} />
-                        <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
+                        <span className="ms-16 text d-inline-block fw-semibold">
+                          {t(menuList.text)}
+                        </span>
                       </NavLink>
                     )}
                   </>
@@ -150,7 +152,9 @@ const Menu = observer((props) => {
                       }
                     >
                       <ComponentImage src={menuList.icons_color} alt={t(menuList.text)} />
-                      <span className="ms-16 text d-inline-block">{t(menuList.text)}</span>
+                      <span className="ms-16 text d-inline-block fw-semibold">
+                        {t(menuList.text)}
+                      </span>
 
                       <ComponentImage
                         wrapperClassName="icon arrow d-inline-block align-text-bottom ms-auto"
@@ -211,7 +215,7 @@ const Menu = observer((props) => {
                     activeClassName={`active`}
                   >
                     <ComponentImage src={value.icons_color} alt={t(value.text)} />
-                    <span className="ms-16 text-white d-inline-block">{t(value.text)}</span>
+                    <span className="ms-16 fw-semibold text d-inline-block">{t(value.text)}</span>
                   </NavLink>
                 ) : (
                   <>
@@ -229,7 +233,7 @@ const Menu = observer((props) => {
                       }
                     >
                       <ComponentImage src={value.icons_color} alt={t(value.text)} />
-                      <span className="ms-16 text-white d-inline-block">{t(value.text)}</span>
+                      <span className="ms-16 text fw-semibold d-inline-block">{t(value.text)}</span>
 
                       <ComponentImage
                         wrapperClassName="icon align-text-bottom ms-auto"
