@@ -16,7 +16,6 @@ $gray-600: #8e8e8e !default;
 $gray-700: #626276 !default;
 $gray-800: #949494 !default;
 $gray-900: #1a2226 !default;
-$gray-select: #e8e9ec !default;
 $black: #000 !default;
 $blue-50: #4486ab !default;
 $blue-100: #4267b2 !default;
@@ -34,7 +33,7 @@ $grays: (
 ) !default;
 // fusv-enable
 
-$blue: #005f89 !default;
+$blue: #004D6C !default;
 $blue-200: #0a083b !default;
 $dark-blue: #3e545e !default;
 $indigo: #6610f2 !default;
@@ -125,7 +124,7 @@ $theme-colors: (
 // Settings for the `<body>` element.
 
 $body-bg: $white !default;
-$body-color: $gray-900 !default;
+$body-color: #0A083B !default;
 $body-text-align: null !default;
 
 $link-color: $primary !default;
@@ -242,6 +241,7 @@ $spacers: (
   sm: 5px,
   7px: 7px,
   8px: 8px,
+  10: 10px,
   11: 11px,
   12: 12px,
   14: 14px,
@@ -271,8 +271,17 @@ $list-group-color: $body-color;
 
 $form-check-input-width: 1em;
 
-$table-striped-bg: $white;
-$table-bg-accent: red;
+
+$table-striped-bg: #EBEBEB;
+$table-accent-bg: $white;
+
+// $input-color: $body-color;
+$input-placeholder-color: $body-color;
+$input-color: $body-color;
+$input-bg: transparent;
+$input-border-color: $border-color;
+
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$success}'/></svg>");
 // for react-select
 :root {
   --dropdown-item-hover-color: #1ab394;

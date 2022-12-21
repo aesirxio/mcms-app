@@ -27,13 +27,13 @@ const ItemsFormActionBar = observer(
         <div className="d-flex">
           <button
             onClick={() => history.push(path ?? '/')}
-            className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-danger bg-white border-gray-200 d-flex align-items-center"
+            className="btn btn-outline-secondary px-16 py-11 text-capitalize border rounded-1 me-16 text-danger bg-white d-flex align-items-center"
           >
-            <Icon className="me-1" icon="iconoir:cancel" width={24} height={24} />
+            <Icon className="me-10" icon="iconoir:cancel" width={24} height={24} />
             {t('txt_cancel')}
           </button>
           <button
-            className="btn btn-outline-secondary px-16 py-11 text-capitalize rounded-1 me-16 text-blue-0 bg-white border-gray-200"
+            className="btn btn-outline-secondary px-16 py-11 text-capitalize border rounded-1 me-16 text-blue-0 bg-white"
             onClick={async (e) => {
               e.preventDefault();
               if (validator.allValid()) {
@@ -66,7 +66,7 @@ const ItemsFormActionBar = observer(
               this.forceUpdate();
             }}
           >
-            <Icon className="me-1" icon="teenyicons:save-outline" />
+            <Icon className="me-10" icon="teenyicons:save-outline" />
             {t('txt_save')}
           </button>
         </div>

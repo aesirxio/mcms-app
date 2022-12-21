@@ -434,3 +434,20 @@ textarea {
     }
   }
 }
+
+.form-check {
+  .form-check-input {
+    &[type='radio'] {
+      border-color: $border-color;
+      &:checked {
+        border-color: $success;
+        background-color: transparent;
+      }
+    }
+  }
+}
+.item_menu {
+  .text{
+    color: #fff;
+  }
+}

@@ -1,5 +1,5 @@
 .dark {
-  $white: #3e545e;
+  $white: #242D31;
   $gray-100: #f6f8fa;
   $gray-200: #e9ecef;
   $gray-300: #495057;
@@ -9,7 +9,6 @@
   $gray-700: #3e545e;
   $gray-800: #090a0b;
   $gray-900: #1a2226;
-  $gray-select: #000;
   $black: #fff;
   // fusv-disable
   $grays: (
@@ -22,7 +21,6 @@
     '700': $gray-700,
     '800': $gray-800,
     '900': $gray-900,
-    'select': $gray-select,
   );
   // fusv-enable
 
@@ -85,7 +83,7 @@
     'white': #000,
   );
 
-  $body-color: #eeeeee;
+  $body-color: #fff;
   $body-bg: #1a2226;
   color: $body-color;
   background-color: $body-bg;
@@ -95,7 +93,6 @@
 
   $link-color: $primary;
   $link-hover-color: shift-color($link-color, $link-shade-percentage);
-  $border-color: $gray-300;
 
   $box-shadow: 0 3px 6px rgba($black, 0.15);
   $box-shadow-sm: 0 0.185rem 0.3125rem rgba($black, 0.05);
@@ -136,7 +133,7 @@
   $color-blue-8: #54c7ec;
 
   //BORDER COLOR
-  $border-color: #d5d5d5;
+  $border-color: #3E545E;
 
   $accordion-button-bg: $color-blue-5;
   $accordion-button-active-bg: $color-blue-6;
@@ -145,12 +142,17 @@
   $accordion-button-focus-box-shadow: $color-blue-6;
   $nav-tabs-link-active-color: #fff;
   $nav-tabs-link-active-bg: $color-blue-3;
+
+  $table-striped-bg: #161C1F;
+  $table-accent-bg: #242D31;
+
+  $input-color: $body-color !important;
+  $input-placeholder-color: $body-color;
+  $input-border-color: $border-color;
+
   // maps
-  @import '~bootstrap/scss/maps';
-  // end of maps
 
-  @import './utilities-dark.scss';
-
+  --#{$prefix}border-color: #{$border-color};
   /* redefine theme color variables */
   @each $color, $value in $theme-colors {
     --#{$variable-prefix}#{$color}: #{$value};
@@ -219,7 +221,6 @@
   // scss-docs-end alert-modifiers
 
   // helper
-  @import '~bootstrap/scss/helpers';
   // end of helper
 
   // scss-docs-start list-group-modifiers
@@ -248,16 +249,15 @@
   // Table variants set the table cell backgrounds, border colors
   // and the colors of the striped, hovered & active tables
 
-  @each $color, $value in $table-variants {
-    @include table-variant($color, $value);
-  }
+  // @import '~bootstrap/scss/variables';
+  @import '~bootstrap/scss/maps';
 
-  // end of table
-
-  .btn-close {
-    filter: $btn-close-white-filter;
-  }
-
+  @import './utilities-dark.scss';
+  // end of maps
+  @import '~bootstrap/scss/tables';
+  @import '~bootstrap/scss/forms';
+  
+  @import '~bootstrap/scss/helpers';
   @import '~bootstrap/scss/utilities/api';
 
   // for react-select
@@ -266,7 +266,7 @@
     --dropdown-item-hover-bg: #e8e9ec;
     --view-active-bg: #e8e9ec;
     --text-title-color: #fff;
-    --dropdown-bg: #e8e9ec;
+    --dropdown-bg: #000;
     --dropdown-item-color: #fff;
   }
 }
