@@ -5,7 +5,7 @@ import './index.scss';
 import { Collapse, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 import ComponentImage from 'components/ComponentImage';
 const dataMenuSetup = [
   {

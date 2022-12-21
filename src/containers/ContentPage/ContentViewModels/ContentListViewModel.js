@@ -24,6 +24,7 @@ class ContentListViewModel {
   }
 
   initializeData = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
     await this.contentStore.getList(this.callbackOnGetSuccessHandler, this.callbackOnErrorHandler);
   };
 

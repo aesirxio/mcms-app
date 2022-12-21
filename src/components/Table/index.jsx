@@ -40,8 +40,11 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
-
   const paginate = [];
+
+  useEffect(() => {
+    setRecords(data);
+  }, [data]);
   const {
     getTableProps,
     getTableBodyProps,

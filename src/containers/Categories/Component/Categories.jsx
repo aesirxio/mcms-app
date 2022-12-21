@@ -1,6 +1,6 @@
 import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
 
 const Categories = observer(({ setEntriesFound }) => {

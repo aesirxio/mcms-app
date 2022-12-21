@@ -1,7 +1,7 @@
 import Table from 'components/Table';
+import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
-import { withTranslation } from 'react-i18next';
-import { observer } from 'mobx-react-lite';
+
 import { useContentViewModel } from '../ContentViewModels/ContentViewModelContextProvider';
 
 const Fields = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
@@ -76,4 +76,4 @@ const Fields = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
     </>
   );
 });
-export default withTranslation('common')(Fields);
+export default Fields;
