@@ -22,6 +22,7 @@ class ContentTypeItemModel extends BaseItemModel {
   status = '';
   type = '';
   visits = '';
+  title = '';
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -33,6 +34,7 @@ class ContentTypeItemModel extends BaseItemModel {
       this.status = entity[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? '';
       this.type = entity[CMS_CATE_DETAIL_FIELD_KEY.TYPE] ?? '';
       this.visits = entity[CMS_CATE_DETAIL_FIELD_KEY.VISITS] ?? '';
+      this.title = entity['title'] ?? '';
     }
   }
 
@@ -51,6 +53,7 @@ class ContentTypeItemModel extends BaseItemModel {
       [CMS_CATE_DETAIL_FIELD_KEY.STATUS]: this.status,
       [CMS_CATE_DETAIL_FIELD_KEY.TYPE]: this.type,
       [CMS_CATE_DETAIL_FIELD_KEY.VISITS]: this.visits,
+      ['title']: this.title,
     };
   };
 

@@ -1,11 +1,10 @@
 import Table from 'components/Table';
-import React, { useEffect, useState } from 'react';
-import { withTranslation } from 'react-i18next';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
+
 import { useContentViewModel } from '../ContentViewModels/ContentViewModelContextProvider';
 
-const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) => {
-  const [loading, setLoading] = useState(false);
+const Fields = observer(({ filterTab, setFilterTab, setEntriesFound }) => {
   const contentViewModel = useContentViewModel();
 
   const columnsTable = React.useMemo(
@@ -20,7 +19,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
       },
       {
         Header: 'Content Name',
-        accessor: 'name',
+        accessor: 'title',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value, row }) => {
           return (
@@ -32,7 +31,7 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
             </div>
           );
         },
-        sortParams: 'name',
+        sortParams: 'title',
       },
       {
         Header: 'Description',
@@ -45,106 +44,17 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
     ],
     []
   );
-  // const dataTable = React.useMemo(() => [...data], [data]);
-  const dataTable = React.useMemo(
-    () => [
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Customer',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Brancher slider',
-        description:
-          'In mattis auctor nunc, et egestas sapien hendrerit eu. Nunc non ante odio. Cras lacinia facilisis elit',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Category type',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'News',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'B2B Solutions',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'About Us',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: '	Contact Us',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Career',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Package',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Team',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Services price',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-      {
-        checkbox: true,
-        id: '501',
-        name: 'Services Lv4',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ultrices ante. Nulla sagittis sollicitud',
-      },
-    ],
-    []
-  );
-
   useEffect(() => {
-    let fetchData = async () => {
-      setLoading(true);
+    const fetchData = async () => {
       await contentViewModel.contentListViewModel.initializeData();
-      setLoading(false);
     };
+    setEntriesFound(contentViewModel?.contentListViewModel?.successResponse?.data?.length);
     fetchData();
-    setEntriesFound(dataTable?.length);
-  }, [store]);
+  }, []);
+  const dataTable = React.useMemo(
+    () => [...contentViewModel?.contentListViewModel?.successResponse?.data],
+    [contentViewModel?.contentListViewModel?.successResponse?.data]
+  );
 
   return (
     <>
@@ -158,8 +68,6 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
           pagination={true}
           selection={false}
           dragDrop={true}
-          setLoading={setLoading}
-          loading={loading}
           filterTab={filterTab}
           setFilterTab={setFilterTab}
           linkTo="/content-edit/"
@@ -168,4 +76,4 @@ const Fields = observer(({ filterTab, setFilterTab, store, setEntriesFound }) =>
     </>
   );
 });
-export default withTranslation('common')(Fields);
+export default Fields;

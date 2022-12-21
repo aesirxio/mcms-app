@@ -1,7 +1,7 @@
 import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { withTranslation } from 'react-i18next';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 import { useFieldsGroupViewModel } from '../FieldsGroupViewModels/FieldsGroupViewModelContextProvider';
 
 const Fields = observer(({ filterTab, setFilterTab, store }) => {
