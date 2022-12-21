@@ -213,7 +213,6 @@ const Table = ({
   return (
     <DndProvider backend={HTML5Backend}>
       <>
-        {console.log(page, data, records)}
         <ListThumb
           selectedMulptiRows={selectedFlatRows}
           store={store}

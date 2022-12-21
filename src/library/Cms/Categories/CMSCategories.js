@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
-import { CategoriesItemModel } from './CMSCategoriesModel';
+import { CategoryModel } from './CMSCategoriesModel';
 import CmsCategoriesRoute from './CMSCategoriesRoute';
 
 class AesirxCmsCategoryApiService extends Component {
@@ -15,7 +15,7 @@ class AesirxCmsCategoryApiService extends Component {
       const data = await this.route.getList();
       let results = null;
       if (data) {
-        results = new CategoriesItemModel(data);
+        results = new CategoryModel(data);
       }
       return results;
     } catch (error) {
@@ -28,6 +28,7 @@ class AesirxCmsCategoryApiService extends Component {
   create = async (data) => {
     try {
       const result = await this.route.create(data);
+      console.log('resultresult', result);
       if (result) {
         return result.result;
       }
@@ -53,13 +54,26 @@ class AesirxCmsCategoryApiService extends Component {
     }
   };
 
+  delete = async (id) => {
+    try {
+      const result = await this.route.delete(id);
+      if (result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
   getDetail = async (id = 0) => {
     try {
-      console.log('id getDetail', id);
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new CategoriesItemModel(data);
+        results = new CategoryModel(data);
       }
       if (results) {
         results = results.toJSON();

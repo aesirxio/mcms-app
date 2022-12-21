@@ -1,6 +1,7 @@
 const CMS_CATE_DETAIL_FIELD_KEY = {
   ID: 'id',
   NAME: 'name',
+  TITLE: 'title',
   ALIAS: 'alias',
   ORGANISATION: 'organisation',
   CONTENT_TYPE: 'content_type',

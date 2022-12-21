@@ -1,4 +1,4 @@
-// import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
+import AesirxCmsCategoryApiService from 'library/Cms/Categories/CMSCategories';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
@@ -7,17 +7,11 @@ export default class CategoriesStore {
     try {
       const results = true;
       if (results) {
-        // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-        // const respondedData = await getListInfoAPIService.getList();
-        if (results) {
+        const getListInfoAPIService = new AesirxCmsCategoryApiService();
+        const respondedData = await getListInfoAPIService.getList();
+        if (respondedData) {
           runInAction(() => {
-            callbackOnSuccess({
-              id: '261',
-              name: '|-|-E-commerce B2C',
-              type: 'Services',
-              engagement: '40%',
-              visits: '100',
-            });
+            callbackOnSuccess(respondedData);
           });
         } else {
           callbackOnError({
@@ -57,24 +51,12 @@ export default class CategoriesStore {
   async getDetail(id, callbackOnSuccess, callbackOnError) {
     try {
       // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('Store getDetail', id);
-      if (id) {
+      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const respondedData = await getListInfoAPIService.getDetail(id);
+      console.log('vrespondedDatarespondedData', respondedData);
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess({
-            id: id,
-            name: 'Name response',
-            alias: 'alias response',
-            organisation: { label: 'test', value: 1 },
-            content_type: { label: 'test', value: 1 },
-            parent_category: { label: 'test', value: 1 },
-            default_template: { label: 'test', value: 1 },
-            related_category: { label: 'test', value: 1 },
-            category_image: 'test img',
-            intro_text: 'intro_text response',
-            full_text: 'full_text response',
-          });
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
@@ -92,9 +74,9 @@ export default class CategoriesStore {
   async handleCreate(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('Store handleCreate', data);
+      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const respondedData = await getListInfoAPIService.create(data);
+      console.log('Store handleCreate', respondedData);
       if (data) {
         runInAction(() => {
           callbackOnSuccess(data);
@@ -142,14 +124,13 @@ export default class CategoriesStore {
   }
 
   async handleDelete(id, callbackOnSuccess, callbackOnError) {
-    console.log('id', id);
     try {
       // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (id) {
+      const getListInfoAPIService = new AesirxCmsCategoryApiService();
+      const respondedData = await getListInfoAPIService.delete(id);
+      if (respondedData) {
         runInAction(() => {
-          callbackOnSuccess(id);
+          callbackOnSuccess(respondedData);
         });
       } else {
         runInAction(() => {
@@ -163,15 +144,14 @@ export default class CategoriesStore {
       return null;
     }
   }
-  async handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
-    console.log('arrId', arrId);
+  async handleDeleteMultiple(id, callbackOnSuccess, callbackOnError) {
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (arrId) {
+      if (id) {
         runInAction(() => {
-          callbackOnSuccess(arrId);
+          callbackOnSuccess(id);
         });
       } else {
         runInAction(() => {

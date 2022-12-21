@@ -123,7 +123,7 @@ class CategoriesDetailViewModel {
 
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      console.log('result api', result);
+      console.log('resultresult', result);
       this.categoriesDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
     }
@@ -132,7 +132,6 @@ class CategoriesDetailViewModel {
 
   callbackOnUpdateSuccessHandler = (result) => {
     if (result) {
-      console.log('result', result);
       notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;

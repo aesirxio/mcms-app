@@ -165,16 +165,16 @@ const EditCategories = observer(
           fields: [
             {
               label: 'Name',
-              key: 'name',
+              key: 'title',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Product Name');

@@ -25,7 +25,10 @@ class CategoriesListViewModel {
   }
 
   initializeData = async () => {
-    await this.categoriesStore.getList(this.callbackOnSuccessHandler, this.callbackOnErrorHandler);
+    await this.categoriesStore.getList(
+      this.callbackOnGetSuccessHandler,
+      this.callbackOnErrorHandler
+    );
   };
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
@@ -71,6 +74,12 @@ class CategoriesListViewModel {
     if (result) {
       console.log('result', result);
       notify('Update successfully', 'success');
+    }
+  };
+  callbackOnGetSuccessHandler = async (result) => {
+    if (result) {
+      this.successResponse.data = result;
+      notify('Get List Successfully', 'success');
     }
   };
 }

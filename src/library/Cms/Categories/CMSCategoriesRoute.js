@@ -4,20 +4,20 @@ import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 class CmsCategoriesRoute extends BaseRoute {
   option = '';
 
-  getList = (dataFilter = {}) => {
+  getList = () => {
     return AesirxApiInstance().get(
       this.createRequestURL({
-        option: this.option,
-        ...dataFilter,
+        option: 'reditem',
+        view: 'category_with_org_check_metaverse_categories_63',
       })
     );
   };
-  getDetail = (id = 0, dataFilter = {}) => {
+  getDetail = (id = 0) => {
     return AesirxApiInstance().get(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
+        view: 'category_with_org_check_metaverse_categories_63',
         id: id,
-        ...dataFilter,
       })
     );
   };
@@ -25,7 +25,8 @@ class CmsCategoriesRoute extends BaseRoute {
   create = (data) => {
     return AesirxApiInstance().post(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
+        view: 'category_with_org_check_metaverse_categories_63',
       }),
       data
     );
@@ -46,14 +47,10 @@ class CmsCategoriesRoute extends BaseRoute {
   delete = (id) => {
     return AesirxApiInstance().delete(
       this.createRequestURL({
-        option: this.option,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: { id: id },
-      }
+        option: 'reditem',
+        view: 'category_with_org_check_metaverse_categories_63',
+        id: id,
+      })
     );
   };
 }

@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
 
 const Categories = observer(({ setEntriesFound }) => {
-  const [loading, setLoading] = useState(false);
   const [dataAction, setDataAction] = useState([]);
   const categoriesViewModel = useCategoriesViewModel();
 
@@ -20,7 +19,7 @@ const Categories = observer(({ setEntriesFound }) => {
       },
       {
         Header: 'Category',
-        accessor: 'name',
+        accessor: 'title',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1 ',
         Cell: ({ value, row }) => {
           return (
@@ -33,7 +32,7 @@ const Categories = observer(({ setEntriesFound }) => {
           );
         },
 
-        sortParams: 'name',
+        sortParams: 'title',
       },
       {
         Header: 'Type',
@@ -122,168 +121,28 @@ const Categories = observer(({ setEntriesFound }) => {
     []
   );
 
-  const dataTable = React.useMemo(
-    () => [
-      {
-        checkbox: true,
-        id: '260',
-        name: '|-E-Commerce',
-        type: 'Services',
-
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'unpublished',
-        featured: false,
-      },
-      {
-        checkbox: false,
-        id: '261',
-        name: '|-|-E-commerce B2C',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: false,
-      },
-      {
-        checkbox: true,
-        id: '262',
-        name: '|-|-E-commerce B2B',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '263',
-        name: '|-|-E-commerce Omnichannel',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'trashed',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '264',
-        name: '|-Digital Experience Platform',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: false,
-        id: '265',
-        name: '|-|-AesirX',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: false,
-      },
-      {
-        checkbox: true,
-        id: '266',
-        name: '|-|-PIM (Product Information Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: '|-|-DAM (Digital Asset Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: '|-|-DAM (Digital Asset Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: '|-|-DAM (Digital Asset Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: '|-|-DAM (Digital Asset Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-      {
-        checkbox: true,
-        id: '267',
-        name: '|-|-DAM (Digital Asset Management)',
-        type: 'Services',
-        engagement: '40%',
-        visits: '100',
-        languages: 'English (en), Vietnam...',
-        status: 'published',
-        featured: true,
-      },
-    ],
-    []
-  );
-
   useEffect(() => {
     let fetchData = async () => {
-      setLoading(true);
       await categoriesViewModel.categoriesListViewModel.initializeData();
-      setLoading(false);
     };
     fetchData();
-    setEntriesFound(dataTable?.length);
+    setEntriesFound(
+      categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items?.length
+    );
   }, []);
+
   return (
     <>
       <div className="fs-14 h-100">
         <Table
           columns={columnsTable}
-          data={dataTable}
+          data={categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items ?? []}
           canSort={true}
           store={categoriesViewModel.categoriesDetailViewModel}
           listViewModel={categoriesViewModel.categoriesListViewModel}
           pagination={true}
           selection={false}
           dragDrop={true}
-          setLoading={setLoading}
-          loading={loading}
           setDataAction={setDataAction}
           dataAction={dataAction}
           linkTo="/categories-edit/"
