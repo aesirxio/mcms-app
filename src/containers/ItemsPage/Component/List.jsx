@@ -9,12 +9,12 @@ import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
   const itemsListViewModel = useItemsViewModel();
-  const { tableData, filters, getListByFilter, toggleFeatured } = itemsListViewModel;
+  const { tableData, toggleFeatured } = itemsListViewModel;
 
-  const handleGetListByViews = (views) => {
-    filters.views = views;
-    getListByFilter();
-  };
+  // const handleGetListByViews = (views) => {
+  //   filters.views = views;
+  //   getListByFilter();
+  // };
 
   const handleToggleFeatured = (id, isFeatured) => {
     toggleFeatured(id, isFeatured);
@@ -157,7 +157,7 @@ const List = observer(() => {
 
   return (
     <>
-      <TabBarComponent views={filters.views} getListByFilter={handleGetListByViews} />
+      <TabBarComponent viewModel={itemsListViewModel} />
       {itemsListViewModel.formStatus === PAGE_STATUS.LOADING ? (
         <Spinner />
       ) : (

@@ -6,10 +6,9 @@ import Menu from '../Menu';
 // import { Dropdown } from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
-import { withBiViewModel } from 'store/BiStore/BiViewModelContextProvider';
 import { observer } from 'mobx-react';
 import ComponentImage from 'components/ComponentImage';
-// import { AesirXDamStorage } from '@kakahuy113/aesirx-dam-app';
+import { AesirXDamStorage } from '@kakahuy113/test-dam-app';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
     constructor(props) {
@@ -17,7 +16,6 @@ const SbarLeft = observer(
       this.state = {};
       const { viewModel } = props;
       this.viewModel = viewModel ? viewModel : null;
-      this.biListViewModel = this.viewModel ? this.viewModel.biListViewModel : null;
     }
 
     render() {
@@ -29,9 +27,9 @@ const SbarLeft = observer(
           <>
             <Menu />
           </>
-          {/* <div>
+          <div>
             <AesirXDamStorage />
-          </div> */}
+          </div>
           <div className="bottom-0 w-100 item_menu">
             <a
               href="/"
@@ -47,4 +45,4 @@ const SbarLeft = observer(
   }
 );
 
-export default withTranslation('common')(withBiViewModel(SbarLeft));
+export default withTranslation('common')(SbarLeft);
