@@ -5,8 +5,9 @@
 
 const classNames = (isBorder) => {
   return {
+    menu: ({ theme }) => (theme.className += ' bg-white border-1'),
     control: ({ theme }) =>
-      isBorder ? (theme.className += 'border') : (theme.className += 'border-0'),
+      isBorder ? (theme.className += ' border') : (theme.className += ' border-0 '),
   };
 };
 

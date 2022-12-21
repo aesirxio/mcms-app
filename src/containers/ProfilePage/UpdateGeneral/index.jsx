@@ -208,16 +208,17 @@ const UpdateGeneral = observer(
           {!memberInfo ? (
             <Spinner />
           ) : (
-            <div className="bg-white p-16 rounded-3">
+            <div className="bg-white p-24 rounded-3">
               <div className="row">
-                <FormComponent
-                  formClassName={'col-9 row'}
-                  generateFormSetting={() => this.generateFormSetting()}
-                  formPropsData={this.formPropsData}
-                  viewModel={this.updateGeneralViewModel}
-                  key={Math.random(40, 200)}
-                />
-
+                <div className="col-9">
+                  <FormComponent
+                    formClassName={'row'}
+                    generateFormSetting={() => this.generateFormSetting()}
+                    formPropsData={this.formPropsData}
+                    viewModel={this.updateGeneralViewModel}
+                    key={Math.random(40, 200)}
+                  />
+                </div>
                 <AvatarDAM>
                   <div
                     className={`position-relative  cursor-pointer wr_upload_images ${

@@ -281,6 +281,7 @@ $input-color: $body-color;
 $input-bg: transparent;
 $input-border-color: $border-color;
 
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$success}'/></svg>");
 // for react-select
 :root {
   --dropdown-item-hover-color: #1ab394;

@@ -152,6 +152,7 @@
 
   // maps
 
+  --#{$prefix}border-color: #{$border-color};
   /* redefine theme color variables */
   @each $color, $value in $theme-colors {
     --#{$variable-prefix}#{$color}: #{$value};

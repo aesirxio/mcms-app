@@ -38,7 +38,7 @@ const SbarLeft = observer(
               className="d-block px-24 py-16 link_menu text-white text-decoration-none border-top border-dark-blue"
             >
               <ComponentImage src="/assets/images/help-icon.svg" />
-              <span className="text-white text ps-3">{t('txt_help_center')}</span>
+              <span className="text ps-3">{t('txt_help_center')}</span>
             </a>
           </div>
         </aside>
