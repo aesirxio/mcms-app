@@ -50,7 +50,6 @@ const ItemsFormPage = ({
               </Tab>
               <Tab tabClassName="border-0 bg-transparent p-0 pb-16" eventKey="DMA" title={t('DMA')}>
                 <>
-                  test
                   <AesirxDmaChannelPost title={'test123'} description="desc123" />
                 </>
               </Tab>
