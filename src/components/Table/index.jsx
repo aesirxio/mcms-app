@@ -44,21 +44,22 @@ const Table = ({
   useEffect(() => {
     setRecords(data);
   }, [data]);
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page,
-    pageOptions,
-    previousPage,
-    canPreviousPage,
-    canNextPage,
+    rows,
+    // pageOptions,
+    // previousPage,
+    // canPreviousPage,
+    // canNextPage,
     gotoPage,
-    nextPage,
+    // nextPage,
     selectedFlatRows,
     // state :{pageIndex},
-    state: { pageIndex, pageSize },
+    state: { pageSize },
     setPageSize,
     allColumns,
     // pageCount,
@@ -191,17 +192,17 @@ const Table = ({
     );
   };
   {
-    pageOptions?.forEach((v, i) => {
-      if (i === 4 && pageOptions?.length > 7) {
+    [...Array(pagination.totalPages)]?.forEach((v, i) => {
+      if (i === 4 && [...Array(pagination.totalPages)]?.length > 7) {
         paginate?.push(<a key={Math.random(40, 200)}>...</a>);
-        i = pageOptions?.length - 3;
+        i = [...Array(pagination.totalPages)]?.length - 3;
       }
       paginate?.push(
         <button
-          className={`${pageIndex == i && 'bg-black-50'}`}
+          className={`${pagination?.page - 1 == i && 'bg-black-50'}`}
           onClick={() => {
             gotoPage(i),
-              listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i));
+              listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i + 1));
           }}
           key={Math.random(40, 200)}
         >
@@ -213,14 +214,12 @@ const Table = ({
   return (
     <DndProvider backend={HTML5Backend}>
       <>
-        {console.log(page, data, records)}
         <ListThumb
           selectedMulptiRows={selectedFlatRows}
-          store={store}
           allColumns={allColumns}
           listViewModel={listViewModel}
         />
-        {page.length ? (
+        {rows.length ? (
           <div className="rounded-3 shadow-sm overflow-hidden mb-24 text-color">
             <BTable
               hover
@@ -366,8 +365,8 @@ const Table = ({
                 })}
               </thead>
               <tbody {...getTableBodyProps()}>
-                {page.length > 0 &&
-                  page.map((row, index) => {
+                {rows.length > 0 &&
+                  rows.map((row, index) => {
                     prepareRow(row);
                     let newRowCells = '';
 
@@ -396,7 +395,7 @@ const Table = ({
             <ComponentNoData icons="/assets/images/ic_project.svg" title="No Data" width="w-50" />
           </div>
         )}
-        {pagination && pageOptions?.length ? (
+        {pagination && [...Array(pagination.totalPages)]?.length ? (
           <div className="pagination position-absolute d-flex col-12 pb-2">
             <div className="col-4">
               <span className="pe-1 text-gray-800">Showing</span>
@@ -410,7 +409,7 @@ const Table = ({
                   );
                 }}
               >
-                {[10, 20, 30, 40, 50].map((pageSize) => (
+                {[20, 30, 40, 50].map((pageSize) => (
                   <option key={Math.random(40, 200)} value={pageSize}>
                     {pageSize} Items
                   </option>
@@ -424,24 +423,24 @@ const Table = ({
               <div className="border_pagination">
                 <button
                   onClick={() => {
-                    previousPage(),
-                      listViewModel.handlePagination(
-                        (listViewModel.filters['list[limitstart]'] = pageIndex - 1)
-                      );
+                    // previousPage(),
+                    listViewModel.handlePagination(
+                      (listViewModel.filters['list[limitstart]'] = pagination?.page - 1)
+                    );
                   }}
-                  disabled={!canPreviousPage}
+                  disabled={pagination?.page === 1}
                 >
                   {'<'}
                 </button>
                 <span className="">{paginate}</span>
                 <button
                   onClick={() => {
-                    nextPage(),
-                      listViewModel.handlePagination(
-                        (listViewModel.filters['list[limitstart]'] = pageIndex + 1)
-                      );
+                    // nextPage(),
+                    listViewModel.handlePagination(
+                      (listViewModel.filters['list[limitstart]'] = pagination?.page + 1)
+                    );
                   }}
-                  disabled={!canNextPage}
+                  disabled={pagination?.page === pagination?.totalPages}
                 >
                   {'>'}
                 </button>
@@ -456,13 +455,13 @@ const Table = ({
                 </strong>{' '}
               </span> */}
               {/* <span>
-                | Go to page:{' '}
+                | Go to rows:{' '}
                 <input
                   type="number"
                   defaultValue={pageIndex + 1}
                   onChange={(e) => {
-                    const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                    gotoPage(page);
+                    const rows = e.target.value ? Number(e.target.value) - 1 : 0;
+                    gotoPage(rows);
                   }}
                   style={{ width: '100px' }}
                 />
