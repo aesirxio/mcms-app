@@ -9,6 +9,8 @@ import { I18nextProvider } from 'react-i18next';
 import { ThemesContext, ThemesContextProvider } from 'themes/ThemeContextProvider';
 import '@kakahuy113/test-dam-app/dist/index.css';
 import '@kakahuy113/test-dam-app/dist/app.css';
+import { SSOContextProvider } from 'aesirx-sso';
+
 import { configure } from 'mobx';
 configure({
   enforceActions: 'never',
@@ -24,7 +26,9 @@ class App extends React.Component {
       <ThemesContextProvider>
         <ErrorBoundary>
           <I18nextProvider i18n={i18n}>
-            <RouterLayout />
+            <SSOContextProvider>
+              <RouterLayout />
+            </SSOContextProvider>
           </I18nextProvider>
         </ErrorBoundary>
       </ThemesContextProvider>
