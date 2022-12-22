@@ -122,13 +122,13 @@ const Categories = observer(({ setEntriesFound }) => {
   );
 
   useEffect(() => {
-    let fetchData = async () => {
+    const fetchData = async () => {
       await categoriesViewModel.categoriesListViewModel.initializeData();
+      setEntriesFound(
+        categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items?.length
+      );
     };
     fetchData();
-    setEntriesFound(
-      categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items?.length
-    );
   }, []);
 
   return (

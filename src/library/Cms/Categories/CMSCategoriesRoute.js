@@ -34,7 +34,8 @@ class CmsCategoriesRoute extends BaseRoute {
   update = (data) => {
     return AesirxApiInstance().put(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
+        view: 'category_with_org_check_metaverse_categories_63',
       }),
       data,
       {

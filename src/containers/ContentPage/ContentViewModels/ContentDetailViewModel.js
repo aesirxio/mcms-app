@@ -64,15 +64,6 @@ class ContentDetailViewModel {
     );
   };
 
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.contentStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.contentStore.handleSearch(

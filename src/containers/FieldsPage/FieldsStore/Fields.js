@@ -120,7 +120,6 @@ export default class FieldsStore {
   }
 
   async handleDelete(id, callbackOnSuccess, callbackOnError) {
-    console.log('id', id);
     try {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
@@ -133,28 +132,6 @@ export default class FieldsStore {
         runInAction(() => {
           callbackOnError({
             message: 'Something went wrong from Server response',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-  async handleDeleteMultiple(arrId, callbackOnSuccess, callbackOnError) {
-    console.log('arrId', arrId);
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (arrId) {
-        runInAction(() => {
-          callbackOnSuccess(arrId);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
           });
         });
       }

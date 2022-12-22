@@ -65,15 +65,6 @@ class CategoriesDetailViewModel {
     );
   };
 
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.categoriesStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },
@@ -106,7 +97,6 @@ class CategoriesDetailViewModel {
   };
 
   callbackOnCreateSuccessHandler = (result) => {
-    console.log('datadatadatadata', result);
     if (result) {
       notify('Create successfully', 'success');
       this.successResponse.data = result;

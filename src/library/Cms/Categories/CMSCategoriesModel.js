@@ -22,6 +22,8 @@ class CategoriesItemModel extends BaseItemModel {
   status = '';
   type = '';
   visits = '';
+  description = '';
+  featured_image = '';
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -33,6 +35,8 @@ class CategoriesItemModel extends BaseItemModel {
       this.status = entity[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? '';
       this.type = entity[CMS_CATE_DETAIL_FIELD_KEY.TYPE] ?? '';
       this.visits = entity[CMS_CATE_DETAIL_FIELD_KEY.VISITS] ?? '';
+      this.description = entity[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '';
+      this.featured_image = entity[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] ?? '';
     }
   }
 
@@ -51,6 +55,8 @@ class CategoriesItemModel extends BaseItemModel {
       [CMS_CATE_DETAIL_FIELD_KEY.STATUS]: this.status,
       [CMS_CATE_DETAIL_FIELD_KEY.TYPE]: this.type,
       [CMS_CATE_DETAIL_FIELD_KEY.VISITS]: this.visits,
+      [CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION]: this.description,
+      [CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]: this.featured_image,
     };
   };
 

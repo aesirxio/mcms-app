@@ -27,7 +27,6 @@ const ListThumb = ({ selectedMulptiRows, store, allColumns, listViewModel }) => 
       const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
       setAction(e);
       await store.handleDelete(listSelectedItems);
-      await listViewModel?.initializeData();
     }
   };
 

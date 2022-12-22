@@ -65,15 +65,6 @@ class FieldsDetailViewModel {
     );
   };
 
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.fieldsStore.handleSearch(

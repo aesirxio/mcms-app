@@ -53,7 +53,6 @@ export default class CategoriesStore {
       // call api
       const getListInfoAPIService = new AesirxCmsCategoryApiService();
       const respondedData = await getListInfoAPIService.getDetail(id);
-      console.log('vrespondedDatarespondedData', respondedData);
       if (respondedData) {
         runInAction(() => {
           callbackOnSuccess(respondedData);
@@ -81,11 +80,9 @@ export default class CategoriesStore {
         runInAction(() => {
           callbackOnSuccess(data);
         });
-        setTimeout(() => {
-          if (redirect) {
-            history.push('/categories');
-          }
-        }, 2000);
+        if (redirect) {
+          history.push('/categories');
+        }
       } else {
         runInAction(() => {
           callbackOnError({
@@ -100,19 +97,17 @@ export default class CategoriesStore {
   }
 
   async updateDetail(data, redirect, callbackOnSuccess, callbackOnError) {
-    console.log('data UpdateDetail', data);
     // call api
-    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-    // const respondedData = await getListInfoAPIService.getDetail(data.id);
-    if (data) {
+    const getListInfoAPIService = new AesirxCmsCategoryApiService();
+    const respondedData = await getListInfoAPIService.update(data);
+    console.log('Store updateDetail', respondedData);
+    if (respondedData) {
       runInAction(() => {
-        callbackOnSuccess(data);
+        callbackOnSuccess(respondedData);
       });
-      setTimeout(() => {
-        if (redirect) {
-          history.push('/categories');
-        }
-      }, 2000);
+      if (redirect) {
+        history.push('/categories');
+      }
     } else {
       runInAction(() => {
         callbackOnError({
@@ -136,27 +131,6 @@ export default class CategoriesStore {
         runInAction(() => {
           callbackOnError({
             message: 'Something went wrong from Server response',
-          });
-        });
-      }
-    } catch (error) {
-      console.log('API - Get Content: ' + error);
-      return null;
-    }
-  }
-  async handleDeleteMultiple(id, callbackOnSuccess, callbackOnError) {
-    try {
-      // call api
-      // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-      // const respondedData = await getListInfoAPIService.getDetail(id);
-      if (id) {
-        runInAction(() => {
-          callbackOnSuccess(id);
-        });
-      } else {
-        runInAction(() => {
-          callbackOnError({
-            message: 'Something went wrong !',
           });
         });
       }
