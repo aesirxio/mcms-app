@@ -10,6 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import BTable from 'react-bootstrap/Table';
 import ListThumb from 'components/ListThumb';
+import PaginationComponent from './PaginationComponent';
 
 const Table = ({
   columns,
@@ -220,6 +221,7 @@ const Table = ({
           listViewModel={listViewModel}
         />
         {rows.length ? (
+          <>
           <div className="rounded-3 shadow-sm overflow-hidden mb-24 text-color">
             <BTable
               hover
@@ -390,85 +392,13 @@ const Table = ({
               </tbody>
             </BTable>
           </div>
+        <PaginationComponent listViewModel={listViewModel} pageSize={pageSize} pagination={pagination} setPageSize={setPageSize}/>
+        </>
         ) : (
           <div className="position-absolute top-50 start-50 translate-middle">
             <ComponentNoData icons="/assets/images/ic_project.svg" title="No Data" width="w-50" />
           </div>
         )}
-        {pagination && [...Array(pagination.totalPages)]?.length ? (
-          <div className="pagination position-absolute d-flex col-12 pb-2">
-            <div className="col-4">
-              <span className="pe-1 text-gray-800">Showing</span>
-              <select
-                className="border-select"
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                  listViewModel.handlePagination(
-                    (listViewModel.filters['list[limit]'] = Number(e.target.value))
-                  );
-                }}
-              >
-                {[20, 30, 40, 50].map((pageSize) => (
-                  <option key={Math.random(40, 200)} value={pageSize}>
-                    {pageSize} Items
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="col-8 text-end button_pagination">
-              {/* <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                {'<<'}
-              </button>{' '} */}
-              <div className="border_pagination">
-                <button
-                  onClick={() => {
-                    // previousPage(),
-                    listViewModel.handlePagination(
-                      (listViewModel.filters['list[limitstart]'] = pagination?.page - 1)
-                    );
-                  }}
-                  disabled={pagination?.page === 1}
-                >
-                  {'<'}
-                </button>
-                <span className="">{paginate}</span>
-                <button
-                  onClick={() => {
-                    // nextPage(),
-                    listViewModel.handlePagination(
-                      (listViewModel.filters['list[limitstart]'] = pagination?.page + 1)
-                    );
-                  }}
-                  disabled={pagination?.page === pagination?.totalPages}
-                >
-                  {'>'}
-                </button>
-              </div>
-              {/* <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                {'>>'}
-              </button>{' '} */}
-              {/* <span>
-                Page{' '}
-                <strong>
-                  {pageIndex + 1} of {pageOptions.length}
-                </strong>{' '}
-              </span> */}
-              {/* <span>
-                | Go to rows:{' '}
-                <input
-                  type="number"
-                  defaultValue={pageIndex + 1}
-                  onChange={(e) => {
-                    const rows = e.target.value ? Number(e.target.value) - 1 : 0;
-                    gotoPage(rows);
-                  }}
-                  style={{ width: '100px' }}
-                />
-              </span> */}
-            </div>
-          </div>
-        ) : null}
       </>
     </DndProvider>
   );

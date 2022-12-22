@@ -10,8 +10,7 @@ class ItemsDetailViewModel {
   itemsDetailViewModel = null;
 
   listFields = [];
-
-  editMode = false;
+  
   contentType = null;
 
   constructor(itemsStore) {
@@ -23,22 +22,17 @@ class ItemsDetailViewModel {
     this.itemsDetailViewModel = itemsDetailViewModel;
   };
 
-  initializeData = () => {
-    if (this.editMode) {
-      this.itemsStore.getDetail(
+  initializeData = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    if(this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID]){
+      await this.itemsStore.getDetail(
         this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
         this.callbackOnGetDetailSuccessHandler,
         this.callbackOnErrorHandler
       );
-    } else {
+    }else{
       this.formStatus = PAGE_STATUS.READY;
     }
-  };
-
-  resetObservable = () => {
-    this.itemsDetailViewModel = null;
-    this.editMode = false;
-    this.formStatus = PAGE_STATUS.LOADING;
   };
 
   getFields = async (contentTypeId) => {

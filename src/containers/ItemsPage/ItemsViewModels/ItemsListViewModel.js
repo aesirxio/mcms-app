@@ -7,13 +7,16 @@ class ItemsListViewModel {
   formStatus = PAGE_STATUS.LOADING;
 
   tableData = [];
+  
+  pagination = {};
 
   filters = {
-    views: 'all',
     'list[limitstart]': 0,
-    limit: 10,
-    page: 1,
+    'list[limit]': 20,
+    'filter[search]': '',
+    views: 'all',
   };
+
 
   constructor(itemsStore) {
     makeAutoObservable(this);
@@ -51,11 +54,6 @@ class ItemsListViewModel {
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.getListItems();
-
-    // Fake filter
-    if (this.filters.views !== 'all') {
-      this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
-    }
   };
 
   handleDelete = async (data) => {
@@ -81,12 +79,9 @@ class ItemsListViewModel {
     );
   };
 
-  handlePagination = () => {
-    this.itemsStore.handlePagination(
-      this.filters,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+  handlePagination = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.getListItems();
   };
 
   callbackOnSuccessToggleFeatured = async () => {
@@ -105,8 +100,9 @@ class ItemsListViewModel {
   };
 
   callbackOnSuccessHandler = (result) => {
-    if (result?.items) {
-      this.tableData = result.items;
+    if (result) {
+      this.tableData = result.results.items;
+      this.pagination = result?.pagination;
     }
     this.formStatus = PAGE_STATUS.READY;
   };

@@ -42,3 +42,11 @@
   min-height: 38px;
   background: white;
 }
+.isHidden {
+  display: none !important;
+}
+.select_limit{
+  .react-select__control{
+    min-height: 40px !important;
+  }
+}

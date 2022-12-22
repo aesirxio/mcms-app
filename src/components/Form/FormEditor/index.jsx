@@ -28,9 +28,9 @@ const Editor = ({ field }) => {
       </p>
       <ModalDAMComponent show={show} onHide={() => setShow(false)} onSelect={onSelect} />
       <CKEditor
-        editor={ClassicEditor}
+        editor={window.ClassicEditor ?? ClassicEditor}
         data={field?.value ?? ''}
-        onReady={(editor) => {
+        onReady={async (editor) => {
           setEditor(editor);
           editor.editing.view.change((writer) => {
             writer.setStyle(

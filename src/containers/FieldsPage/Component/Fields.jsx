@@ -288,7 +288,7 @@ const Fields = observer(({ filterTab, setFilterTab }) => {
 
   return (
     <>
-      <div className="fs-14 h-100">
+      <div className="fs-14">
         <Table
           columns={columnsTable}
           data={dataTable}

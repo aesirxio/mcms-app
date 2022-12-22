@@ -28,16 +28,6 @@ const CMS_ITEMS_DETAIL_FIELD_KEY = {
   INTRO_TEXT: 'excerpt',
   CONTENT: 'metaverse_content',
   FEATURED_IMAGE: 'featured_image',
-  TYPE: 'type',
-  CATEGORY: 'categories',
-  STATUS: 'status',
-  ACCESS: 'access',
-  FEATURED: 'featured',
-  START_PUBLISH: 'created_time',
-  AUTHOR: 'author',
-  ENGAGEMENT: 'engagement',
-  VISITS: 'visits',
-  LANGUAGES: 'languages',
 };
 
 const GENERAL_INFORMATION = {
