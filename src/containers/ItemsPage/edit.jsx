@@ -27,16 +27,17 @@ const EditItems = observer(
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
       this.itemsDetailViewModel.editMode = props.match.params?.id ? true : false;
+      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
     }
 
     async componentDidMount() {
-      if (this.itemsDetailViewModel.editMode) {
-        this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      } else {
-        this.itemsDetailViewModel.contentType = this.props.match.params?.content_type;
-      }
       await this.itemsDetailViewModel.initializeData();
       this.forceUpdate();
+    }
+
+    componentWillUnmount() {
+      console.log('run');
+      this.itemsDetailViewModel.resetObservable();
     }
 
     render() {
@@ -47,127 +48,47 @@ const EditItems = observer(
             name: '',
             fields: [
               {
-                label: 'Hero Text',
-                key: 'hero_text',
+                label: 'Title',
+                key: 'title',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: '',
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME],
                 className: 'col-12',
-                // required: true,
+                required: true,
                 changed: (data) => {
-                  console.log(data);
+                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
                 },
-                // validation: 'required',
+                validation: 'required',
+              },
+              {
+                label: 'Description',
+                key: 'description',
+                type: FORM_FIELD_TYPE.TEXTAREA,
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
+                className: 'col-12',
+                changed: (data) => {
+                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] = data.target.value;
+                },
               },
               {
                 label: 'Intro text',
                 key: 'intro_text',
                 type: FORM_FIELD_TYPE.EDITOR,
-                value: '',
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
                 className: 'col-12',
                 changed: (data) => {
-                  console.log(data);
+                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
                 },
               },
               {
                 label: 'Thumb Image',
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: '',
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
                 className: 'col-12',
                 changed: (data) => {
-                  console.log(data);
+                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
+                    data[0].download_url;
                 },
-              },
-              {
-                label: 'Image',
-                key: 'image',
-                type: FORM_FIELD_TYPE.IMAGE,
-                value: '',
-                className: 'col-12',
-                changed: (data) => {
-                  console.log(data);
-                },
-              },
-            ],
-          },
-          {
-            name: 'SEO',
-            fields: [
-              {
-                label: 'Append To Global Meta Data',
-                key: 'meta_data',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                option: [
-                  { label: 'Use Global', value: 'use_global' },
-                  { label: 'Append', value: 'append' },
-                  { label: 'Prepend', value: 'prepend' },
-                  { label: 'Replace', value: 'replace' },
-                  { label: 'None', value: 'none' },
-                ],
-                value: { label: 'Use Global', value: 'use_global' },
-                className: 'col-12',
-                changed: (data) => {
-                  this.formPropsData['meta_data'] = data.value;
-                },
-              },
-              {
-                label: 'SEO Page Title',
-                key: 'seo_page_title',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData ? this.formPropsData?.name : '',
-                className: 'col-12',
-                changed: () => {
-                  // formPropsData.formPropsData.name = data.value;
-                },
-              },
-              {
-                label: 'SEO Page Heading',
-                key: 'seo_page_heading',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'SEO Page Description',
-                key: 'seo_page_description',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'Canonical Url',
-                key: 'canonical_url',
-                type: FORM_FIELD_TYPE.INPUT,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'SEO Page Keywords',
-                key: 'seo_page_keywords',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: '',
-                className: 'col-12',
-              },
-              {
-                label: 'Meta Language Setting',
-                key: 'meta_language_setting',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: this.formPropsData?.languages ?? '',
-                className: 'col-12',
-              },
-              {
-                label: 'Robots',
-                key: 'robots',
-                type: FORM_FIELD_TYPE.DROPDOWN,
-                option: [
-                  { label: 'Use Global', value: 'use_global' },
-                  { label: 'index, follow', value: 'index_follow' },
-                  { label: 'noindex, follow', value: 'noindex_follow' },
-                  { label: 'index, nofollow', value: 'index_nofollow' },
-                  { label: 'noindex, nofollow', value: 'noindex_nofollow' },
-                ],
-                value: { label: 'Use Global', value: 'use_global' },
-                className: 'col-12',
               },
             ],
           },
@@ -177,27 +98,15 @@ const EditItems = observer(
         {
           fields: [
             {
-              label: 'Name',
-              key: 'name',
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME]
-                : '',
-              className: 'col-12',
-              required: true,
-              validation: 'required',
-              changed: (data) => {
-                this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
-              },
-            },
-            {
               label: 'Alias',
               key: 'alias',
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[GENERAL_INFORMATION.ALIAS],
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.ALIAS] = data.target.value;
+              },
             },
-
             {
               label: 'Organisation',
               key: 'organisation',
@@ -205,6 +114,9 @@ const EditItems = observer(
               value: this.formPropsData[GENERAL_INFORMATION.ORGANISATION],
               className: 'col-12',
               placeholder: 'Select Organisation',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.ORGANISATION] = data.target.value;
+              },
             },
             {
               label: 'Content Type',
@@ -213,6 +125,9 @@ const EditItems = observer(
               value: this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE],
               className: 'col-12',
               placeholder: 'Select Content Type',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE] = data.target.value;
+              },
             },
             {
               label: 'Parent Category',
@@ -221,6 +136,9 @@ const EditItems = observer(
               value: this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY],
               className: 'col-12',
               placeholder: 'Top Level',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY] = data.target.value;
+              },
             },
             {
               label: 'Default Template',
@@ -229,6 +147,9 @@ const EditItems = observer(
               value: this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE],
               className: 'col-12',
               placeholder: 'Inherit',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE] = data.target.value;
+              },
             },
             {
               label: 'Category',
@@ -236,6 +157,9 @@ const EditItems = observer(
               type: FORM_FIELD_TYPE.DROPDOWN,
               value: this.formPropsData[GENERAL_INFORMATION.CATEGORY],
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.CATEGORY] = data.target.value;
+              },
             },
             {
               label: 'Tags',
@@ -243,6 +167,9 @@ const EditItems = observer(
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[GENERAL_INFORMATION.TAGS],
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.TAGS] = data.target.value;
+              },
             },
             {
               label: 'Version Note',
@@ -250,6 +177,9 @@ const EditItems = observer(
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE],
               className: 'col-12 mb-0',
+              changed: (data) => {
+                this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE] = data.target.value;
+              },
             },
           ],
         },
@@ -262,31 +192,31 @@ const EditItems = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS],
               className: 'col-12 mb-16',
               isInline: true,
-              required: true,
-              validation: 'required',
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
               option: [
-                { label: 'test1', value: 1 },
-                { label: 'test2', value: 2 },
+                { label: 'Publish', value: 1 },
+                { label: 'UnPublish', value: 2 },
               ],
               changed: (data) => {
-                // eslint-disable-next-line react/no-direct-mutation-state
-                this.state.dataStatus = data.value;
+                this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS] = data;
               },
             },
             {
               label: 'Access',
               key: 'access',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: '',
+              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS],
               isInline: true,
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
               className: 'col-12 mb-16',
+              changed: (data) => {
+                this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ACCESS] = data.value;
+              },
             },
           ],
         },
@@ -297,15 +227,19 @@ const EditItems = observer(
               label: 'Featured',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
-              value: 'no',
+              getValueSelected: '1',
               labelClassName:
                 'fw-normal me-24 ws-nowrap fw-semibold d-block border-top pt-16 me-0 mt-24',
               className: 'col-12 mb-16',
               classNameInput: 'w-65',
               option: [
-                { label: 'Yes', value: 'yes' },
-                { label: 'No', value: 'no' },
+                { label: 'Yes', value: '0' },
+                { label: 'No', value: '1' },
               ],
+              changed: (data) => {
+                console.log(data.target);
+                this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED] = data.target.value;
+              },
             },
             {
               label: 'Start publish',
@@ -333,7 +267,6 @@ const EditItems = observer(
           ],
         },
       ];
-
       return (
         <ItemsViewModelContextProvider viewModel={itemsViewModel}>
           {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
@@ -348,6 +281,7 @@ const EditItems = observer(
                 title="txt_add_item"
                 validator={this.validator}
                 formPublish={formPublish}
+                isEdit={this.itemsDetailViewModel.editMode}
               />
             </div>
           )}

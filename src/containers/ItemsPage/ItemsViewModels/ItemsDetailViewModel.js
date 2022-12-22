@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
+import history from 'routes/history';
 // import history from 'routes/history';
 class ItemsDetailViewModel {
   itemsStore = null;
@@ -23,17 +24,21 @@ class ItemsDetailViewModel {
   };
 
   initializeData = () => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    if (!this.editMode) {
-      this.getFields(this.contentType);
-    } else {
+    if (this.editMode) {
       this.itemsStore.getDetail(
         this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
         this.callbackOnGetDetailSuccessHandler,
         this.callbackOnErrorHandler
       );
-      this.getFields(this.itemsDetailViewModel.formPropsData.content_type_id);
+    } else {
+      this.formStatus = PAGE_STATUS.READY;
     }
+  };
+
+  resetObservable = () => {
+    this.itemsDetailViewModel = null;
+    this.editMode = false;
+    this.formStatus = PAGE_STATUS.LOADING;
   };
 
   getFields = async (contentTypeId) => {
@@ -44,30 +49,21 @@ class ItemsDetailViewModel {
     );
   };
 
-  save = async (redirect = false) => {
+  handleCreate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    if (this.editMode) {
-      await this.createItems(redirect);
-    } else {
-      await this.updateItems(redirect);
-    }
-  };
-
-  createItems = async (redirect) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.createItems(
+    await this.itemsStore.createItem(
       this.itemsDetailViewModel.formPropsData,
-      redirect,
+      redirect ? redirect : false,
       this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
 
-  updateItems = async (redirect) => {
+  handleUpdate = async (redirect) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.updateItems(
+    await this.itemsStore.updateItem(
       this.itemsDetailViewModel?.formPropsData,
-      redirect,
+      redirect ? redirect : false,
       this.callbackOnUpdateSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -89,11 +85,14 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnCreateSuccessHandler = (result) => {
-    console.log('datadatadatadata', result);
-    if (result) {
+  callbackOnCreateSuccessHandler = (result, redirect) => {
+    if (result?.result) {
       notify('Create successfully', 'success');
-      this.successResponse.data = result;
+      if (redirect) {
+        history.push('/');
+      } else {
+        history.push(`/items-edit/${result.id}`);
+      }
     }
     this.formStatus = PAGE_STATUS.READY;
   };
@@ -102,12 +101,15 @@ class ItemsDetailViewModel {
     if (result) {
       this.itemsDetailViewModel.formPropsData = result;
     }
+    this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnUpdateSuccessHandler = (result) => {
+  callbackOnUpdateSuccessHandler = (result, redirect) => {
     if (result) {
-      console.log('result', result);
       notify('Update successfully', 'success');
+    }
+    if (redirect) {
+      history.push('/');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

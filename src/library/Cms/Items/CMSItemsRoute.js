@@ -7,11 +7,12 @@ import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
 import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
-  getList = (filter) => {
+  getList = () => {
     return AesirxApiInstance().get(
       this.createRequestURL({
-        option: 'items',
-        ...filter,
+        option: 'reditem',
+        view: 'item_with_org_check_metaverse_content_62',
+        // ...filter,
       })
     );
   };
@@ -26,52 +27,42 @@ class CmsItemsRoute extends BaseRoute {
     //   })
     // );
   };
-  getDetail = (id = 0, dataFilter = {}) => {
+  getDetail = (id = 0) => {
     return AesirxApiInstance().get(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
+        view: 'item_with_org_check_metaverse_content_62',
         id: id,
-        ...dataFilter,
       })
     );
   };
 
   createItem = (data) => {
-    console.log('create Items', data);
-    // return AesirxApiInstance().post(
-    //   this.createRequestURL({
-    //     option: this.option,
-    //   }),
-    //   data
-    // );
+    return AesirxApiInstance().post(
+      this.createRequestURL({
+        option: 'reditem',
+        view: 'item_with_org_check_metaverse_content_62',
+      }),
+      data
+    );
   };
-  updateItem = (id, data) => {
-    console.log('update Items', id, data);
-    // return AesirxApiInstance().put(
-    //   this.createRequestURL({
-    //     option: this.option,
-    //   }),
-    //   data,
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //   }
-    // );
+  updateItem = (data) => {
+    return AesirxApiInstance().put(
+      this.createRequestURL({
+        option: 'reditem',
+        view: 'item_with_org_check_metaverse_content_62',
+      }),
+      data
+    );
   };
-  deleteItems = (data) => {
-    console.log(data);
-    // return AesirxApiInstance().delete(
-    //   this.createRequestURL({
-    //     option: this.option,
-    //   }),
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     data: { id: id },
-    //   }
-    // );
+  deleteItems = (id) => {
+    return AesirxApiInstance().delete(
+      this.createRequestURL({
+        option: 'reditem',
+        view: 'item_with_org_check_metaverse_content_62',
+        id: id,
+      })
+    );
   };
   toggleFeatured = (id, isFeatured) => {
     return AesirxApiInstance().post(

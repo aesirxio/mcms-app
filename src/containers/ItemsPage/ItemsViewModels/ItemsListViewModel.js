@@ -56,16 +56,16 @@ class ItemsListViewModel {
     if (this.filters.views !== 'all') {
       this.tableData = this.tableData.filter((items) => items.status == this.filters.views);
     }
-
-    setTimeout(async () => {
-      this.formStatus = PAGE_STATUS.READY;
-    }, 2000);
   };
 
   handleDelete = async (data) => {
+    if (data?.length > 1) {
+      notify('Cannot delete multiple items now. We will update in next version', 'error');
+      return;
+    }
     this.formStatus = PAGE_STATUS.LOADING;
     await this.itemsStore.deleteItems(
-      data,
+      data[0],
       this.callbackOnSuccessDeleteHandler,
       this.callbackOnErrorHandler
     );
@@ -87,7 +87,6 @@ class ItemsListViewModel {
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-    console.log(this.filters);
   };
 
   callbackOnSuccessToggleFeatured = async () => {
@@ -96,25 +95,19 @@ class ItemsListViewModel {
   };
 
   callbackOnSuccessDeleteHandler = async () => {
-    this.resetFilter();
     await this.getListItems();
     notify('Delete successfully !');
   };
 
   callbackOnErrorHandler = ({ message }) => {
     notify(message, 'error');
-    setTimeout(() => {
-      this.formStatus = PAGE_STATUS.READY;
-    }, 1000);
   };
 
   callbackOnSuccessHandler = (result) => {
     if (result?.items) {
       this.tableData = result.items;
-      setTimeout(() => {
-        this.formStatus = PAGE_STATUS.READY;
-      }, 1500);
     }
+    this.formStatus = PAGE_STATUS.READY;
   };
 }
 
