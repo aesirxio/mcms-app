@@ -1980,10 +1980,10 @@
     moment "^2.29.4"
     react-datepicker "^3.3.0"
 
-"@kakahuy113/test-dma-app@^1.0.1-alpha.3":
-  version "1.5.3-alpha.3"
-  resolved "https://registry.yarnpkg.com/@kakahuy113/test-dma-app/-/test-dma-app-1.5.3-alpha.3.tgz#95c125f5ca8d4f85d615c0e87134a20c794b81fa"
-  integrity sha512-eccTeZ9Qkpr+BRe2U1qXhhJ+n9DDHhAvg1XxFgy7IwecjTlJWpO9k/h5gcQjjYuZ1VubEtC0Ar1dpSYZeY6Z+w==
+"@kakahuy113/test-dma-app@^1.5.3-alpha.4":
+  version "1.5.3-alpha.4"
+  resolved "https://registry.yarnpkg.com/@kakahuy113/test-dma-app/-/test-dma-app-1.5.3-alpha.4.tgz#6a6250c2b1cd9e244a6048a4d556c7a7600fae4b"
+  integrity sha512-D1fTKkb2js0g9+d6Aid89BAlJQxnDTyPguFL5iMlpWotMNDxkawrawDwTrE4l+eSowYJTbP9tWc0zNUr206OZA==
   dependencies:
     "@kakahuy113/test-dam-app" "^1.0.1-alpha.2"
     aesirx-dma-lib aesirxio/dma-lib
@@ -3028,6 +3028,18 @@ aesirx-dma-lib@aesirxio/dma-lib, "aesirx-dma-lib@github:aesirxio/dma-lib":
     css-minimizer-webpack-plugin "^4.0.0"
     qs "^6.10.1"
     query-string "^7.1.1"
+
+aesirx-sso@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.0.tgz#34e2abae7a539039cd1c70d382850d83600deed6"
+  integrity sha512-RDYhACIXAnIqaDI9sRd7HzCzLvQBzixZCJ70ic2yXd5Y6vnoKhSX6ODHigpTI/37Ro0BOS0dKAuKLJU9/00xKA==
+  dependencies:
+    axios "^0.21.0"
+    babel-plugin-module-resolver "^4.1.0"
+    cross-env "^7.0.3"
+    dotenv "^16.0.3"
+    npm-run-all "^4.1.5"
+    rimraf "^3.0.2"
 
 "aesirx_analytics@https://github.com/aesirxio/analytics#develop":
   version "1.0.0-alpha.1"
