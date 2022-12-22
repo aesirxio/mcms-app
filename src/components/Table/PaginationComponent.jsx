@@ -28,8 +28,8 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
           key={i}
           disabled={currentNumber === i}
           onClick={() => handleGoToPage(i)}
-          className={`btn border-0 py-7px px-14 rounded-0 cursor-pointer ${
-            i === currentNumber ? 'active text-white bg-gray-pagination' : 'text-color'
+          className={`btn border-0 py-7px px-14 rounded-0 cursor-pointer text-blue-0 ${
+            i === currentNumber ? 'active bg-gray-pagination' : ''
           } ${
             i === currentNumber - 1 ||
             i === currentNumber - 2 ||
@@ -41,7 +41,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               : ''
           }`}
         >
-          <span className={i === currentNumber ? '' : 'opacity-50'}>{i}</span>
+          <span>{i}</span>
         </button>
       );
     }
@@ -73,7 +73,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
         </div>
         {pagination.totalPages > 1 ? (
           <div
-            className={'d-flex justify-content-center bg-white  rounded-1 overflow-hidden border'}
+            className={'d-flex justify-content-center bg-white pagination_list rounded-1 overflow-hidden border'}
           >
             <button
               onClick={() => handlePreviousPage()}
@@ -112,7 +112,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             <button
               onClick={() => handleNextPage()}
               disabled={pagination && pagination.page === pagination.totalPages ? true : false}
-              className={`btn border-0 py-7px px-14`}
+              className={`btn border-0 py-7px px-14 text-blue-0`}
             >
               <FontAwesomeIcon icon={faChevronRight} />
             </button>

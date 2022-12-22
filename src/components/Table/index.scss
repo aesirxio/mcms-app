@@ -50,3 +50,20 @@
     min-height: 40px !important;
   }
 }
+.pagination_list{
+  > *{
+    &:not(:first-child){
+      border-left: 1px solid var(--bs-border-color) !important;
+    }
+  }
+  .wr_pagination_number{
+    > *{
+      &:not(:first-child){
+        border-left: 1px solid var(--bs-border-color) !important;
+      }
+    }
+    .active{
+      color: #fff !important;
+    }
+  }
+}
