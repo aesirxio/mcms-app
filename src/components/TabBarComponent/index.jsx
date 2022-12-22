@@ -28,7 +28,6 @@ const tabList = [
   },
 ];
 const TabBarComponent = observer(({ viewModel }) => {
-  console.log(viewModel);
   return (
     <ul className="list-unstyled d-flex border-bottom mb-24">
       {tabList.map((item, index) => {

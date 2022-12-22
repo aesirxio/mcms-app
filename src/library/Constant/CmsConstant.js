@@ -23,7 +23,10 @@ const CMS_CATE_DETAIL_FIELD_KEY = {
 };
 const CMS_ITEMS_DETAIL_FIELD_KEY = {
   ID: 'id',
-  NAME: 'name',
+  NAME: 'title',
+  INTRO_TEXT: 'excerpt',
+  CONTENT: 'metaverse_content',
+  FEATURED_IMAGE: 'featured_image',
   TYPE: 'type',
   CATEGORY: 'categories',
   STATUS: 'status',

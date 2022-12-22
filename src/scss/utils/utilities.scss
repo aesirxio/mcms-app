@@ -24,6 +24,7 @@ $utilities: map-merge(
           $colors,
           (
             'white': $white,
+            'danger': $danger,
             'body': $body-color,
             'muted': $text-muted,
             'black-50': rgba($black, 0.5),

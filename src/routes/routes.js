@@ -39,7 +39,7 @@ const mainRoutes = [
     main: ({ match }) => <EditItems match={match} />,
   },
   {
-    path: '/items-create/:content_type',
+    path: '/items-create',
     exact: true,
     main: ({ match }) => <EditItems match={match} />,
   },

@@ -9,16 +9,16 @@ import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
   const itemsListViewModel = useItemsViewModel();
-  const { tableData, toggleFeatured } = itemsListViewModel;
+  const { tableData } = itemsListViewModel;
 
   // const handleGetListByViews = (views) => {
   //   filters.views = views;
   //   getListByFilter();
   // };
 
-  const handleToggleFeatured = (id, isFeatured) => {
-    toggleFeatured(id, isFeatured);
-  };
+  // const handleToggleFeatured = (id, isFeatured) => {
+  //   toggleFeatured(id, isFeatured);
+  // };
 
   const handleEdit = (id) => {
     history.push(`/items-edit/${id}`);
@@ -36,7 +36,7 @@ const List = observer(() => {
       },
       {
         Header: 'Name',
-        accessor: 'name',
+        accessor: 'title',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value, row }) => {
           return (
@@ -122,9 +122,9 @@ const List = observer(() => {
           return (
             <div
               className=" cursor-pointer px-16 text-center"
-              onClick={() => {
-                handleToggleFeatured(row.values.id, row.values.featured);
-              }}
+              // onClick={() => {
+              //   handleToggleFeatured(row.values.id, row.values.featured);
+              // }}
             >
               <svg
                 width="20"
