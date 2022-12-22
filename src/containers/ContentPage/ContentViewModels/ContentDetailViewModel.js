@@ -55,24 +55,6 @@ class ContentDetailViewModel {
     }, 1500);
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.contentStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.contentStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.contentStore.handleSearch(
@@ -105,13 +87,6 @@ class ContentDetailViewModel {
       console.log('result api', result);
       this.contentDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

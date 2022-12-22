@@ -5,7 +5,7 @@ import ItemsFormActionBar from './ItemsFormActionBar';
 import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
-
+import { AesirxDmaChannelPost } from '@kakahuy113/test-dma-app';
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -39,7 +39,7 @@ const ItemsFormPage = ({
               </Tab>
 
               <Tab
-                tabClassName="border-0 bg-transparent p-0 pb-16"
+                tabClassName="border-0 bg-transparent p-0 pb-16 me-40"
                 eventKey="general-information"
                 title={t('txt_general_information')}
               >
@@ -47,6 +47,11 @@ const ItemsFormPage = ({
                   validator={validator}
                   generateFormSetting={generateFormSetting}
                 />
+              </Tab>
+              <Tab tabClassName="border-0 bg-transparent p-0 pb-16" eventKey="DMA" title={t('DMA')}>
+                <>
+                  <AesirxDmaChannelPost title={'test123'} description="desc123" />
+                </>
               </Tab>
             </Tabs>
           ) : (

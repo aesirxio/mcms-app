@@ -48,6 +48,22 @@ class ContentListViewModel {
     );
   };
 
+  handleDelete = (id) => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    this.contentStore.handleDelete(
+      id,
+      this.callbackOnDeleteSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  callbackOnDeleteSuccessHandler = (id) => {
+    if (id) {
+      notify('Delete successfully', 'success');
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
   callbackOnErrorHandler = (error) => {
     notify('Update unsuccessfully', 'error');
     this.successResponse.state = false;

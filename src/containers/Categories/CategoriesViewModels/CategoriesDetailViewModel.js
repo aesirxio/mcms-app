@@ -56,24 +56,6 @@ class CategoriesDetailViewModel {
     }, 1500);
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.categoriesStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },
@@ -98,15 +80,7 @@ class CategoriesDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
   callbackOnCreateSuccessHandler = (result) => {
-    console.log('datadatadatadata', result);
     if (result) {
       notify('Create successfully', 'success');
       this.successResponse.data = result;
@@ -123,7 +97,7 @@ class CategoriesDetailViewModel {
 
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      console.log('result api', result);
+      console.log('resultresult', result);
       this.categoriesDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
     }
@@ -132,7 +106,6 @@ class CategoriesDetailViewModel {
 
   callbackOnUpdateSuccessHandler = (result) => {
     if (result) {
-      console.log('result', result);
       notify('Update successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;

@@ -82,6 +82,9 @@ const EditCategories = observer(
                 changed: (data) => {
                   this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_TITLE] = data.target.value;
                 },
+                blurred: () => {
+                  this.validator.showMessageFor('SEO Page Title');
+                },
               },
               {
                 label: 'SEO Page Heading',
@@ -106,13 +109,12 @@ const EditCategories = observer(
               },
               {
                 label: 'Meta Description',
-                key: 'meta_description',
+                key: 'description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
-                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DESCRIPTION] ?? '',
+                value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '',
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.META_DESCRIPTION] =
-                    data.target.value;
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] = data.target.value;
                 },
               },
               {
@@ -165,16 +167,16 @@ const EditCategories = observer(
           fields: [
             {
               label: 'Name',
-              key: 'name',
+              key: 'title',
               type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
-                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME]
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE]
                 : '',
               className: 'col-12',
               required: true,
               validation: 'required',
               changed: (data) => {
-                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE] = data.target.value;
               },
               blurred: () => {
                 this.validator.showMessageFor('Product Name');
@@ -247,12 +249,19 @@ const EditCategories = observer(
             },
             {
               label: 'Category image',
-              key: 'category_image',
+              key: 'featured_image',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_IMAGE]
-                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.CATEGORY_IMAGE]
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
+                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
                 : '',
               className: 'col-12',
+              changed: (data) => {
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = [data[0]];
+                console.log(
+                  ' this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]',
+                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
+                );
+              },
             },
             {
               label: 'Intro text',
@@ -289,11 +298,14 @@ const EditCategories = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? {},
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? {
+                label: 'Publish',
+                value: 1,
+              },
               className: 'col-12 mb-16',
               isInline: true,
-              required: true,
-              validation: 'required',
+              // required: true,
+              // validation: 'required',
               labelClassName: 'fw-normal me-24 ws-nowrap',
               classNameInput: 'w-65',
               option: [

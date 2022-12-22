@@ -65,24 +65,6 @@ class FieldsGroupDetailViewModel {
     }, 1500);
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsGroupStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
-  handleDeleteMultiple = (arrId) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsGroupStore.handleDeleteMultiple(
-      arrId,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.fieldsGroupStore.handleSearch(
@@ -124,13 +106,6 @@ class FieldsGroupDetailViewModel {
       console.log('result api', result);
       this.fieldsGroupDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
