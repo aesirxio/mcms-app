@@ -1,4 +1,4 @@
-// import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
+import AesirxCmsContentTypeApiService from 'library/Cms/ContentType/CMSContentType';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
@@ -7,18 +7,11 @@ export default class ContentStore {
     try {
       const results = true;
       if (results) {
-        // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-
-        // const respondedData = await getListInfoAPIService.getList();
-        if (results) {
+        const getListInfoAPIService = new AesirxCmsContentTypeApiService();
+        const respondedData = await getListInfoAPIService.getList();
+        if (respondedData) {
           runInAction(() => {
-            callbackOnSuccess({
-              id: '261',
-              name: '|-|-E-commerce B2C',
-              type: 'Services',
-              engagement: '40%',
-              visits: '100',
-            });
+            callbackOnSuccess(respondedData.items);
           });
         } else {
           callbackOnError({

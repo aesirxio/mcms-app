@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 import CmsContentTypeRoute from './CMSContentTypeRoute';
-import { ContentTypeItemModel } from './CMSContentTypeModel';
+import { ContentTypeItemModel, ContentTypeModel } from './CMSContentTypeModel';
 
 class AesirxCmsContentTypeApiService extends Component {
   route = null;
@@ -15,7 +15,7 @@ class AesirxCmsContentTypeApiService extends Component {
       const data = await this.route.getList();
       let results = null;
       if (data) {
-        results = new ContentTypeItemModel(data);
+        results = new ContentTypeModel(data);
       }
       return results;
     } catch (error) {
@@ -55,7 +55,6 @@ class AesirxCmsContentTypeApiService extends Component {
 
   getDetail = async (id = 0) => {
     try {
-      console.log('id getDetail', id);
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {

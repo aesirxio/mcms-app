@@ -4,11 +4,11 @@ import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
 class CmsContentTypeRoute extends BaseRoute {
   option = '';
 
-  getList = (dataFilter = {}) => {
+  getList = () => {
     return AesirxApiInstance().get(
       this.createRequestURL({
-        option: this.option,
-        ...dataFilter,
+        option: 'reditem',
+        view: 'item',
       })
     );
   };

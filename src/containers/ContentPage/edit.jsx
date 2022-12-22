@@ -204,22 +204,23 @@ const EditContentGroup = observer(
 
       return (
         <div className="py-4 px-3 h-100 d-flex flex-column">
-          {this.contentViewModel.formStatus === PAGE_STATUS.LOADING && (
-            <Spinner className="spinner-overlay" />
+          {this.contentViewModel.formStatus === PAGE_STATUS.LOADING ? (
+            <Spinner className="" />
+          ) : (
+            <ContentViewModelContextProvider viewModel={contentViewModel}>
+              <Form>
+                <ItemsFormPage
+                  formPublish={formPublish}
+                  generateFormSetting={generateFormSetting}
+                  path="/content"
+                  title="txt_add_content"
+                  validator={this.validator}
+                  store={this.contentViewModel}
+                  isEdit={this.isEdit}
+                />
+              </Form>
+            </ContentViewModelContextProvider>
           )}
-          <ContentViewModelContextProvider viewModel={contentViewModel}>
-            <Form>
-              <ItemsFormPage
-                formPublish={formPublish}
-                generateFormSetting={generateFormSetting}
-                path="/content"
-                title="txt_add_content"
-                validator={this.validator}
-                store={this.contentViewModel}
-                isEdit={this.isEdit}
-              />
-            </Form>
-          </ContentViewModelContextProvider>
         </div>
       );
     }

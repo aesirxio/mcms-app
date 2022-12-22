@@ -39,8 +39,11 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
-
   const paginate = [];
+
+  useEffect(() => {
+    setRecords(data);
+  }, [data]);
   const {
     getTableProps,
     getTableBodyProps,
@@ -195,7 +198,7 @@ const Table = ({
       }
       paginate?.push(
         <button
-          className={`${pageIndex == i && 'bg-black-50'} `}
+          className={`${pageIndex == i && 'bg-black-50'}`}
           onClick={() => {
             gotoPage(i),
               listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = i));
@@ -210,6 +213,7 @@ const Table = ({
   return (
     <DndProvider backend={HTML5Backend}>
       <>
+        {console.log(page, data, records)}
         <ListThumb
           selectedMulptiRows={selectedFlatRows}
           store={store}
