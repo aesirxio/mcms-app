@@ -27,16 +27,15 @@ const EditItems = observer(
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
       this.itemsDetailViewModel.editMode = props.match.params?.id ? true : false;
-      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
     }
 
     async componentDidMount() {
+      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.itemsDetailViewModel.initializeData();
       this.forceUpdate();
     }
 
     componentWillUnmount() {
-      console.log('run');
       this.itemsDetailViewModel.resetObservable();
     }
 

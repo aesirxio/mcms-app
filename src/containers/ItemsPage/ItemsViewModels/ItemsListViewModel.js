@@ -101,6 +101,7 @@ class ItemsListViewModel {
 
   callbackOnErrorHandler = ({ message }) => {
     notify(message, 'error');
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnSuccessHandler = (result) => {

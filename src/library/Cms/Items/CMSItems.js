@@ -20,7 +20,6 @@ class AesirxCmsItemsApiService extends Component {
       }
       return results;
     } catch (error) {
-      console.log(error);
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
       } else throw error;
