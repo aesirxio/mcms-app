@@ -17,7 +17,9 @@ const ItemsFormActionBar = observer(
         let listError = '';
         Object.entries(validator.errorMessages).forEach((error) => {
           const [, value] = error;
-          listError += `<p class="mb-0">${value}</p>`;
+          if (value) {
+            listError += `<p class="mb-0">${value}</p>`;
+          }
         });
         notifyHTML(listError, 'error');
         validator.showMessages();

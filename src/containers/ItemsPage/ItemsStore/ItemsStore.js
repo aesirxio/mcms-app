@@ -106,7 +106,6 @@ export default class ItemsStore {
     try {
       const createItemsAPIService = new AesirxCmsItemstApiService();
       const response = await createItemsAPIService.createItem(data);
-
       if (response) {
         runInAction(() => {
           callbackOnSuccess(response, redirect);
@@ -123,10 +122,10 @@ export default class ItemsStore {
     }
   }
 
-  async updateItem(id, data, redirect, callbackOnSuccess, callbackOnError) {
+  async updateItem(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
       const updateItemsAPIService = new AesirxCmsItemstApiService();
-      const response = await updateItemsAPIService.updateItem(id, data);
+      const response = await updateItemsAPIService.updateItem(data);
 
       if (response) {
         runInAction(() => {

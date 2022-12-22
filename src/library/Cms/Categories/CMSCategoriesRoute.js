@@ -6,7 +6,6 @@ class CmsCategoriesRoute extends BaseRoute {
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    console.log(filters);
     return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'reditem',

@@ -15,7 +15,10 @@ class ItemsModel extends BaseModel {
 
 class ItemsItemModel extends BaseItemModel {
   id = null;
-  name = null;
+  title = null;
+  description = null;
+  intro_text = null;
+  thumb_image = null;
   type = null;
   categories = null;
   status = null;
@@ -31,7 +34,10 @@ class ItemsItemModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.id = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ID] ?? '';
-      this.name = entity[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] ?? '';
+      this.title = entity[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] ?? '';
+      this.description = entity[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] ?? '';
+      this.intro_text = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] ?? '';
+      this.thumb_image = entity[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] ?? '';
       this.type = entity[CMS_ITEMS_DETAIL_FIELD_KEY.TYPE] ?? '';
       this.categories = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY] ?? '';
       this.status = this.transformStatus(entity[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]);
@@ -53,7 +59,10 @@ class ItemsItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [CMS_ITEMS_DETAIL_FIELD_KEY.ID]: this.id,
-      [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: this.name,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: this.title,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: this.description,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT]: this.intro_text,
+      [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]: this.thumb_image,
       [CMS_ITEMS_DETAIL_FIELD_KEY.TYPE]: this.type,
       [CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY]: this.categories,
       [CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]: this.status,

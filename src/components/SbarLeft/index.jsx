@@ -28,10 +28,13 @@ const SbarLeft = observer(
             <Menu />
           </>
           {/* <div>
-            <AesirXDamStorage /> */}
-          {/* </div> */}
-          <div className="d-flex align-items-center justify-content-between bottom-0 w-100  button-language item_menu">
-            <a href="/" className="d-flex align-items-center py-2 px-3">
+            <AesirXDamStorage />
+          </div> */}
+          <div className="bottom-0 w-100 item_menu">
+            <a
+              href="/"
+              className="d-block px-24 py-16 link_menu text-white text-decoration-none border-top border-dark-blue"
+            >
               <ComponentImage src="/assets/images/help-icon.svg" />
               <span className="text ps-3">{t('txt_help_center')}</span>
             </a>

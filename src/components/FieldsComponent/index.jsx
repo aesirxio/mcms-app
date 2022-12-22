@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, ListGroup, Row, Tab } from 'react-bootstrap';
 import { withTranslation } from 'react-i18next';
-import FormComponent from 'components/Form';
+import { renderingGroupFieldHandler } from 'utils/form';
 
 const FieldsComponent = (props) => {
-  const { t, dataForm } = props;
+  const { t, dataForm, validator } = props;
   return (
     <Tab.Container defaultActiveKey="0">
       <Row>
@@ -33,11 +33,7 @@ const FieldsComponent = (props) => {
                     <h3 className="fs-6 mb-24 fw-bold pb-16 border-bottom text-uppercase">
                       {item.name ? item.name : 'Non grouped'}
                     </h3>
-                    <FormComponent
-                      key={Math.random(40, 200)}
-                      viewModel={null}
-                      generateFormSetting={() => [{ fields: item.fields }]}
-                    />
+                    <div>{renderingGroupFieldHandler(item, validator)}</div>
                   </div>
                 </Tab.Pane>
               );

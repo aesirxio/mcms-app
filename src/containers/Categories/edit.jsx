@@ -82,6 +82,9 @@ const EditCategories = observer(
                 changed: (data) => {
                   this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.SEO_PAGE_TITLE] = data.target.value;
                 },
+                blurred: () => {
+                  this.validator.showMessageFor('SEO Page Title');
+                },
               },
               {
                 label: 'SEO Page Heading',
@@ -295,7 +298,10 @@ const EditCategories = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? {},
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.STATUS] ?? {
+                label: 'Publish',
+                value: 1,
+              },
               className: 'col-12 mb-16',
               isInline: true,
               // required: true,

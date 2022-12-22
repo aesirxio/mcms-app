@@ -10,6 +10,10 @@ const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
         ...provided,
         minHeight: 48,
         boxShadow: isShadow ? '0 3px 5px rgb(0 0 0 / 5%)' : 'none',
+        borderColor: isBorder ? 'var(--bs-border-color)' : 'transparent',
+        '&:hover': {
+          borderColor: isBorder ? 'var(--bs-border-color)' : 'transparent',
+        },
         backgroundColor: 'transparent',
         cursor: 'pointer',
         borderRadius: '5px',
@@ -22,8 +26,22 @@ const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
         ...styles,
         top: 'calc(100% - 2px)',
         margin: 0,
+        border: '1px solid var(--bs-border-color)',
         boxShadow: '0 3px 5px rgb(0 0 0 / 5%)',
+        backgroundColor: 'var(--bs-info)',
         width: '100%',
+      };
+    },
+    option: (provided, state) => {
+      return {
+        ...provided,
+        cursor: 'pointer',
+        color: state.isSelected ? 'var(--bs-success)' : 'var(--bs-body-color)',
+        backgroundColor: state.isSelected ? 'var(--bs-green-light)' : 'transparent',
+        '&:hover': {
+          color: 'var(--bs-success)',
+          backgroundColor: 'var(--bs-green-light)',
+        },
       };
     },
     indicatorSeparator: () => ({ display: 'none' }),
