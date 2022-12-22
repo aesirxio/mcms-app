@@ -9,6 +9,9 @@ import InputPassword from '../../components/inputPassword';
 import ComponentImage from 'components/ComponentImage';
 import { Link } from 'react-router-dom';
 import Checkbox from 'components/Checkbox';
+import { SSOButton } from 'aesirx-sso';
+import AesirxAuthenticationApiService from 'aesirx-dma-lib/src/Authentication/Authentication';
+import Storage from 'aesirx-dma-lib/src/Utils/Storage';
 
 // import ComponentImage from 'components/ComponentImage';
 const dataSlider = [
@@ -70,7 +73,12 @@ class LoginPage extends React.Component {
 
   render() {
     const { t } = this.props;
-
+    const onGetData = async (response) => {
+      const authService = new AesirxAuthenticationApiService();
+      await authService.setTokenUser(response, false);
+      Storage.setItem('auth', true);
+      window.location.reload();
+    };
     return (
       <div className="row">
         <BannerLeft dataSlider={dataSlider} />
@@ -112,6 +120,16 @@ class LoginPage extends React.Component {
                 <span className="fs-6 fw-medium">OR</span>
               </p>
               <form>
+                <SSOButton
+                  className="btn w-100 fw-medium btn-success position-relative d-flex align-item-center justify-content-center mb-3 px-6"
+                  text={t('txt_sign_in_with_sso')}
+                  onGetData={onGetData}
+                />
+                <div className="d-flex align-items-center flex-nowrap">
+                  <div className="border-bottom w-50"></div>
+                  <span className="px-2">or</span>
+                  <div className="border-bottom w-50"></div>
+                </div>
                 <label className="form-label mb-1 fw-semibold">
                   Email <span className="text-danger">*</span>
                 </label>
