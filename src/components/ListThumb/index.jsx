@@ -16,7 +16,7 @@ const optionFilterColumns = [
   { value: false, label: 'UnPublished' },
 ];
 
-const ListThumb = ({ selectedMulptiRows, store, allColumns, listViewModel }) => {
+const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const [action, setAction] = useState('');
   const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
@@ -26,7 +26,7 @@ const ListThumb = ({ selectedMulptiRows, store, allColumns, listViewModel }) => 
     } else {
       const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
       setAction(e);
-      await store.handleDelete(listSelectedItems);
+      await listViewModel.handleDelete(listSelectedItems);
     }
   };
 

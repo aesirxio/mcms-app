@@ -56,15 +56,6 @@ class FieldsDetailViewModel {
     }, 1500);
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.fieldsStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   handleSearch = (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     this.fieldsStore.handleSearch(
@@ -86,13 +77,6 @@ class FieldsDetailViewModel {
   handleEdit = async (value) => {
     this.formStatus = PAGE_STATUS.LOADING;
     history.push(`/fields-edit/${value?.id}`);
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
-    }
     this.formStatus = PAGE_STATUS.READY;
   };
 

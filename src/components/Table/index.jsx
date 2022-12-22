@@ -215,7 +215,6 @@ const Table = ({
       <>
         <ListThumb
           selectedMulptiRows={selectedFlatRows}
-          store={store}
           allColumns={allColumns}
           listViewModel={listViewModel}
         />

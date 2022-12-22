@@ -56,15 +56,6 @@ class CategoriesDetailViewModel {
     }, 1500);
   };
 
-  handleDelete = (id) => {
-    this.formStatus = PAGE_STATUS.LOADING;
-    this.categoriesStore.handleDelete(
-      id,
-      this.callbackOnDeleteSuccessHandler,
-      this.callbackOnErrorHandler
-    );
-  };
-
   setFeatured = async (id, featured = 0) => {
     await this.categoriesStore.updateFeatured(
       { id: id.toString(), featured: featured.toString() },
@@ -85,13 +76,6 @@ class CategoriesDetailViewModel {
   callbackOnSuccessHandler = (result) => {
     if (result) {
       notify('Successfully', 'success');
-    }
-    this.formStatus = PAGE_STATUS.READY;
-  };
-
-  callbackOnDeleteSuccessHandler = (id) => {
-    if (id) {
-      notify('Delete successfully', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
