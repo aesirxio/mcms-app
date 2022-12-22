@@ -10,14 +10,22 @@ class AesirxCmsCategoryApiService extends Component {
     super(props);
     this.route = new CmsCategoriesRoute();
   }
-  getList = async () => {
+  getList = async (filters) => {
     try {
-      const data = await this.route.getList();
+      const data = await this.route.getList(filters);
       let results = null;
+      let pagination = null;
       if (data) {
         results = new CategoryModel(data);
       }
-      return results;
+      pagination = {
+        page: data.page,
+        pageLimit: data.pageLimit,
+        totalPages: data.totalPages,
+        totalItems: data.totalItems,
+        limitStart: data.limitstart,
+      };
+      return { results, pagination };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };

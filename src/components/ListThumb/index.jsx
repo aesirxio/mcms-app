@@ -31,7 +31,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   };
 
   const handleSearch = (e) => {
-    listViewModel.getListByFilter((listViewModel.filters.search = e.target.value));
+    listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = e.target.value));
   };
   const handleFilterColum = (e) => {
     setFilterColum(e);

@@ -9,14 +9,12 @@ class CategoriesListViewModel {
     state: true,
     content_id: '',
     data: [],
-    dataDetail: [],
+    pagination: {},
   };
   filters = {
-    views: 'all',
-    search: '',
-    filterColum: '',
     'list[limitstart]': 0,
-    'list[limit]': 10,
+    'list[limit]': 20,
+    'filter[search]': '',
   };
 
   constructor(categoriesStore) {
@@ -26,13 +24,14 @@ class CategoriesListViewModel {
 
   initializeData = async () => {
     await this.categoriesStore.getList(
+      this.filters,
       this.callbackOnGetSuccessHandler,
       this.callbackOnErrorHandler
     );
   };
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.categoriesStore.getListByFilter(
+    await this.categoriesStore.getList(
       this.filters,
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
@@ -42,19 +41,22 @@ class CategoriesListViewModel {
     }, 1500);
   };
 
-  handlePagination = () => {
-    this.categoriesStore.handlePagination(
+  handlePagination = async () => {
+    await this.categoriesStore.getList(
       this.filters,
-      this.callbackOnSuccessHandler,
+      this.callbackOnGetSuccessHandler,
       this.callbackOnErrorHandler
     );
-    console.log(this.filters);
   };
 
   handleDelete = (id) => {
+    if (id?.length > 1) {
+      notify('Cannot delete multiple items now. We will update in next version', 'error');
+      return;
+    }
     this.formStatus = PAGE_STATUS.LOADING;
     this.categoriesStore.handleDelete(
-      id,
+      id[0],
       this.callbackOnDeleteSuccessHandler,
       this.callbackOnErrorHandler
     );
@@ -93,7 +95,8 @@ class CategoriesListViewModel {
   };
   callbackOnGetSuccessHandler = async (result) => {
     if (result) {
-      this.successResponse.data = result;
+      this.successResponse.data = result?.results;
+      this.successResponse.pagination = result?.pagination;
       notify('Get List Successfully', 'success');
     }
   };

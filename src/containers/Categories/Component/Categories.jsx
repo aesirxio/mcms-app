@@ -125,7 +125,7 @@ const Categories = observer(({ setEntriesFound }) => {
     const fetchData = async () => {
       await categoriesViewModel.categoriesListViewModel.initializeData();
       setEntriesFound(
-        categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items?.length
+        categoriesViewModel.categoriesListViewModel?.successResponse?.pagination?.totalItems
       );
     };
     fetchData();
@@ -140,7 +140,7 @@ const Categories = observer(({ setEntriesFound }) => {
           canSort={true}
           store={categoriesViewModel.categoriesDetailViewModel}
           listViewModel={categoriesViewModel.categoriesListViewModel}
-          pagination={true}
+          pagination={categoriesViewModel.categoriesListViewModel?.successResponse?.pagination}
           selection={false}
           dragDrop={true}
           setDataAction={setDataAction}

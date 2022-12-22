@@ -3,12 +3,12 @@ import { runInAction } from 'mobx';
 import history from 'routes/history';
 
 export default class CategoriesStore {
-  async getList(callbackOnSuccess, callbackOnError) {
+  async getList(filters, callbackOnSuccess, callbackOnError) {
     try {
       const results = true;
       if (results) {
         const getListInfoAPIService = new AesirxCmsCategoryApiService();
-        const respondedData = await getListInfoAPIService.getList();
+        const respondedData = await getListInfoAPIService.getList(filters);
         if (respondedData) {
           runInAction(() => {
             callbackOnSuccess(respondedData);
@@ -24,28 +24,6 @@ export default class CategoriesStore {
         message: 'Something went wrong from Server response',
       });
     }
-  }
-
-  async getListByFilter(filter, callbackOnSuccess, callbackOnError) {
-    console.log('filter', filter);
-    // call api
-    // const getListInfoAPIService = new AesirxCmsCategoryApiService();
-    // const respondedData = await getListInfoAPIService.getDetail(data.id);
-    if (filter) {
-      runInAction(() => {
-        callbackOnSuccess(filter);
-      });
-    } else {
-      runInAction(() => {
-        callbackOnError({
-          message: 'Something went wrong from Server response',
-        });
-      });
-    }
-  }
-  catch(error) {
-    console.log('API - Get Content: ' + error);
-    return null;
   }
 
   async getDetail(id, callbackOnSuccess, callbackOnError) {
