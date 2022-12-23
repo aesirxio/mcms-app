@@ -6,7 +6,7 @@ import './index.scss';
 
 import { login } from '../../auth';
 import InputPassword from '../../components/inputPassword';
-import ComponentImage from 'components/ComponentImage';
+// import ComponentImage from 'components/ComponentImage';
 import { Link } from 'react-router-dom';
 import Checkbox from 'components/Checkbox';
 import { SSOButton } from 'aesirx-sso';
@@ -20,13 +20,13 @@ const dataSlider = [
     subtitle: 'Creator of AesirX',
   },
 ];
-const menuLogin = [
-  {
-    title: 'Continue Concordium Wallet ',
-    icon: '/assets/images/wallet.png',
-    color: 'blue-50',
-  },
-];
+// const menuLogin = [
+//   {
+//     title: 'Continue Concordium Wallet ',
+//     icon: '/assets/images/wallet.png',
+//     color: 'blue-50',
+//   },
+// ];
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -94,7 +94,7 @@ class LoginPage extends React.Component {
               {t('txt_login_text_1')} <br /> {t('txt_login_text_2')}
             </h1>
             <div className="w-480px">
-              {menuLogin?.map((v) => (
+              {/* {menuLogin?.map((v) => (
                 <button
                   type="button"
                   className={`btn text-white w-100 btn-${v?.color} position-relative d-flex align-item-center justify-content-center wr_btn_login border-1`}
@@ -117,7 +117,7 @@ class LoginPage extends React.Component {
 
               <p className="line">
                 <span className="fs-6 fw-medium">OR</span>
-              </p>
+              </p> */}
               <form>
                 <SSOButton
                   className="btn w-100 fw-medium btn-success position-relative d-flex align-item-center justify-content-center mb-3 px-6"
