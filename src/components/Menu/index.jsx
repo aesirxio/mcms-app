@@ -94,12 +94,12 @@ const Menu = observer((props) => {
       //   },
       // ],
     },
-    // {
-    //   text: 'txt_menu_dma',
-    //   link: `/dma`,
-    //   icons: '/assets/images/image.png',
-    //   icons_color: '/assets/images/image.png',
-    // },
+    {
+      text: 'txt_menu_dma',
+      link: `/dma`,
+      icons: '/assets/images/icon_channles_white.svg',
+      icons_color: '/assets/images/icon_channles_white.svg',
+    },
   ];
 
   useEffect(() => {

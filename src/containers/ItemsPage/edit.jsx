@@ -283,6 +283,7 @@ const EditItems = observer(
                 validator={this.validator}
                 formPublish={formPublish}
                 isEdit={this.isEdit}
+                isDMA={true}
               />
             </div>
           )}
