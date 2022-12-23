@@ -7,7 +7,7 @@ class ItemsListViewModel {
   formStatus = PAGE_STATUS.LOADING;
 
   tableData = [];
-  
+
   pagination = {};
 
   filters = {
@@ -16,7 +16,6 @@ class ItemsListViewModel {
     'filter[search]': '',
     views: 'all',
   };
-
 
   constructor(itemsStore) {
     makeAutoObservable(this);
@@ -53,7 +52,13 @@ class ItemsListViewModel {
 
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.getListItems();
+    await this.itemsStore.getList(
+      this.callbackOnSuccessHandler,
+      this.callbackOnErrorHandler,
+      this.filters
+    );
+
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   handleDelete = async (data) => {

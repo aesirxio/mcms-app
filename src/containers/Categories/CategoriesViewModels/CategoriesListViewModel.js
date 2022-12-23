@@ -37,9 +37,8 @@ class CategoriesListViewModel {
       this.callbackOnSuccessHandler,
       this.callbackOnErrorHandler
     );
-    setTimeout(() => {
-      this.formStatus = PAGE_STATUS.READY;
-    }, 1500);
+
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   handlePagination = async () => {
