@@ -8,7 +8,7 @@ import './index.scss';
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
   const handleGoToPage = (i) => {
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = (i - 1) * pagination.pageLimit)
+      (listViewModel.filters['list[limitstart]'] = (i - 1) * pagination?.pageLimit)
     );
   };
 
@@ -26,8 +26,8 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
 
   const paginationHTML = () => {
     let paginationHTML = [];
-    let currentNumber = pagination.page;
-    for (let i = 1; i <= pagination.totalPages; i++) {
+    let currentNumber = pagination?.page;
+    for (let i = 1; i <= pagination?.totalPages; i++) {
       paginationHTML.push(
         <button
           key={i}
@@ -64,7 +64,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
         <div className="select_limit d-flex align-items-center">
           <span style={{ color: '#9A9A9A' }}>Showing</span>
           <SelectComponent
-            defaultValue={{ value: pagination.pageLimit, label: pagination.pageLimit + ' Items' }}
+            defaultValue={{ value: pagination?.pageLimit, label: pagination?.pageLimit + ' Items' }}
             onChange={handleChangeLimit}
             options={[
               { value: 5, label: 'Show 5' },
@@ -76,7 +76,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             isBorder
           />
         </div>
-        {pagination.totalPages > 1 ? (
+        {pagination?.totalPages > 1 ? (
           <div
             className={
               'd-flex justify-content-center bg-white pagination_list rounded-1 overflow-hidden border'
