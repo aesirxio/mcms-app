@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
-import { CMS_FIELD_GR_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_FIELD_GR_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import FieldsGroupStore from './FieldsGroupStore/FieldsGroup';
 import FieldsGroupViewModel from './FieldsGroupViewModels/FieldsGroupViewModel';
 import {

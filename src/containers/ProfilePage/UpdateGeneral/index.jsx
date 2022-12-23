@@ -1,7 +1,7 @@
 import React, { observer } from 'mobx-react';
 import { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Storage from 'aesirx-dma-lib/src/Utils/Storage';
+import { Storage } from 'aesirx-dma-lib';
 import 'react-datepicker/dist/react-datepicker.css';
 import { withTranslation } from 'react-i18next';
 import SimpleReactValidator from 'simple-react-validator';

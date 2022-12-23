@@ -1,28 +1,28 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from 'react';
 
-import _ from "lodash";
+import _ from 'lodash';
 
-import FacebookData from "aesirx-dma-lib/src/FacebookData/FacebookData";
-import GoogleData from "aesirx-dma-lib/src/GoogleData/GoogleData";
+import FacebookData from 'aesirx-dma-lib/src/FacebookData/FacebookData';
+import GoogleData from 'aesirx-dma-lib/src/GoogleData/GoogleData';
 
-const FormRadio = lazy(() => import("../FormRadio"));
-const SelectComponent = lazy(() => import("../../Select"));
+const FormRadio = lazy(() => import('../FormRadio'));
+const SelectComponent = lazy(() => import('../../Select'));
 
 const FormLocationField = ({ field, validator }) => {
   const [locations] = useState([]);
   const [fieldSelect, setFieldSelect] = useState({
-    label: "Location",
-    key: "selectlocation",
-    classNameInput: "btn-outline-primary",
+    label: 'Location',
+    key: 'selectlocation',
+    classNameInput: 'btn-outline-primary',
     option: field.isAll
       ? [
-          { label: "All countries", value: "yes" },
-          { label: "Enter another location", value: "no" },
+          { label: 'All countries', value: 'yes' },
+          { label: 'Enter another location', value: 'no' },
         ]
-      : [{ label: "Enter another location", value: "no" }],
+      : [{ label: 'Enter another location', value: 'no' }],
     value: field.all,
     required: true,
-    validation: "required",
+    validation: 'required',
     changed: (event) => {
       setFieldSelect({ ...fieldSelect, value: event.target.value });
 
@@ -34,9 +34,7 @@ const FormLocationField = ({ field, validator }) => {
   const fetchSearchLocationFromFacebookData = async (inputValue) => {
     if (inputValue.length > 3) {
       const facebookDataAPIService = new FacebookData();
-      let response = await facebookDataAPIService.getLocationsFromFacebookData(
-        inputValue
-      );
+      let response = await facebookDataAPIService.getLocationsFromFacebookData(inputValue);
 
       return filterLocation(inputValue, response?.data);
     }
@@ -48,9 +46,7 @@ const FormLocationField = ({ field, validator }) => {
   const fetchSearchLocationFromGoggleData = async (inputValue) => {
     if (inputValue.length > 3) {
       const googleDataAPIService = new GoogleData();
-      let response = await googleDataAPIService.getSearchLocationFromGoogleData(
-        inputValue
-      );
+      let response = await googleDataAPIService.getSearchLocationFromGoogleData(inputValue);
       return filterLocation(inputValue, response?.google_ad_user_locations);
     }
 
@@ -67,13 +63,13 @@ const FormLocationField = ({ field, validator }) => {
           // .filter((i) => i.name.toLowerCase().includes(value.toLowerCase()))
           .map((location) => ({
             label: location.name,
-            value: field.name === "googleads" ? location.id : location.key,
+            value: field.name === 'googleads' ? location.id : location.key,
           }))
       : [];
   };
 
   const debouncedChangeHandler = _.throttle(
-    field.name === "googleads"
+    field.name === 'googleads'
       ? fetchSearchLocationFromGoggleData
       : fetchSearchLocationFromFacebookData,
     500
@@ -87,7 +83,7 @@ const FormLocationField = ({ field, validator }) => {
     <div className="position-relative z-index-10">
       <FormRadio field={fieldSelect} />
 
-      {fieldSelect.value !== "yes" && (
+      {fieldSelect.value !== 'yes' && (
         <>
           <SelectComponent
             defaultValue={field.value}
@@ -102,7 +98,7 @@ const FormLocationField = ({ field, validator }) => {
           />
           {field.validation &&
             validator.message(field.label, field.value, field.validation, {
-              className: "text-danger",
+              className: 'text-danger',
             })}
         </>
       )}

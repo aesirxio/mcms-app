@@ -1,14 +1,12 @@
-import { runInAction } from "mobx";
-import BiUtils from "./BiUtils";
+import { runInAction } from 'mobx';
+import BiUtils from './BiUtils';
 
-import AesirxBiApiService from "aesirx-dma-lib/src/Bi/Bi";
+import AesirxBiApiService from 'aesirx-dma-lib/src/Bi/Bi';
 export default class BiStore {
   getCollections = async (collectionId, callbackOnSuccess, callbackOnError) => {
     try {
       const biService = new AesirxBiApiService();
-      const responsedDataFromLibary = await biService.getCollections(
-        collectionId
-      );
+      const responsedDataFromLibary = await biService.getCollections(collectionId);
       if (responsedDataFromLibary?.list) {
         const collectionDataModel = responsedDataFromLibary?.list;
         if (collectionDataModel) {
@@ -21,21 +19,21 @@ export default class BiStore {
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "No Result",
+              message: 'No Result',
             });
           });
         }
       } else {
-        if (responsedDataFromLibary?.message === "isCancle") {
+        if (responsedDataFromLibary?.message === 'isCancle') {
           runInAction(() => {
             callbackOnError({
-              message: "isCancle",
+              message: 'isCancle',
             });
           });
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "Something went wrong from Server response",
+              message: 'Something went wrong from Server response',
             });
           });
         }
@@ -50,29 +48,19 @@ export default class BiStore {
           callbackOnError({
             message:
               error.response?.data?._messages[0]?.message ??
-              "Something went wrong from Server response",
+              'Something went wrong from Server response',
           });
         }
       });
     }
   };
 
-  getListDomain = async (
-    dataFilter,
-    listDomains,
-    callbackOnSuccess,
-    callbackOnError
-  ) => {
+  getListDomain = async (dataFilter, listDomains, callbackOnSuccess, callbackOnError) => {
     try {
       const biService = new AesirxBiApiService();
-      const responsedDataFromLibary = await biService.getListDomain(
-        dataFilter,
-        listDomains
-      );
+      const responsedDataFromLibary = await biService.getListDomain(dataFilter, listDomains);
       if (responsedDataFromLibary) {
-        const homeDataModels = BiUtils.transformPersonaResponseIntoModel(
-          responsedDataFromLibary
-        );
+        const homeDataModels = BiUtils.transformPersonaResponseIntoModel(responsedDataFromLibary);
 
         if (homeDataModels) {
           runInAction(() => {
@@ -81,27 +69,27 @@ export default class BiStore {
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "No Result",
+              message: 'No Result',
             });
           });
         }
       } else {
-        if (responsedDataFromLibary?.message === "isCancle") {
+        if (responsedDataFromLibary?.message === 'isCancle') {
           runInAction(() => {
             callbackOnError({
-              message: "isCancle",
+              message: 'isCancle',
             });
           });
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "Something went wrong from Server response",
+              message: 'Something went wrong from Server response',
             });
           });
         }
       }
     } catch (error) {
-      console.log("errorrrr", error);
+      console.log('errorrrr', error);
       runInAction(() => {
         if (error.response?.data.message) {
           callbackOnError({
@@ -111,7 +99,7 @@ export default class BiStore {
           callbackOnError({
             message:
               error.response?.data?._messages[0]?.message ??
-              "Something went wrong from Server response",
+              'Something went wrong from Server response',
           });
         }
       });
@@ -123,9 +111,7 @@ export default class BiStore {
       const biService = new AesirxBiApiService();
       const responsedDataFromLibary = await biService.getDashboard(dataFilter);
       if (responsedDataFromLibary) {
-        const homeDataModels = BiUtils.transformPersonaResponseIntoModel(
-          responsedDataFromLibary
-        );
+        const homeDataModels = BiUtils.transformPersonaResponseIntoModel(responsedDataFromLibary);
 
         if (homeDataModels) {
           runInAction(() => {
@@ -134,27 +120,27 @@ export default class BiStore {
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "No Result",
+              message: 'No Result',
             });
           });
         }
       } else {
-        if (responsedDataFromLibary?.message === "isCancle") {
+        if (responsedDataFromLibary?.message === 'isCancle') {
           runInAction(() => {
             callbackOnError({
-              message: "isCancle",
+              message: 'isCancle',
             });
           });
         } else {
           runInAction(() => {
             callbackOnError({
-              message: "Something went wrong from Server response",
+              message: 'Something went wrong from Server response',
             });
           });
         }
       }
     } catch (error) {
-      console.log("errorrrr", error);
+      console.log('errorrrr', error);
       runInAction(() => {
         if (error.response?.data.message) {
           callbackOnError({
@@ -164,7 +150,7 @@ export default class BiStore {
           callbackOnError({
             message:
               error.response?.data?._messages[0]?.message ??
-              "Something went wrong from Server response",
+              'Something went wrong from Server response',
           });
         }
       });
@@ -175,12 +161,9 @@ export default class BiStore {
     try {
       const biService = new AesirxBiApiService();
       const responsedDataFromLibary = await biService.search({
-        "filter[search]": query,
+        'filter[search]': query,
       });
-      if (
-        responsedDataFromLibary?.assets ||
-        responsedDataFromLibary?.collections
-      ) {
+      if (responsedDataFromLibary?.assets || responsedDataFromLibary?.collections) {
         const homeDataModels = BiUtils.transformResponseIntoSearchItems([
           ...responsedDataFromLibary?.assets,
           ...responsedDataFromLibary?.collections,

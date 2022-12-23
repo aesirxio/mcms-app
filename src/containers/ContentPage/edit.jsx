@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
-import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import ContentStore from './ContentStore/Content';
 import ContentViewModel from './ContentViewModels/ContentViewModel';
 import {

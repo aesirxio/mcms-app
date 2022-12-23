@@ -3,7 +3,7 @@ import Spinner from '../../components/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';

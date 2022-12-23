@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CONTENT_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 import history from 'routes/history';

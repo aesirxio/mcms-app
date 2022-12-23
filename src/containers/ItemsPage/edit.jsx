@@ -4,7 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 import ItemsStore from './ItemsStore/ItemsStore';
 import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
-import { CMS_ITEMS_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';

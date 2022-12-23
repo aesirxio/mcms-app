@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { notify } from 'components/Toast';
 import history from 'routes/history';
-import Storage from 'aesirx-dma-lib/src/Utils/Storage';
+import { Storage } from 'aesirx-dma-lib';
 import './index.scss';
 import { Icon } from '@iconify/react';
 

@@ -6,17 +6,20 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import './index.scss';
 
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
-  console.log(pagination);
   const handleGoToPage = (i) => {
-    listViewModel.getPagination(i);
+    listViewModel.handlePagination((listViewModel.filters['list[limit]'] = Number(i)));
   };
 
   const handlePreviousPage = () => {
-    listViewModel.getPagination(pagination.page - 1);
+    listViewModel.handlePagination(
+      (listViewModel.filters['list[limitstart]'] = pagination?.page - 1)
+    );
   };
 
   const handleNextPage = () => {
-    listViewModel.getPagination(pagination.page + 1);
+    listViewModel.handlePagination(
+      (listViewModel.filters['list[limitstart]'] = pagination?.page + 1)
+    );
   };
 
   const paginationHTML = () => {
@@ -73,7 +76,9 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
         </div>
         {pagination.totalPages > 1 ? (
           <div
-            className={'d-flex justify-content-center bg-white pagination_list rounded-1 overflow-hidden border'}
+            className={
+              'd-flex justify-content-center bg-white pagination_list rounded-1 overflow-hidden border'
+            }
           >
             <button
               onClick={() => handlePreviousPage()}

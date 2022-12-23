@@ -1,6 +1,6 @@
 import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
 import BaseModel from 'aesirx-dma-lib/src/Abstract/BaseModel';
-import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 
 class ItemsModel extends BaseModel {
   constructor(entities) {

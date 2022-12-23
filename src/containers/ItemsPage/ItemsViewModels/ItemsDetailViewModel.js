@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 import history from 'routes/history';
@@ -10,7 +10,7 @@ class ItemsDetailViewModel {
   itemsDetailViewModel = null;
 
   listFields = [];
-  
+
   contentType = null;
 
   constructor(itemsStore) {
@@ -24,13 +24,13 @@ class ItemsDetailViewModel {
 
   initializeData = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
-    if(this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID]){
+    if (this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID]) {
       await this.itemsStore.getDetail(
         this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
         this.callbackOnGetDetailSuccessHandler,
         this.callbackOnErrorHandler
       );
-    }else{
+    } else {
       this.formStatus = PAGE_STATUS.READY;
     }
   };

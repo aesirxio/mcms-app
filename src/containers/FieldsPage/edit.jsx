@@ -13,7 +13,7 @@ import {
   FieldsViewModelContextProvider,
   withFieldsViewModel,
 } from './FieldsViewModels/FieldsViewModelContextProvider';
-import { CMS_FIELD_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_FIELD_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 

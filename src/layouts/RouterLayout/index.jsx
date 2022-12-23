@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
-import { authRoutes, mainRoutes, settingRoutes } from "../../routes/routes";
+import { BrowserRouter, Route, Router, Switch } from 'react-router-dom';
+import { authRoutes, mainRoutes, settingRoutes } from '../../routes/routes';
 
-import AuthLayout from "../AuthLayout";
-import MainLayout from "../MainLayout";
-import SettingLayout from "../SettingLayout";
+import AuthLayout from '../AuthLayout';
+import MainLayout from '../MainLayout';
+import SettingLayout from '../SettingLayout';
 
-import { Toast } from "../../components/Toast";
-import NotFound from "../../containers/NotFound";
-import { BiStoreProvider } from "store/BiStore/BiViewModelContextProvider";
-import BiViewModel from "store/BiStore/BiViewModel";
-import BiStore from "store/BiStore/BiStore";
-import history from "../../routes/history";
-import AnalyticsContainer from "components/AnalyticsContainer";
+import { Toast } from '../../components/Toast';
+import NotFound from '../../containers/NotFound';
+import { BiStoreProvider } from 'store/BiStore/BiViewModelContextProvider';
+import BiViewModel from 'store/BiStore/BiViewModel';
+import BiStore from 'store/BiStore/BiStore';
+import history from '../../routes/history';
+// import AnalyticsContainer from 'components/AnalyticsContainer';
 
 const biStore = new BiStore();
 const biViewModel = new BiViewModel(biStore);
@@ -46,7 +46,7 @@ const RouterLayout = () => {
       <Toast />
       <BrowserRouter>
         <Router history={history}>
-          <AnalyticsContainer />
+          {/* <AnalyticsContainer /> */}
           <Switch>
             <Route exact path={authPath}>
               <AuthLayout />

@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-import FacebookLogin from "react-facebook-login";
-import { notify } from "components/Toast";
-import history from "routes/history";
-import Storage from "aesirx-dma-lib/src/Utils/Storage";
-import "./index.scss";
+import React from 'react';
+import FacebookLogin from 'react-facebook-login';
+import { notify } from 'components/Toast';
+import history from 'routes/history';
+import { Storage } from 'aesirx-dma-lib';
+import './index.scss';
 
 const WalletLoginButton = ({ className }) => {
   //   const clientId = "1246711655891487";
   const responseFacebook = (res) => {
     if (res?.profileObj) {
-      Storage.setItem("auth", true);
-      document.body.classList.remove("body_login_page");
-      history.push("/");
+      Storage.setItem('auth', true);
+      document.body.classList.remove('body_login_page');
+      history.push('/');
       return true;
     } else {
-      notify("Login information is incorrect", "error");
-      document.body.classList.remove("body_login_page");
+      notify('Login information is incorrect', 'error');
+      document.body.classList.remove('body_login_page');
       return false;
     }
   };

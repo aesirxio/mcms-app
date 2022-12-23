@@ -10,8 +10,7 @@ import ComponentImage from 'components/ComponentImage';
 import { Link } from 'react-router-dom';
 import Checkbox from 'components/Checkbox';
 import { SSOButton } from 'aesirx-sso';
-import AesirxAuthenticationApiService from 'aesirx-dma-lib/src/Authentication/Authentication';
-import Storage from 'aesirx-dma-lib/src/Utils/Storage';
+import { Storage, AesirxAuthenticationApiService } from 'aesirx-dma-lib';
 
 // import ComponentImage from 'components/ComponentImage';
 const dataSlider = [

@@ -1,14 +1,12 @@
-import AesirxMemberApiService from "aesirx-dma-lib/src/Member/Member";
-import { runInAction } from "mobx";
-import ProfileModel from "../ProfileModel/ProfileModel";
+import { AesirxMemberApiService } from 'aesirx-dma-lib';
+import { runInAction } from 'mobx';
+import ProfileModel from '../ProfileModel/ProfileModel';
 
 export default class ProfileStore {
   async updatePassword(updatePasswordData, callbackOnSuccess, callbackOnError) {
     try {
       const convertedUpdatePasswordData =
-        ProfileModel.convertSubmittedPasswordDataToAPIService(
-          updatePasswordData
-        );
+        ProfileModel.convertSubmittedPasswordDataToAPIService(updatePasswordData);
 
       let resultOnSave;
       const updatePasswordApiService = new AesirxMemberApiService();
@@ -40,9 +38,7 @@ export default class ProfileStore {
       let resultOnSave;
       const updateGeneralApiService = new AesirxMemberApiService();
 
-      resultOnSave = await updateGeneralApiService.updateMember(
-        convertedUpdateGeneralData
-      );
+      resultOnSave = await updateGeneralApiService.updateMember(convertedUpdateGeneralData);
 
       if (resultOnSave.result.success) {
         runInAction(() => {
@@ -75,7 +71,7 @@ export default class ProfileStore {
           });
         } else {
           callbackOnError({
-            message: "Something went wrong from Server response",
+            message: 'Something went wrong from Server response',
           });
         }
       }
