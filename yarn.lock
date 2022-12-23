@@ -1984,11 +1984,11 @@
     react-datepicker "^3.3.0"
 
 "@kakahuy113/test-dma-app@^1.5.3-alpha.4":
-  version "1.5.3-alpha.4"
-  resolved "https://registry.yarnpkg.com/@kakahuy113/test-dma-app/-/test-dma-app-1.5.3-alpha.4.tgz#6a6250c2b1cd9e244a6048a4d556c7a7600fae4b"
-  integrity sha512-D1fTKkb2js0g9+d6Aid89BAlJQxnDTyPguFL5iMlpWotMNDxkawrawDwTrE4l+eSowYJTbP9tWc0zNUr206OZA==
+  version "1.5.3-alpha.5"
+  resolved "https://registry.yarnpkg.com/@kakahuy113/test-dma-app/-/test-dma-app-1.5.3-alpha.5.tgz#23dddd0efc65c6fd4c433b52e384c0cb50838e92"
+  integrity sha512-XKVA/EJhDw/+A8K+FPMZWYfOwlVWV/jG2wPYLiOZN72MPZOu5f8Gi7fVIGhFXMLlJ+adeOI6yAboANliDpt6iA==
   dependencies:
-    "@kakahuy113/test-dam-app" "^1.0.1-alpha.2"
+    aesirx-dam-app aesirxio/dam-app
     aesirx-dma-lib aesirxio/dma-lib
     date-fns "^2.16.1"
     date-fns-tz "^1.1.6"
@@ -3015,10 +3015,21 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
+"aesirx-dam-app@github:aesirxio/dam-app":
+  version "1.0.1-alpha.1"
+  resolved "https://codeload.github.com/aesirxio/dam-app/tar.gz/486bdfb05d5e923d7f8b4bb989fd30024013b04a"
+  dependencies:
+    aesirx-sso "^1.0.0"
+    date-fns "^2.16.1"
+    date-fns-tz "^1.1.6"
+    file-saver "^2.0.5"
+    moment "^2.29.4"
+    react-datepicker "^3.3.0"
+
 aesirx-dma-lib@aesirxio/dma-lib, "aesirx-dma-lib@github:aesirxio/dma-lib":
   version "1.6.1-alpha.1"
-  uid "886d84095fad9331be2c314e94e49ed8e78e1678"
-  resolved "https://codeload.github.com/aesirxio/dma-lib/tar.gz/886d84095fad9331be2c314e94e49ed8e78e1678"
+  uid "65276538d16bf77e76e77e9db982333ceb7579e8"
+  resolved "https://codeload.github.com/aesirxio/dma-lib/tar.gz/65276538d16bf77e76e77e9db982333ceb7579e8"
   dependencies:
     axios "^0.21.0"
     axios-auth-refresh "^3.0.0"
@@ -3031,6 +3042,17 @@ aesirx-sso@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.0.tgz#34e2abae7a539039cd1c70d382850d83600deed6"
   integrity sha512-RDYhACIXAnIqaDI9sRd7HzCzLvQBzixZCJ70ic2yXd5Y6vnoKhSX6ODHigpTI/37Ro0BOS0dKAuKLJU9/00xKA==
+  dependencies:
+    axios "^0.21.0"
+    babel-plugin-module-resolver "^4.1.0"
+    cross-env "^7.0.3"
+    dotenv "^16.0.3"
+    npm-run-all "^4.1.5"
+    rimraf "^3.0.2"
+
+aesirx-sso@aesirxio/sso:
+  version "1.0.1-alpha.1"
+  resolved "https://codeload.github.com/aesirxio/sso/tar.gz/cd2054de7b6ebb2ee6c012dec6e1655781acc007"
   dependencies:
     axios "^0.21.0"
     babel-plugin-module-resolver "^4.1.0"
