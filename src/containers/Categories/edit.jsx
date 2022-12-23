@@ -251,16 +251,10 @@ const EditCategories = observer(
               label: 'Category image',
               key: 'featured_image',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
-                ? this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
-                : '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]?.url ?? '',
               className: 'col-12',
               changed: (data) => {
-                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = [data[0]];
-                console.log(
-                  ' this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]',
-                  this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]
-                );
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0].download_url;
               },
             },
             // {

@@ -2,9 +2,7 @@ import { Icon } from '@iconify/react';
 import React, { lazy, useState } from 'react';
 import ComponentImage from '../../ComponentImage';
 import styles from './index.module.scss';
-
 const ModalDAMComponent = lazy(() => import('components/ModalDamComponent'));
-
 const FormImage = ({ field, hiddenDelete = false }) => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(field.value);
@@ -19,7 +17,13 @@ const FormImage = ({ field, hiddenDelete = false }) => {
       <div className={`position-relative mb-24`}>
         {file && !hiddenDelete && (
           <div className={`position-absolute top-0 start-100 text-end cursor-pointer`}>
-            <div className="bg-danger p-sm" onClick={() => setFile(null)}>
+            <div
+              className="bg-danger p-sm"
+              onClick={() => {
+                setFile(null);
+                field.changed([{ download_url: '' }]);
+              }}
+            >
               <Icon className="text-white" width={24} height={24} icon="ion:trash-outline" />
             </div>
           </div>
@@ -33,7 +37,7 @@ const FormImage = ({ field, hiddenDelete = false }) => {
               onClick={() => setShow(true)}
               className={`${styles['limit-image']} text-center cursor-pointer zindex-1`}
             >
-              <ComponentImage src={file.download_url} alt={file?.name ?? 'Image'} />
+              <ComponentImage src={file.download_url || file} alt={file?.name ?? 'Image'} />
             </div>
           ) : (
             <div className="d-flex flex-column align-items-center p-40 zindex-1">
@@ -52,5 +56,4 @@ const FormImage = ({ field, hiddenDelete = false }) => {
     </>
   );
 };
-
 export default FormImage;

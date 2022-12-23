@@ -8,7 +8,7 @@ import Menu from '../Menu';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { observer } from 'mobx-react';
 import ComponentImage from 'components/ComponentImage';
-// import { AesirXDamStorage } from '@kakahuy113/test-dam-app';
+// import { AesirXDamStorage } from 'aesirx-dam-app';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
     constructor(props) {

@@ -98,14 +98,20 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  callbackOnUpdateSuccessHandler = (result, redirect) => {
+  callbackOnUpdateSuccessHandler = async (result, redirect) => {
     if (result) {
       notify('Update successfully', 'success');
     }
     if (redirect) {
       history.push('/');
+      this.formStatus = PAGE_STATUS.READY;
+    } else {
+      await this.itemsStore.getDetail(
+        this.itemsDetailViewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID],
+        this.callbackOnGetDetailSuccessHandler,
+        this.callbackOnErrorHandler
+      );
     }
-    this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnErrorHandler = ({ message }) => {
