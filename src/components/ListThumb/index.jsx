@@ -7,18 +7,18 @@ import { notify } from 'components/Toast';
 import { Dropdown } from 'react-bootstrap';
 import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 
 const optionAction = [{ value: 'delete', label: 'Delete' }];
 
-const optionFilterColumns = [
-  { value: true, label: 'Published' },
-  { value: false, label: 'UnPublished' },
-];
+// const optionFilterColumns = [
+//   { value: true, label: 'Published' },
+//   { value: false, label: 'UnPublished' },
+// ];
 
 const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const [action, setAction] = useState('');
-  const [filterColum, setFilterColum] = useState('');
+  // const [filterColum, setFilterColum] = useState('');
   const handleAnAction = async (e) => {
     if (selectedMulptiRows?.length < 1) {
       notify('Please choose items to delete', 'error');
@@ -33,10 +33,10 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const handleSearch = (e) => {
     listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = e.target.value));
   };
-  const handleFilterColum = (e) => {
-    setFilterColum(e);
-    listViewModel.getListByFilter((listViewModel.filters.filterColum = e.label));
-  };
+  // const handleFilterColum = (e) => {
+  //   setFilterColum(e);
+  //   listViewModel.getListByFilter((listViewModel.filters.filterColum = e.label));
+  // };
 
   return (
     <div className="rounded-3 mb-24 bg-white shadow-sm">
@@ -106,7 +106,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-        <div className="col-auto border-end-1">
+        {/* <div className="col-auto border-end-1">
           <div className="d-flex align-items-center ps-11">
             <Icon className="text-blue-0" icon="ci:filter-outline" width={16} height={16} />
             <div className="w-130px">
@@ -121,7 +121,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

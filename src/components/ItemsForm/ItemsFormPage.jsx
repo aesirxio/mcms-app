@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import ItemsFormActionBar from './ItemsFormActionBar';
-import PublishOptionComponent from 'components/PublishOptionComponent';
+// import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
 // import { AesirxDmaChannelPost } from '@kakahuy113/test-dma-app';
@@ -13,7 +13,7 @@ const ItemsFormPage = ({
   title,
   validator,
   store,
-  formPublish,
+  // formPublish,
   isEdit,
 }) => {
   const { t } = useTranslation('common');
@@ -58,9 +58,9 @@ const ItemsFormPage = ({
             <GeneralInformation validator={validator} generateFormSetting={generateFormSetting} />
           )}
         </Col>
-        <Col lg={3}>
+        {/* <Col lg={3}>
           <PublishOptionComponent validator={validator} formPublish={formPublish} />
-        </Col>
+        </Col> */}
       </Row>
     </>
   );

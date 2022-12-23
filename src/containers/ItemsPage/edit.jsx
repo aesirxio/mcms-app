@@ -4,7 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 import ItemsStore from './ItemsStore/ItemsStore';
 import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
-import { CMS_ITEMS_DETAIL_FIELD_KEY, GENERAL_INFORMATION } from 'aesirx-dma-lib';
+import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
@@ -94,94 +94,94 @@ const EditItems = observer(
         ],
       };
       const generateFormSetting = [
-        {
-          fields: [
-            {
-              label: 'Alias',
-              key: 'alias',
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[GENERAL_INFORMATION.ALIAS],
-              className: 'col-12',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.ALIAS] = data.target.value;
-              },
-            },
-            {
-              label: 'Organisation',
-              key: 'organisation',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[GENERAL_INFORMATION.ORGANISATION],
-              className: 'col-12',
-              placeholder: 'Select Organisation',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.ORGANISATION] = data.target.value;
-              },
-            },
-            {
-              label: 'Content Type',
-              key: 'content_type',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE],
-              className: 'col-12',
-              placeholder: 'Select Content Type',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE] = data.target.value;
-              },
-            },
-            {
-              label: 'Parent Category',
-              key: 'parent_category',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY],
-              className: 'col-12',
-              placeholder: 'Top Level',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY] = data.target.value;
-              },
-            },
-            {
-              label: 'Default Template',
-              key: 'default_template',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE],
-              className: 'col-12',
-              placeholder: 'Inherit',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE] = data.target.value;
-              },
-            },
-            {
-              label: 'Category',
-              key: 'category',
-              type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[GENERAL_INFORMATION.CATEGORY],
-              className: 'col-12',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.CATEGORY] = data.target.value;
-              },
-            },
-            {
-              label: 'Tags',
-              key: 'tags',
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[GENERAL_INFORMATION.TAGS],
-              className: 'col-12',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.TAGS] = data.target.value;
-              },
-            },
-            {
-              label: 'Version Note',
-              key: 'version_note',
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE],
-              className: 'col-12 mb-0',
-              changed: (data) => {
-                this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE] = data.target.value;
-              },
-            },
-          ],
-        },
+        // {
+        //   fields: [
+        //     {
+        //       label: 'Alias',
+        //       key: 'alias',
+        //       type: FORM_FIELD_TYPE.INPUT,
+        //       value: this.formPropsData[GENERAL_INFORMATION.ALIAS],
+        //       className: 'col-12',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.ALIAS] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Organisation',
+        //       key: 'organisation',
+        //       type: FORM_FIELD_TYPE.DROPDOWN,
+        //       value: this.formPropsData[GENERAL_INFORMATION.ORGANISATION],
+        //       className: 'col-12',
+        //       placeholder: 'Select Organisation',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.ORGANISATION] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Content Type',
+        //       key: 'content_type',
+        //       type: FORM_FIELD_TYPE.DROPDOWN,
+        //       value: this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE],
+        //       className: 'col-12',
+        //       placeholder: 'Select Content Type',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.CONTENT_TYPE] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Parent Category',
+        //       key: 'parent_category',
+        //       type: FORM_FIELD_TYPE.DROPDOWN,
+        //       value: this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY],
+        //       className: 'col-12',
+        //       placeholder: 'Top Level',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.PARENT_CATEGORY] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Default Template',
+        //       key: 'default_template',
+        //       type: FORM_FIELD_TYPE.DROPDOWN,
+        //       value: this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE],
+        //       className: 'col-12',
+        //       placeholder: 'Inherit',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.DEFAULT_TEMPLATE] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Category',
+        //       key: 'category',
+        //       type: FORM_FIELD_TYPE.DROPDOWN,
+        //       value: this.formPropsData[GENERAL_INFORMATION.CATEGORY],
+        //       className: 'col-12',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.CATEGORY] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Tags',
+        //       key: 'tags',
+        //       type: FORM_FIELD_TYPE.INPUT,
+        //       value: this.formPropsData[GENERAL_INFORMATION.TAGS],
+        //       className: 'col-12',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.TAGS] = data.target.value;
+        //       },
+        //     },
+        //     {
+        //       label: 'Version Note',
+        //       key: 'version_note',
+        //       type: FORM_FIELD_TYPE.INPUT,
+        //       value: this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE],
+        //       className: 'col-12 mb-0',
+        //       changed: (data) => {
+        //         this.formPropsData[GENERAL_INFORMATION.VERSION_NOTE] = data.target.value;
+        //       },
+        //     },
+        //   ],
+        // },
       ];
       const formPublish = [
         {
