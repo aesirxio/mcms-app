@@ -1,4 +1,3 @@
-// import AesirxCmsCategoryApiService from 'library/Cms/CMSCategories';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 

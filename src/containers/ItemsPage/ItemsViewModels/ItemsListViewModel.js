@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-// import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
 import PAGE_STATUS from 'constants/PageStatus';
 import { notify } from 'components/Toast';
 class ItemsListViewModel {

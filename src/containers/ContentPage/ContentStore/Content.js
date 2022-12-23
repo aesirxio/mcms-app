@@ -1,4 +1,3 @@
-import AesirxCmsContentTypeApiService from 'library/Cms/ContentType/CMSContentType';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 
@@ -7,11 +6,11 @@ export default class ContentStore {
     try {
       const results = true;
       if (results) {
-        const getListInfoAPIService = new AesirxCmsContentTypeApiService();
-        const respondedData = await getListInfoAPIService.getList();
-        if (respondedData) {
+        // const getListInfoAPIService = new AesirxCmsContentTypeApiService();
+        // const respondedData = await getListInfoAPIService.getList();
+        if (results) {
           runInAction(() => {
-            callbackOnSuccess(respondedData.items);
+            callbackOnSuccess(results);
           });
         } else {
           callbackOnError({
