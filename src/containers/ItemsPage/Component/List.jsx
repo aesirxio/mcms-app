@@ -168,7 +168,7 @@ const List = observer(() => {
             canSort={true}
             store={itemsListViewModel}
             listViewModel={itemsListViewModel}
-            pagination={itemsListViewModel.pagination}
+            pagination={itemsListViewModel?.pagination}
             selection={false}
             dragDrop={true}
           />
