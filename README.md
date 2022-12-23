@@ -2,7 +2,7 @@
 
 ## About
 
-AesirX MCMS is our Open Source Business Intelligence as a Service (MCMSaaS) Solution
+AesirX MCMS is our Open Source MetaVerse CMS as a service solution
 
 Find out more in [https://mcms.aesirx.io](https://mcms.aesirx.io)
 
