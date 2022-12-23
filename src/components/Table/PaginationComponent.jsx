@@ -7,7 +7,9 @@ import './index.scss';
 
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
   const handleGoToPage = (i) => {
-    listViewModel.handlePagination((listViewModel.filters['list[limitstart]'] = Number(i)));
+    listViewModel.handlePagination(
+      (listViewModel.filters['list[limitstart]'] = (i - 1) * pagination.pageLimit)
+    );
   };
 
   const handlePreviousPage = () => {
