@@ -191,7 +191,10 @@ const EditItems = observer(
               label: 'Status',
               key: 'status',
               type: FORM_FIELD_TYPE.DROPDOWN,
-              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS],
+              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS] ?? {
+                label: 'Publish',
+                value: 1,
+              },
               className: 'col-12 mb-16',
               isInline: true,
               labelClassName: 'fw-normal me-24 ws-nowrap',
