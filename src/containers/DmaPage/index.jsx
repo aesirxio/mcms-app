@@ -1,13 +1,9 @@
 import React from 'react';
-import { AesirXDmaChannels } from '@kakahuy113/test-dma-app';
+// import { AesirXDmaChannels } from '@kakahuy113/test-dma-app';
 import './index.scss';
 
 const DmaPage = () => {
-  return (
-    <div className="py-4 px-3 h-100 ">
-      <AesirXDmaChannels />
-    </div>
-  );
+  return <div className="py-4 px-3 h-100 ">{/* <AesirXDmaChannels /> */}</div>;
 };
 
 export default DmaPage;
