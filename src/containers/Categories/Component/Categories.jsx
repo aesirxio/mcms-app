@@ -133,7 +133,7 @@ const Categories = observer(({ setEntriesFound }) => {
 
   return (
     <>
-      <div className="fs-14 h-100">
+      <div className="fs-14">
         <Table
           columns={columnsTable}
           data={categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items ?? []}

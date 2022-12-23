@@ -112,6 +112,7 @@ $theme-colors: (
   'gray': $gray-600,
   'gray-700': $gray-700,
   'gray-800': $gray-800,
+  'gray-pagination': #526269,
   'cyan': $cyan,
   'blue-9': $color-blue-9,
   'dark-blue': $dark-blue,
@@ -281,8 +282,14 @@ $input-color: $body-color;
 $input-bg: transparent;
 $input-border-color: $border-color;
 
+$form-check-input-border: 1px solid $gray-400;
 $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$success}'/></svg>");
 // for react-select
+
+$nav-link-color: $blue-200;
+$nav-tabs-link-active-color: $blue-200;
+$nav-link-hover-color: $blue-200;
+$nav-tabs-border-color: $border-color;
 :root {
   --dropdown-item-hover-color: #1ab394;
   --dropdown-item-hover-bg: #e8e9ec;

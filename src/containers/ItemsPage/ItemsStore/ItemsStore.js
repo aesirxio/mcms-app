@@ -12,7 +12,9 @@ export default class ItemsStore {
           callbackOnSuccess(results);
         });
       } else {
-        callbackOnError(results);
+        runInAction(() => {
+          callbackOnSuccess(results);
+        });
       }
     } catch (error) {
       callbackOnError(error);

@@ -19,6 +19,7 @@ const EditItems = observer(
   class EditItems extends Component {
     itemsDetailViewModel = null;
     formPropsData = {};
+    isEdit = false;
 
     constructor(props) {
       super(props);
@@ -26,18 +27,13 @@ const EditItems = observer(
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
-      this.itemsDetailViewModel.editMode = props.match.params?.id ? true : false;
-      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
+      this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
+      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
       await this.itemsDetailViewModel.initializeData();
       this.forceUpdate();
-    }
-
-    componentWillUnmount() {
-      console.log('run');
-      this.itemsDetailViewModel.resetObservable();
     }
 
     render() {
@@ -58,6 +54,9 @@ const EditItems = observer(
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
                 },
                 validation: 'required',
+                blurred: () => {
+                  this.validator.showMessageFor('Title');
+                },
               },
               {
                 label: 'Description',
@@ -227,7 +226,7 @@ const EditItems = observer(
               label: 'Featured',
               key: 'featured',
               type: FORM_FIELD_TYPE.CHECKBOX,
-              getValueSelected: '1',
+              value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED],
               labelClassName:
                 'fw-normal me-24 ws-nowrap fw-semibold d-block border-top pt-16 me-0 mt-24',
               className: 'col-12 mb-16',
@@ -237,7 +236,6 @@ const EditItems = observer(
                 { label: 'No', value: '1' },
               ],
               changed: (data) => {
-                console.log(data.target);
                 this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED] = data.target.value;
               },
             },
@@ -281,7 +279,7 @@ const EditItems = observer(
                 title="txt_add_item"
                 validator={this.validator}
                 formPublish={formPublish}
-                isEdit={this.itemsDetailViewModel.editMode}
+                isEdit={this.isEdit}
               />
             </div>
           )}

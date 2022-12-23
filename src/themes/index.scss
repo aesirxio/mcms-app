@@ -149,8 +149,13 @@
   $input-color: $body-color !important;
   $input-placeholder-color: $body-color;
   $input-border-color: $border-color;
-
+  $form-check-input-border: 1px solid #3E545E;
   // maps
+
+  $nav-link-color: $color-blue;
+  $nav-tabs-link-active-color: $color-blue;
+  $nav-link-hover-color: $color-blue;
+  $nav-tabs-border-color: $border-color;
 
   --#{$prefix}border-color: #{$border-color};
   /* redefine theme color variables */
@@ -256,7 +261,8 @@
   // end of maps
   @import '~bootstrap/scss/tables';
   @import '~bootstrap/scss/forms';
-  
+  @import '~bootstrap/scss/nav';
+
   @import '~bootstrap/scss/helpers';
   @import '~bootstrap/scss/utilities/api';
 

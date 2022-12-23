@@ -15,12 +15,19 @@ class AesirxCmsItemsApiService extends Component {
     try {
       const data = await this.route.getList(filter);
       let results = null;
+      let pagination = null;
       if (data) {
         results = new ItemsModel(data);
       }
-      return results;
+      pagination = {
+        page: data.page,
+        pageLimit: data.pageLimit,
+        totalPages: data.totalPages,
+        totalItems: data.totalItems,
+        limitStart: data.limitstart,
+      };
+      return { results, pagination };
     } catch (error) {
-      console.log(error);
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
       } else throw error;

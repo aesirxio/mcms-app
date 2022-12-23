@@ -161,14 +161,14 @@ const List = observer(() => {
       {itemsListViewModel.formStatus === PAGE_STATUS.LOADING ? (
         <Spinner />
       ) : (
-        <div className="fs-14 h-100">
+        <div className="fs-14">
           <Table
             columns={columnsTable}
             data={tableData}
             canSort={true}
             store={itemsListViewModel}
             listViewModel={itemsListViewModel}
-            pagination={true}
+            pagination={itemsListViewModel.pagination}
             selection={false}
             dragDrop={true}
           />
