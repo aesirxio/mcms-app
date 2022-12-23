@@ -1,4 +1,4 @@
-import AesirxCmsCategoryApiService from 'library/Cms/Categories/CMSCategories';
+import { AesirxCmsCategoryApiService } from 'aesirx-dma-lib';
 import { runInAction } from 'mobx';
 import history from 'routes/history';
 

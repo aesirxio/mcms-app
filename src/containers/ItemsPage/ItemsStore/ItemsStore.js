@@ -1,11 +1,11 @@
 import { runInAction } from 'mobx';
-import AesirxCmsItemstApiService from 'library/Cms/Items/CMSItems';
+import { AesirxCmsItemsApiService } from 'aesirx-dma-lib';
 
 export default class ItemsStore {
   // List Page
   async getList(callbackOnSuccess, callbackOnError, filters) {
     try {
-      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const getListItemsAPIService = new AesirxCmsItemsApiService();
       const results = await getListItemsAPIService.getList(filters);
       if (results) {
         runInAction(() => {
@@ -23,7 +23,7 @@ export default class ItemsStore {
 
   async deleteItems(data, callbackOnSuccess, callbackOnError) {
     try {
-      const getListInfoAPIService = new AesirxCmsItemstApiService();
+      const getListInfoAPIService = new AesirxCmsItemsApiService();
       const respondedData = await getListInfoAPIService.deleteItems(data);
 
       if (respondedData) {
@@ -44,7 +44,7 @@ export default class ItemsStore {
 
   async toggleFeatured(id, isFeatured, callbackOnSuccess, callbackOnError) {
     try {
-      const getListItemsAPIService = new AesirxCmsItemstApiService();
+      const getListItemsAPIService = new AesirxCmsItemsApiService();
       const results = await getListItemsAPIService.toggleFeatured(id, isFeatured);
       if (results) {
         runInAction(() => {
@@ -65,7 +65,7 @@ export default class ItemsStore {
   // Create || Edit Page
   async getFields(contentTypeId, callbackOnSuccess, callbackOnError) {
     try {
-      const getFieldsAPIService = new AesirxCmsItemstApiService();
+      const getFieldsAPIService = new AesirxCmsItemsApiService();
       const respondedData = await getFieldsAPIService.getFields(contentTypeId);
 
       if (respondedData) {
@@ -86,7 +86,7 @@ export default class ItemsStore {
 
   async getDetail(itemId, callbackOnSuccess, callbackOnError) {
     try {
-      const getItemsDetailAPIService = new AesirxCmsItemstApiService();
+      const getItemsDetailAPIService = new AesirxCmsItemsApiService();
       const respondedData = await getItemsDetailAPIService.getDetail(itemId);
       if (respondedData) {
         runInAction(() => {
@@ -106,7 +106,7 @@ export default class ItemsStore {
 
   async createItem(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
-      const createItemsAPIService = new AesirxCmsItemstApiService();
+      const createItemsAPIService = new AesirxCmsItemsApiService();
       const response = await createItemsAPIService.createItem(data);
       if (response) {
         runInAction(() => {
@@ -126,7 +126,7 @@ export default class ItemsStore {
 
   async updateItem(data, redirect, callbackOnSuccess, callbackOnError) {
     try {
-      const updateItemsAPIService = new AesirxCmsItemstApiService();
+      const updateItemsAPIService = new AesirxCmsItemsApiService();
       const response = await updateItemsAPIService.updateItem(data);
 
       if (response) {
