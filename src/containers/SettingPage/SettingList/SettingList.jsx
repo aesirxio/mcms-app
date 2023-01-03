@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Button from "components/Button";
-import { FORM_FIELD_TYPE } from "constants/FormFieldType";
-import { observer } from "mobx-react";
-import { withTranslation } from "react-i18next";
-import { withRouter } from "react-router-dom";
-import SimpleReactValidator from "simple-react-validator";
-import { withBiViewModel } from "store/BiStore/BiViewModelContextProvider";
-import { renderingGroupFieldHandler } from "utils/form";
-import { notify } from "components/Toast";
+import Button from 'components/Button';
+import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
+import { observer } from 'mobx-react';
+import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
+import SimpleReactValidator from 'simple-react-validator';
+import { renderingGroupFieldHandler } from 'utils/form';
+import { notify } from 'components/Toast';
 
 const SettingList = observer(
   class SettingList extends Component {
@@ -23,15 +22,12 @@ const SettingList = observer(
         loading: false,
       };
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-      this.biListViewModel = this.viewModel
-        ? this.viewModel.biListViewModel
-        : null;
       this.formPropsData = {
         storage: {
-          label: "AesirX",
-          value: "aesirx",
+          label: 'AesirX',
+          value: 'aesirx',
         },
-        key: "",
+        key: '',
         secret: null,
         region: null,
         bucket: null,
@@ -43,90 +39,90 @@ const SettingList = observer(
       this.formPropsData = {
         ...this.formPropsData,
       };
-      if (this.formPropsData?.storage?.value === "aws") {
+      if (this.formPropsData?.storage?.value === 'aws') {
         return [
           {
             fields: [
               {
-                label: t("txt_storage"),
-                key: "storage",
+                label: t('txt_storage'),
+                key: 'storage',
                 type: FORM_FIELD_TYPE.SELECTION,
                 getValueSelected: this.formPropsData?.storage,
                 getDataSelectOptions: [
                   {
-                    label: "AesirX",
-                    value: "aesirx",
+                    label: 'AesirX',
+                    value: 'aesirx',
                   },
                   {
-                    label: "AWS",
-                    value: "aws",
+                    label: 'AWS',
+                    value: 'aws',
                   },
                 ],
                 required: true,
-                validation: "required",
+                validation: 'required',
                 handleChange: (data) => {
                   this.formPropsData.storage = data;
                   this.forceUpdate();
                 },
               },
               {
-                label: t("txt_client_id"),
-                key: "key",
+                label: t('txt_client_id'),
+                key: 'key',
                 type: FORM_FIELD_TYPE.INPUT,
                 value: this.formPropsData?.key,
                 required: true,
-                validation: "required",
-                className: "col-12",
+                validation: 'required',
+                className: 'col-12',
                 changed: (event) => {
                   this.formPropsData.key = event.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor("Name");
+                  this.validator.showMessageFor('Name');
                 },
               },
               {
-                label: t("txt_client_secret"),
-                key: "secret",
+                label: t('txt_client_secret'),
+                key: 'secret',
                 type: FORM_FIELD_TYPE.INPUT,
                 value: this.formPropsData?.secret,
                 required: true,
-                validation: "required",
-                className: "col-12",
+                validation: 'required',
+                className: 'col-12',
                 changed: (event) => {
                   this.formPropsData.secret = event.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor("Name");
+                  this.validator.showMessageFor('Name');
                 },
               },
               {
-                label: t("txt_region"),
-                key: "region",
+                label: t('txt_region'),
+                key: 'region',
                 type: FORM_FIELD_TYPE.INPUT,
                 value: this.formPropsData?.region,
                 required: true,
-                validation: "required",
-                className: "col-12",
+                validation: 'required',
+                className: 'col-12',
                 changed: (event) => {
                   this.formPropsData.region = event.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor("Name");
+                  this.validator.showMessageFor('Name');
                 },
               },
               {
-                label: t("txt_bucket"),
-                key: "bucket",
+                label: t('txt_bucket'),
+                key: 'bucket',
                 type: FORM_FIELD_TYPE.INPUT,
                 value: this.formPropsData?.bucket,
                 required: true,
-                validation: "required",
-                className: "col-12",
+                validation: 'required',
+                className: 'col-12',
                 changed: (event) => {
                   this.formPropsData.bucket = event.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor("Name");
+                  this.validator.showMessageFor('Name');
                 },
               },
             ],
@@ -137,23 +133,23 @@ const SettingList = observer(
         {
           fields: [
             {
-              label: t("txt_storage"),
-              key: "storage",
+              label: t('txt_storage'),
+              key: 'storage',
               type: FORM_FIELD_TYPE.SELECTION,
               getValueSelected: this.formPropsData?.storage,
               getDataSelectOptions: [
                 {
-                  label: "AesirX",
-                  value: "aesirx",
+                  label: 'AesirX',
+                  value: 'aesirx',
                 },
                 {
-                  label: "AWS",
-                  value: "aws",
+                  label: 'AWS',
+                  value: 'aws',
                 },
               ],
               required: true,
-              validation: "required",
-              placeholder: "https://testwp.R Digital",
+              validation: 'required',
+              placeholder: 'https://testwp.R Digital',
               handleChange: (data) => {
                 this.formPropsData.storage = data;
                 this.forceUpdate();
@@ -172,15 +168,15 @@ const SettingList = observer(
         }
       });
       delete formpropsdata.storage;
-      if (this.formPropsData.storage?.value === "aws") {
+      if (this.formPropsData.storage?.value === 'aws') {
         const data = {
           id: this.biListViewModel.subscription?.[0]?.id,
           store: [
             {
-              type: "product-aesirx-dam",
+              type: 'product-aesirx-dam',
               options: {
-                plugin: "aws",
-                plugin_use: "override",
+                plugin: 'aws',
+                plugin_use: 'override',
                 plugin_params: {
                   ...formpropsdata,
                 },
@@ -190,26 +186,26 @@ const SettingList = observer(
         };
         const response = this.biListViewModel.biStore.updateSubscription(data);
         if (response) {
-          notify("Success", "success");
+          notify('Success', 'success');
         }
       } else {
         const data = {
           id: this.biListViewModel.subscription?.[0]?.id,
           store: [
             {
-              type: "product-aesirx-dam",
+              type: 'product-aesirx-dam',
               options: {
-                plugin: "inherit",
-                plugin_use: "inherit",
+                plugin: 'inherit',
+                plugin_use: 'inherit',
               },
             },
           ],
         };
         const response = this.biListViewModel.biStore.updateSubscription(data);
         if (response) {
-          notify("Success", "success");
+          notify('Success', 'success');
         } else {
-          notify("error", "something wrong!");
+          notify('error', 'something wrong!');
         }
       }
     };
@@ -232,7 +228,7 @@ const SettingList = observer(
               return arr.concat(el);
             }, [])}
           <Button
-            text={t("txt_save_setting")}
+            text={t('txt_save_setting')}
             onClick={this.handleSubmit}
             className="btn btn-success ms-auto"
           />
@@ -242,6 +238,4 @@ const SettingList = observer(
   }
 );
 
-export default withTranslation("common")(
-  withRouter(withBiViewModel(SettingList))
-);
+export default withTranslation('common')(withRouter(SettingList));
