@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import SimpleReactValidator from 'simple-react-validator';
-import BannerLeft from '../../components/BannerLeft';
+// import BannerLeft from '../../components/BannerLeft';
 import './index.scss';
 
 import { login } from '../../auth';
@@ -13,13 +13,13 @@ import { SSOButton } from 'aesirx-sso';
 import { Storage, AesirxAuthenticationApiService } from 'aesirx-dma-lib';
 
 // import ComponentImage from 'components/ComponentImage';
-const dataSlider = [
-  {
-    text: "I created DMA to help transform any marketing team! It's easy to use, saves on time, resources and money, and can be fully customized to fit any business's needs.",
-    title: 'Ronni K. Gothard Christiansen',
-    subtitle: 'Creator of AesirX',
-  },
-];
+// const dataSlider = [
+//   {
+//     text: "I created DMA to help transform any marketing team! It's easy to use, saves on time, resources and money, and can be fully customized to fit any business's needs.",
+//     title: 'Ronni K. Gothard Christiansen',
+//     subtitle: 'Creator of AesirX',
+//   },
+// ];
 // const menuLogin = [
 //   {
 //     title: 'Continue Concordium Wallet ',
@@ -32,8 +32,8 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: process.env.REACT_APP_DEMO_USER ?? '',
+      password: process.env.REACT_APP_DEMO_PASSWORD ?? '',
       remember: false,
       isProcessing: false,
     };
@@ -79,11 +79,11 @@ class LoginPage extends React.Component {
       window.location.reload();
     };
     return (
-      <div className="row">
-        <BannerLeft dataSlider={dataSlider} />
-        <div className="col-12 col-xl-8 d-flex flex-column justify-content-center align-items-center">
-          <div className="d-block">
-            <h1 className="fs-2 fw-normal text-start mb-24 lh-sm fw-semibold">
+      <div className="container h-100vh">
+        {/* <BannerLeft dataSlider={dataSlider} /> */}
+        <div className="h-100 d-flex justify-content-center align-items-center">
+          <div className="d-block ">
+            <h1 className="fs-2 fw-normal mb-24 lh-sm fw-semibold text-center">
               {t('txt_welcome_to')}
               <img
                 className="px-1"
@@ -93,7 +93,7 @@ class LoginPage extends React.Component {
               />
               {t('txt_login_text_1')} <br /> {t('txt_login_text_2')}
             </h1>
-            <div className="w-480px">
+            <div className="w-lg-480px mx-auto">
               {/* {menuLogin?.map((v) => (
                 <button
                   type="button"

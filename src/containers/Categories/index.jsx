@@ -7,8 +7,6 @@ import { Icon } from '@iconify/react';
 import CategoriesStore from './CategoriesStore/Categories';
 import { CategoriesViewModelContextProvider } from './CategoriesViewModels/CategoriesViewModelContextProvider';
 import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
-import PAGE_STATUS from 'constants/PageStatus';
-import Spinner from 'components/Spinner';
 
 const CategoriesComponent = lazy(() => import('./Component/Categories'));
 const categoriesStore = new CategoriesStore();
@@ -38,16 +36,12 @@ const Categories = observer(() => {
         </div>
         <div className="h-100 d-flex flex-column">
           <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} />
-          {categoriesViewModel.categoriesListViewModel?.formStatus == PAGE_STATUS.LOADING ? (
-            <Spinner />
-          ) : (
-            <CategoriesComponent
-              t={t}
-              data={null}
-              setEntriesFound={setEntriesFound}
-              categoriesViewModel={categoriesViewModel}
-            />
-          )}
+          <CategoriesComponent
+            t={t}
+            data={null}
+            setEntriesFound={setEntriesFound}
+            categoriesViewModel={categoriesViewModel}
+          />
         </div>
       </div>
     </CategoriesViewModelContextProvider>

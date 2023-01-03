@@ -7,7 +7,7 @@ import Menu from '../Menu';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { observer } from 'mobx-react';
-import ComponentImage from 'components/ComponentImage';
+// import ComponentImage from 'components/ComponentImage';
 // import { AesirXDamStorage } from 'aesirx-dam-app';
 const SbarLeft = observer(
   class SbarLeft extends React.Component {
@@ -19,7 +19,7 @@ const SbarLeft = observer(
     }
 
     render() {
-      let { t } = this.props;
+      // let { t } = this.props;
       return (
         <aside
           className={`sidebar w-248  mt-0 position-relative bg-dark mh-100 h-100 overflow-hidden overflow-y-auto d-flex flex-column z-index-100 justify-content-between`}
@@ -30,7 +30,7 @@ const SbarLeft = observer(
           {/* <div>
             <AesirXDamStorage />
           </div> */}
-          <div className="bottom-0 w-100 item_menu">
+          {/* <div className="bottom-0 w-100 item_menu">
             <a
               href="/"
               className="d-block px-24 py-16 link_menu text-white text-decoration-none border-top border-dark-blue"
@@ -38,7 +38,7 @@ const SbarLeft = observer(
               <ComponentImage src="/assets/images/help-icon.svg" />
               <span className="text ps-3">{t('txt_help_center')}</span>
             </a>
-          </div>
+          </div> */}
         </aside>
       );
     }

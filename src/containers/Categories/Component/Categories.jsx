@@ -2,6 +2,8 @@ import Table from 'components/Table';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
+import Spinner from 'components/Spinner';
+import PAGE_STATUS from 'constants/PageStatus';
 
 const Categories = observer(({ setEntriesFound }) => {
   const [dataAction, setDataAction] = useState([]);
@@ -133,21 +135,25 @@ const Categories = observer(({ setEntriesFound }) => {
 
   return (
     <>
-      <div className="fs-14">
-        <Table
-          columns={columnsTable}
-          data={categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items ?? []}
-          canSort={true}
-          store={categoriesViewModel.categoriesDetailViewModel}
-          listViewModel={categoriesViewModel.categoriesListViewModel}
-          pagination={categoriesViewModel.categoriesListViewModel?.successResponse?.pagination}
-          selection={false}
-          dragDrop={true}
-          setDataAction={setDataAction}
-          dataAction={dataAction}
-          linkTo="/categories-edit/"
-        ></Table>
-      </div>
+      {categoriesViewModel.categoriesListViewModel.formStatus == PAGE_STATUS.LOADING ? (
+        <Spinner />
+      ) : (
+        <div className="fs-14">
+          <Table
+            columns={columnsTable}
+            data={categoriesViewModel?.categoriesListViewModel?.successResponse?.data?.items ?? []}
+            canSort={true}
+            store={categoriesViewModel.categoriesDetailViewModel}
+            listViewModel={categoriesViewModel.categoriesListViewModel}
+            pagination={categoriesViewModel.categoriesListViewModel?.successResponse?.pagination}
+            selection={false}
+            dragDrop={true}
+            setDataAction={setDataAction}
+            dataAction={dataAction}
+            linkTo="/categories-edit/"
+          ></Table>
+        </div>
+      )}
     </>
   );
 });
