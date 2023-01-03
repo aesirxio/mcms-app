@@ -105,7 +105,7 @@ class ItemsListViewModel {
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
-      this.tableData = result?.results.items ?? [];
+      this.tableData = result?.results?.items ?? [];
       this.pagination = result?.pagination;
     }
     this.formStatus = PAGE_STATUS.READY;
