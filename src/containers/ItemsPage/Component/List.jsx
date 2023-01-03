@@ -146,7 +146,6 @@ const List = observer(() => {
     ],
     []
   );
-  console.log('tableDatatableData', tableData);
   useEffect(() => {
     let fetchData = async () => {
       await itemsListViewModel.initializeData();
