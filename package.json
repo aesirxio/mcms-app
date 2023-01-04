@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha",
   "license": "GPL-3.0-only",
   "author": "AesirX",
-  "repository": "https://github.com/aesirxio/cms-app",
+  "repository": "https://github.com/aesirxio/mcms-app",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^35.3.2",
     "@ckeditor/ckeditor5-image": "^35.3.2",
