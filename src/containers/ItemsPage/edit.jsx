@@ -2,38 +2,37 @@ import React, { Component, lazy } from 'react';
 import Spinner from '../../components/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
-import ItemsStore from './ItemsStore/ItemsStore';
-import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
-import { ItemsViewModelContextProvider } from './ItemsViewModels/ItemsViewModelContextProvider';
+import { withItemsViewModel } from './ItemsViewModels/ItemsViewModelContextProvider';
+import { withRouter } from 'react-router-dom';
 
+// import ItemsFormPage from '../../components/ItemsForm/ItemsFormPage';
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
-
-const itemsStore = new ItemsStore();
-const itemsViewModel = new ItemsViewModel(itemsStore);
 
 const EditItems = observer(
   class EditItems extends Component {
     itemsDetailViewModel = null;
-    formPropsData = {};
+    formPropsData = {
+      [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: '',
+      [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: '',
+    };
     isEdit = false;
 
     constructor(props) {
       super(props);
-      this.viewModel = itemsViewModel ? itemsViewModel : null;
+      this.viewModel = props.viewModel ? props.viewModel : null;
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
-    async componentDidMount() {
+    componentDidMount() {
       this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      await this.itemsDetailViewModel.initializeData();
-      this.forceUpdate();
+      this.itemsDetailViewModel.initializeData();
     }
 
     render() {
@@ -64,6 +63,7 @@ const EditItems = observer(
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
                 className: 'col-12',
+
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] = data.target.value;
                 },
@@ -93,6 +93,7 @@ const EditItems = observer(
           },
         ],
       };
+
       const generateFormSetting = [
         // {
         //   fields: [
@@ -183,6 +184,7 @@ const EditItems = observer(
         //   ],
         // },
       ];
+
       const formPublish = [
         {
           name: '',
@@ -268,29 +270,29 @@ const EditItems = observer(
           ],
         },
       ];
+
       return (
-        <ItemsViewModelContextProvider viewModel={itemsViewModel}>
-          {this.itemsDetailViewModel.formStatus === PAGE_STATUS.LOADING ? (
+        <>
+          {this.itemsDetailViewModel?.formStatus === PAGE_STATUS.LOADING && (
             <Spinner className="spinner-overlay" />
-          ) : (
-            <div className="py-4 px-3 h-100 d-flex flex-column">
-              <ItemsFormPage
-                store={this.itemsDetailViewModel}
-                dataForm={data}
-                generateFormSetting={generateFormSetting}
-                path="/"
-                title="txt_add_item"
-                validator={this.validator}
-                formPublish={formPublish}
-                isEdit={this.isEdit}
-                isDMA={true}
-              />
-            </div>
           )}
-        </ItemsViewModelContextProvider>
+          <div className="py-4 px-3 h-100 d-flex flex-column">
+            <ItemsFormPage
+              store={this.itemsDetailViewModel}
+              dataForm={data}
+              generateFormSetting={generateFormSetting}
+              path="/"
+              title="txt_add_item"
+              validator={this.validator}
+              formPublish={formPublish}
+              isEdit={this.isEdit}
+              isDMA={true}
+            />
+          </div>
+        </>
       );
     }
   }
 );
 
-export default EditItems;
+export default withItemsViewModel(withRouter(EditItems));

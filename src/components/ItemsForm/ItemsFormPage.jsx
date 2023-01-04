@@ -5,7 +5,7 @@ import ItemsFormActionBar from './ItemsFormActionBar';
 // import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
-import { AesirxDmaChannelPost } from 'aesirx-dma-app';
+import DMAComponent from 'components/DmaComponent';
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -55,9 +55,7 @@ const ItemsFormPage = ({
                   eventKey="DMA"
                   title={t('DMA')}
                 >
-                  <>
-                    <AesirxDmaChannelPost title={'test123'} description="desc123" />
-                  </>
+                  <DMAComponent store={store.itemsDetailViewModel} />
                 </Tab>
               )}
             </Tabs>

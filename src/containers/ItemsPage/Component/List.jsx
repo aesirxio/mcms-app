@@ -8,7 +8,7 @@ import history from 'routes/history';
 import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
-  const itemsListViewModel = useItemsViewModel();
+  const itemsListViewModel = useItemsViewModel().getItemsListViewModel();
   const { tableData } = itemsListViewModel;
 
   // const handleGetListByViews = (views) => {
@@ -48,7 +48,7 @@ const List = observer(() => {
             </div>
           );
         },
-        sortParams: 'title',
+        sortParams: 'name',
       },
       // {
       //   Header: 'Type',
@@ -147,7 +147,7 @@ const List = observer(() => {
     []
   );
   useEffect(() => {
-    let fetchData = async () => {
+    const fetchData = async () => {
       await itemsListViewModel.initializeData();
     };
     fetchData();
