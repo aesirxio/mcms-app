@@ -7,7 +7,6 @@ import './index.scss';
 import { login } from '../../auth';
 import InputPassword from '../../components/inputPassword';
 // import ComponentImage from 'components/ComponentImage';
-import { Link } from 'react-router-dom';
 import Checkbox from 'components/Checkbox';
 import { SSOButton } from 'aesirx-sso';
 import { Storage, AesirxAuthenticationApiService } from 'aesirx-dma-lib';
@@ -93,7 +92,7 @@ class LoginPage extends React.Component {
               />
               {t('txt_login_text_1')} <br /> {t('txt_login_text_2')}
             </h1>
-            <div className="w-lg-480px mx-auto">
+            <div className="mw-480px mx-auto">
               {/* {menuLogin?.map((v) => (
                 <button
                   type="button"
@@ -120,16 +119,16 @@ class LoginPage extends React.Component {
               </p> */}
               <form>
                 <SSOButton
-                  className="btn w-100 fw-medium btn-success position-relative d-flex align-item-center justify-content-center mb-3 px-6"
+                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-3 px-6 txt_login"
                   text={t('txt_sign_in_with_sso')}
                   onGetData={onGetData}
                 />
                 <div className="d-flex align-items-center flex-nowrap">
-                  <div className="border-bottom w-50"></div>
-                  <span className="px-2">or</span>
-                  <div className="border-bottom w-50"></div>
+                  <p className="line">
+                    <span className="fs-6 fw-medium">OR</span>
+                  </p>
                 </div>
-                <label className="form-label mb-1 fw-semibold">
+                <label className="form-label pt-3 mb-1 fw-semibold text-black">
                   Email <span className="text-danger">*</span>
                 </label>
                 <input
@@ -146,7 +145,7 @@ class LoginPage extends React.Component {
                 {this.validator.message('Email or username', this.state.username, 'required', {
                   className: 'text-danger',
                 })}
-                <label className="form-label mt-2 mb-1 fw-semibold" htmlFor="password">
+                <label className="form-label mt-3 mb-1 fw-semibold text-black" htmlFor="password">
                   Password <span className="text-danger">*</span>
                 </label>
                 <InputPassword
@@ -165,9 +164,14 @@ class LoginPage extends React.Component {
                 })}
                 <div className="d-flex justify-content-between pt-16">
                   <Checkbox text="Remember me" />
-                  <Link to={'#'} className="d-flex fw-semibold fs-6">
+                  <a
+                    href="https://mcms.aesirx.io/auth/forgotpassword"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex fw-semibold fs-6"
+                  >
                     Forgot password?
-                  </Link>
+                  </a>
                 </div>
                 <button
                   type="button"

@@ -33,13 +33,13 @@ $grays: (
 ) !default;
 // fusv-enable
 
-$blue: #004D6C !default;
+$blue: #004d6c !default;
 $blue-200: #0a083b !default;
 $dark-blue: #3e545e !default;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
 $pink: #d63384 !default;
-$red: #c8192e !default;
+$red: #c60202 !default;
 $orange: #f78464 !default;
 $yellow: #ff9e01 !default;
 $green: #1ab394 !default;
@@ -91,7 +91,7 @@ $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-900 !default;
-
+$blue-3: $color-blue-3 !default;
 // scss-docs-end theme-colors-map
 // bg-color color
 
@@ -119,13 +119,14 @@ $theme-colors: (
   'green-light': $green-light,
   'blue-50': $blue-50,
   'blue-100': $blue-100,
+  'blue-3': $blue-3,
 ) !default;
 
 // Body
 // Settings for the `<body>` element.
 
 $body-bg: $white !default;
-$body-color: #0A083B !default;
+$body-color: #0a083b !default;
 $body-text-align: null !default;
 
 $link-color: $primary !default;
@@ -272,8 +273,7 @@ $list-group-color: $body-color;
 
 $form-check-input-width: 1em;
 
-
-$table-striped-bg: #EBEBEB;
+$table-striped-bg: #ebebeb;
 $table-accent-bg: $white;
 
 // $input-color: $body-color;

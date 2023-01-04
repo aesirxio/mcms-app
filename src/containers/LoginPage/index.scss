@@ -21,14 +21,26 @@
   padding-top: 30px;
   width: 100%;
   text-align: center;
-  border-bottom: 2px solid #d4dce8;
+  border-bottom: 1px solid #d4dce8;
   line-height: 0.1em;
   margin: 10px 0 20px;
   color: #0a021c;
   opacity: 0.4;
+  padding-top: 1rem;
+  font-family: 'Inter';
 }
 
 .line span {
-  background: #f5f8fa;
-  padding: 0 10px;
+  background: #ffffff;
+  padding: 16px;
+}
+.txt_login {
+  font-size: 18px;
+}
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: black !important;
+}
+.form-control {
+  max-height: 48px !important;
 }
