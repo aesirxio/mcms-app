@@ -60,6 +60,8 @@ export default class CategoriesStore {
         });
         if (redirect) {
           history.push('/categories');
+        } else {
+          history.push(`/items-edit/${respondedData?.id}`);
         }
       } else {
         runInAction(() => {

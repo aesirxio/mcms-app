@@ -50,54 +50,54 @@ const List = observer(() => {
         },
         sortParams: 'title',
       },
-      // {
-      //   Header: 'Type',
-      //   accessor: 'type',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
-      //   Cell: ({ value }) => {
-      //     return <div>{value}</div>;
-      //   },
-      // },
-      // {
-      //   Header: 'Categories',
-      //   accessor: 'categories',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate',
-      //   Cell: ({ value }) => {
-      //     return <div className=" text-start">{value}</div>;
-      //   },
-      // },
-      // {
-      //   Header: 'Author',
-      //   accessor: 'author',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate text-center',
-      //   Cell: ({ value }) => {
-      //     return <div className="text-center text-truncate">{value}</div>;
-      //   },
-      // },
-      // {
-      //   Header: 'Engagement',
-      //   accessor: 'engagement',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
-      //   Cell: ({ value }) => {
-      //     return <div className=" text-end">{value}</div>;
-      //   },
-      // },
-      // {
-      //   Header: 'Visits',
-      //   accessor: 'visits',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
-      //   Cell: ({ value }) => {
-      //     return <div className="text-end">{value}</div>;
-      //   },
-      // },
-      // {
-      //   Header: 'Languages',
-      //   accessor: 'languages',
-      //   className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end ',
-      //   Cell: ({ value }) => {
-      //     return <div className="text-end text-truncate">{value}</div>;
-      //   },
-      // },
+      {
+        Header: 'Type',
+        accessor: 'type',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
+        Cell: ({ value }) => {
+          return <div>{value}</div>;
+        },
+      },
+      {
+        Header: 'Categories',
+        accessor: 'categories',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate',
+        Cell: ({ value }) => {
+          return <div className=" text-start">{value}</div>;
+        },
+      },
+      {
+        Header: 'Author',
+        accessor: 'author',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-truncate text-center',
+        Cell: ({ value }) => {
+          return <div className="text-center text-truncate">{value}</div>;
+        },
+      },
+      {
+        Header: 'Engagement',
+        accessor: 'engagement',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
+        Cell: ({ value }) => {
+          return <div className=" text-end">{value}</div>;
+        },
+      },
+      {
+        Header: 'Visits',
+        accessor: 'visits',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end text-truncate',
+        Cell: ({ value }) => {
+          return <div className="text-end">{value}</div>;
+        },
+      },
+      {
+        Header: 'Languages',
+        accessor: 'languages',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 text-end ',
+        Cell: ({ value }) => {
+          return <div className="text-end text-truncate">{value}</div>;
+        },
+      },
       {
         Header: 'Status',
         accessor: 'status',
