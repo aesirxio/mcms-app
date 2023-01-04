@@ -12,7 +12,6 @@ const ItemsFormActionBar = observer(
     render() {
       const { t, path, validator, store, isEdit } = this.props;
       const redirect = true;
-
       const showError = () => {
         let listError = '';
         Object.entries(validator.errorMessages).forEach((error) => {
