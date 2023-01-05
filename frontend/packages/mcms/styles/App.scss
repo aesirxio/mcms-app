@@ -1,0 +1,372 @@
+// scss-docs-start import-stack
+// Configuration
+
+// Fonts
+@import "./fonts";
+
+@import "./nprogress";
+@import "./bootstrap";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+// @import "~bootstrap/scss/card";
+@import "~bootstrap/scss/accordion";
+// @import "~bootstrap/scss/breadcrumb";
+// @import "~bootstrap/scss/pagination";
+// @import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/alert";
+// @import "~bootstrap/scss/progress";
+// @import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+// @import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+// @import "~bootstrap/scss/popover";
+// @import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/spinners";
+// @import "~bootstrap/scss/offcanvas";
+// @import "~bootstrap/scss/placeholders";
+@import "~bootstrap/scss/tables";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+//customize Class
+$utilities: map-merge(
+  $utilities,
+  (
+    "z": (
+      property: z-index,
+      class: z,
+      values: (
+        0: 0,
+        1: 9,
+        2: 99,
+        3: 999,
+        4: 9999,
+      ),
+    ),
+    "object": (
+      property: object-fit,
+      class: ob,
+      values: (
+        "cover": cover,
+        "contain": contain,
+      ),
+    ),
+    "font-size": (
+      rfs: true,
+      property: font-size,
+      class: fs,
+      responsive: true,
+      values: (
+        1: 48px,
+        2: 36px,
+        3: 24px,
+        4: 22px,
+        5: 20px,
+        6: 16px,
+        7: 64px,
+        8: 18px,
+        9: 32px,
+        10: 14px,
+        11: 40px,
+        12: 12px,
+        13: 28px,
+        10px: 10px,
+        14: 14px,
+      ),
+    ),
+    "font-weight": (
+      property: font-weight,
+      class: fw,
+      values: (
+        light: $font-weight-light,
+        lighter: $font-weight-lighter,
+        normal: $font-weight-normal,
+        medium: 500,
+        semibold: 600,
+        bold: $font-weight-bold,
+        bolder: $font-weight-bolder,
+      ),
+    ),
+    "letter-spacing": (
+      property: letter-spacing,
+      class: ls,
+      values: (
+        1: 10px,
+        2: 5px,
+        3: 3px,
+        4: 1px,
+        5: 8px,
+      ),
+    ),
+    "font-family": (
+      property: font-family,
+      class: font,
+      values: (
+        opensans: "Open Sans",
+        robotoslab: "Roboto Slab",
+        inter: "Inter",
+        robotreavers: "Robot Reavers",
+        svgfutura: "SVN Futura",
+      ),
+    ),
+    "rounded": (
+      property: border-radius,
+      class: rounded,
+      responsive: true,
+      values: (
+        null: $border-radius,
+        0: 0,
+        1: $border-radius-sm,
+        2: $border-radius,
+        3: $border-radius-lg,
+        4: 6px,
+        5: 10px,
+        circle: 50%,
+        pill: $border-radius-pill,
+      ),
+    ),
+    "rounded-top": (
+      property: border-top-left-radius border-top-right-radius,
+      class: rounded-top,
+      values: (
+        1: 6px,
+        null: $border-radius,
+      ),
+    ),
+    "rounded-end": (
+      property: border-top-right-radius border-bottom-right-radius,
+      class: rounded-end,
+      values: (
+        1: 6px,
+        null: $border-radius,
+      ),
+    ),
+    "rounded-bottom": (
+      property: border-bottom-right-radius border-bottom-left-radius,
+      class: rounded-bottom,
+      values: (
+        1: 6px,
+        null: $border-radius,
+      ),
+    ),
+    "rounded-start": (
+      property: border-bottom-left-radius border-top-left-radius,
+      class: rounded-start,
+      values: (
+        1: 6px,
+        null: $border-radius,
+      ),
+    ),
+    "line-height": (
+      property: line-height,
+      responsive: true,
+      class: lh,
+      values: (
+        0: 0,
+        1: 1,
+        2: 28px,
+        3: 27px,
+        32px: 32.4px,
+        sm: $line-height-sm,
+        base: $line-height-base,
+        md: 1.8,
+        lg: $line-height-lg,
+      ),
+    ),
+    "width": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        3rem: 3rem,
+        11rem: 11rem,
+        20: 20%,
+        30: 30%,
+        35: 35%,
+        40: 40%,
+        45: 45%,
+        50: 50%,
+        70: 70%,
+        80: 80%,
+        90: 90%,
+        100: 100%,
+        120px: 120px,
+        110px: 110px,
+        160px: 160px,
+        186px: 186px,
+        135px: 135px,
+      ),
+    ),
+    "height": (
+      property: height,
+      class: h,
+      responsive: true,
+      values: (
+        unset: unset,
+        3rem: 3rem,
+        20: 20%,
+        30: 30%,
+        50: 50%,
+        70: 70%,
+        80: 80%,
+        90: 90%,
+        100: 100%,
+        50px: 50px,
+        105px: 105px,
+        110px: 110px,
+        120px: 120px,
+        160px: 160px,
+      ),
+    ),
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      values: (
+        pointer: pointer,
+        none: none,
+        nallowed: not-allowed,
+        copy: copy,
+      ),
+    ),
+    "white-space": (
+      property: white-space,
+      class: ws,
+      responsive: true,
+      values: nowrap break-spaces normal,
+    ),
+    "overflow": (
+      property: overflow,
+      class: overflow,
+      responsive: true,
+      values: auto hidden visible scroll unset,
+    ),
+    "position": (
+      property: position,
+      responsive: true,
+      values: static relative absolute fixed sticky,
+    ),
+    "border":
+      map-merge(
+        map-get($utilities, "border"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-top":
+      map-merge(
+        map-get($utilities, "border-top"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-end":
+      map-merge(
+        map-get($utilities, "border-end"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-bottom":
+      map-merge(
+        map-get($utilities, "border-bottom"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-start":
+      map-merge(
+        map-get($utilities, "border-start"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-color":
+      map-merge(
+        map-get($utilities, "border-color"),
+        (
+          responsive: true,
+        )
+      ),
+    "background-color":
+      map-merge(
+        map-get($utilities, "background-color"),
+        (
+          responsive: true,
+        )
+      ),
+    "shadow": (
+      property: box-shadow,
+      class: shadow,
+      responsive: true,
+      values: (
+        1: $shawdow-blog,
+        null: $box-shadow,
+        sm: $shadow,
+        lg: $shadow,
+        none: none,
+      ),
+    ),
+    "opacity": (
+      property: opacity,
+      responsive: true,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        60: 0.6,
+        75: 0.75,
+        80: 0.8,
+        100: 1,
+      ),
+    ),
+    "padding-end": (
+      responsive: true,
+      property: padding-right,
+      class: pe,
+      values: $spacers,
+    ),
+    "padding": (
+      responsive: true,
+      property: padding,
+      class: p,
+      values: $spacers,
+    ),
+    "line-limit": (
+      responsive: true,
+      property: -webkit-line-clamp,
+      class: lm,
+      values: (
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+      ),
+    ),
+    "max-height": (
+      property: max-height,
+      class: mh,
+      values: $spacers,
+    ),
+  )
+);
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
+// scss-docs-end import-stack

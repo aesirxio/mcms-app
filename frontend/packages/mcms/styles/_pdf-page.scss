@@ -1,0 +1,55 @@
+@import "bootstrap";
+@import "react-toastify/dist/ReactToastify.css";
+
+.pdf {
+  .pdf-view {
+    &:hover {
+      .pdf-controls {
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.4s ease;
+      }
+    }
+    .react-pdf__Page__canvas {
+      margin: auto;
+    }
+    .pdf-controls {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      bottom: -5%;
+      .pdf-controls-button {
+        border: none;
+        svg:nth-child(2) {
+          margin-left: -9px;
+        }
+        &:hover {
+          background: #e6e6e6;
+        }
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(xl) {
+  .pdf {
+    .pdf-view {
+      canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+      .react-pdf__Page__textContent {
+        display: none;
+      }
+      .pdf-controls {
+        bottom: unset;
+        top: 100%;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+$primary: #0a083b !default;
+$info: #3b7ab5 !default;
+$info-100: #2e71b1 !default;
+$info-200: #004d6c !default;
+$secondary: #004d6c !default;
+$success: #1ab394 !default;
+$success-100: #32b197 !default;
+$gray: #f2f2f4 !default;
+$gray-50: #f7f9fd !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #f0f3fb !default;
+$gray-300: #f3f6fc !default;
+$gray-800: #6c6b89 !default;
+$gray-900: #212529 !default;
+$warning: #f07e25 !default;
+$danger: #e80e29 !default;
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
+$transparent: transparent !default;
+$body-color: $primary;
+$shawdow-blog: 0px 10px 25px rgba(0, 0, 0, 0.05);
+$shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "success-100": $success-100,
+  "info": $info,
+  "info-100": $info-100,
+  "info-200": $info-200,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "gray": $gray,
+  "gray-50": $gray-50,
+  "gray-100": $gray-100,
+  "gray-200": $gray-200,
+  "gray-300": $gray-300,
+  "gray-800": $gray-800,
+  "gray-900": $gray-900,
+  "transparent": $transparent,
+) !default;
+
+$font-family-base: "Open Sans", sans-serif !default;
+
+$tooltip-bg: $primary;
+$tooltip-font-size: 14px;
+$tooltip-color: #fff;
+$tooltip-opacity: 1;
+$tooltip-max-width: 250px;
+$tooltip-border-radius: 6px;
+$zindex-tooltip: 900;
+
+$border-color: #babad080;
+
+$border-width: 1px;
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1296px,
+) !default;
+
+$spacer: 1rem;
+
+$spacers: (
+  n4: $spacer * -1.5,
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  2rem: $spacer * 2,
+  4rem: $spacer * 4,
+  5rem: $spacer * 5,
+  6rem: $spacer * 6,
+  9rem: $spacer * 9,
+  14rem: $spacer * 14,
+  1x5px: 1.5px,
+  n3px: -3px,
+  30px: 30px,
+  40px: 40px,
+  14px: 14px,
+  33px: 33px,
+  60px: 60px,
+  70px: 70px,
+  90px: 90px,
+  94px:94px,
+  18px: 18px,
+  139px: 139px,
+  15px: 15px,
+  380px: 380px,
+  20px:20px,
+  74px:4.625rem,
+  82px:5.125rem,
+  13px:13px,
+  22px:22px,
+);
+
+$accordion-button-bg: $gray-200;
+$accordion-icon-color: $success;
+$accordion-icon-active-color: $success;
+$accordion-button-focus-box-shadow: none;
+
+$form-check-input-width: 1.5em;
+$form-check-input-checked-bg-color: $success;
+$form-check-input-border-radius: 6px;
