@@ -7,38 +7,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { observer } from 'mobx-react';
 import ComponentImage from 'components/ComponentImage';
-const dataMenuSetup = [
-  //   {
-  //     text: 'txt_menu_field',
-  //     link: '/fields',
-  //     icons: '/assets/images/field.png',
-  //     icons_color: '/assets/images/field.png',
-  //   },
-  //   {
-  //     text: 'txt_menu_field_gr',
-  //     link: '/fields-group',
-  //     icons: '/assets/images/field_gr.png',
-  //     icons_color: '/assets/images/field_gr.png',
-  //   },
-  //   {
-  //     text: 'txt_menu_content',
-  //     link: '/content',
-  //     icons: '/assets/images/content.png',
-  //     icons_color: '/assets/images/content.png',
-  //   },
-  //   {
-  //     text: 'txt_menu_setting',
-  //     link: '/setting',
-  //     icons: '/assets/images/setting.svg',
-  //     icons_color: '/assets/images/setting.svg',
-  //     submenu: [
-  //       {
-  //         text: 'txt_menu_setting',
-  //         link: `/setting`,
-  //       },
-  //     ],
-  //   },
-];
+// const dataMenuSetup = [
+//   {
+//     text: 'txt_menu_field',
+//     link: '/fields',
+//     icons: '/assets/images/field.png',
+//     icons_color: '/assets/images/field.png',
+//   },
+//   {
+//     text: 'txt_menu_field_gr',
+//     link: '/fields-group',
+//     icons: '/assets/images/field_gr.png',
+//     icons_color: '/assets/images/field_gr.png',
+//   },
+//   {
+//     text: 'txt_menu_content',
+//     link: '/content',
+//     icons: '/assets/images/content.png',
+//     icons_color: '/assets/images/content.png',
+//   },
+//   {
+//     text: 'txt_menu_setting',
+//     link: '/setting',
+//     icons: '/assets/images/setting.svg',
+//     icons_color: '/assets/images/setting.svg',
+//     submenu: [
+//       {
+//         text: 'txt_menu_setting',
+//         link: `/setting`,
+//       },
+//     ],
+//   },
+// ];
 const Menu = observer((props) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState('default');
   const handleOpen = (clickedIndex, parentIndex) => {
@@ -201,7 +201,7 @@ const Menu = observer((props) => {
           })}
         </ul>
       </nav>
-      <nav className="border-top border-dark-blue py-2 mt-0 mb-auto">
+      {/* <nav className="border-top border-dark-blue py-2 mt-0 mb-auto">
         <p className="menu_title text-dark-blue fs-14 mb-0 text-uppercase">{t('txt_set_up')}</p>
         <ul id="wr_list_menu" className="list-unstyled mb-0 pt-md-1">
           {dataMenuSetup?.map((value, key) => {
@@ -276,7 +276,7 @@ const Menu = observer((props) => {
             );
           })}
         </ul>
-      </nav>
+      </nav> */}
     </>
   );
 });
