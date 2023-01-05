@@ -12,11 +12,11 @@ import Helper from '../../utils/helper';
 import ComponentImage from '../ComponentImage';
 
 const data = [
-  {
-    key: 1,
-    text: 'txt_profile',
-    link: '/profile',
-  },
+  // {
+  //   key: 1,
+  //   text: 'txt_profile',
+  //   link: '/profile',
+  // },
 ];
 
 class DropdownAvatar extends React.Component {
