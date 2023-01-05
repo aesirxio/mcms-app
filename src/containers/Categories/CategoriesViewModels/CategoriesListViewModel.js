@@ -32,6 +32,7 @@ class CategoriesListViewModel {
     );
     this.formStatus = PAGE_STATUS.READY;
   };
+
   getListByFilter = async () => {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getList(
@@ -64,6 +65,7 @@ class CategoriesListViewModel {
     );
     await this.initializeData();
   };
+
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
       notify('Delete successfully', 'success');
