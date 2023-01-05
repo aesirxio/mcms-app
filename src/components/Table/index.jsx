@@ -395,7 +395,7 @@ const Table = ({
             <PaginationComponent
               listViewModel={listViewModel}
               pageSize={pageSize}
-              pagination={pagination}
+              pagination={pagination && pagination}
               setPageSize={setPageSize}
             />
           </>

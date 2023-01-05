@@ -132,7 +132,6 @@ const Categories = observer(({ setEntriesFound }) => {
     };
     fetchData();
   }, []);
-
   return (
     <>
       {categoriesViewModel.categoriesListViewModel.formStatus == PAGE_STATUS.LOADING ? (

@@ -97,7 +97,6 @@ class CategoriesDetailViewModel {
 
   callbackOnGetDetailSuccessHandler = (result) => {
     if (result) {
-      console.log('resultresult', result);
       this.categoriesDetailViewModel.formPropsData = result;
       notify('GetDetail successfully', 'success');
     }

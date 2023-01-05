@@ -1,26 +1,26 @@
 import React, { lazy } from 'react';
-import { observer } from 'mobx-react';
 
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
-// import history from 'routes/history';
 import { Button } from 'react-bootstrap';
-// import SelectContentType from './Component/SelectContentType';
 import ItemsStore from './ItemsStore/ItemsStore';
 import { ItemsViewModelContextProvider } from './ItemsViewModels/ItemsViewModelContextProvider';
-import ItemsListViewModel from './ItemsViewModels/ItemsListViewModel';
+import { Route } from 'react-router-dom';
+import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import history from 'routes/history';
+
 const List = lazy(() => import('./Component/List'));
+const EditItems = lazy(() => import('./edit'));
+
 const itemsStore = new ItemsStore();
-const itemsListViewModel = new ItemsListViewModel(itemsStore);
 
-const Dashboard = observer(() => {
-  // const [showModal, setShowModal] = useState(false);
+const itemsViewModel = new ItemsViewModel(itemsStore);
 
+const Dashboard = () => {
   const { t } = useTranslation('common');
   return (
-    <>
-      <ItemsViewModelContextProvider viewModel={itemsListViewModel}>
+    <ItemsViewModelContextProvider viewModel={itemsViewModel}>
+      <Route exact path="/">
         {/* <SelectContentType showModal={showModal} setShowModal={setShowModal} /> */}
         <div className="py-4 px-3 h-100 d-flex flex-column">
           <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
@@ -39,9 +39,13 @@ const Dashboard = observer(() => {
           </div>
           <List />
         </div>
-      </ItemsViewModelContextProvider>
-    </>
+      </Route>
+
+      <Route exact path={['/items-edit/:id', '/items-create']}>
+        <EditItems />
+      </Route>
+    </ItemsViewModelContextProvider>
   );
-});
+};
 
 export default Dashboard;
