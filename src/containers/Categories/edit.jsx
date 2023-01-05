@@ -113,13 +113,8 @@ const EditCategories = observer(
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '',
                 className: 'col-12',
-                required: true,
-                validation: 'required',
                 changed: (data) => {
                   this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] = data.target.value;
-                },
-                blurred: () => {
-                  this.validator.showMessageFor('Meta Description');
                 },
               },
               // {
