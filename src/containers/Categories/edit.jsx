@@ -113,8 +113,13 @@ const EditCategories = observer(
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '',
                 className: 'col-12',
+                required: true,
+                validation: 'required',
                 changed: (data) => {
                   this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] = data.target.value;
+                },
+                blurred: () => {
+                  this.validator.showMessageFor('Meta Description');
                 },
               },
               // {
@@ -251,7 +256,7 @@ const EditCategories = observer(
               label: 'Category image',
               key: 'featured_image',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]?.url ?? '',
+              value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE],
               className: 'col-12',
               changed: (data) => {
                 this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0].download_url;

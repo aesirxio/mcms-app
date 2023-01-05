@@ -49,10 +49,10 @@ const EditItems = observer(
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME],
                 className: 'col-12',
                 required: true,
+                validation: 'required',
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
                 },
-                validation: 'required',
                 blurred: () => {
                   this.validator.showMessageFor('Title');
                 },
@@ -63,7 +63,6 @@ const EditItems = observer(
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
                 className: 'col-12',
-
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] = data.target.value;
                 },
@@ -82,7 +81,7 @@ const EditItems = observer(
                 label: 'Thumb Image',
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]?.url ?? '',
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
                 className: 'col-12',
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
