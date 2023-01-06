@@ -27,23 +27,25 @@ const Editor = ({ field }) => {
         <Icon width={20} height={20} className="text-black" icon="ion:image-outline" />
       </p>
       <ModalDAMComponent show={show} onHide={() => setShow(false)} onSelect={onSelect} />
-      <CKEditor
-        editor={window.ClassicEditor ?? ClassicEditor}
-        data={field?.value ?? ''}
-        onReady={async (editor) => {
-          setEditor(editor);
-          editor.editing.view.change((writer) => {
-            writer.setStyle(
-              { 'max-height': '500px', 'min-height': '200px', 'padding-bottom': '20px' },
-              editor.editing.view.document.getRoot()
-            );
-          });
-        }}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          field.changed(data);
-        }}
-      />
+      <div className={styles['custom-editor']}>
+        <CKEditor
+          editor={window.ClassicEditor ?? ClassicEditor}
+          data={field?.value ?? ''}
+          onReady={async (editor) => {
+            setEditor(editor);
+            editor.editing.view.change((writer) => {
+              writer.setStyle(
+                { 'max-height': '500px', 'min-height': '200px', 'padding-bottom': '20px' },
+                editor.editing.view.document.getRoot()
+              );
+            });
+          }}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            field.changed(data);
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -96,7 +96,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
                     <div key={column.id} id={column.Header} className="mb-2">
                       <input
                         type="checkbox"
-                        className="form-check-input me-1"
+                        className="form-check-input me-2"
                         {...column.getToggleHiddenProps()}
                       />
                       {column.Header}

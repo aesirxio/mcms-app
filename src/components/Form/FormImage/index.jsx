@@ -44,7 +44,7 @@ const FormImage = ({ field, hiddenDelete = false }) => {
               <p className="mb-3">Select file to upload</p>
               <p
                 onClick={() => setShow(true)}
-                className="btn bg-white text-secondary border rounded-1 py-11 px-3 mb-0"
+                className="bg-white cursor-pointer text-secondary border rounded-1 py-11 px-3 mb-0"
               >
                 Select File
               </p>

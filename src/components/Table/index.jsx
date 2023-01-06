@@ -222,7 +222,7 @@ const Table = ({
         />
         {rows.length ? (
           <>
-            <div className="rounded-3 shadow-sm overflow-hidden mb-24 text-color">
+            <div className="rounded-3 shadow-sm mb-24 text-color">
               <BTable
                 hover
                 {...getTableProps()}

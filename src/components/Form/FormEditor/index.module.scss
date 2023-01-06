@@ -2,3 +2,25 @@
     width: 30px;
     height: 30px;
 }
+.custom-editor{
+    --ck-color-text : var(--body-color);
+    --ck-color-toolbar-background : transparent;
+    --ck-color-base-background: transparent;
+    --ck-color-toolbar-border: var(--bs-border-color);
+    --ck-color-base-border: var(--bs-border-color);
+    --ck-color-dropdown-panel-background: var(--bs-body-bg);
+    --ck-color-dropdown-panel-border: var(--bs-border-color);
+    --ck-color-button-on-background: #d2d2d2;
+    --ck-color-button-default-hover-background: var(--bs-secondary);
+
+    // --ck-color-widget-hover-border: #d2d2d2;
+    // --ck-color-list-button-hover-background: #d2d2d2;
+    // --ck-color-split-button-hover-background: #d2d2d2;
+    // --ck-color-split-button-hover-border: #d2d2d2;
+    // --ck-color-button-action-hover-background:#d2d2d2;
+    // --ck-color-button-on-hover-background: #d2d2d2;
+    // --ck-color-button-default-hover-background:#d2d2d2;
+    // --ck-color-focus-border: #d2d2d2;
+    // --ck-color-widget-editable-focus-background: #d2d2d2;
+    // --ck-color-list-button-on-background-focus: #d2d2d2;
+}
