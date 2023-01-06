@@ -17,7 +17,7 @@ const Categories = observer(() => {
   const { t } = useTranslation('common');
   return (
     <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
-      <div className="py-4 px-3 h-100 d-flex flex-column">
+      <div className="py-4 px-2rem h-100 d-flex flex-column">
         <div className="d-flex align-items-start justify-content-between flex-wrap mb-32">
           <div>
             <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_menu_cate')}</h2>
