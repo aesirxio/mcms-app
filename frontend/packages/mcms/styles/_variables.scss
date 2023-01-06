@@ -20,30 +20,34 @@ $transparent: transparent !default;
 $body-color: $primary;
 $shawdow-blog: 0px 10px 25px rgba(0, 0, 0, 0.05);
 $shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+$green-50: #00b057;
+$gray-400: #848584;
 
 $theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "success": $success,
-  "success-100": $success-100,
-  "info": $info,
-  "info-100": $info-100,
-  "info-200": $info-200,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark,
-  "gray": $gray,
-  "gray-50": $gray-50,
-  "gray-100": $gray-100,
-  "gray-200": $gray-200,
-  "gray-300": $gray-300,
-  "gray-800": $gray-800,
-  "gray-900": $gray-900,
-  "transparent": $transparent,
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'success-100': $success-100,
+  'info': $info,
+  'info-100': $info-100,
+  'info-200': $info-200,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+  'gray': $gray,
+  'gray-50': $gray-50,
+  'gray-100': $gray-100,
+  'gray-200': $gray-200,
+  'gray-300': $gray-300,
+  'gray-800': $gray-800,
+  'gray-900': $gray-900,
+  'transparent': $transparent,
+  'green-50': $green-50,
+  'gray-400': $gray-400,
 ) !default;
 
-$font-family-base: "Open Sans", sans-serif !default;
+$font-family-base: 'Open Sans', sans-serif !default;
 
 $tooltip-bg: $primary;
 $tooltip-font-size: 14px;
@@ -61,7 +65,7 @@ $border-widths: (
   2: 2px,
   3: 3px,
   4: 4px,
-  5: 5px
+  5: 5px,
 );
 
 $container-max-widths: (
@@ -97,16 +101,16 @@ $spacers: (
   60px: 60px,
   70px: 70px,
   90px: 90px,
-  94px:94px,
+  94px: 94px,
   18px: 18px,
   139px: 139px,
   15px: 15px,
   380px: 380px,
-  20px:20px,
-  74px:4.625rem,
-  82px:5.125rem,
-  13px:13px,
-  22px:22px,
+  20px: 20px,
+  74px: 4.625rem,
+  82px: 5.125rem,
+  13px: 13px,
+  22px: 22px,
 );
 
 $accordion-button-bg: $gray-200;

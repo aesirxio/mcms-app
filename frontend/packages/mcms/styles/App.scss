@@ -2,54 +2,54 @@
 // Configuration
 
 // Fonts
-@import "./fonts";
+@import './fonts';
 
-@import "./nprogress";
-@import "./bootstrap";
-@import "~bootstrap/scss/utilities";
+@import './nprogress';
+@import './bootstrap';
+@import '~bootstrap/scss/utilities';
 
 // Layout & components
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
-@import "~bootstrap/scss/containers";
-@import "~bootstrap/scss/grid";
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/containers';
+@import '~bootstrap/scss/grid';
 // @import "~bootstrap/scss/tables";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/transitions";
-@import "~bootstrap/scss/dropdown";
-@import "~bootstrap/scss/button-group";
-@import "~bootstrap/scss/nav";
-@import "~bootstrap/scss/navbar";
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/transitions';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/button-group';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
 // @import "~bootstrap/scss/card";
-@import "~bootstrap/scss/accordion";
+@import '~bootstrap/scss/accordion';
 // @import "~bootstrap/scss/breadcrumb";
 // @import "~bootstrap/scss/pagination";
 // @import "~bootstrap/scss/badge";
-@import "~bootstrap/scss/alert";
+@import '~bootstrap/scss/alert';
 // @import "~bootstrap/scss/progress";
 // @import "~bootstrap/scss/list-group";
-@import "~bootstrap/scss/close";
+@import '~bootstrap/scss/close';
 // @import "~bootstrap/scss/toasts";
-@import "~bootstrap/scss/modal";
-@import "~bootstrap/scss/tooltip";
+@import '~bootstrap/scss/modal';
+@import '~bootstrap/scss/tooltip';
 // @import "~bootstrap/scss/popover";
 // @import "~bootstrap/scss/carousel";
-@import "~bootstrap/scss/spinners";
+@import '~bootstrap/scss/spinners';
 // @import "~bootstrap/scss/offcanvas";
 // @import "~bootstrap/scss/placeholders";
-@import "~bootstrap/scss/tables";
+@import '~bootstrap/scss/tables';
 
 // Helpers
-@import "~bootstrap/scss/helpers";
+@import '~bootstrap/scss/helpers';
 
 //customize Class
 $utilities: map-merge(
   $utilities,
   (
-    "z": (
+    'z': (
       property: z-index,
       class: z,
       values: (
@@ -60,15 +60,15 @@ $utilities: map-merge(
         4: 9999,
       ),
     ),
-    "object": (
+    'object': (
       property: object-fit,
       class: ob,
       values: (
-        "cover": cover,
-        "contain": contain,
+        'cover': cover,
+        'contain': contain,
       ),
     ),
-    "font-size": (
+    'font-size': (
       rfs: true,
       property: font-size,
       class: fs,
@@ -82,16 +82,11 @@ $utilities: map-merge(
         6: 16px,
         7: 64px,
         8: 18px,
-        9: 32px,
-        10: 14px,
-        11: 40px,
-        12: 12px,
-        13: 28px,
-        10px: 10px,
-        14: 14px,
+        72: 72px,
+        70: 70px,
       ),
     ),
-    "font-weight": (
+    'font-weight': (
       property: font-weight,
       class: fw,
       values: (
@@ -104,7 +99,7 @@ $utilities: map-merge(
         bolder: $font-weight-bolder,
       ),
     ),
-    "letter-spacing": (
+    'letter-spacing': (
       property: letter-spacing,
       class: ls,
       values: (
@@ -115,18 +110,18 @@ $utilities: map-merge(
         5: 8px,
       ),
     ),
-    "font-family": (
+    'font-family': (
       property: font-family,
       class: font,
       values: (
-        opensans: "Open Sans",
-        robotoslab: "Roboto Slab",
-        inter: "Inter",
-        robotreavers: "Robot Reavers",
-        svgfutura: "SVN Futura",
+        opensans: 'Open Sans',
+        robotoslab: 'Roboto Slab',
+        inter: 'Inter',
+        robotreavers: 'Robot Reavers',
+        svgfutura: 'SVN Futura',
       ),
     ),
-    "rounded": (
+    'rounded': (
       property: border-radius,
       class: rounded,
       responsive: true,
@@ -142,7 +137,7 @@ $utilities: map-merge(
         pill: $border-radius-pill,
       ),
     ),
-    "rounded-top": (
+    'rounded-top': (
       property: border-top-left-radius border-top-right-radius,
       class: rounded-top,
       values: (
@@ -150,7 +145,7 @@ $utilities: map-merge(
         null: $border-radius,
       ),
     ),
-    "rounded-end": (
+    'rounded-end': (
       property: border-top-right-radius border-bottom-right-radius,
       class: rounded-end,
       values: (
@@ -158,7 +153,7 @@ $utilities: map-merge(
         null: $border-radius,
       ),
     ),
-    "rounded-bottom": (
+    'rounded-bottom': (
       property: border-bottom-right-radius border-bottom-left-radius,
       class: rounded-bottom,
       values: (
@@ -166,7 +161,7 @@ $utilities: map-merge(
         null: $border-radius,
       ),
     ),
-    "rounded-start": (
+    'rounded-start': (
       property: border-bottom-left-radius border-top-left-radius,
       class: rounded-start,
       values: (
@@ -174,7 +169,7 @@ $utilities: map-merge(
         null: $border-radius,
       ),
     ),
-    "line-height": (
+    'line-height': (
       property: line-height,
       responsive: true,
       class: lh,
@@ -190,7 +185,7 @@ $utilities: map-merge(
         lg: $line-height-lg,
       ),
     ),
-    "width": (
+    'width': (
       property: width,
       class: w,
       responsive: true,
@@ -207,14 +202,9 @@ $utilities: map-merge(
         80: 80%,
         90: 90%,
         100: 100%,
-        120px: 120px,
-        110px: 110px,
-        160px: 160px,
-        186px: 186px,
-        135px: 135px,
       ),
     ),
-    "height": (
+    'height': (
       property: height,
       class: h,
       responsive: true,
@@ -228,14 +218,11 @@ $utilities: map-merge(
         80: 80%,
         90: 90%,
         100: 100%,
-        50px: 50px,
-        105px: 105px,
-        110px: 110px,
-        120px: 120px,
-        160px: 160px,
+        156: 156px,
+        300: 300px,
       ),
     ),
-    "cursor": (
+    'cursor': (
       property: cursor,
       class: cursor,
       values: (
@@ -245,73 +232,73 @@ $utilities: map-merge(
         copy: copy,
       ),
     ),
-    "white-space": (
+    'white-space': (
       property: white-space,
       class: ws,
       responsive: true,
       values: nowrap break-spaces normal,
     ),
-    "overflow": (
+    'overflow': (
       property: overflow,
       class: overflow,
       responsive: true,
       values: auto hidden visible scroll unset,
     ),
-    "position": (
+    'position': (
       property: position,
       responsive: true,
       values: static relative absolute fixed sticky,
     ),
-    "border":
+    'border':
       map-merge(
-        map-get($utilities, "border"),
+        map-get($utilities, 'border'),
         (
           responsive: true,
         )
       ),
-    "border-top":
+    'border-top':
       map-merge(
-        map-get($utilities, "border-top"),
+        map-get($utilities, 'border-top'),
         (
           responsive: true,
         )
       ),
-    "border-end":
+    'border-end':
       map-merge(
-        map-get($utilities, "border-end"),
+        map-get($utilities, 'border-end'),
         (
           responsive: true,
         )
       ),
-    "border-bottom":
+    'border-bottom':
       map-merge(
-        map-get($utilities, "border-bottom"),
+        map-get($utilities, 'border-bottom'),
         (
           responsive: true,
         )
       ),
-    "border-start":
+    'border-start':
       map-merge(
-        map-get($utilities, "border-start"),
+        map-get($utilities, 'border-start'),
         (
           responsive: true,
         )
       ),
-    "border-color":
+    'border-color':
       map-merge(
-        map-get($utilities, "border-color"),
+        map-get($utilities, 'border-color'),
         (
           responsive: true,
         )
       ),
-    "background-color":
+    'background-color':
       map-merge(
-        map-get($utilities, "background-color"),
+        map-get($utilities, 'background-color'),
         (
           responsive: true,
         )
       ),
-    "shadow": (
+    'shadow': (
       property: box-shadow,
       class: shadow,
       responsive: true,
@@ -323,7 +310,7 @@ $utilities: map-merge(
         none: none,
       ),
     ),
-    "opacity": (
+    'opacity': (
       property: opacity,
       responsive: true,
       values: (
@@ -336,19 +323,31 @@ $utilities: map-merge(
         100: 1,
       ),
     ),
-    "padding-end": (
+    'padding-end': (
       responsive: true,
       property: padding-right,
       class: pe,
-      values: $spacers,
+      values: (
+        0: 0,
+        100: 100px,
+      ),
     ),
-    "padding": (
+    'padding': (
       responsive: true,
       property: padding,
       class: p,
       values: $spacers,
     ),
-    "line-limit": (
+    'padding-start': (
+      responsive: true,
+      property: padding-left,
+      class: ps,
+      values: (
+        0: 0,
+        100: 100px,
+      ),
+    ),
+    'line-limit': (
       responsive: true,
       property: -webkit-line-clamp,
       class: lm,
@@ -359,14 +358,42 @@ $utilities: map-merge(
         4: 4,
       ),
     ),
-    "max-height": (
+    'max-height': (
       property: max-height,
       class: mh,
       values: $spacers,
+    ),
+    'max-width': (
+      property: max-width,
+      class: mw,
+      values: $spacers,
+    ),
+    'top': (
+      property: top,
+      values: (
+        0: 0,
+        35: 35%,
+        50: 50%,
+        100: 100%,
+      ),
+    ),
+    'margin-top': (
+      responsive: true,
+      property: margin-top,
+      class: mt,
+      values: (
+        0: 0,
+        1: $spacer * 0.25,
+        2: $spacer * 0.5,
+        3: $spacer,
+        4: $spacer * 1.5,
+        5: $spacer * 3,
+        95: -95px,
+      ),
     ),
   )
 );
 
 // Utilities
-@import "~bootstrap/scss/utilities/api";
+@import '~bootstrap/scss/utilities/api';
 // scss-docs-end import-stack
