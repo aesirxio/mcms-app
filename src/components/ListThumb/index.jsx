@@ -32,8 +32,8 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
     }
   };
 
-  const handleSearch = (e) => {
-    listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = e.target.value));
+  const handleSearch = async (e) => {
+    await listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = e.target.value));
   };
   // const handleFilterColum = (e) => {
   //   setFilterColum(e);
@@ -57,8 +57,9 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
               type="text"
               placeholder="Search your content"
               aria-describedby="button-search"
-              className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent"
+              className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent form-control_placeholder"
               onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
+              defaultValue={listViewModel?.filters?.['filter[search]'] ?? ''}
             />
             <button
               type="button"

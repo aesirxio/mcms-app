@@ -1,3 +1,7 @@
-.select-option > div{
+.select-option > div {
   min-width: 150px !important;
+}
+.form-control_placeholder::placeholder {
+  color: #081240;
+  opacity: 0.6;
 }

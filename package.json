@@ -15,7 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.1.12",
     "aesirx-dam-app": "^1.1.0",
     "aesirx-dma-app": "^1.6.0",
-    "aesirx-dma-lib": "^1.7.4",
+    "aesirx-dma-lib": "aesirxio/dma-lib",
     "aesirx-sso": "^1.0.1",
     "axios": "^0.21.0",
     "bootstrap": "^5.2.2",
@@ -63,7 +63,8 @@
   },
   "scripts": {
     "start": "yarn run build && serve -s build",
-    "build": "yarn run build:ckeditor && react-scripts build",
+    "build": "yarn run build:ckeditor && yarn run build:lib && react-scripts build",
+    "build:lib": "cd node_modules/aesirx-dma-lib && yarn install && yarn run build && cd ../../",
     "build:ckeditor": "cd src/ckeditor && npm run build && cd ../../",
     "test": "react-scripts test",
     "dev": "react-scripts start",
