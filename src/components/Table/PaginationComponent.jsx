@@ -1,8 +1,8 @@
 import React from 'react';
 import SelectComponent from '../../components/Select';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+// import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import './index.scss';
 
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
@@ -42,11 +42,11 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             i === currentNumber + 1 ||
             i === currentNumber + 2 ||
             i === currentNumber + 3
-              ? 'visible_number'
+              ? 'visible_number '
               : ''
           }`}
         >
-          <span>{i}</span>
+          <span className={`${i !== currentNumber && 'text-gray-pagination'}`}>{i}</span>
         </button>
       );
     }
@@ -72,6 +72,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               { value: 15, label: 'Show 15' },
               { value: 20, label: 'Show 20' },
             ]}
+            menuPlacement="top"
             className={`bg-white ms-10 rounded-1 shadow-lg`}
             isBorder
           />
@@ -87,7 +88,8 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               disabled={pagination && pagination.page <= 1 ? true : false}
               className={`btn border-0 py-7px px-14`}
             >
-              <FontAwesomeIcon icon={faChevronLeft} />
+              {/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+              <img src="/assets/images/faChevronLeft.png" alt="assets/images/faChevronLeft.png" />
             </button>
             <p
               className={`mb-0 py-7px px-14 ${
@@ -121,7 +123,8 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               disabled={pagination && pagination.page === pagination.totalPages ? true : false}
               className={`btn border-0 py-7px px-14 text-blue-0`}
             >
-              <FontAwesomeIcon icon={faChevronRight} />
+              {/* <FontAwesomeIcon icon={faChevronRight} /> */}
+              <img src="/assets/images/faChevronRight.png" alt="assets/images/faChevronRight.png" />
             </button>
           </div>
         ) : null}

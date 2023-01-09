@@ -1,21 +1,19 @@
 @import '../../scss/utils/bootstrap.scss';
 
-.active{
-    a{
-        color: $body-color;
-    }
-    &::before{
-        content: "";
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: $success;
-    }
+.active {
+  a {
+    color: $body-color;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $success;
+  }
 }
-.list-item{
-    a{
-        color: $gray-800;
-    }
+.list-item {
+  color: $gray-800;
 }

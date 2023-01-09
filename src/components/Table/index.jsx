@@ -35,7 +35,12 @@ const Table = ({
 
     return (
       <>
-        <input className="form-check-input p-0" type="checkbox" ref={resolvedRef} {...rest} />
+        <input
+          className="form-check-input p-0 text-start d-flex ms-2"
+          type="checkbox"
+          ref={resolvedRef}
+          {...rest}
+        />
       </>
     );
   });
@@ -92,7 +97,7 @@ const Table = ({
         hooks.visibleColumns.push((columns) => [
           {
             id: 'selection',
-            className: 'border-bottom-1 text-uppercase text-center px-11',
+            className: 'border-bottom-1 text-uppercase text-center w-3',
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
               <div>
                 <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
@@ -100,10 +105,9 @@ const Table = ({
             ),
             Cell: ({ row }) => (
               <div
-                className="wrapper_checkbox text-center "
+                className="wrapper_checkbox text-center"
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log(row.values.id);
                 }}
               >
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />

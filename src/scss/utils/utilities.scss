@@ -36,6 +36,7 @@ $utilities: map-merge(
             'red-1': $color-red,
             'blue-3': $color-blue-3,
             'red-2': $color-red-4,
+            'gray-pagination': #526269,
           )
         ),
     ),
@@ -160,6 +161,7 @@ $utilities: map-merge(
       property: width,
       class: w,
       values: (
+        3: 3%,
         25: 25%,
         40: 40%,
         50: 50%,
