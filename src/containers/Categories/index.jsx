@@ -1,7 +1,7 @@
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react';
-import TabBarComponent from 'components/TabBarComponent';
+// import TabBarComponent from 'components/TabBarComponent';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import CategoriesStore from './CategoriesStore/Categories';
@@ -35,7 +35,7 @@ const Categories = observer(() => {
           </Link>
         </div>
         <div className="h-100 d-flex flex-column">
-          <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} />
+          {/* <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} /> */}
           <CategoriesComponent
             t={t}
             data={null}
