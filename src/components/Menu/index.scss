@@ -1,4 +1,4 @@
-@import "../../scss/utils/bootstrap.scss";
+@import '../../scss/utils/bootstrap.scss';
 
 .item_menu {
   margin-bottom: 8px;
@@ -20,6 +20,7 @@
       i,
       span {
         color: $white !important;
+        font-weight: 600 !important;
       }
     }
     &.active {
@@ -44,12 +45,13 @@
     }
   }
 }
-[aria-controls="wr_list_submenu"]{
-  &.active{
-    .icon{
+[aria-controls='wr_list_submenu'] {
+  &.active {
+    .icon {
       transform: rotate(90deg);
     }
-  }}
+  }
+}
 #wr_list_submenu {
   background-color: var(--sidebar-submenu-bg);
   .item_menu {

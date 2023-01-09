@@ -5,7 +5,7 @@ import ItemsFormActionBar from './ItemsFormActionBar';
 // import PublishOptionComponent from 'components/PublishOptionComponent';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
-import DMAComponent from 'components/DmaComponent';
+// import DMAComponent from 'components/DmaComponent';
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -15,7 +15,7 @@ const ItemsFormPage = ({
   store,
   // formPublish,
   isEdit,
-  isDMA,
+  // isDMA,
 }) => {
   const { t } = useTranslation('common');
 
@@ -51,7 +51,7 @@ const ItemsFormPage = ({
                 </Tab>
               )}
 
-              {isDMA && (
+              {/* {isDMA && (
                 <Tab
                   tabClassName="border-0 bg-transparent p-0 pb-16"
                   eventKey="DMA"
@@ -59,7 +59,7 @@ const ItemsFormPage = ({
                 >
                   <DMAComponent store={store.itemsDetailViewModel} />
                 </Tab>
-              )}
+              )} */}
             </Tabs>
           ) : (
             <GeneralInformation validator={validator} generateFormSetting={generateFormSetting} />

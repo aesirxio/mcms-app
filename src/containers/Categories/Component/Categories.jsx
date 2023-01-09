@@ -22,7 +22,7 @@ const Categories = observer(({ setEntriesFound }) => {
       {
         Header: 'Category',
         accessor: 'title',
-        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 ',
+        className: 'fs-6 fw-semibold opacity-80 border-bottom-1 w-50',
         Cell: ({ value, row }) => {
           return (
             <div
