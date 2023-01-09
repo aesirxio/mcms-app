@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import SelectComponent from '../Select';
@@ -178,4 +178,4 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   );
 };
 
-export default withTranslation('common')(ListThumb);
+export default ListThumb;
