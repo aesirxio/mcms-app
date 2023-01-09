@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation, withTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import SelectComponent from '../Select';
 import { notify } from 'components/Toast';
-import { Dropdown } from 'react-bootstrap';
+import { Button, Dropdown, Modal } from 'react-bootstrap';
 import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 // import { Icon } from '@iconify/react';
@@ -17,16 +17,18 @@ const optionAction = [{ value: 'delete', label: 'Delete' }];
 // ];
 
 const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
+  const { t } = useTranslation('common');
   const [action, setAction] = useState('');
-  // const [filterColum, setFilterColum] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const handleAnAction = async (e) => {
     if (selectedMulptiRows?.length < 1) {
       notify('Please choose items to delete', 'error');
       return;
     } else {
-      const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
+      // const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
       setAction(e);
-      await listViewModel.handleDelete(listSelectedItems);
+      setShowPopup(true);
+      // await listViewModel.handleDelete(listSelectedItems);
     }
   };
 
@@ -37,6 +39,14 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   //   setFilterColum(e);
   //   listViewModel.getListByFilter((listViewModel.filters.filterColum = e.label));
   // };
+  const handleClose = () => {
+    setShowPopup(false);
+  };
+  const handleDelete = async () => {
+    const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
+    await listViewModel.handleDelete(listSelectedItems);
+    await handleClose();
+  };
 
   return (
     <div className="rounded-3 mb-24 bg-white shadow-sm">
@@ -72,6 +82,47 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
             className="text-green text-blue-0"
           />
         </div>
+        <Modal
+          show={showPopup}
+          // onShow={onShow}
+          onHide={handleClose}
+          centered={true}
+          dialogClassName={'minw-lg-520px'}
+        >
+          {/* <Modal.Header closeButton className="px-4 border-bottom-0 text-blue-0">
+            Confirm Delete
+          </Modal.Header> */}
+          <div className="py-3rem px-4rem mx-auto">
+            <div className="d-flex justify-content-center">
+              <img
+                alt="circle-close.png"
+                src="/assets/images/circle-close.png"
+                width={77}
+                height={77}
+              />
+            </div>
+            <Modal.Body className="p-0 pt-29px text-center">
+              <h4 className="fw-bold">{t('txt_you_sure')}</h4>
+              <p className="fs-sm">{t('txt_complete_delete')}</p>
+            </Modal.Body>
+            <div className="d-flex justify-content-center">
+              <Modal.Footer className="px-4">
+                <Button
+                  className="btn btn-light bg-white minw-118px h-48px border-gray-200"
+                  onClick={() => handleClose()}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="btn btn-red-100 bg-red-100 ms-3 minw-118px h-48px"
+                  onClick={() => handleDelete()}
+                >
+                  Yes, Delete
+                </Button>
+              </Modal.Footer>
+            </div>
+          </div>
+        </Modal>
         <div className="col-auto border-end-1">
           <Dropdown>
             <Dropdown.Toggle
