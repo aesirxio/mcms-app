@@ -5,7 +5,7 @@ import { useItemsViewModel } from '../ItemsViewModels/ItemsViewModelContextProvi
 import PAGE_STATUS from 'constants/PageStatus';
 import Spinner from 'components/Spinner';
 import history from 'routes/history';
-import TabBarComponent from 'components/TabBarComponent';
+// import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
   const itemsListViewModel = useItemsViewModel().getItemsListViewModel();
@@ -156,7 +156,7 @@ const List = observer(() => {
 
   return (
     <>
-      <TabBarComponent viewModel={itemsListViewModel} />
+      {/* <TabBarComponent viewModel={itemsListViewModel} /> */}
       {itemsListViewModel.formStatus === PAGE_STATUS.LOADING ? (
         <Spinner />
       ) : (
