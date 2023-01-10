@@ -221,11 +221,14 @@ $utilities: map-merge(
       ),
     ),
     'min-width': (
+      responsive: true,
       property: min-width,
       class: minw,
       values: (
         auto: auto,
         90px: 90px,
+        118px: 118px,
+        520px: 520px,
       ),
     ),
     'max-width': (

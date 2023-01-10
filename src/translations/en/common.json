@@ -73,6 +73,7 @@
   "txt_State": "State",
   "txt_Country": "Country",
   "txt_Zipcode": "Zipcode",
-  "txt_menu_dma": "DMA"
-
+  "txt_menu_dma": "DMA",
+  "txt_you_sure": "Are you sure to delete this item?",
+  "txt_complete_delete": "Are you sure to delete this item?"
 }
