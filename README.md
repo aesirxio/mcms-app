@@ -2,7 +2,7 @@
 
 ## About
 
-AesirX MCMS is our Open Source MetaVerse CMS as a service solution
+AesirX MCMS is our Open Source MetaVerse MCMS as a service solution
 
 Find out more in [https://mcms.aesirx.io](https://mcms.aesirx.io)
 

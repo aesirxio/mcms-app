@@ -20,6 +20,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const { t } = useTranslation('common');
   const [action, setAction] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [valueSearch, setValueSearch] = useState('');
   const handleAnAction = async (e) => {
     if (selectedMulptiRows?.length < 1) {
       notify('Please choose items to delete', 'error');
@@ -32,8 +33,8 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
     }
   };
 
-  const handleSearch = async (e) => {
-    await listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = e.target.value));
+  const handleSearch = async () => {
+    await listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = valueSearch));
   };
   // const handleFilterColum = (e) => {
   //   setFilterColum(e);
@@ -58,14 +59,15 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
               placeholder="Search your content"
               aria-describedby="button-search"
               className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent form-control_placeholder"
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
               defaultValue={listViewModel?.filters?.['filter[search]'] ?? ''}
+              onChange={(e) => setValueSearch(e?.target?.value)}
             />
             <button
               type="button"
               id="button-search"
               className="btn btn_search border-0 border-start-0 border-gray text-green"
-              onClick={(e) => handleSearch(e)}
+              onClick={() => handleSearch()}
             >
               <FontAwesomeIcon icon={faSearch} />
             </button>

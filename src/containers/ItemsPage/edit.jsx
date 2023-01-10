@@ -81,7 +81,7 @@ const EditItems = observer(
                 label: 'Thumb Image',
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
+                value: this.formPropsData['featured_image']?.url,
                 className: 'col-12',
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
