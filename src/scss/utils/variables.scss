@@ -134,6 +134,7 @@ $theme-colors: (
   'blue-50': $blue-50,
   'blue-100': $blue-100,
   'blue-3': $blue-3,
+  'red-100': $red-100,
 ) !default;
 
 // Body
@@ -212,6 +213,7 @@ $box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
 $box-shadow-sm: 0 0.185rem 0.3125rem rgba($black, 0.05) !default;
 $box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
 $box-shadow-inset: inset 0 1px 2px rgba($black, 0.075) !default;
+$box-shadow-pagination: 0px 0px 5px #2223280D !default;
 
 $nav-tabs-border-width: 1px !default;
 $nav-tabs-border-radius: 0 !default;
@@ -263,8 +265,11 @@ $spacers: (
   14: 14px,
   15: 15px,
   16: 16px,
+  29px: 29px,
   32: 32px,
   40: 40px,
+  3rem: 3rem,
+  4rem: 4rem,
   7rem: 7rem,
   2rem: 2rem,
 );
@@ -284,7 +289,6 @@ $list-group-active-color: $white;
 $list-group-active-bg: $color-blue-3;
 $list-group-item-padding-y: 1rem;
 $list-group-item-padding-x: 1.5rem;
-$list-group-color: $body-color;
 
 $form-check-input-width: 1em;
 
@@ -305,12 +309,3 @@ $nav-link-color: $blue-200;
 $nav-tabs-link-active-color: $blue-200;
 $nav-link-hover-color: $blue-200;
 $nav-tabs-border-color: $border-color;
-:root {
-  --dropdown-item-hover-color: #1ab394;
-  --dropdown-item-hover-bg: #e8e9ec;
-  --view-active-bg: #e8e9ec;
-  --text-title-color: #081240;
-  --dropdown-bg: #fff;
-  --dropdown-item-color: #081240;
-  --bs-gray-select: #dedede;
-}
