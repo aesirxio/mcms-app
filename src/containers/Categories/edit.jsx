@@ -6,7 +6,6 @@ import { observer } from 'mobx-react';
 import { CMS_CATE_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 import { withRouter } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { Form } from 'react-bootstrap';
 import CategoriesStore from './CategoriesStore/Categories';
@@ -178,7 +177,9 @@ const EditCategories = observer(
               changed: (data) => {
                 this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE] = data.target.value;
               },
-              blurred: this.validator,
+              blurred: () => {
+                this.validator.showMessageFor('Product Name');
+              },
             },
             // {
             //   label: 'Alias',
@@ -360,4 +361,4 @@ const EditCategories = observer(
   }
 );
 
-export default withTranslation('common')(withRouter(withCategoriesViewModel(EditCategories)));
+export default withRouter(withCategoriesViewModel(EditCategories));
