@@ -22,7 +22,7 @@ const FormCheckBoxField = lazy(() => import('../components/Form/FormCheckBoxFiel
 
 const renderingGroupFieldHandler = (group, validator) => {
   return Object.keys(group.fields)
-    .map((fieldIndex) => {
+    ?.map((fieldIndex) => {
       return [...Array(group.fields[fieldIndex])].map((field) => {
         return (() => {
           let className = field.className ? field.className : '';
