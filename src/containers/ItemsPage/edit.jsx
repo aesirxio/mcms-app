@@ -57,7 +57,7 @@ const EditItems = observer(
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor('Product Name');
+                  this.validator.showMessageFor('Title');
                 },
               },
               {
