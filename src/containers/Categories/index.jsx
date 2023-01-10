@@ -1,7 +1,7 @@
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react';
-import TabBarComponent from 'components/TabBarComponent';
+// import TabBarComponent from 'components/TabBarComponent';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import CategoriesStore from './CategoriesStore/Categories';
@@ -17,7 +17,7 @@ const Categories = observer(() => {
   const { t } = useTranslation('common');
   return (
     <CategoriesViewModelContextProvider viewModel={categoriesViewModel}>
-      <div className="py-4 px-3 h-100 d-flex flex-column">
+      <div className="py-4 px-2rem h-100 d-flex flex-column">
         <div className="d-flex align-items-start justify-content-between flex-wrap mb-32">
           <div>
             <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_menu_cate')}</h2>
@@ -35,7 +35,7 @@ const Categories = observer(() => {
           </Link>
         </div>
         <div className="h-100 d-flex flex-column">
-          <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} />
+          {/* <TabBarComponent viewModel={categoriesViewModel.categoriesListViewModel} /> */}
           <CategoriesComponent
             t={t}
             data={null}

@@ -40,11 +40,11 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             i === currentNumber + 1 ||
             i === currentNumber + 2 ||
             i === currentNumber + 3
-              ? 'visible_number'
+              ? 'visible_number '
               : ''
           }`}
         >
-          <span>{i}</span>
+          <span className={`${i !== currentNumber && 'text-gray-pagination'}`}>{i}</span>
         </button>
       );
     }

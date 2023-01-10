@@ -54,7 +54,10 @@ class CategoriesListViewModel {
 
   handleDelete = async (id) => {
     if (id?.length > 1) {
-      notify('Cannot delete multiple items now. We will update in next version', 'error');
+      notify(
+        'Cannot delete multiple items now. We will update in next version. Please check Road map for future releases.',
+        'error'
+      );
       return;
     }
     this.formStatus = PAGE_STATUS.LOADING;
