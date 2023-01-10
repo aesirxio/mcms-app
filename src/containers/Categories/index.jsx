@@ -22,7 +22,7 @@ const Categories = observer(() => {
           <div>
             <h2 className="text-blue-0 fw-bold mb-sm">{t('txt_menu_cate')}</h2>
             <p className="mb-0 text-color fs-14">
-              {entriesFound} {t('txt_entries_found')}
+              {entriesFound ?? 0} {t('txt_entries_found')}
             </p>
           </div>
           <Link
