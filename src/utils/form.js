@@ -36,10 +36,6 @@ const renderingGroupFieldHandler = (group, validator) => {
                     required={field.required ?? false}
                   />
                   <Input field={field} />
-                  {field.validation &&
-                    validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
-                    })}
                 </Form.Group>
               );
             case FORM_FIELD_TYPE.BUTTON:

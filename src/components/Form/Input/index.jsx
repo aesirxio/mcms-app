@@ -2,11 +2,16 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 
 const Input = ({ field }) => {
+  // const [mgsError, setMsError] = useState('');
   const handleChange = (e) => {
     if (Object.prototype.hasOwnProperty.call(field, 'changed')) {
       e.target.value = e.target.value.normalize('NFKC');
       field.changed(e);
     }
+  };
+  const handleOnblur = () => {
+    // setMsError(Object.values(field.blurred.errorMessages));
+    field.blurred.showMessageFor();
   };
   return (
     <>
@@ -18,11 +23,18 @@ const Input = ({ field }) => {
         onChange={(e) => handleChange(e)}
         onPaste={field.pasted ?? undefined}
         className={`${field.classNameInput}`}
-        onBlur={field.blurred ?? undefined}
+        onBlur={() => handleOnblur()}
         placeholder={field.placeholder ?? undefined}
         readOnly={field.readOnly}
         disabled={field.disabled}
       />
+      {field.validation &&
+        field.blurred.message(field.label, field.value, field.validation, {
+          className: 'text-danger',
+        })}
+      {/* {Object.values(field.blurred.errorMessages) && (
+        <span className="text-danger">{mgsError}</span>
+      )} */}
     </>
   );
 };
