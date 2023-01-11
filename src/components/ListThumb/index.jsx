@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
@@ -21,6 +21,12 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const [action, setAction] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [valueSearch, setValueSearch] = useState('');
+
+  useEffect(() => {
+    if (listViewModel.filters['filter[search]']) {
+      setValueSearch(listViewModel.filters['filter[search]']);
+    }
+  }, []);
   const handleAnAction = async (e) => {
     if (selectedMulptiRows?.length < 1) {
       notify('Please choose items to delete', 'error');
@@ -36,6 +42,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const handleSearch = async () => {
     await listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = valueSearch));
   };
+
   // const handleFilterColum = (e) => {
   //   setFilterColum(e);
   //   listViewModel.getListByFilter((listViewModel.filters.filterColum = e.label));
@@ -60,7 +67,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
               aria-describedby="button-search"
               className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent form-control_placeholder"
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              defaultValue={listViewModel?.filters?.['filter[search]'] ?? ''}
+              defaultValue={listViewModel.filters['filter[search]'] ?? ''}
               onChange={(e) => setValueSearch(e?.target?.value)}
             />
             <button
