@@ -151,7 +151,7 @@ const List = observer(() => {
       await itemsListViewModel.initializeData();
     };
     fetchData();
-    return () => itemsListViewModel.resetObservable();
+    // return () => itemsListViewModel.resetObservable();
   }, []);
 
   return (

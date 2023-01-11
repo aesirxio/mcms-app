@@ -30,9 +30,10 @@ const EditItems = observer(
       this.isEdit = props.match.params?.id ? true : false;
     }
 
-    componentDidMount() {
+   async componentDidMount() {
       this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      this.itemsDetailViewModel.initializeData();
+     await this.itemsDetailViewModel.initializeData();
+      this.forceUpdate();
     }
 
     render() {
