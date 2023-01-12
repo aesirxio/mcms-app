@@ -76,5 +76,22 @@
   "txt_menu_dma": "DMA",
   "txt_you_sure": "Are you sure to delete this item?",
   "txt_complete_delete": "Are you sure to delete this item?",
-  "txt_search": "Search your content"
+  "txt_search": "Search your content",
+  "txt_colums": "Columns",
+  "txt_id": "ID",
+  "txt_name": "Name",
+  "txt_showing": "Showing",
+  "txt_show": "Show",
+  "txt_non_group": "Non grouped",
+  "txt_title": "Title",
+  "txt_description": "Description",
+  "txt_intro_text": "Intro text",
+  "txt_thump": "Thumb Image",
+  "txt_max_size": "Maximum upload size",
+  "txt_select_file": "Select File",
+  "txt_up_file": "Select file to upload",
+  "txt_seo": "SEO",
+  "txt_meta": "Meta Description",
+  "txt_cate_img": "Category image",
+  "txt_cate": "Category"
 }

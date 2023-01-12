@@ -9,8 +9,6 @@ import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 // import { Icon } from '@iconify/react';
 
-const optionAction = [{ value: 'delete', label: 'Delete' }];
-
 // const optionFilterColumns = [
 //   { value: true, label: 'Published' },
 //   { value: false, label: 'UnPublished' },
@@ -18,6 +16,7 @@ const optionAction = [{ value: 'delete', label: 'Delete' }];
 
 const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const { t } = useTranslation('common');
+  const optionAction = [{ value: 'delete', label: t('delete') }];
   const [action, setAction] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [valueSearch, setValueSearch] = useState('');
@@ -56,7 +55,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
           <div className="input-group mb-0">
             <input
               type="text"
-              placeholder="Search your content"
+              placeholder={t('txt_search')}
               aria-describedby="button-search"
               className="form-control border-end-0 pe-2 border-0 fw-semibold fs-14 bg-transparent form-control_placeholder"
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -81,7 +80,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
             isBorder={false}
             isShadow={false}
             isSemibold={true}
-            placeholder="Choose an action"
+            placeholder={t('choose_an_action')}
             className="text-green text-blue-0"
           />
         </div>
@@ -136,7 +135,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
               <i className="text-blue-0">
                 <FontAwesomeIcon icon={faColumns} />
               </i>
-              <span className="px-7px text-blue-0 fs-14 fw-semibold">Columns</span>
+              <span className="px-7px text-blue-0 fs-14 fw-semibold">{t('txt_colums')}</span>
               <i className="text-green">
                 <FontAwesomeIcon icon={faChevronDown} />
               </i>

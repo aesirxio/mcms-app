@@ -17,7 +17,7 @@ const FieldsComponent = (props) => {
               {dataForm?.groups?.map((item, index) => {
                 return (
                   <ListGroup.Item className="fs-14 cursor-pointer" eventKey={index} key={index}>
-                    {item.name ? item.name : 'Non grouped'}
+                    {item.name ? item.name : t('txt_non_group')}
                   </ListGroup.Item>
                 );
               })}
@@ -31,7 +31,7 @@ const FieldsComponent = (props) => {
                 <Tab.Pane eventKey={index} key={index}>
                   <div className="rounded-1 bg-white shadow-sm p-24">
                     <h3 className="fs-6 mb-24 fw-bold pb-16 border-bottom text-uppercase">
-                      {item.name ? item.name : 'Non grouped'}
+                      {item.name ? item.name : t('txt_non_group')}
                     </h3>
                     <div>{renderingGroupFieldHandler(item, validator)}</div>
                   </div>
