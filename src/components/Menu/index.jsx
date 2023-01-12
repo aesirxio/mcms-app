@@ -75,18 +75,24 @@ const Menu = observer((props) => {
       link: `/`,
       icons: '/assets/images/dashboard.svg',
       icons_color: '/assets/images/items.png',
+      width: 24,
+      height: 24,
     },
     {
       text: 'txt_menu_cate',
       link: `/categories`,
       icons: '/assets/images/cate_icon.png',
       icons_color: '/assets/images/cate_icon.png',
+      width: 24,
+      height: 24,
     },
     {
       text: 'txt_menu_dam',
       link: `/dam`,
       icons: '/assets/images/image.png',
       icons_color: '/assets/images/image.png',
+      width: 24,
+      height: 24,
       // submenu: [
       //   {
       //     text: "txt_menu_overview",
@@ -99,6 +105,8 @@ const Menu = observer((props) => {
       link: `/dma`,
       icons: '/assets/images/icon_channles_white.svg',
       icons_color: '/assets/images/icon_channles_white.svg',
+      width: 24,
+      height: 24,
     },
   ];
 
@@ -127,7 +135,12 @@ const Menu = observer((props) => {
                         className={`d-block px-24 py-16 link_menu text-white text-decoration-none`}
                         activeClassName={`active`}
                       >
-                        <ComponentImage src={menuList.icons_color} alt={t(menuList.text)} />
+                        <ComponentImage
+                          src={menuList.icons_color}
+                          alt={t(menuList.text)}
+                          width={menuList?.width}
+                          height={menuList?.height}
+                        />
                         <span className="ms-16 text d-inline-block fw-normal">
                           {t(menuList.text)}
                         </span>
