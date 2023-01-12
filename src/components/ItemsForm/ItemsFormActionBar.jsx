@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
 import history from 'routes/history';
-import { notifyHTML } from 'components/Toast';
+import { notify } from 'components/Toast';
 const ItemsFormActionBar = observer(
   class ItemsFormActionBar extends Component {
     constructor(props) {
@@ -17,10 +17,10 @@ const ItemsFormActionBar = observer(
         Object.entries(validator.errorMessages).forEach((error) => {
           const [, value] = error;
           if (value) {
-            listError += `<p class="mb-0">${value}</p>`;
+            listError += `${value}`;
           }
         });
-        notifyHTML(listError, 'error');
+        notify(listError, 'error');
         validator.showMessages();
       };
 

@@ -4,14 +4,16 @@ import SimpleReactValidator from 'simple-react-validator';
 import { observer } from 'mobx-react';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
-
+import ItemsStore from './ItemsStore/ItemsStore';
+import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { withItemsViewModel } from './ItemsViewModels/ItemsViewModelContextProvider';
 import { withRouter } from 'react-router-dom';
 
 // import ItemsFormPage from '../../components/ItemsForm/ItemsFormPage';
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
-
+const itemsStore = new ItemsStore();
+const itemsViewModel = new ItemsViewModel(itemsStore);
 const EditItems = observer(
   class EditItems extends Component {
     itemsDetailViewModel = null;
@@ -23,16 +25,17 @@ const EditItems = observer(
 
     constructor(props) {
       super(props);
-      this.viewModel = props.viewModel ? props.viewModel : null;
+      this.viewModel = itemsViewModel ? itemsViewModel : null;
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
       this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
       this.itemsDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
-    componentDidMount() {
+    async componentDidMount() {
       this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      this.itemsDetailViewModel.initializeData();
+      await this.itemsDetailViewModel.initializeData();
+      this.forceUpdate();
     }
 
     render() {
@@ -295,4 +298,4 @@ const EditItems = observer(
   }
 );
 
-export default withItemsViewModel(withRouter(EditItems));
+export default withRouter(withItemsViewModel(EditItems));
