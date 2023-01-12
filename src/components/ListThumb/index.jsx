@@ -44,7 +44,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   };
   const handleDelete = async () => {
     const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
-    await listViewModel.handleDelete(listSelectedItems);
+    await listViewModel.handleDelete(listSelectedItems, t('txt_cannot_delete'));
     await handleClose();
   };
 

@@ -110,6 +110,7 @@ const Table = ({
                   e.stopPropagation();
                 }}
               >
+                {console.log(row)}
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),

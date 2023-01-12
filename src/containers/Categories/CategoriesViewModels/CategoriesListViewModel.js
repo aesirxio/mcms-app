@@ -52,12 +52,9 @@ class CategoriesListViewModel {
     );
   };
 
-  handleDelete = async (id) => {
+  handleDelete = async (id, msg) => {
     if (id?.length > 1) {
-      notify(
-        'Cannot delete multiple items now. We will update in next version. Please check Road map for future releases.',
-        'error'
-      );
+      notify(msg ?? 'Error', 'error');
       return;
     }
     this.formStatus = PAGE_STATUS.LOADING;
