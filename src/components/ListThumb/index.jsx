@@ -113,13 +113,13 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
                   className="btn btn-light bg-white minw-118px h-48px border-gray-200"
                   onClick={() => handleClose()}
                 >
-                  Cancel
+                  {t('txt_cancel')}
                 </Button>
                 <Button
                   className="btn btn-red-100 bg-red-100 ms-3 minw-118px h-48px"
                   onClick={() => handleDelete()}
                 >
-                  Yes, Delete
+                  {t('txt_yes_delete')}
                 </Button>
               </Modal.Footer>
             </div>

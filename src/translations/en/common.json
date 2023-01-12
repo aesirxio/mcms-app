@@ -53,6 +53,7 @@
   "txt_add_item": "Add item",
   "txt_save": "Save",
   "txt_cancel": "Cancel",
+  "txt_yes_delete": "Yes, Delete",
   "txt_save_close": "Save & Close",
   "txt_select...": "Select...",
   "txt_select": "Select",
@@ -93,5 +94,6 @@
   "txt_seo": "SEO",
   "txt_meta": "Meta Description",
   "txt_cate_img": "Category image",
-  "txt_cate": "Category"
+  "txt_cate": "Category",
+  "txt_cannot_delete": "Cannot delete multiple items now. We will update in next version. Please check Road map for future releases."
 }

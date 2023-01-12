@@ -145,7 +145,7 @@ const List = observer(() => {
       //   },
       // },
     ],
-    []
+    [t]
   );
   useEffect(() => {
     const fetchData = async () => {

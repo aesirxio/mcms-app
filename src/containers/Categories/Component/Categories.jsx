@@ -122,7 +122,7 @@ const Categories = observer(({ setEntriesFound }) => {
       //   },
       // },
     ],
-    []
+    [t]
   );
 
   useEffect(() => {
