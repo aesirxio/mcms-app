@@ -4,6 +4,8 @@ import { initReactI18next } from 'react-i18next';
 
 import common_en from './en/common.json';
 import common_th from './th/common.json';
+import common_dk from './dk/common.json';
+import common_vi from './vi/common.json';
 
 i18n
   .use(LanguageDetector)
@@ -15,14 +17,19 @@ i18n
         title: 'English',
         common: common_en,
       },
+      dk: {
+        title: 'Denmark',
+        common: common_dk,
+      },
+      vi: {
+        title: 'Tiếng Việt',
+        common: common_vi,
+      },
       th: {
         title: 'ThaiLand',
         common: common_th,
       },
-      // vi: {
-      //   title: "Tiếng Việt",
-      //   common: common_vn,
-      // },
+
       // uk: {
       //   title: "Ukraine",
       //   common: common_uk,

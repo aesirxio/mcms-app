@@ -21,6 +21,8 @@ const EditItems = observer(
     formPropsData = {
       [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: '',
       [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: '',
+      [CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT]: '',
+      [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]: '',
     };
     isEdit = false;
 
@@ -82,11 +84,12 @@ const EditItems = observer(
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
                 },
               },
+
               {
                 label: t('txt_thump'),
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: this.formPropsData['featured_image']?.url,
+                value: this.formPropsData['featured_image'],
                 className: 'col-12',
                 changed: (data) => {
                   this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
