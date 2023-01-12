@@ -13,15 +13,16 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
     );
   };
 
-  const handlePreviousPage = () => {
+  const handlePreviousPage = (i) => {
+    console.log(i)
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = pagination?.page - 1)
+      (listViewModel.filters['list[limitstart]'] = (i - 2) * pagination?.pageLimit)
     );
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = (i) => {
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = pagination?.page + 1)
+      (listViewModel.filters['list[limitstart]'] = i  * pagination?.pageLimit)
     );
   };
 
@@ -87,7 +88,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             }
           >
             <button
-              onClick={() => handlePreviousPage()}
+              onClick={() => handlePreviousPage(pagination?.page)}
               disabled={pagination && pagination.page <= 1 ? true : false}
               className={`btn border-0 py-7px px-11 text-gray-pagination`}
             >
@@ -121,7 +122,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               ...
             </p>
             <button
-              onClick={() => handleNextPage()}
+              onClick={() => handleNextPage(pagination?.page)}
               disabled={pagination && pagination.page === pagination.totalPages ? true : false}
               className={`btn border-0 py-7px px-11 rounded-0 text-gray-pagination`}
             >
