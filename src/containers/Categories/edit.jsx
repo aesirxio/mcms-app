@@ -14,6 +14,7 @@ import {
   withCategoriesViewModel,
 } from './CategoriesViewModels/CategoriesViewModelContextProvider';
 import CategoriesViewModel from './CategoriesViewModels/CategoriesViewModel';
+import { withTranslation } from 'react-i18next';
 
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
 
@@ -46,11 +47,12 @@ const EditCategories = observer(
     }
 
     render() {
+      const { t } = this.props;
       const data = {
         id: 1,
         groups: [
           {
-            name: 'SEO',
+            name: t('txt_seo'),
             fields: [
               // {
               //   label: 'Append To Global Meta Data',
@@ -107,7 +109,7 @@ const EditCategories = observer(
               //   },
               // },
               {
-                label: 'Meta Description',
+                label: t('txt_meta'),
                 key: 'description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '',
@@ -165,7 +167,7 @@ const EditCategories = observer(
         {
           fields: [
             {
-              label: 'Name',
+              label: t('txt_name'),
               key: 'title',
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE]
@@ -178,7 +180,7 @@ const EditCategories = observer(
                 this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.TITLE] = data.target.value;
               },
               blurred: () => {
-                this.validator.showMessageFor('Product Name');
+                this.validator.showMessageFor(t('txt_name'));
               },
             },
             // {
@@ -247,7 +249,7 @@ const EditCategories = observer(
             //   className: 'col-12',
             // },
             {
-              label: 'Category image',
+              label: t('txt_cate_img'),
               key: 'featured_image',
               type: FORM_FIELD_TYPE.IMAGE,
               value: this.formPropsData['featured_image']?.url,
@@ -361,4 +363,4 @@ const EditCategories = observer(
   }
 );
 
-export default withRouter(withCategoriesViewModel(EditCategories));
+export default withTranslation('common')(withRouter(withCategoriesViewModel(EditCategories)));

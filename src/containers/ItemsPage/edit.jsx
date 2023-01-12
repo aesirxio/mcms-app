@@ -9,6 +9,7 @@ import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { withItemsViewModel } from './ItemsViewModels/ItemsViewModelContextProvider';
 import { withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 // import ItemsFormPage from '../../components/ItemsForm/ItemsFormPage';
 const ItemsFormPage = lazy(() => import('../../components/ItemsForm/ItemsFormPage'));
@@ -39,6 +40,7 @@ const EditItems = observer(
     }
 
     render() {
+      const { t } = this.props;
       const data = {
         id: 1,
         groups: [
@@ -46,7 +48,7 @@ const EditItems = observer(
             name: '',
             fields: [
               {
-                label: 'Title',
+                label: t('txt_title'),
                 key: 'title',
                 type: FORM_FIELD_TYPE.INPUT,
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME],
@@ -61,7 +63,7 @@ const EditItems = observer(
                 },
               },
               {
-                label: 'Description',
+                label: t('txt_description'),
                 key: 'description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
@@ -71,7 +73,7 @@ const EditItems = observer(
                 },
               },
               {
-                label: 'Intro text',
+                label: t('txt_intro_text'),
                 key: 'intro_text',
                 type: FORM_FIELD_TYPE.EDITOR,
                 value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
@@ -81,7 +83,7 @@ const EditItems = observer(
                 },
               },
               {
-                label: 'Thumb Image',
+                label: t('txt_thump'),
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
                 value: this.formPropsData['featured_image']?.url,
@@ -298,4 +300,4 @@ const EditItems = observer(
   }
 );
 
-export default withRouter(withItemsViewModel(EditItems));
+export default withTranslation('common')(withRouter(withItemsViewModel(EditItems)));

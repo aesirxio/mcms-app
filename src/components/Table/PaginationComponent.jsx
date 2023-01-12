@@ -2,8 +2,11 @@ import React from 'react';
 import SelectComponent from '../../components/Select';
 import './index.scss';
 import { Icon } from '@iconify/react';
+import { useTranslation } from 'react-i18next';
 
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
+  const { t } = useTranslation('common');
+
   const handleGoToPage = (i) => {
     listViewModel.handlePagination(
       (listViewModel.filters['list[limitstart]'] = (i - 1) * pagination?.pageLimit)
@@ -60,15 +63,18 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
     <>
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div className="select_limit d-flex align-items-center">
-          <span style={{ color: '#9A9A9A' }}>Showing</span>
+          <span style={{ color: '#9A9A9A' }}>{t('txt_showing')}</span>
           <SelectComponent
-            defaultValue={{ value: pagination?.pageLimit, label: pagination?.pageLimit + ' Items' }}
+            defaultValue={{
+              value: pagination?.pageLimit,
+              label: pagination?.pageLimit + ' ' + t('txt_items'),
+            }}
             onChange={handleChangeLimit}
             options={[
-              { value: 5, label: 'Show 5' },
-              { value: 10, label: 'Show 10' },
-              { value: 15, label: 'Show 15' },
-              { value: 20, label: 'Show 20' },
+              { value: 5, label: `${t('txt_show')} 5` },
+              { value: 10, label: `${t('txt_show')} 10` },
+              { value: 15, label: `${t('txt_show')} 15` },
+              { value: 20, label: `${t('txt_show')} 20` },
             ]}
             menuPlacement="top"
             className={`bg-white ms-10 rounded-1 shadow-pagination`}

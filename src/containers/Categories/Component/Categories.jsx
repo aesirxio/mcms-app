@@ -4,15 +4,17 @@ import { observer } from 'mobx-react';
 import { useCategoriesViewModel } from '../CategoriesViewModels/CategoriesViewModelContextProvider';
 import Spinner from 'components/Spinner';
 import PAGE_STATUS from 'constants/PageStatus';
+import { useTranslation } from 'react-i18next';
 
 const Categories = observer(({ setEntriesFound }) => {
+  const { t } = useTranslation('common');
   const [dataAction, setDataAction] = useState([]);
   const categoriesViewModel = useCategoriesViewModel();
 
   const columnsTable = React.useMemo(
     () => [
       {
-        Header: 'ID',
+        Header: t('txt_id'),
         accessor: 'id',
         className: 'fs-6 fw-semibold border-bottom-1 opacity-80',
         Cell: ({ value }) => {
@@ -20,7 +22,7 @@ const Categories = observer(({ setEntriesFound }) => {
         },
       },
       {
-        Header: 'Category',
+        Header: t('txt_cate'),
         accessor: 'title',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1 w-50',
         Cell: ({ value, row }) => {
@@ -120,7 +122,7 @@ const Categories = observer(({ setEntriesFound }) => {
       //   },
       // },
     ],
-    []
+    [t]
   );
 
   useEffect(() => {
