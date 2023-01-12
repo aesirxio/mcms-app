@@ -8,7 +8,7 @@ import history from 'routes/history';
 // import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
-  const itemsListViewModel = useItemsViewModel().getItemsListViewModel();
+  const itemsListViewModel = useItemsViewModel();
   const { tableData } = itemsListViewModel;
 
   // const handleGetListByViews = (views) => {
