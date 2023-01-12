@@ -12,7 +12,13 @@
     &:focus {
       outline: 0;
     }
-    &.active,
+    &.active {
+      background-color: $blue;
+      i,
+      span {
+        font-weight: 600 !important;
+      }
+    }
     &:hover {
       background-color: $blue;
       color: $white !important;
@@ -20,7 +26,7 @@
       i,
       span {
         color: $white !important;
-        font-weight: 600 !important;
+        // font-weight: 600 !important;
       }
     }
     &.active {
