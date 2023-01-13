@@ -1,10 +1,11 @@
 import React from 'react';
 import { AesirXDam } from 'aesirx-dam-app';
 import Modal from 'components/Modal';
-import i18n from 'translations/i18n';
 import { useThemeContext } from 'themes/ThemeContextProvider';
+import { useTranslation } from 'react-i18next';
 
 function ModalDAMComponent({ show, onHide, onSelect }) {
+  const { i18n } = useTranslation('common');
   const { theme } = useThemeContext();
   return (
     <Modal

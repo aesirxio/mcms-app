@@ -6,7 +6,6 @@ import ItemsFormActionBar from './ItemsFormActionBar';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
 import DMAComponent from 'components/DmaComponent';
-import i18n from 'translations/i18n';
 import { useThemeContext } from 'themes/ThemeContextProvider';
 const ItemsFormPage = ({
   dataForm,
@@ -20,6 +19,7 @@ const ItemsFormPage = ({
   isDMA,
 }) => {
   const { t } = useTranslation('common');
+  const { i18n } = useTranslation('common');
   const { theme } = useThemeContext();
   return (
     <>

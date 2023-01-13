@@ -1,11 +1,12 @@
-import { AesirXDam } from 'aesirx-dam-app';
+import { AesirXDam } from '@kakahuy113/test-dam-app';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useThemeContext } from 'themes/ThemeContextProvider';
 import './index.scss';
-import i18n from 'translations/i18n';
 
 const Categories = () => {
   const { theme } = useThemeContext();
+  const { i18n } = useTranslation('common');
   const onSelect = (data) => {
     console.log('onSelectonSelect', data);
   };

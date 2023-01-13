@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { AesirxDmaChannelPost } from 'aesirx-dma-app';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
-import i18n from 'translations/i18n';
 import { useThemeContext } from 'themes/ThemeContextProvider';
+import { useTranslation } from 'react-i18next';
 const DMAComponent = ({ store }) => {
   const { theme } = useThemeContext();
+  const { i18n } = useTranslation('common');
   const [content, setContent] = useState(
     store.formPropsData?.[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]
   );
