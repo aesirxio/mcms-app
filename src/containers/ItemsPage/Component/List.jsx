@@ -5,10 +5,11 @@ import { useItemsViewModel } from '../ItemsViewModels/ItemsViewModelContextProvi
 import PAGE_STATUS from 'constants/PageStatus';
 import Spinner from 'components/Spinner';
 import history from 'routes/history';
+import { useTranslation } from 'react-i18next';
 // import TabBarComponent from 'components/TabBarComponent';
 
 const List = observer(() => {
-  const itemsListViewModel = useItemsViewModel().getItemsListViewModel();
+  const itemsListViewModel = useItemsViewModel();
   const { tableData } = itemsListViewModel;
 
   // const handleGetListByViews = (views) => {
@@ -23,11 +24,11 @@ const List = observer(() => {
   const handleEdit = (id) => {
     history.push(`/items-edit/${id}`);
   };
-
+  const { t } = useTranslation('common');
   const columnsTable = React.useMemo(
     () => [
       {
-        Header: 'ID',
+        Header: t('txt_id'),
         accessor: 'id',
         className: 'fs-6 fw-semibold border-bottom-1 opacity-80',
         Cell: ({ value }) => {
@@ -35,7 +36,7 @@ const List = observer(() => {
         },
       },
       {
-        Header: 'Name',
+        Header: t('txt_name'),
         accessor: 'title',
         className: 'fs-6 fw-semibold opacity-80 border-bottom-1',
         Cell: ({ value, row }) => {
@@ -144,14 +145,14 @@ const List = observer(() => {
       //   },
       // },
     ],
-    []
+    [t]
   );
   useEffect(() => {
     const fetchData = async () => {
       await itemsListViewModel.initializeData();
     };
     fetchData();
-    return () => itemsListViewModel.resetObservable();
+    // return () => itemsListViewModel.resetObservable();
   }, []);
 
   return (

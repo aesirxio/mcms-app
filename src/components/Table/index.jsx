@@ -17,7 +17,6 @@ const Table = ({
   data,
   pagination,
   store,
-  onSelect,
   dataList,
   selection = true,
   classNameTable,
@@ -29,7 +28,8 @@ const Table = ({
   const IndeterminateCheckbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
     const defaultRef = React.useRef();
     const resolvedRef = ref || defaultRef;
-    useEffect(() => {
+
+    React.useEffect(() => {
       resolvedRef.current.indeterminate = indeterminate;
     }, [resolvedRef, indeterminate]);
 
@@ -49,6 +49,7 @@ const Table = ({
 
   useEffect(() => {
     setRecords(data);
+    setPageSize(listViewModel.filters['list[limit]']);
   }, [data]);
 
   const {
@@ -65,18 +66,14 @@ const Table = ({
     // nextPage,
     selectedFlatRows,
     // state :{pageIndex},
-    state: { pageSize },
     setPageSize,
+    state: { pageSize },
     allColumns,
     // pageCount,
   } = useTable(
     {
       columns,
       data: records,
-      onSelect,
-      initialState: {
-        //  pageIndex: 1
-      },
     },
     useSortBy,
     useExpanded,
@@ -226,7 +223,7 @@ const Table = ({
         />
         {rows.length ? (
           <>
-            <div className="rounded-3 shadow-sm overflow-hidden mb-24 text-color">
+            <div className="rounded-3 shadow-sm mb-24 text-color">
               <BTable
                 hover
                 {...getTableProps()}
