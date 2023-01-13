@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import banner_mcms from '../public/imgs/banner_mcms.jpg';
 import icon_banner from '../public/imgs/icon_banner.png';
+import footer_right from '../public/imgs/footer_right.png';
 import icon_img from '../public/imgs/icon.png';
 import icon_20 from '../public/imgs/20.png';
 
@@ -34,6 +35,25 @@ export default function Home() {
       title: 'Social media marketing',
       subTitle: 'Lorem ipsum dolor sit consectetur <br/> adipiscing elit eiusmod incididunt. ',
       link: 'Read More',
+    },
+  ];
+
+  const dataFooter = [
+    {
+      title: 'Company',
+      menu: ['About company', 'Ourservices'],
+    },
+    {
+      title: 'Service',
+      menu: ['About company', 'Ourservices', 'Contact us'],
+    },
+    {
+      title: 'Contact',
+      menu: ['About company', 'Ourservices', 'Contact us'],
+    },
+    {
+      title: 'Company',
+      menu: ['About company', 'Ourservices', 'Contact us'],
     },
   ];
   return (
@@ -183,7 +203,12 @@ export default function Home() {
       <div className="text-center  align-items-end bg-gray py-6rem">
         <div className="text-center">
           <span className="text-green-50 fs-8 fw-bold lh-sm ">Amazing Service</span>
-          <p>{`Beautiful and easy to use professional animations and drag & drop feature`}</p>
+          <p
+            className="text-black fs-32 fw-bold lh-sm"
+            dangerouslySetInnerHTML={{
+              __html: `Beautiful and easy to use professional <br/> animations and drag & drop feature`,
+            }}
+          ></p>
         </div>
         <div className="d-flex justify-content-center pt-74px">
           {dataService.map((v) => (
@@ -204,13 +229,49 @@ export default function Home() {
                 <div className="ms-3">
                   <span className="text-primary fs-8 fw-bold">{v?.title}</span>
                   <div dangerouslySetInnerHTML={{ __html: `${v?.subTitle}` }}></div>
-                  <a href="#" className="text-decoration-none text-secondary ">
+                  <a href="#" className="text-decoration-none text-secondary">
                     {v.link}
                   </a>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* //footer */}
+      <div className=" h-xl-559px bg-black position-relative">
+        <div className="container text-white pt-100px">
+          {dataFooter.map((v, i) => (
+            <div key={i}>
+              <span>{v.title}</span>
+              <p>{v.menu[i]}</p>
+            </div>
+          ))}
+        </div>
+        <div className="container d-flex">
+          <Image
+            quality={100}
+            priority={false}
+            // layout='fill'
+            objectFit="cover"
+            src={icon_banner}
+            alt={'banner_mcms'}
+            width={icon_banner.width}
+            height={icon_banner.height}
+          />
+          <div className="position-absolute bottom-0 end-0">
+            <Image
+              quality={100}
+              // priority={false}
+              // layout="fill"
+              // objectFit="cover"
+              src={footer_right}
+              alt={'footer_right'}
+              width={391}
+              height={350}
+            />
+          </div>
         </div>
       </div>
     </>
