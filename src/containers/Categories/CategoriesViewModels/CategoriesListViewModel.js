@@ -45,11 +45,13 @@ class CategoriesListViewModel {
   };
 
   handlePagination = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
     await this.categoriesStore.getList(
       this.filters,
       this.callbackOnGetSuccessHandler,
       this.callbackOnErrorHandler
     );
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   handleDelete = async (id, msg) => {
