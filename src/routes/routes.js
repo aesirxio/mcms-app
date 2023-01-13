@@ -17,6 +17,7 @@ const EditFields = lazy(() => import('../containers/FieldsPage/edit'));
 const EditFieldsGroup = lazy(() => import('../containers/FieldsGroupPage/edit'));
 const EditContent = lazy(() => import('../containers/ContentPage/edit'));
 const DmaPage = lazy(() => import('../containers/DmaPage'));
+const EditItems = lazy(() => import('../containers/ItemsPage/edit'));
 
 const authRoutes = [
   {
@@ -28,9 +29,19 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: ['/', '/items-edit/:id', '/items-create'],
+    path: '/',
     exact: true,
     main: () => <ItemsPage />,
+  },
+  {
+    path: '/items-edit/:id',
+    exact: true,
+    main: ({ match }) => <EditItems match={match} />,
+  },
+  {
+    path: '/items-create',
+    exact: true,
+    main: ({ match }) => <EditItems match={match} />,
   },
   {
     path: '/categories',

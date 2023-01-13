@@ -7,7 +7,7 @@
   $gray-500: #babad0;
   $gray-600: #6c757d;
   $gray-700: #3e545e;
-  $gray-800: #090a0b;
+  $gray-800: #949494;
   $gray-900: #1a2226;
   $black: #fff;
   // fusv-disable
@@ -98,6 +98,7 @@
   $box-shadow-sm: 0 0.185rem 0.3125rem rgba($black, 0.05);
   $box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);
   $box-shadow-inset: inset 0 1px 2px rgba($black, 0.075);
+  $box-shadow-pagination: 0px 0px 0px 1px #3E545E;
 
   //COLOR
   $color: #3c3c3c;
@@ -152,10 +153,13 @@
   $form-check-input-border: 1px solid #3e545e;
   // maps
 
-  $nav-link-color: $color-blue;
+  $nav-link-color: $gray-800;
   $nav-tabs-link-active-color: $color-blue;
-  $nav-link-hover-color: $color-blue;
+  $nav-link-hover-color: $gray-800;
   $nav-tabs-border-color: $border-color;
+
+  $dropdown-color: $body-color;
+  $dropdown-bg: $body-bg;
 
   --#{$prefix}border-color: #{$border-color};
   /* redefine theme color variables */
@@ -262,17 +266,9 @@
   @import '~bootstrap/scss/tables';
   @import '~bootstrap/scss/forms';
   @import '~bootstrap/scss/nav';
+  @import '~bootstrap/scss/dropdown';
 
   @import '~bootstrap/scss/helpers';
   @import '~bootstrap/scss/utilities/api';
 
-  // for react-select
-  :root {
-    --dropdown-item-hover-color: #1ab394;
-    --dropdown-item-hover-bg: #e8e9ec;
-    --view-active-bg: #e8e9ec;
-    --text-title-color: #fff;
-    --dropdown-bg: #000;
-    --dropdown-item-color: #fff;
-  }
 }

@@ -3,15 +3,15 @@ import { withTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-// import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 
 import './index.scss';
 import DropdownAvatar from '../DropdownAvatar';
 import ComponentHambuger from '../ComponentHambuger';
 import ComponentImage from '../ComponentImage';
 import SwitchThemes from 'components/SwitchThemes/index';
-// import Select from 'components/Select/index';
-// import i18n from 'translations/i18n';
+import Select from 'components/Select/index';
+import i18n from 'translations/i18n';
 // import Search from 'components/Search';
 class Header extends React.Component {
   constructor(props) {
@@ -37,14 +37,14 @@ class Header extends React.Component {
     const { t } = this.props;
     const { isMini } = this.state;
 
-    // const listLanguages = Object.keys(i18n.options.resources).map(function (key) {
-    //   return { value: key, label: i18n.options.resources[key].title };
-    // });
-    // const currentLanguage = listLanguages.filter((lang) => {
-    //   if (lang.value == i18n.language) {
-    //     return lang;
-    //   }
-    // });
+    const listLanguages = Object.keys(i18n.options.resources).map(function (key) {
+      return { value: key, label: i18n.options.resources[key].title };
+    });
+    const currentLanguage = listLanguages.filter((lang) => {
+      if (lang.value == i18n.language) {
+        return lang;
+      }
+    });
     return (
       <div
         id="all_header"
@@ -81,8 +81,8 @@ class Header extends React.Component {
           <div className="d-flex flex-1 align-items-center">
             {/* <Search /> */}
             <div className="ms-auto d-flex align-items-center">
-              {/* <FontAwesomeIcon icon={faGlobe} className="text-body" /> */}
-              {/* <Select
+              <FontAwesomeIcon icon={faGlobe} className="text-body" />
+              <Select
                 isClearable={false}
                 isSearchable={false}
                 isBorder={false}
@@ -93,7 +93,7 @@ class Header extends React.Component {
                   i18n.changeLanguage(data.value);
                 }}
                 defaultValue={currentLanguage}
-              /> */}
+              />
             </div>
             <div className="switch-theme-button col-auto py-2 px-3">
               <SwitchThemes />

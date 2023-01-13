@@ -24,7 +24,6 @@ const customStyles = (isBorder, isShadow = false, isSemibold = false) => {
     menu: (styles) => {
       return {
         ...styles,
-        top: 'calc(100% - 2px)',
         margin: 0,
         border: '1px solid var(--bs-border-color)',
         boxShadow: '0 3px 5px rgb(0 0 0 / 5%)',

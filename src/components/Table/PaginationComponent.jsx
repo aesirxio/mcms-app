@@ -1,26 +1,28 @@
 import React from 'react';
 import SelectComponent from '../../components/Select';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import './index.scss';
+import { Icon } from '@iconify/react';
+import { useTranslation } from 'react-i18next';
 
 const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
+  const { t } = useTranslation('common');
+
   const handleGoToPage = (i) => {
     listViewModel.handlePagination(
       (listViewModel.filters['list[limitstart]'] = (i - 1) * pagination?.pageLimit)
     );
   };
 
-  const handlePreviousPage = () => {
+  const handlePreviousPage = (i) => {
+    console.log(i)
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = pagination?.page - 1)
+      (listViewModel.filters['list[limitstart]'] = (i - 2) * pagination?.pageLimit)
     );
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = (i) => {
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = pagination?.page + 1)
+      (listViewModel.filters['list[limitstart]'] = i  * pagination?.pageLimit)
     );
   };
 
@@ -33,8 +35,8 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
           key={i}
           disabled={currentNumber === i}
           onClick={() => handleGoToPage(i)}
-          className={`btn border-0 py-7px px-14 rounded-0 cursor-pointer text-blue-0 ${
-            i === currentNumber ? 'active bg-gray-pagination' : ''
+          className={`btn border-0 py-7px px-12 rounded-0 cursor-pointer ${
+            i === currentNumber ? 'active bg-gray-pagination text-blue-0' : ' text-gray-pagination'
           } ${
             i === currentNumber - 1 ||
             i === currentNumber - 2 ||
@@ -42,11 +44,11 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             i === currentNumber + 1 ||
             i === currentNumber + 2 ||
             i === currentNumber + 3
-              ? 'visible_number'
+              ? 'visible_number '
               : ''
           }`}
         >
-          <span>{i}</span>
+          <span className={`${i !== currentNumber && 'text-gray-pagination'}`}>{i}</span>
         </button>
       );
     }
@@ -62,18 +64,21 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
     <>
       <div className="d-flex align-items-center justify-content-between mb-4">
         <div className="select_limit d-flex align-items-center">
-          <span style={{ color: '#9A9A9A' }}>Showing</span>
+          <span style={{ color: '#9A9A9A' }}>{t('txt_showing')}</span>
           <SelectComponent
-            defaultValue={{ value: pagination?.pageLimit, label: pagination?.pageLimit + ' Items' }}
+            defaultValue={{
+              value: pagination?.pageLimit,
+              label: pagination?.pageLimit + ' ' + t('txt_items'),
+            }}
             onChange={handleChangeLimit}
             options={[
-              { value: 5, label: 'Show 5' },
-              { value: 10, label: 'Show 10' },
-              { value: 15, label: 'Show 15' },
-              { value: 20, label: 'Show 20' },
+              { value: 5, label: `${t('txt_show')} 5` },
+              { value: 10, label: `${t('txt_show')} 10` },
+              { value: 15, label: `${t('txt_show')} 15` },
+              { value: 20, label: `${t('txt_show')} 20` },
             ]}
-            className={`bg-white ms-10 rounded-1 shadow-lg`}
-            isBorder
+            menuPlacement="top"
+            className={`bg-white ms-10 rounded-1 shadow-pagination`}
           />
         </div>
         {pagination?.totalPages > 1 ? (
@@ -83,14 +88,14 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             }
           >
             <button
-              onClick={() => handlePreviousPage()}
+              onClick={() => handlePreviousPage(pagination?.page)}
               disabled={pagination && pagination.page <= 1 ? true : false}
-              className={`btn border-0 py-7px px-14`}
+              className={`btn border-0 py-7px px-11 text-gray-pagination`}
             >
-              <FontAwesomeIcon icon={faChevronLeft} />
+              <Icon className="d-block" icon="carbon:chevron-left" />
             </button>
             <p
-              className={`mb-0 py-7px px-14 ${
+              className={`mb-0 py-7px px-14 text-gray-pagination ${
                 pagination.page === 1 ||
                 pagination.page === 2 ||
                 pagination.page === 3 ||
@@ -104,7 +109,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
             </p>
             <div className="wr_pagination_number">{paginationHTML()}</div>
             <p
-              className={`mb-0 py-7px px-14 ${
+              className={`mb-0 py-7px px-14 text-gray-pagination ${
                 pagination.page === pagination.totalPages - 4 ||
                 pagination.page === pagination.totalPages - 3 ||
                 pagination.page === pagination.totalPages - 2 ||
@@ -117,11 +122,11 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
               ...
             </p>
             <button
-              onClick={() => handleNextPage()}
+              onClick={() => handleNextPage(pagination?.page)}
               disabled={pagination && pagination.page === pagination.totalPages ? true : false}
-              className={`btn border-0 py-7px px-14 text-blue-0`}
+              className={`btn border-0 py-7px px-11 rounded-0 text-gray-pagination`}
             >
-              <FontAwesomeIcon icon={faChevronRight} />
+              <Icon className="d-block" icon="carbon:chevron-right" />
             </button>
           </div>
         ) : null}

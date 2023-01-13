@@ -1,4 +1,4 @@
-@import "../../scss/utils/bootstrap.scss";
+@import '../../scss/utils/bootstrap.scss';
 
 .item_menu {
   margin-bottom: 8px;
@@ -12,7 +12,13 @@
     &:focus {
       outline: 0;
     }
-    &.active,
+    &.active {
+      background-color: $blue;
+      i,
+      span {
+        font-weight: 600 !important;
+      }
+    }
     &:hover {
       background-color: $blue;
       color: $white !important;
@@ -20,6 +26,7 @@
       i,
       span {
         color: $white !important;
+        // font-weight: 600 !important;
       }
     }
     &.active {
@@ -44,12 +51,13 @@
     }
   }
 }
-[aria-controls="wr_list_submenu"]{
-  &.active{
-    .icon{
+[aria-controls='wr_list_submenu'] {
+  &.active {
+    .icon {
       transform: rotate(90deg);
     }
-  }}
+  }
+}
 #wr_list_submenu {
   background-color: var(--sidebar-submenu-bg);
   .item_menu {

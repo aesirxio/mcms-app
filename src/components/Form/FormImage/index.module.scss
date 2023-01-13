@@ -11,4 +11,6 @@
 .limit-image{
   max-height: 400px;
   padding: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

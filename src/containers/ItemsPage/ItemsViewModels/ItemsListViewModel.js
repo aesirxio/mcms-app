@@ -26,17 +26,17 @@ class ItemsListViewModel {
     await this.getListItems();
   };
 
-  resetFilter = () => {
-    this.filters = {
-      views: 'all',
-      'list[limitstart]': 0,
-      limit: 10,
-      page: 1,
-    };
-  };
+  // resetFilter = () => {
+  //   this.filters = {
+  //     views: 'all',
+  //     'list[limitstart]': 0,
+  //     limit: 10,
+  //     page: 1,
+  //   };
+  // };
 
   resetObservable = () => {
-    this.resetFilter();
+    // this.resetFilter();
     this.tableData = [];
     this.formStatus = PAGE_STATUS.LOADING;
   };
@@ -60,9 +60,9 @@ class ItemsListViewModel {
     this.formStatus = PAGE_STATUS.READY;
   };
 
-  handleDelete = async (data) => {
+  handleDelete = async (data, msg) => {
     if (data?.length > 1) {
-      notify('Cannot delete multiple items now. We will update in next version', 'error');
+      notify(msg, 'error');
       return;
     }
     this.formStatus = PAGE_STATUS.LOADING;
