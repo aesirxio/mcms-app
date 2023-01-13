@@ -95,5 +95,9 @@
   "txt_meta": "Metadescripción",
   "txt_cate_img": "Imagen de categoría",
   "txt_cate": "Categoría",
-  "txt_cannot_delete": "No se pueden eliminar varios elementos ahora. Actualizaremos en la próxima versión. Consulte la hoja de ruta para futuras versiones."
+  "txt_cannot_delete": "No se pueden eliminar varios elementos ahora. Actualizaremos en la próxima versión. Consulte la hoja de ruta para futuras versiones.",
+  "txt_forgot": "Se te olvidó tu contraseña?",
+  "txt_load": "Cargando...",
+  "txt_remember": "Recuérdame",
+  "txt_or": "O"
 }

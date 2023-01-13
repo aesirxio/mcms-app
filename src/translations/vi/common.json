@@ -95,5 +95,9 @@
   "txt_meta": "Mô tả meta",
   "txt_cate_img": "Hình ảnh thể loại",
   "txt_cate": "Loại",
-  "txt_cannot_delete": "Không thể xóa nhiều mục bây giờ. Chúng tôi sẽ cập nhật trong phiên bản tiếp theo. Vui lòng kiểm tra kết hoạch cho các bản phát hành trong tương lai."
+  "txt_cannot_delete": "Không thể xóa nhiều mục bây giờ. Chúng tôi sẽ cập nhật trong phiên bản tiếp theo. Vui lòng kiểm tra kết hoạch cho các bản phát hành trong tương lai.",
+  "txt_forgot": "Quên mật khẩu?",
+  "txt_load": "Đang tải...",
+  "txt_remember": "Nhớ tài khoản",
+  "txt_or": "Hoặc"
 }

@@ -95,5 +95,9 @@
   "txt_meta": "Meta Description",
   "txt_cate_img": "Image de catégorie",
   "txt_cate": "Catégorie",
-  "txt_cannot_delete": "Impossible de supprimer plusieurs éléments maintenant. Nous mettrons à jour dans la prochaine version. Veuillez consulter la feuille de route pour les prochaines versions."
+  "txt_cannot_delete": "Impossible de supprimer plusieurs éléments maintenant. Nous mettrons à jour dans la prochaine version. Veuillez consulter la feuille de route pour les prochaines versions.",
+  "txt_forgot": "Mot de passe oublié?",
+  "txt_load": "Chargement...",
+  "txt_remember": "Souviens-toi de moi",
+  "txt_or": "OU ALORS"
 }

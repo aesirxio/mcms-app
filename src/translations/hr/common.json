@@ -95,5 +95,9 @@
   "txt_meta": "Meta opis",
   "txt_cate_img": "Slika kategorije",
   "txt_cate": "Kategorija",
-  "txt_cannot_delete": "Sada nije moguće izbrisati više stavki. Ažurirat ćemo u sljedećoj verziji. Provjerite plan puta za buduća izdanja."
+  "txt_cannot_delete": "Sada nije moguće izbrisati više stavki. Ažurirat ćemo u sljedećoj verziji. Provjerite plan puta za buduća izdanja.",
+  "txt_forgot": "Zaboravili ste lozinku?",
+  "txt_load": "Učitavam...",
+  "txt_remember": "Zapamti me",
+  "txt_or": "ILI"
 }

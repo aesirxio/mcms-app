@@ -95,5 +95,9 @@
   "txt_meta": "Meta beskrivelse",
   "txt_cate_img": "Kategori billede",
   "txt_cate": "Kategori",
-  "txt_cannot_delete": "Kan ikke slette flere elementer nu. Vi opdaterer i næste version. Se venligst køreplanen for fremtidige udgivelser."
+  "txt_cannot_delete": "Kan ikke slette flere elementer nu. Vi opdaterer i næste version. Se venligst køreplanen for fremtidige udgivelser.",
+  "txt_forgot": "Glemt kodeord?",
+  "txt_load": "Indlæser...",
+  "txt_remember": "Husk mig",
+  "txt_or": "ELLER"
 }
