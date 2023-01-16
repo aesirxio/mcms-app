@@ -125,11 +125,11 @@ class LoginPage extends React.Component {
                 />
                 <div className="d-flex align-items-center flex-nowrap">
                   <p className="line">
-                    <span className="fs-6 fw-medium">OR</span>
+                    <span className="fs-6 fw-medium"> {t('txt_or')}</span>
                   </p>
                 </div>
                 <label className="form-label pt-3 mb-1 fw-semibold text-black">
-                  Email <span className="text-danger">*</span>
+                  {t('txt_email')} <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -146,7 +146,7 @@ class LoginPage extends React.Component {
                   className: 'text-danger',
                 })}
                 <label className="form-label mt-3 mb-1 fw-semibold text-black" htmlFor="password">
-                  Password <span className="text-danger">*</span>
+                  {t('txt_password')} <span className="text-danger">*</span>
                 </label>
                 <InputPassword
                   type="password"
@@ -163,14 +163,14 @@ class LoginPage extends React.Component {
                   className: 'text-danger',
                 })}
                 <div className="d-flex justify-content-between pt-16">
-                  <Checkbox text="Remember me" />
+                  <Checkbox text={t('txt_remember')} />
                   <a
                     href="https://mcms.aesirx.io/auth/forgotpassword"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex fw-semibold fs-6"
                   >
-                    Forgot password?
+                    {t('txt_forgot')}
                   </a>
                 </div>
                 <button
@@ -185,7 +185,7 @@ class LoginPage extends React.Component {
                       style={{ width: '1.7rem', height: '1.7rem' }}
                       role="status"
                     >
-                      <span className="visually-hidden">Loading...</span>
+                      <span className="visually-hidden"> {t('txt_load')}</span>
                     </div>
                   </div>
                 </button>
