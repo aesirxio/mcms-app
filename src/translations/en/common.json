@@ -99,5 +99,8 @@
   "txt_forgot": "Forgot password?",
   "txt_load": "Loading...",
   "txt_remember": "Remember me",
-  "txt_or": "OR"
+  "txt_or": "OR",
+  "txt_warning": "Warning",
+  "txt_successful": "Successful",
+  "txt_error": "Error"
 }

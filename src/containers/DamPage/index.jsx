@@ -1,4 +1,4 @@
-import { AesirXDam } from '@kakahuy113/test-dam-app';
+import { AesirXDam } from 'aesirx-dam-app';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useThemeContext } from 'themes/ThemeContextProvider';

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -11,22 +12,48 @@ const Toast = () => {
 const notify = (msg, type = 'success') => {
   switch (type) {
     case 'error':
-      toast.error(msg, {
-        className: 'bg-red-10 fw-bold text-red-100 ps-4',
-        icon: () => <img alt="error" src="/assets/images/error.png" />,
-      });
+      toast.error(
+        <div>
+          <Translation ns="common">{(t) => <p className="mb-1">{t('txt_error')}</p>}</Translation>
+          <span className="fw-normal">{msg}</span>
+        </div>,
+        {
+          className: 'bg-red-10 fw-bold text-red-100 ps-4',
+          icon: () => (
+            <img alt="error" src="/assets/images/icon_error.png" width={48} height={48} />
+          ),
+        }
+      );
       break;
     case 'warn':
-      toast.warn(msg, {
-        className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4',
-        icon: () => <img alt="warn" src="/assets/images/warn.png" />,
-      });
+      toast.warn(
+        <div>
+          <Translation ns="common">{(t) => <p className="mb-1">{t('txt_warning')}</p>}</Translation>
+          <span className="fw-normal">{msg}</span>
+        </div>,
+        {
+          className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4',
+          icon: () => (
+            <img alt="warn" src="/assets/images/icon_warning.png" width={25} height={40} />
+          ),
+        }
+      );
       break;
     case 'success':
-      toast.success(msg, {
-        className: 'bg-primary-10 text-green fw-bold ps-4',
-        icon: () => <img alt="success" src="/assets/images/success.png" />,
-      });
+      toast.success(
+        <div>
+          <Translation ns="common">
+            {(t) => <p className="mb-1">{t('txt_successful')}</p>}
+          </Translation>
+          <span className="fw-normal">{msg}</span>
+        </div>,
+        {
+          className: 'bg-primary-10 text-green fw-bold ps-4',
+          icon: () => (
+            <img alt="success" src="/assets/images/icon_success.png" width={48} height={48} />
+          ),
+        }
+      );
       break;
     case 'promise':
       toast.promise(

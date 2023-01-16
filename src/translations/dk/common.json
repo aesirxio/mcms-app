@@ -99,5 +99,8 @@
   "txt_forgot": "Glemt kodeord?",
   "txt_load": "Indlæser...",
   "txt_remember": "Husk mig",
-  "txt_or": "ELLER"
+  "txt_or": "ELLER",
+  "txt_warning": "Advarsel",
+  "txt_successful": "Vellykket",
+  "txt_error": "Fejl"
 }

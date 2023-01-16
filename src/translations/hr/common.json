@@ -99,5 +99,8 @@
   "txt_forgot": "Zaboravili ste lozinku?",
   "txt_load": "Učitavam...",
   "txt_remember": "Zapamti me",
-  "txt_or": "ILI"
+  "txt_or": "ILI",
+  "txt_warning": "Upozorenje",
+  "txt_successful": "Uspješno",
+  "txt_error": "Greška"
 }

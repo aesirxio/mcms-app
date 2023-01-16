@@ -99,5 +99,8 @@
   "txt_forgot": "ลืมรหัสผ่าน?",
   "txt_load": "กำลังโหลด...",
   "txt_remember": "จดจำฉัน",
-  "txt_or": "หรือ"
+  "txt_or": "หรือ",
+  "txt_warning": "คำเตือน",
+  "txt_successful": "ประสบความสำเร็จ",
+  "txt_error": "ข้อผิดพลาด"
 }
