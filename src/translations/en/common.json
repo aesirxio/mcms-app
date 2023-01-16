@@ -102,5 +102,8 @@
   "txt_or": "OR",
   "txt_warning": "Warning",
   "txt_successful": "Successful",
-  "txt_error": "Error"
+  "txt_error": "Error",
+  "txt_successfuly":"Successfully",
+  "txt_unsuccess": "Unsuccessfully",
+  "txt_delete_success": "Delete Successfully"
 }

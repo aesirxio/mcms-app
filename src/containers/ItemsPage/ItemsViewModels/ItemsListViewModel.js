@@ -90,16 +90,16 @@ class ItemsListViewModel {
 
   callbackOnSuccessToggleFeatured = async () => {
     await this.getListItems();
-    notify('Set featured successfully !');
+    notify('txt_successfuly');
   };
 
   callbackOnSuccessDeleteHandler = async () => {
     await this.getListItems();
-    notify('Delete successfully !');
+    notify('txt_delete_success');
   };
 
-  callbackOnErrorHandler = ({ message }) => {
-    notify(message, 'error');
+  callbackOnErrorHandler = () => {
+    notify('txt_unsuccess', 'error');
     this.formStatus = PAGE_STATUS.READY;
   };
 

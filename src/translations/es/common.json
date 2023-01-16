@@ -102,5 +102,8 @@
   "txt_or": "O",
   "txt_warning": "Advertencia",
   "txt_successful": "Exitosa",
-  "txt_error": "Error"
+  "txt_error": "Error",
+  "txt_successfuly":"ErrorCon éxito",
+  "txt_unsuccess": "sin éxito",
+  "txt_delete_success": "Eliminar con éxito"
 }

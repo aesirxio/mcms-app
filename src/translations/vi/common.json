@@ -102,5 +102,8 @@
   "txt_or": "Hoặc",
   "txt_warning": "Cảnh báo",
   "txt_successful": "Thành công",
-  "txt_error": "Lỗi"
+  "txt_error": "Lỗi",
+  "txt_successfuly":"Thành công",
+  "txt_unsuccess": "Không thành công",
+  "txt_delete_success": "Xóa thành công"
 }

@@ -102,5 +102,8 @@
   "txt_or": "ELLER",
   "txt_warning": "Advarsel",
   "txt_successful": "Vellykket",
-  "txt_error": "Fejl"
+  "txt_error": "Fejl",
+  "txt_successfuly":"Succesfuldt",
+  "txt_unsuccess": "Forgæves",
+  "txt_delete_success": "Slet med succes"
 }

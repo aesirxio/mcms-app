@@ -15,7 +15,9 @@ const notify = (msg, type = 'success') => {
       toast.error(
         <div>
           <Translation ns="common">{(t) => <p className="mb-1">{t('txt_error')}</p>}</Translation>
-          <span className="fw-normal">{msg}</span>
+          <Translation ns="common">
+            {(t) => <span className="fw-normal">{t(msg)}</span>}
+          </Translation>
         </div>,
         {
           className: 'bg-red-10 fw-bold text-red-100 ps-4',
@@ -29,7 +31,9 @@ const notify = (msg, type = 'success') => {
       toast.warn(
         <div>
           <Translation ns="common">{(t) => <p className="mb-1">{t('txt_warning')}</p>}</Translation>
-          <span className="fw-normal">{msg}</span>
+          <Translation ns="common">
+            {(t) => <span className="fw-normal">{t(msg)}</span>}
+          </Translation>
         </div>,
         {
           className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4',
@@ -45,7 +49,9 @@ const notify = (msg, type = 'success') => {
           <Translation ns="common">
             {(t) => <p className="mb-1">{t('txt_successful')}</p>}
           </Translation>
-          <span className="fw-normal">{msg}</span>
+          <Translation ns="common">
+            {(t) => <span className="fw-normal">{t(msg)}</span>}
+          </Translation>
         </div>,
         {
           className: 'bg-primary-10 text-green fw-bold ps-4',

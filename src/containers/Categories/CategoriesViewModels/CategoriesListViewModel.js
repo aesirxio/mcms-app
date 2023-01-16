@@ -70,36 +70,17 @@ class CategoriesListViewModel {
 
   callbackOnDeleteSuccessHandler = (id) => {
     if (id) {
-      notify('Delete successfully', 'success');
+      notify('txt_delete_success', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnErrorHandler = (error) => {
-    notify('Update unsuccessfully', 'error');
+    notify('txt_unsuccess', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
   };
 
-  callbackOnSuccessHandler = (result) => {
-    if (result) {
-      notify('Successfully', 'success');
-    }
-  };
-
-  callbackOnGetDetailSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      this.successResponse.dataDetail = result;
-      notify('GetDetail successfully', 'success');
-    }
-  };
-  callbackOnUpdateSuccessHandler = (result) => {
-    if (result) {
-      console.log('result', result);
-      notify('Update successfully', 'success');
-    }
-  };
   callbackOnGetSuccessHandler = async (result) => {
     if (result) {
       this.successResponse.data = result?.results;

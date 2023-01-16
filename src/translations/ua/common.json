@@ -102,5 +102,8 @@
      "txt_or": "АБО",
      "txt_warning": "УВАГА",
      "txt_successful": "Успішний",
-     "txt_error": "Помилка"
+     "txt_error": "Помилка",
+     "txt_successfuly":"Успішно",
+     "txt_unsuccess": "Безуспішно",
+     "txt_delete_success": "Видалити успішно"
   }

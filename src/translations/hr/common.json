@@ -102,5 +102,8 @@
   "txt_or": "ILI",
   "txt_warning": "Upozorenje",
   "txt_successful": "Uspješno",
-  "txt_error": "Greška"
+  "txt_error": "Greška",
+  "txt_successfuly":"Uspješno",
+  "txt_unsuccess": "Neuspješno",
+  "txt_delete_success": "Uspješno brisanje"
 }
