@@ -119,7 +119,7 @@ class LoginPage extends React.Component {
               </p> */}
               <form>
                 <SSOButton
-                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-3 px-6 txt_login"
+                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-3 px-6 txt_login mh-xl-50px"
                   text={t('txt_sign_in_with_sso')}
                   onGetData={onGetData}
                 />
@@ -162,7 +162,7 @@ class LoginPage extends React.Component {
                 {this.validator.message('password', this.state.password, 'required', {
                   className: 'text-danger',
                 })}
-                <div className="d-flex justify-content-between pt-16">
+                <div className="d-flex justify-content-between pt-4">
                   <Checkbox text={t('txt_remember')} />
                   <a
                     href="https://mcms.aesirx.io/auth/forgotpassword"
@@ -175,10 +175,10 @@ class LoginPage extends React.Component {
                 </div>
                 <button
                   type="button"
-                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24`}
+                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24 h-54px text-uppercase align-items-center`}
                   onClick={this.handleSubmit}
                 >
-                  {t('txt_sign_in')}
+                  <span>{t('txt_sign_in')}</span>
                   <div className="ps-2 btn_loading">
                     <div
                       className="spinner-border"
