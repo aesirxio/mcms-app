@@ -5,8 +5,11 @@ import icon_banner from '../public/imgs/icon_banner.png';
 import footer_right from '../public/imgs/footer_right.png';
 import icon_img from '../public/imgs/icon.png';
 import icon_20 from '../public/imgs/20.png';
+import dynamic from 'next/dynamic';
 
-export default function Home() {
+const SwiperComponent = dynamic(() => import('../components/Swiper'));
+
+const Home = () => {
   const menuHeader = [
     { title: `Home`, href: '/#features', slug: 'features' },
     { title: `Service`, href: '/#packages', slug: 'packages' },
@@ -56,10 +59,11 @@ export default function Home() {
       menu: ['About company', 'Ourservices', 'Contact us'],
     },
   ];
+
   return (
     <>
       {/* //banner */}
-      <div className="position-relative overflow-hidden">
+      <header className="position-relative overflow-hidden">
         <Image
           quality={100}
           priority={false}
@@ -117,7 +121,7 @@ export default function Home() {
             GET STARTED NOW
           </a>
         </div>
-      </div>
+      </header>
       <div className="d-flex justify-content-center w-100 py-3 mt-95 bg-gray">
         {dataBanner.map((v) => (
           <div
@@ -144,10 +148,10 @@ export default function Home() {
       </div>
 
       {/* //body */}
-      <div className="d-xl-flex text-center justify-content-center align-items-end bg-gray col-12">
+      <main className="d-xl-flex text-center justify-content-center align-items-end bg-gray col-12">
         <div className="text-xl-end col-12 col-xl-4">
           <span className="fw-bold fs-70 text-green-50">175+</span>
-          <p className="fw-bold">WORLDWIDE OFFICES</p>
+          <p className="fw-bold text-uppercase">WORLDWIDE OFFICES</p>
           <p className="fw-normal">
             Lorem ipsum dolor sit consectetur do <br /> eiusmod tempor incididunt
           </p>
@@ -172,7 +176,7 @@ export default function Home() {
             Lorem ipsum dolor sit consectetur do <br /> eiusmod tempor incididunt
           </p>
         </div>
-      </div>
+      </main>
 
       {/* //intro */}
       <div className="bg-white">
@@ -197,6 +201,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {dataFooter && <SwiperComponent />}
       </div>
 
       {/* // */}
@@ -284,4 +289,9 @@ export default function Home() {
       </footer>
     </>
   );
-}
+};
+// export async function getStaticProps() {
+//   return {};
+// }
+
+export default Home;

@@ -4,8 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import ComponentImage from '../ComponentImage';
 
 // Import Swiper styles
-import 'swiper/swiper.scss';
-import 'swiper/components/pagination/pagination.scss';
+import 'swiper/css';
 import './index.scss';
 
 SwiperCore.use([Navigation, Pagination]);
