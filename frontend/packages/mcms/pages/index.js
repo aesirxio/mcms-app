@@ -240,14 +240,22 @@ export default function Home() {
       </div>
 
       {/* //footer */}
-      <div className=" h-xl-559px bg-black position-relative">
+      <footer className=" h-xl-559px bg-black position-relative">
         <div className="container text-white pt-100px">
-          {dataFooter.map((v, i) => (
-            <div key={i}>
-              <span>{v.title}</span>
-              <p>{v.menu[i]}</p>
-            </div>
-          ))}
+          <div className="d-flex pb-120px">
+            {dataFooter.map((v, i) => (
+              <div key={i} className="pe-148">
+                <span className="fs-8 fw-normal text-gray-400">{v.title}</span>
+                <div className="pt-3">
+                  {v.menu.map((e, i) => (
+                    <p className="mb-0 fs-8 fw-normal text-white pt-4" key={i}>
+                      {e}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="container d-flex">
           <Image
@@ -273,7 +281,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </div>
+      </footer>
     </>
   );
 }
