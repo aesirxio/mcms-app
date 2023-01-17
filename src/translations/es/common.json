@@ -99,5 +99,11 @@
   "txt_forgot": "Se te olvidó tu contraseña?",
   "txt_load": "Cargando...",
   "txt_remember": "Recuérdame",
-  "txt_or": "O"
+  "txt_or": "O",
+  "txt_warning": "Advertencia",
+  "txt_successful": "Exitosa",
+  "txt_error": "Error",
+  "txt_successfuly":"ErrorCon éxito",
+  "txt_unsuccess": "sin éxito",
+  "txt_delete_success": "Eliminar con éxito"
 }

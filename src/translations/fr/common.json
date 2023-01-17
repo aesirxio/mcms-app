@@ -99,5 +99,11 @@
   "txt_forgot": "Mot de passe oublié?",
   "txt_load": "Chargement...",
   "txt_remember": "Souviens-toi de moi",
-  "txt_or": "OU ALORS"
+  "txt_or": "OU ALORS",
+  "txt_warning": "Avertissement",
+  "txt_successful": "À succès",
+  "txt_error": "Erreur",
+  "txt_successfuly":"Avec succès",
+  "txt_unsuccess": "Sans succès",
+  "txt_delete_success": "Supprimer avec succès"
 }
