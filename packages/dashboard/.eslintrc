@@ -1,54 +1,53 @@
 {
     "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
+      "browser": true,
+      "es6": true,
+      "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
+    "extends": ["eslint:recommended"],
     "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2022,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "no-unused-vars": "error",
-        "react/display-name": "off",
-        "react/prop-types": "off",
-        "react/jsx-key": "warn",
-        "no-unsafe-optional-chaining": "off",
-        "react/no-deprecated": "warn",
-        "react/no-children-prop": "warn",
-        "no-case-declarations": "warn"
+      "ecmaFeatures": {
+        "jsx": true,
+        "js": true
+      },
+      "ecmaVersion": 2022,
+      "sourceType": "module"
     },
     "settings": {
-        "react": {
-            "version": "17.0.2"
-        }
+      "import/parsers": {
+        "espree": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    },
+    "rules": {
+      "no-unused-vars": "error",
+      "react/display-name": "off",
+      "react/prop-types": "off",
+      "react/jsx-key": "warn",
+      "no-unsafe-optional-chaining": "off",
+      "react/no-deprecated": "warn",
+      "react/no-children-prop": "warn",
+      "no-case-declarations": "warn"
     },
     "parser": "@babel/eslint-parser",
     "ignorePatterns": [
-        "*.json",
-        "*.scss",
-        "*.svg",
-        "*.woff",
-        "*.woff2",
-        "*.ttf",
-        "*.otf",
-        "*.eot",
-        "*.png",
-        "*.dist",
-        "*/ckeditor/*"
+      "*.json",
+      "*.scss",
+      "*.svg",
+      "*.woff",
+      "*.woff2",
+      "*.ttf",
+      "*.otf",
+      "*.eot",
+      "*.png",
+      "*.dist",
+      "*/ckeditor/*"
     ]
-}
+  }
+  
