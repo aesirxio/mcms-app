@@ -6,10 +6,13 @@ import footer_right from '../public/imgs/footer_right.png';
 import icon_img from '../public/imgs/icon.png';
 import icon_20 from '../public/imgs/20.png';
 import dynamic from 'next/dynamic';
+import style from '../components/Swiper/style.module.scss';
+// import { AesirxCmsItemsApiService } from 'aesirx-dma-lib';
 
 const SwiperComponent = dynamic(() => import('../components/Swiper'));
 
-const Home = () => {
+const Home = ({ respondedData }) => {
+  console.log('respondedData', respondedData);
   const menuHeader = [
     { title: `Home`, href: '/#features', slug: 'features' },
     { title: `Service`, href: '/#packages', slug: 'packages' },
@@ -201,7 +204,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {dataFooter && <SwiperComponent />}
+        {dataFooter && <SwiperComponent style={style} />}
       </div>
 
       {/* // */}
@@ -218,7 +221,7 @@ const Home = () => {
         <div className="d-flex justify-content-center pt-74px">
           {dataService.map((v) => (
             <div
-              className="bg-white rounded-5 border me-4 z-3 w-xxl-20 h-xxl-300 d-flex align-items-center lh-md"
+              className="bg-white rounded-5 border me-4 z-3 w-xxl-20 h-xxl-300 d-flex align-items-center lh-md minw-xl-402px"
               key={v?.title}
             >
               <div className=" mx-auto">
@@ -291,7 +294,9 @@ const Home = () => {
   );
 };
 // export async function getStaticProps() {
-//   return {};
+//   const getItemsDetailAPIService = new AesirxCmsItemsApiService();
+//   const respondedData = await getItemsDetailAPIService.getDetail(9336);
+//   return { respondedData: respondedData };
 // }
 
 export default Home;

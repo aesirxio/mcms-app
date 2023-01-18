@@ -1,5 +1,6 @@
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 // Import Swiper styles
 import 'swiper/css';
 import swiper_1 from '../../public/imgs/swiper_1.png';
@@ -9,7 +10,7 @@ import Image from 'next/image';
 
 SwiperCore.use([Navigation, Pagination]);
 
-const SwiperComponent = () => {
+const SwiperComponent = ({style}) => {
   const dataSlider = [
     {
       title: 'Company1',
@@ -33,13 +34,13 @@ const SwiperComponent = () => {
   return (
     <Swiper
       spaceBetween={20}
-      slidesPerView={2}
+      slidesPerView={2.4}
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
-      className="col-8 pb-100px"
+      className={`col-10 pb-100px ${style?.swiper}`}
     >
       {dataSlider.map((value, key) => {
         return (

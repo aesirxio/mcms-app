@@ -371,6 +371,15 @@ $utilities: map-merge(
       class: mw,
       values: $spacers,
     ),
+    'min-width': (
+      responsive: true,
+      property: min-width,
+      class: minw,
+      values: (
+        auto: auto,
+        402px: 402px,
+      ),
+    ),
     'top': (
       property: top,
       values: (
