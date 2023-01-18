@@ -11,10 +11,7 @@
     "build:lib": "cd packages/dashboard/node_modules/aesirx-dma-lib && yarn install && yarn run build && cd ../../../../",
     "build:ckeditor": "cd packages/dashboard/src/ckeditor && npm run build && cd ../../../../",
     "test": "react-scripts test",
-    "dev": "react-scripts start",
-    "lint": "eslint --fix \"src/**/\"",
-    "lint:check": "eslint \"src/**/\"",
-    "lint:nowarns": "eslint --quiet \"src/**/\""
+    "dev": "react-scripts start"
   },
   "devDependencies": {}
 }
