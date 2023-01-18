@@ -2,7 +2,7 @@
   "txt_welcome_to": "Welcome to ",
   "txt_email": "Email",
   "txt_sign_in": "Sign In",
-  "txt_sign_in_with_sso": "Sign In with SSO",
+  "txt_sign_in_with_sso": "Sign in with SSO",
   "txt_sign_up": "Sign Up",
   "txt_login_text_1": "Metaverse CMS.",
   "txt_login_text_2": "Sign in to getting started",
@@ -95,5 +95,15 @@
   "txt_meta": "Meta Description",
   "txt_cate_img": "Category image",
   "txt_cate": "Category",
-  "txt_cannot_delete": "Cannot delete multiple items now. We will update in next version. Please check Road map for future releases."
+  "txt_cannot_delete": "Cannot delete multiple items now. We will update in next version. Please check Road map for future releases.",
+  "txt_forgot": "Forgot password?",
+  "txt_load": "Loading...",
+  "txt_remember": "Remember me",
+  "txt_or": "OR",
+  "txt_warning": "Warning",
+  "txt_successful": "Successful",
+  "txt_error": "Error",
+  "txt_successfuly":"Successfully",
+  "txt_unsuccess": "Unsuccessfully",
+  "txt_delete_success": "Delete Successfully"
 }

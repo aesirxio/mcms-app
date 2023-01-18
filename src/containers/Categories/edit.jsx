@@ -252,7 +252,7 @@ const EditCategories = observer(
               label: t('txt_cate_img'),
               key: 'featured_image',
               type: FORM_FIELD_TYPE.IMAGE,
-              value: this.formPropsData['featured_image']?.url,
+              value: this.formPropsData['featured_image'],
               className: 'col-12',
               changed: (data) => {
                 this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0].download_url;

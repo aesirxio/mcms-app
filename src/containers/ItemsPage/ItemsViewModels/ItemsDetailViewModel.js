@@ -74,14 +74,14 @@ class ItemsDetailViewModel {
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
-      notify('Successfully', 'success');
+      notify('txt_successfuly', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnCreateSuccessHandler = (result, redirect) => {
     if (result?.result) {
-      notify('Create successfully', 'success');
+      notify('txt_successfuly', 'success');
       if (redirect) {
         history.push('/');
       } else {
@@ -100,7 +100,7 @@ class ItemsDetailViewModel {
 
   callbackOnUpdateSuccessHandler = async (result, redirect) => {
     if (result) {
-      notify('Update successfully', 'success');
+      notify('txt_successfuly', 'success');
     }
     if (redirect) {
       history.push('/');
@@ -114,8 +114,8 @@ class ItemsDetailViewModel {
     }
   };
 
-  callbackOnErrorHandler = ({ message }) => {
-    notify(message, 'error');
+  callbackOnErrorHandler = () => {
+    notify('txt_unsuccess', 'error');
 
     // history.push('/');
     this.formStatus = PAGE_STATUS.READY;

@@ -75,21 +75,21 @@ class CategoriesDetailViewModel {
 
   callbackOnSuccessHandler = (result) => {
     if (result) {
-      notify('Successfully', 'success');
+      notify('txt_successfuly', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnCreateSuccessHandler = (result) => {
     if (result) {
-      notify('Create successfully', 'success');
+      notify('txt_successfuly', 'success');
       this.successResponse.data = result;
     }
     this.formStatus = PAGE_STATUS.READY;
   };
 
   callbackOnErrorHandler = (error) => {
-    notify('Unsuccessfully', 'error');
+    notify('txt_unsuccess', 'error');
     this.successResponse.state = false;
     this.successResponse.content_id = error.result;
     this.formStatus = PAGE_STATUS.READY;
@@ -105,7 +105,7 @@ class CategoriesDetailViewModel {
 
   callbackOnUpdateSuccessHandler = (result) => {
     if (result) {
-      notify('Update successfully', 'success');
+      notify('txt_successfuly', 'success');
     }
     this.formStatus = PAGE_STATUS.READY;
   };

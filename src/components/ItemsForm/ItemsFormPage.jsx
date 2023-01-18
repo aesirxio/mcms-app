@@ -6,6 +6,7 @@ import ItemsFormActionBar from './ItemsFormActionBar';
 import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
 import DMAComponent from 'components/DmaComponent';
+import { useThemeContext } from 'themes/ThemeContextProvider';
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -18,7 +19,8 @@ const ItemsFormPage = ({
   isDMA,
 }) => {
   const { t } = useTranslation('common');
-
+  const { i18n } = useTranslation('common');
+  const { theme } = useThemeContext();
   return (
     <>
       <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
@@ -53,7 +55,11 @@ const ItemsFormPage = ({
 
               {isDMA && (
                 <Tab tabClassName="border-0 bg-transparent p-0 pb-16" eventKey="DMA" title="DMA">
-                  <DMAComponent store={store.itemsDetailViewModel} />
+                  <DMAComponent
+                    store={store.itemsDetailViewModel}
+                    lang={i18n?.language}
+                    theme={theme?.theme}
+                  />
                 </Tab>
               )}
             </Tabs>

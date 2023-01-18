@@ -119,17 +119,17 @@ class LoginPage extends React.Component {
               </p> */}
               <form>
                 <SSOButton
-                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-3 px-6 txt_login"
+                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-3 px-6 txt_login mh-xl-50px"
                   text={t('txt_sign_in_with_sso')}
                   onGetData={onGetData}
                 />
                 <div className="d-flex align-items-center flex-nowrap">
                   <p className="line">
-                    <span className="fs-6 fw-medium">OR</span>
+                    <span className="fs-6 fw-medium"> {t('txt_or')}</span>
                   </p>
                 </div>
                 <label className="form-label pt-3 mb-1 fw-semibold text-black">
-                  Email <span className="text-danger">*</span>
+                  {t('txt_email')} <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -146,7 +146,7 @@ class LoginPage extends React.Component {
                   className: 'text-danger',
                 })}
                 <label className="form-label mt-3 mb-1 fw-semibold text-black" htmlFor="password">
-                  Password <span className="text-danger">*</span>
+                  {t('txt_password')} <span className="text-danger">*</span>
                 </label>
                 <InputPassword
                   type="password"
@@ -162,30 +162,30 @@ class LoginPage extends React.Component {
                 {this.validator.message('password', this.state.password, 'required', {
                   className: 'text-danger',
                 })}
-                <div className="d-flex justify-content-between pt-16">
-                  <Checkbox text="Remember me" />
+                <div className="d-flex justify-content-between pt-4">
+                  <Checkbox text={t('txt_remember')} />
                   <a
                     href="https://mcms.aesirx.io/auth/forgotpassword"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex fw-semibold fs-6"
                   >
-                    Forgot password?
+                    {t('txt_forgot')}
                   </a>
                 </div>
                 <button
                   type="button"
-                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24`}
+                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24 h-54px text-uppercase align-items-center`}
                   onClick={this.handleSubmit}
                 >
-                  {t('txt_sign_in')}
+                  <span>{t('txt_sign_in')}</span>
                   <div className="ps-2 btn_loading">
                     <div
                       className="spinner-border"
                       style={{ width: '1.7rem', height: '1.7rem' }}
                       role="status"
                     >
-                      <span className="visually-hidden">Loading...</span>
+                      <span className="visually-hidden"> {t('txt_load')}</span>
                     </div>
                   </div>
                 </button>

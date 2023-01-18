@@ -36,7 +36,6 @@ export default class FieldsStore {
       // call api
       // const getListInfoAPIService = new AesirxCmsCategoryApiService();
       // const respondedData = await getListInfoAPIService.getDetail(data.id);
-      console.log('getDetail', id);
       if (id) {
         runInAction(() => {
           callbackOnSuccess({
