@@ -3026,9 +3026,10 @@ aesirx-dma-app@^1.6.2:
     date-fns-tz "^1.1.6"
     react-datepicker "^3.3.0"
 
-aesirx-dma-lib@aesirxio/dma-lib:
-  version "1.7.4"
-  resolved "https://codeload.github.com/aesirxio/dma-lib/tar.gz/3b22920b308c506709e0745255fa20ff5c36e587"
+aesirx-dma-lib@^1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/aesirx-dma-lib/-/aesirx-dma-lib-1.7.5.tgz#1a8ff94dd3fece33d456a50ccf22ec60d3a0f397"
+  integrity sha512-jCj1yToTPghAcwO7p6FIyZKVJsS0D2IYwSTmAXFKIGxa0YlV6Z8702COBiJ47FpTj6Xg1wkp5wk4M/7/MUbhqA==
   dependencies:
     axios "^0.21.0"
     axios-auth-refresh "^3.0.0"
