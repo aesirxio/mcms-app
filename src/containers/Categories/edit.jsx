@@ -255,7 +255,7 @@ const EditCategories = observer(
               value: this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE],
               className: 'col-12',
               changed: (data) => {
-                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0];
+                this.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0].download_url;
               },
             },
             // {
