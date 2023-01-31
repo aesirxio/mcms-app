@@ -19,13 +19,8 @@
 }
 .line {
   width: 100%;
-  text-align: center;
-  border-bottom: 1px solid #d4dce8;
-  line-height: 0.1em;
-  margin: 10px 0 20px;
-  color: #0a021c;
-  opacity: 0.4;
-  padding-top: 1rem;
+  height: 1px;
+  background-color: var(--bs-border-color);
   font-family: 'Inter';
 }
 
