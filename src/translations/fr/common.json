@@ -76,7 +76,7 @@
   "txt_Zipcode": "Code postal",
   "txt_menu_dma": "DMA",
   "txt_you_sure": "Êtes-vous sur.e de supprimer cet élément?",
-  "txt_complete_delete": "Êtes-vous sur.e de supprimer cet élément?",
+  "txt_complete_delete": "Ce sera une suppression complète et non dans la corbeille !",
   "txt_search": "Recherchez dans vos contenus",
   "txt_colums": "Colonnes",
   "txt_id": "ID",

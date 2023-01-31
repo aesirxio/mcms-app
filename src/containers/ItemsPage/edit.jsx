@@ -89,11 +89,10 @@ const EditItems = observer(
                 label: t('txt_thump'),
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: this.formPropsData['featured_image'],
+                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
-                    data[0].download_url;
+                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] = data[0];
                 },
               },
             ],

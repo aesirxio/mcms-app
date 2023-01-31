@@ -10,8 +10,8 @@ import './index.scss';
 // import { Icon } from '@iconify/react';
 
 // const optionFilterColumns = [
-//   { value: true, label: 'Published' },
-//   { value: false, label: 'UnPublished' },
+//   { value: 'published', label: 'Published' },
+//   { value: 'unPublished', label: 'UnPublished' },
 // ];
 
 const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
@@ -20,6 +20,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   const [action, setAction] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [valueSearch, setValueSearch] = useState('');
+  // const [filterColum, setFilterColum] = useState('');
 
   useEffect(() => {
     if (listViewModel.filters['filter[search]']) {
@@ -44,11 +45,13 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
 
   // const handleFilterColum = (e) => {
   //   setFilterColum(e);
-  //   listViewModel.getListByFilter((listViewModel.filters.filterColum = e.label));
+  //   listViewModel.getListByFilter((listViewModel.filters['list[direction]'] = e.value));
   // };
+
   const handleClose = () => {
     setShowPopup(false);
   };
+
   const handleDelete = async () => {
     const listSelectedItems = selectedMulptiRows.map((item) => Number(item.values.id));
     await listViewModel.handleDelete(listSelectedItems, t('txt_cannot_delete'));
