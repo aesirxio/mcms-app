@@ -13,7 +13,7 @@ class ContentListViewModel {
   filters = {
     views: 'all',
     search: '',
-    filterColum: '',
+    'list[direction]': '',
     'list[limitstart]': 0,
     'list[limit]': 10,
   };

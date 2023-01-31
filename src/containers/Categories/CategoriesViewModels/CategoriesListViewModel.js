@@ -15,6 +15,7 @@ class CategoriesListViewModel {
     'list[limitstart]': 0,
     'list[limit]': 20,
     'filter[search]': '',
+    'list[direction]': '',
     views: 'all',
   };
 
