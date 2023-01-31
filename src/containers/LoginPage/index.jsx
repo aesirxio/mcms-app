@@ -10,6 +10,7 @@ import InputPassword from '../../components/inputPassword';
 import Checkbox from 'components/Checkbox';
 import { SSOButton } from 'aesirx-sso';
 import { Storage, AesirxAuthenticationApiService } from 'aesirx-dma-lib';
+import { withThemeContext } from 'themes/ThemeContextProvider';
 
 // import ComponentImage from 'components/ComponentImage';
 // const dataSlider = [
@@ -70,7 +71,12 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, theme } = this.props;
+    const stylesImage = {
+      verticalAlign: 'inherit',
+      filter: theme?.theme !== 'dark' ? 'unset' : 'brightness(0) invert(1)',
+    };
+
     const onGetData = async (response) => {
       const authService = new AesirxAuthenticationApiService();
       await authService.setTokenUser(response, false);
@@ -86,7 +92,7 @@ class LoginPage extends React.Component {
               {t('txt_welcome_to')}
               <img
                 className="px-1"
-                style={{ verticalAlign: 'inherit' }}
+                style={stylesImage}
                 alt="aesirx"
                 src="/assets/images/logo/welcome-logo.png"
               />
@@ -198,4 +204,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withTranslation('common')(LoginPage);
+export default withThemeContext(withTranslation('common')(LoginPage));

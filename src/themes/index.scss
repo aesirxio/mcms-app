@@ -161,6 +161,8 @@
   $dropdown-color: $body-color;
   $dropdown-bg: $body-bg;
 
+  $modal-content-bg: #242d31;
+
   --#{$prefix}border-color: #{$border-color};
   /* redefine theme color variables */
   @each $color, $value in $theme-colors {
@@ -267,6 +269,7 @@
   @import '~bootstrap/scss/forms';
   @import '~bootstrap/scss/nav';
   @import '~bootstrap/scss/dropdown';
+  @import '~bootstrap/scss/modal';
 
   @import '~bootstrap/scss/helpers';
   @import '~bootstrap/scss/utilities/api';
