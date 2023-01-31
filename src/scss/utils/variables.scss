@@ -84,6 +84,7 @@ $colors: (
   'white': $white,
   'gray': $gray-600,
   'gray-100': $gray-100,
+  'gray-600': $gray-600,
   'gray-dark': $gray-800,
   'dark-blue': $dark-blue,
   'blue-9': $color-blue-9,
@@ -162,6 +163,7 @@ $input-btn-padding-x: 0.75rem !default;
 $font-size-root: 16px !default;
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * 0.875 !default;
+$font-size-md: $font-size-base * 1.125 !default;
 $font-size-lg: $font-size-base * 1.25 !default;
 
 $h1-font-size: $font-size-base * 2.5 !default;
@@ -183,6 +185,7 @@ $font-sizes: (
   6: $h6-font-size,
   12: $h7-font-size,
   14: $h8-font-size,
+  md: $font-size-md,
   sm: $font-size-sm,
 ) !default;
 // scss-docs-end font-sizes
@@ -309,3 +312,5 @@ $nav-link-color: $blue-200;
 $nav-tabs-link-active-color: $blue-200;
 $nav-link-hover-color: $blue-200;
 $nav-tabs-border-color: $border-color;
+
+$modal-content-bg: $white;

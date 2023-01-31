@@ -120,13 +120,13 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
             <div className="d-flex justify-content-center">
               <Modal.Footer className="px-4">
                 <Button
-                  className="btn btn-light bg-white minw-118px h-48px border-gray-200"
+                  className="btn btn-light minw-118px h-48px border-gray-200"
                   onClick={() => handleClose()}
                 >
                   {t('txt_cancel')}
                 </Button>
                 <Button
-                  className="btn btn-red-100 bg-red-100 ms-3 minw-118px h-48px"
+                  className="btn btn-danger ms-3 minw-118px h-48px"
                   onClick={() => handleDelete()}
                 >
                   {t('txt_yes_delete')}
