@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import SelectComponent from "../../../components/Select";
-import "./index.scss";
+import SelectComponent from '../../../components/Select';
+import './index.scss';
 
 class FormSelection extends Component {
   constructor(props) {
@@ -13,15 +13,15 @@ class FormSelection extends Component {
   render() {
     return (
       <SelectComponent
-        value={this.field.getValueSelected}
-        options={this.field.getDataSelectOptions}
+        value={this.field.value}
+        options={this.field.options}
         // className="mb-3 text-danger"
         isBorder={true}
         plColor="rgba(8, 18, 64, 0.8)"
         //onFocus={this.field.changed}
         onBlur={this.field.blurred}
-        // isMulti={multi}
-        onChange={this.field.handleChange}
+        isMulti={this.field.isMulti}
+        onChange={this.field.changed}
       />
     );
   }

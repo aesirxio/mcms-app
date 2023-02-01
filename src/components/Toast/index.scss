@@ -26,15 +26,13 @@ $rt-color-success: $green !default;
   }
 }
 .Toastify__close-button {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  align-self: unset !important;
-  opacity: 1 !important;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 .Toastify__close-button > svg {
-  width: 19px !important;
-  height: 19px !important;
+  width: 24px !important;
+  height: 24px !important;
 }
 .text-green > .Toastify__close-button {
   color: $green !important;
@@ -51,12 +49,16 @@ $rt-color-success: $green !default;
   .Toastify__toast-theme--light {
     position: relative;
     min-height: 90px !important;
+    border-radius: 6px;
     // padding: 12px 10px 12px 20px;
     &.Toastify__toast--success {
       background-color: #d1fae5;
     }
     &.Toastify__toast--error {
       background-color: #fee2e2;
+    }
+    &.Toastify__toast--warning {
+      background-color: #FFF8E9;
     }
     &::before {
       content: '';
