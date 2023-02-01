@@ -4,8 +4,7 @@ import ModalDAMComponent from 'components/ModalDamComponent';
 import { Icon } from '@iconify/react';
 import styles from './index.module.scss';
 import './index.scss';
-
-const ClassicEditor = require('ckeditor/build/ckeditor');
+const ClassicEditor = require('aesirx-ckeditor');
 
 const Editor = ({ field }) => {
   const [editor, setEditor] = useState('');

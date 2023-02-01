@@ -28,7 +28,3 @@ data-stream.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#ckeditor
-src/ckeditor/build
-src/ckeditor/node_modules
