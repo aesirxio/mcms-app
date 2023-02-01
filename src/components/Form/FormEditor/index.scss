@@ -10,4 +10,9 @@
             background: transparent;
         }
     }
+    .ck-editor__editable_inline{
+        min-height: 200px;
+        max-height: 500px;
+        padding-bottom: 20px !important;
+    }
 }

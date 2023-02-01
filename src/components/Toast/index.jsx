@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import './index.scss';
 
 const Toast = () => {
-  return <ToastContainer hideProgressBar={true} />;
+  return <ToastContainer autoClose={false} hideProgressBar={true} />;
 };
 
 const notify = (msg, type = 'success') => {
@@ -38,7 +38,7 @@ const notify = (msg, type = 'success') => {
         {
           className: 'bg-yellow-10 fw-bold text-yellow-200 ps-4',
           icon: () => (
-            <img alt="warn" src="/assets/images/icon_warning.png" width={25} height={40} />
+            <img alt="warn" src="/assets/images/icon_warning.png" width={48} height={48} />
           ),
         }
       );
