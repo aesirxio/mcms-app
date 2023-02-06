@@ -17,6 +17,7 @@ Find out more in [https://mcms.aesirx.io](https://mcms.aesirx.io)
    4. `REACT_APP_SSO_CLIENT_SECRET` replace this with the provided `REACT_APP_SSO_CLIENT_SECRET` from https://mcms.aesirx.io/
    5. `REACT_APP_DAM_LICENSE` replace this with the provided `REACT_APP_DAM_LICENSE` from https://dam.aesirx.io/
    6. `REACT_APP_DMA_LICENSE` replace this with the provided `REACT_APP_DMA_LICENSE` from https://dma.aesirx.io/
+3. Update `Domain` & `Test domain` for licenses. See the install guide for more information https://mcms.aesirx.io/install-guide
 
 ### `yarn dev`
 
