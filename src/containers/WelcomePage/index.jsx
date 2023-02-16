@@ -1,17 +1,17 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
 // import "./index.module.scss";
 
-import BannerLeft from "../../components/BannerLeft";
+import BannerLeft from '../../components/BannerLeft';
 
 const dataSlider = [
   {
-    text: "Building a Global Media Content Marketing Team requires structure, process and automation we utilize technology to make this happen",
-    title: "Ronni K. Gothard Christiansen",
-    subtitle: "CEO & Founder R Digital",
+    text: 'Building a Global Media Content Marketing Team requires structure, process and automation we utilize technology to make this happen',
+    title: 'Ronni K. Gothard Christiansen',
+    subtitle: 'CEO & Founder R Digital',
   },
 ];
 
@@ -26,7 +26,7 @@ class WelcomePage extends React.Component {
         </div>
         <div className="col-8 d-flex flex-column justify-content-center align-items-center">
           <div className="d-block text-center">
-            <p>{t("txt_we_have_created_a_step_by_step_process")}</p>
+            <p>{t('txt_we_have_created_a_step_by_step_process')}</p>
 
             <div className="d-flex align-items-center justify-content-center">
               <a href="/" className="btn btn-outline-success w-25 me-3">
@@ -46,4 +46,4 @@ class WelcomePage extends React.Component {
   }
 }
 
-export default withTranslation("common")(WelcomePage);
+export default withTranslation('common')(WelcomePage);

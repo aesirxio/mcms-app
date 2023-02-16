@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ButtonConnect = ({ onClick, isConnected, disabled = false }) => {
   return disabled ? (
@@ -9,7 +9,7 @@ const ButtonConnect = ({ onClick, isConnected, disabled = false }) => {
         <div className="btn_loading">
           <div
             className="spinner-border"
-            style={{ width: "1.7rem", height: "1.7rem" }}
+            style={{ width: '1.7rem', height: '1.7rem' }}
             role="status"
           >
             <span className="visually-hidden">Loading...</span>
@@ -18,13 +18,11 @@ const ButtonConnect = ({ onClick, isConnected, disabled = false }) => {
       ) : (
         <button
           className={`position-relative cursor-pointer btn ${
-            isConnected ? "btn-danger" : "btn-success"
+            isConnected ? 'btn-danger' : 'btn-success'
           }`}
           onClick={onClick}
         >
-          <span className="ms-2 text-white">
-            {isConnected ? "Disconnect" : "Connect"}
-          </span>{" "}
+          <span className="ms-2 text-white">{isConnected ? 'Disconnect' : 'Connect'}</span>{' '}
         </button>
       )}
     </>

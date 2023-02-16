@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { withTranslation } from "react-i18next";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { withTranslation } from 'react-i18next';
 
 class ButtonCancel extends React.Component {
   render() {
@@ -11,14 +11,11 @@ class ButtonCancel extends React.Component {
     return (
       <>
         <div>
-          <a
-            href="/profile"
-            className="link_upgrade btn btn-white btn-outline-danger w-100"
-          >
+          <a href="/profile" className="link_upgrade btn btn-white btn-outline-danger w-100">
             <i>
               <FontAwesomeIcon icon={faTimes} />
             </i>
-            <span className="ms-2">{t("txt_cancel")}</span>
+            <span className="ms-2">{t('txt_cancel')}</span>
           </a>
         </div>
       </>
@@ -26,4 +23,4 @@ class ButtonCancel extends React.Component {
   }
 }
 
-export default withTranslation("common")(ButtonCancel);
+export default withTranslation('common')(ButtonCancel);

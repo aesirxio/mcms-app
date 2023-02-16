@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
-import ComponentImage from "../ComponentImage";
-import "./index.scss";
+import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons/faTrashAlt';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import ComponentImage from '../ComponentImage';
+import './index.scss';
 
 class ComponentCarouselCard extends Component {
   constructor(props) {
@@ -17,24 +17,24 @@ class ComponentCarouselCard extends Component {
       data: [
         {
           id: 0,
-          name: "carousel 1",
-          des: "Demo Carousel 1",
+          name: 'carousel 1',
+          des: 'Demo Carousel 1',
           toggle: true,
-          headline: "",
-          description: "",
-          website_url: "",
+          headline: '',
+          description: '',
+          website_url: '',
         },
         {
           id: 1,
-          name: "carousel 2",
-          des: "Demo Carousel 2",
+          name: 'carousel 2',
+          des: 'Demo Carousel 2',
           toggle: false,
-          headline: "",
-          description: "",
-          website_url: "",
+          headline: '',
+          description: '',
+          website_url: '',
         },
       ],
-      delete_card: "",
+      delete_card: '',
     };
   }
 
@@ -56,11 +56,9 @@ class ComponentCarouselCard extends Component {
 
     data.map((item) => ({
       ...item,
-      headline: item.id === name ? (item.headline = "") : item.headline,
-      description:
-        item.id === name ? (item.description = "") : item.description,
-      website_url:
-        item.id === name ? (item.website_url = "") : item.website_url,
+      headline: item.id === name ? (item.headline = '') : item.headline,
+      description: item.id === name ? (item.description = '') : item.description,
+      website_url: item.id === name ? (item.website_url = '') : item.website_url,
     }));
 
     this.setState({
@@ -81,16 +79,9 @@ class ComponentCarouselCard extends Component {
 
     data.map((item) => ({
       ...item,
-      headline:
-        item.id === getId ? (item.headline = e.target.value) : item.headline,
-      description:
-        item.id === getId
-          ? (item.description = e.target.value)
-          : item.description,
-      website_url:
-        item.id === getId
-          ? (item.website_url = e.target.value)
-          : item.website_url,
+      headline: item.id === getId ? (item.headline = e.target.value) : item.headline,
+      description: item.id === getId ? (item.description = e.target.value) : item.description,
+      website_url: item.id === getId ? (item.website_url = e.target.value) : item.website_url,
     }));
 
     this.setState({
@@ -106,14 +97,8 @@ class ComponentCarouselCard extends Component {
         <div>
           {data.map((value, key) => {
             return (
-              <div
-                key={key}
-                className="bg-blue-3 rounded-2 item_carousel_card mb-3"
-              >
-                <div
-                  className="cursor-pointer"
-                  onClick={() => this.handleClick(value.id)}
-                >
+              <div key={key} className="bg-blue-3 rounded-2 item_carousel_card mb-3">
+                <div className="cursor-pointer" onClick={() => this.handleClick(value.id)}>
                   <div className="p-2 d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center">
                       <i className="text-blue-0 me-1">
@@ -180,9 +165,9 @@ class ComponentCarouselCard extends Component {
                         <p className="mb-1">Headline</p>
                         <Form.Control
                           as="input"
-                          type={"text"}
+                          type={'text'}
                           id={value.headline}
-                          value={value.headline || ""}
+                          value={value.headline || ''}
                           name="headline"
                           onChange={(e) => this.handleChangeInput(e, value.id)}
                           className={`form-control`}
@@ -192,9 +177,9 @@ class ComponentCarouselCard extends Component {
                         <p className="mb-1">Description</p>
                         <Form.Control
                           as="input"
-                          type={"text"}
+                          type={'text'}
                           id={value.description}
-                          value={value.description || ""}
+                          value={value.description || ''}
                           name="description"
                           onChange={(e) => this.handleChangeInput(e, value.id)}
                           className={`form-control`}
@@ -204,9 +189,9 @@ class ComponentCarouselCard extends Component {
                         <p className="mb-1">Website URL</p>
                         <Form.Control
                           as="input"
-                          type={"text"}
+                          type={'text'}
                           id={value.website_url}
-                          value={value.website_url || ""}
+                          value={value.website_url || ''}
                           name="website_url"
                           onChange={(e) => this.handleChangeInput(e, value.id)}
                           className={`form-control`}

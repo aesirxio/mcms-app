@@ -1,4 +1,4 @@
-import SettingListViewModel from "./SettingListViewModel";
+import SettingListViewModel from './SettingListViewModel';
 class HomeViewModel {
   settingListViewModel = null;
   constructor(settingStore) {

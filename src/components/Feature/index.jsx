@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import ComponentNoData from "../ComponentNoData";
-import ComponentAccordion from "../ComponentAccordion";
+import React, { Component } from 'react';
+import ComponentNoData from '../ComponentNoData';
+import ComponentAccordion from '../ComponentAccordion';
 export default class Feature extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +13,7 @@ export default class Feature extends Component {
     const { campaigns, CAMPAIGNS_FIELD_KEY } = this.props;
 
     return (
-      <ComponentAccordion
-        id="feature"
-        title="Feature will be released in Q3/2021"
-      >
+      <ComponentAccordion id="feature" title="Feature will be released in Q3/2021">
         {campaigns ? (
           <>
             <div className="py-2 px-3 bg-blue">
@@ -35,10 +32,7 @@ export default class Feature extends Component {
             <div className="px-3">
               {campaigns.map((value, key) => {
                 return (
-                  <div
-                    key={key}
-                    className="row py-3 border-bottom-1 item_project"
-                  >
+                  <div key={key} className="row py-3 border-bottom-1 item_project">
                     <div className="col-6">
                       <div className="d-flex align-items-center">
                         <span>{value[CAMPAIGNS_FIELD_KEY.NAME]}</span>

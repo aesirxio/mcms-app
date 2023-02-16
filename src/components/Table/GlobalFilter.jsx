@@ -1,11 +1,11 @@
-import React from "react";
-import { useAsyncDebounce } from "react-table";
+import React from 'react';
+import { useAsyncDebounce } from 'react-table';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 
 const GlobalFilter = ({ setGlobalFilter, searchText, filter, setFilter }) => {
-  const [, setValue] = React.useState("");
+  const [, setValue] = React.useState('');
   const onChange = useAsyncDebounce((value) => {
     setGlobalFilter({ keyword: value });
   }, 200);

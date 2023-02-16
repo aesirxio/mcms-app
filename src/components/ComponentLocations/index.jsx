@@ -1,13 +1,13 @@
-import React from "react";
-import { Form } from "react-bootstrap";
-import Label from "../Form/Label";
+import React from 'react';
+import { Form } from 'react-bootstrap';
+import Label from '../Form/Label';
 
-import { PERSONA_FIELD_KEY } from "../../constants/PersonaModule";
-import SelectComponent from "../Select";
-import "./index.scss";
+import { PERSONA_FIELD_KEY } from '../../constants/PersonaModule';
+import SelectComponent from '../Select';
+import './index.scss';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons/faMapMarkerAlt";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt';
 
 const ComponentLocations = ({
   formPropsData,
@@ -26,7 +26,7 @@ const ComponentLocations = ({
   return (
     <div>
       <Form.Group key={Math.random(40, 200)} className="mb-4">
-        <Label text={"Locations"} required={false} />
+        <Label text={'Locations'} required={false} />
         <SelectComponent
           options={getDataSelectOptions}
           className="mb-3 text-danger"
@@ -59,7 +59,7 @@ const ComponentLocations = ({
         </div>
       </Form.Group>
       <Form.Group key={Math.random(40, 200)} className="mb-4">
-        <Label text={"Age"} required={false} />
+        <Label text={'Age'} required={false} />
         <div className="d-flex align-items-center">
           <SelectComponent
             options={getDataSelectOptionsAge}
@@ -77,32 +77,32 @@ const ComponentLocations = ({
         </div>
       </Form.Group>
       <Form.Group key={Math.random(40, 200)} className="mb-4">
-        <Label text={"Gender"} required={false} />
+        <Label text={'Gender'} required={false} />
         <div className="d-flex">
           <span
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             className={`w-80 btn_gender border-1 bg-transparent cursor-pointer d-flex align-items-center justify-content-center ${
-              getAge === "all" ? "active" : ""
+              getAge === 'all' ? 'active' : ''
             }`}
-            onClick={() => handleOnchangeAge("all")}
+            onClick={() => handleOnchangeAge('all')}
           >
             All
           </span>
           <span
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             className={`w-80 btn_gender border-1 bg-transparent cursor-pointer d-flex align-items-center justify-content-center ${
-              getAge === "men" ? "active" : ""
+              getAge === 'men' ? 'active' : ''
             }`}
-            onClick={() => handleOnchangeAge("men")}
+            onClick={() => handleOnchangeAge('men')}
           >
             Men
           </span>
           <span
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             className={`w-80 btn_gender border-1 bg-transparent cursor-pointer d-flex align-items-center justify-content-center ${
-              getAge === "women" ? "active" : ""
+              getAge === 'women' ? 'active' : ''
             }`}
-            onClick={() => handleOnchangeAge("women")}
+            onClick={() => handleOnchangeAge('women')}
           >
             Women
           </span>

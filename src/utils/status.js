@@ -1,27 +1,27 @@
 const STATUS = {
   POSTED: {
     id: 1,
-    slug: "published",
-    text: "Posted",
-    className: "bg-status-1",
+    slug: 'published',
+    text: 'Posted',
+    className: 'bg-status-1',
   },
   SCHEDULED: {
     id: 2,
-    slug: "scheduled",
-    text: "Scheduled",
-    className: "bg-status-2",
+    slug: 'scheduled',
+    text: 'Scheduled',
+    className: 'bg-status-2',
   },
   DRAFT: {
     id: 3,
-    slug: "draft",
-    text: "Draft",
-    className: "bg-status-3",
+    slug: 'draft',
+    text: 'Draft',
+    className: 'bg-status-3',
   },
   PROCESSING: {
     id: 4,
-    slug: "processing",
-    text: "Processing",
-    className: "bg-status-4",
+    slug: 'processing',
+    text: 'Processing',
+    className: 'bg-status-4',
   },
 };
 

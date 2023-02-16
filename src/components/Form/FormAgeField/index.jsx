@@ -1,58 +1,54 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import SelectComponent from "../../Select";
+import SelectComponent from '../../Select';
 
 const dataSelectOptionsAgeFrom = [
-  { value: "18", label: "18" },
-  { value: "24", label: "24" },
-  { value: "35", label: "35" },
-  { value: "44", label: "44" },
-  { value: "55", label: "55" },
-  { value: "65+", label: "65+" },
+  { value: '18', label: '18' },
+  { value: '24', label: '24' },
+  { value: '35', label: '35' },
+  { value: '44', label: '44' },
+  { value: '55', label: '55' },
+  { value: '65+', label: '65+' },
 ];
 
 const dataSelectOptionsGGAgeFrom = [
-  { value: "18_to_24", label: "18 - 24" },
-  { value: "25_to_34", label: "25 - 34" },
-  { value: "35_to_44", label: "35 - 44" },
-  { value: "45_to_54", label: "45 - 54" },
-  { value: "55_to_64", label: "55 - 64" },
-  { value: "65_up", label: "65+" },
-  { value: "unknown", label: "Unknown" },
+  { value: '18_to_24', label: '18 - 24' },
+  { value: '25_to_34', label: '25 - 34' },
+  { value: '35_to_44', label: '35 - 44' },
+  { value: '45_to_54', label: '45 - 54' },
+  { value: '55_to_64', label: '55 - 64' },
+  { value: '65_up', label: '65+' },
+  { value: 'unknown', label: 'Unknown' },
 ];
 
 const dataSelectOptionsAgeTo = [
-  { value: "18", label: "18" },
-  { value: "24", label: "24" },
-  { value: "35", label: "35" },
-  { value: "44", label: "44" },
-  { value: "55", label: "55" },
-  { value: "65+", label: "65+" },
+  { value: '18', label: '18' },
+  { value: '24', label: '24' },
+  { value: '35', label: '35' },
+  { value: '44', label: '44' },
+  { value: '55', label: '55' },
+  { value: '65+', label: '65+' },
 ];
 
 const dataSelectOptionsGGAgeTo = [
-  { value: "18_to_24", label: "18 - 24" },
-  { value: "25_to_34", label: "25 - 34" },
-  { value: "35_to_44", label: "35 - 44" },
-  { value: "45_to_54", label: "45 - 54" },
-  { value: "55_to_64", label: "55 - 64" },
-  { value: "65_up", label: "65+" },
-  { value: "unknown", label: "Unknown" },
+  { value: '18_to_24', label: '18 - 24' },
+  { value: '25_to_34', label: '25 - 34' },
+  { value: '35_to_44', label: '35 - 44' },
+  { value: '45_to_54', label: '45 - 54' },
+  { value: '55_to_64', label: '55 - 64' },
+  { value: '65_up', label: '65+' },
+  { value: 'unknown', label: 'Unknown' },
 ];
 
 const FormAgeField = ({ field }) => {
-  const [getDataSelectOptionsAge, setDataSelectOptionsAge] = useState(
-    dataSelectOptionsAgeTo
-  );
+  const [getDataSelectOptionsAge, setDataSelectOptionsAge] = useState(dataSelectOptionsAgeTo);
 
   const handleOnChange = (data, target) => {
     field.changed(data, target);
 
-    if (target.name === "age_from") {
+    if (target.name === 'age_from') {
       if (data?.value) {
-        let getAgeFrom = getDataSelectOptionsAge.filter(
-          (item) => item.value > data.value
-        );
+        let getAgeFrom = getDataSelectOptionsAge.filter((item) => item.value > data.value);
         setDataSelectOptionsAge(getAgeFrom);
       }
     }
@@ -63,9 +59,7 @@ const FormAgeField = ({ field }) => {
       <SelectComponent
         defaultValue={field.valueFrom}
         onChange={handleOnChange}
-        options={
-          field.isAgeGG ? dataSelectOptionsGGAgeFrom : dataSelectOptionsAgeFrom
-        }
+        options={field.isAgeGG ? dataSelectOptionsGGAgeFrom : dataSelectOptionsAgeFrom}
         className="text-green w-110 "
         isBorder={true}
         plColor="rgba(8, 18, 64, 0.8)"
@@ -80,9 +74,7 @@ const FormAgeField = ({ field }) => {
       <SelectComponent
         defaultValue={field.valueTo}
         onChange={handleOnChange}
-        options={
-          field.isAgeGG ? dataSelectOptionsGGAgeTo : getDataSelectOptionsAge
-        }
+        options={field.isAgeGG ? dataSelectOptionsGGAgeTo : getDataSelectOptionsAge}
         className="text-green w-110 "
         isBorder={true}
         plColor="rgba(8, 18, 64, 0.8)"

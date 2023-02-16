@@ -1,32 +1,32 @@
-import React from "react";
-import NumberFormat from "react-number-format";
-import SETTINGS from "../../../constants/Settings";
+import React from 'react';
+import NumberFormat from 'react-number-format';
+import SETTINGS from '../../../constants/Settings';
 
 const FormPriceField = ({ field }) => {
   let prefix = `${SETTINGS.CURRENCY_SYMBOL} `;
-  let suffix = "";
+  let suffix = '';
 
-  if (SETTINGS.CURRENCY_SYMBOL_POSITION === "behind") {
+  if (SETTINGS.CURRENCY_SYMBOL_POSITION === 'behind') {
     suffix = ` ${SETTINGS.CURRENCY_SYMBOL}`;
-    prefix = "";
+    prefix = '';
   }
   const configPrice = {
     value: `${field.value ?? 0}`,
-    displayType: "input",
+    displayType: 'input',
     thousandSeparator: `${SETTINGS.THOUSAND_SEPERATOR}`,
     decimalSeparator: `${SETTINGS.DECIMAL_SEPERATOR}`,
     suffix: `${suffix}`,
     prefix: `${prefix}`,
     allowNegative: false,
-    className: "form-control",
+    className: 'form-control',
     placeholder: `${field.placeholder}`,
   };
 
   const configNumber = {
     value: `${field.value ?? 0}`,
-    displayType: "input",
+    displayType: 'input',
     allowNegative: false,
-    className: "form-control",
+    className: 'form-control',
     placeholder: `${field.placeholder}`,
   };
   return (

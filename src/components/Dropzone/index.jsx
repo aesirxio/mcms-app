@@ -1,5 +1,5 @@
-import React from "react";
-import { useDropzone } from "react-dropzone";
+import React from 'react';
+import { useDropzone } from 'react-dropzone';
 
 // import ComponentImage from '../ComponentImage';
 
@@ -19,7 +19,7 @@ const Dropzone = ({ children, noClick, createAssets, className }) => {
   });
 
   return (
-    <div className={`position-relative ${className ?? "w-100 h-100"}`}>
+    <div className={`position-relative ${className ?? 'w-100 h-100'}`}>
       <div {...getRootProps()} className="cursor-auto w-100 h-100">
         <input
           {...getInputProps()}

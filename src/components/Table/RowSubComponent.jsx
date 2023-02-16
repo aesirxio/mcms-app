@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
 function SubRows({ row, rowProps, visibleColumns, data, loading }) {
   if (loading) {
@@ -23,14 +23,9 @@ function SubRows({ row, rowProps, visibleColumns, data, loading }) {
               >
                 {row.cells.map((cell, key) => {
                   return (
-                    <td
-                      key={key}
-                      {...cell.getCellProps()}
-                      className="px-2 py-3"
-                    >
-                      {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
-                        value:
-                          cell.column.accessor && cell.column.accessor(x, i),
+                    <td key={key} {...cell.getCellProps()} className="px-2 py-3">
+                      {cell.render(cell.column.SubCell ? 'SubCell' : 'Cell', {
+                        value: cell.column.accessor && cell.column.accessor(x, i),
                         row: { ...row, original: x },
                       })}
                     </td>
@@ -45,13 +40,7 @@ function SubRows({ row, rowProps, visibleColumns, data, loading }) {
   );
 }
 
-const SubRowAsync = ({
-  row,
-  rowProps,
-  visibleColumns,
-  listViewModel,
-  idKey,
-}) => {
+const SubRowAsync = ({ row, rowProps, visibleColumns, listViewModel, idKey }) => {
   const [loading, setLoading] = React.useState(true);
 
   let data = useRef([]);
@@ -60,9 +49,7 @@ const SubRowAsync = ({
     (async function () {
       try {
         if (idKey) {
-          data.current = await listViewModel?.getContentByIdExpanded(
-            row.original[idKey]
-          );
+          data.current = await listViewModel?.getContentByIdExpanded(row.original[idKey]);
         }
 
         setLoading(false);

@@ -1,61 +1,61 @@
-import React from "react";
-import ComponentImage from "../ComponentImage";
-import styles from "./index.module.scss";
+import React from 'react';
+import ComponentImage from '../ComponentImage';
+import styles from './index.module.scss';
 
 const defaultData = [
   {
     key: 1,
-    images: "/assets/images/ic-youtube.svg",
-    number: "2.344",
-    des: "Subscribers",
+    images: '/assets/images/ic-youtube.svg',
+    number: '2.344',
+    des: 'Subscribers',
   },
   {
     key: 2,
-    images: "/assets/images/ic-facebook.svg",
-    number: "1.891",
-    des: "Likes",
+    images: '/assets/images/ic-facebook.svg',
+    number: '1.891',
+    des: 'Likes',
   },
   {
     key: 3,
-    images: "/assets/images/ic-facebook.svg",
-    number: "1.004",
-    des: "Followers",
+    images: '/assets/images/ic-facebook.svg',
+    number: '1.004',
+    des: 'Followers',
   },
   {
     key: 4,
-    images: "/assets/images/ic-facebook.svg",
-    number: "35,134",
-    des: "Followers",
+    images: '/assets/images/ic-facebook.svg',
+    number: '35,134',
+    des: 'Followers',
   },
   {
     key: 5,
-    images: "/assets/images/ic-facebook.svg",
-    number: "1,284",
-    des: "Followers",
+    images: '/assets/images/ic-facebook.svg',
+    number: '1,284',
+    des: 'Followers',
   },
   {
     key: 6,
-    images: "/assets/images/ic-facebook.svg",
-    number: "600",
-    des: "Posts",
+    images: '/assets/images/ic-facebook.svg',
+    number: '600',
+    des: 'Posts',
   },
   {
     key: 7,
-    images: "/assets/images/ic-facebook.svg",
-    number: "2,134",
-    des: "Followers",
+    images: '/assets/images/ic-facebook.svg',
+    number: '2,134',
+    des: 'Followers',
   },
   {
     key: 8,
-    images: "/assets/images/ic-facebook.svg",
-    number: "49",
-    des: "Posts",
+    images: '/assets/images/ic-facebook.svg',
+    number: '49',
+    des: 'Posts',
   },
   {
     key: 9,
-    images: "/assets/images/ic-facebook.svg",
-    number: "59",
-    des: "Posts",
+    images: '/assets/images/ic-facebook.svg',
+    number: '59',
+    des: 'Posts',
   },
 ];
 
@@ -73,13 +73,8 @@ class ListSocial extends React.Component {
         <div className="row">
           {dataToRender.map((value, key) => {
             return (
-              <div
-                key={key}
-                className={`item_social ${styles.item_social} col-4 mb-3 `}
-              >
-                <div
-                  className={`main_social ${styles.main_social} text-center`}
-                >
+              <div key={key} className={`item_social ${styles.item_social} col-4 mb-3 `}>
+                <div className={`main_social ${styles.main_social} text-center`}>
                   <p
                     className={`mb-0 wrapper_images ${styles.wrapper_images} d-flex align-items-center justify-content-center`}
                   >

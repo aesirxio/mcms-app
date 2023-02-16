@@ -1,24 +1,24 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withTranslation } from "react-i18next";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withTranslation } from 'react-i18next';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 
 class Menu2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: "English",
-      activeMenu: "",
+      language: 'English',
+      activeMenu: '',
       dataMenu: [
         {
-          title: "ACCOUNT SETTINGS",
+          title: 'ACCOUNT SETTINGS',
           listMenu: [
             {
-              name: "profile",
-              text: "txt_menu_profile",
-              link: "/profile",
+              name: 'profile',
+              text: 'txt_menu_profile',
+              link: '/profile',
               icons: faUser,
             },
           ],
@@ -51,9 +51,7 @@ class Menu2 extends React.Component {
             <i>
               <FontAwesomeIcon icon={faArrowLeft} />
             </i>
-            <span className="ms-16 text text-white">
-              {t("txt_back_to_dashboard")}
-            </span>
+            <span className="ms-16 text text-white">{t('txt_back_to_dashboard')}</span>
           </a>
         </div>
         {dataMenu.map((item, index) => {
@@ -65,9 +63,7 @@ class Menu2 extends React.Component {
                     <li
                       key={key}
                       onClick={() => this.handleCheckActive(value.link)}
-                      className={`item_menu ${
-                        value.className ? value.className : ""
-                      }`}
+                      className={`item_menu ${value.className ? value.className : ''}`}
                     >
                       <NavLink
                         to={value.link}
@@ -91,4 +87,4 @@ class Menu2 extends React.Component {
   }
 }
 
-export default withTranslation("common")(Menu2);
+export default withTranslation('common')(Menu2);

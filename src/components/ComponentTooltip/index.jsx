@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import { Tooltip } from "bootstrap";
-import "./index.scss";
+import React, { useRef, useEffect } from 'react';
+import { Tooltip } from 'bootstrap';
+import './index.scss';
 
 const ComponentTooltip = ({ children, title }) => {
   const textInput = useRef(null);

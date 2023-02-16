@@ -1,21 +1,15 @@
-import React, { Component } from "react";
-import "./index.scss";
-import { Collapse } from "bootstrap";
+import React, { Component } from 'react';
+import './index.scss';
+import { Collapse } from 'bootstrap';
 class ComponentAccordion extends Component {
   componentDidMount() {
-    this.accordion = new Collapse(
-      document.getElementById(`${this.props.id}Collapse`),
-      {
-        toggle: false,
-      }
-    );
+    this.accordion = new Collapse(document.getElementById(`${this.props.id}Collapse`), {
+      toggle: false,
+    });
   }
   render() {
     return (
-      <div
-        className="bg-white p-3 pb-5 accordion"
-        id={`accordion${this.props.id}`}
-      >
+      <div className="bg-white p-3 pb-5 accordion" id={`accordion${this.props.id}`}>
         <div className="accordion-item border-0">
           <div
             className="d-flex justify-content-between mb-2 accordion-header"
