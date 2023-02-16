@@ -1,5 +1,5 @@
-import React from "react";
-import postMessage from "../../utils/slack";
+import React from 'react';
+import postMessage from '../../utils/slack';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

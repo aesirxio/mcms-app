@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 class ComponentViewList extends Component {
   listViewModel = null;
@@ -15,20 +15,16 @@ class ComponentViewList extends Component {
     const { viewModel } = props;
     this.listViewModel = viewModel ? viewModel.getListViewModel() : null;
 
-    if (typeof viewModel.getFormModalViewModel === "function") {
-      this.formModalViewModal = viewModel
-        ? viewModel.getFormModalViewModel()
-        : null;
+    if (typeof viewModel.getFormModalViewModel === 'function') {
+      this.formModalViewModal = viewModel ? viewModel.getFormModalViewModel() : null;
     }
 
-    if (typeof viewModel.getFormViewModel === "function") {
+    if (typeof viewModel.getFormViewModel === 'function') {
       this.formViewModel = viewModel ? viewModel.getFormViewModel() : null;
     }
 
-    if (typeof viewModel.getFilterFormViewModel === "function") {
-      this.filterFormViewModel = viewModel
-        ? viewModel.getFilterFormViewModel()
-        : null;
+    if (typeof viewModel.getFilterFormViewModel === 'function') {
+      this.filterFormViewModel = viewModel ? viewModel.getFilterFormViewModel() : null;
     }
   }
 

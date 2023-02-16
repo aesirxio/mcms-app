@@ -1,8 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ComponentImage from "../ComponentImage";
-import styles from "./index.module.scss";
-import { withTranslation } from "react-i18next";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ComponentImage from '../ComponentImage';
+import styles from './index.module.scss';
+import { withTranslation } from 'react-i18next';
 
 class Button extends React.Component {
   constructor(props) {
@@ -37,4 +37,4 @@ class Button extends React.Component {
   }
 }
 
-export default withTranslation("common")(Button);
+export default withTranslation('common')(Button);

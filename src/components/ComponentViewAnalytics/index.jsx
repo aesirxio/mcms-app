@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import ComponentImage from "../ComponentImage";
+import React, { Component } from 'react';
+import ComponentImage from '../ComponentImage';
 
 class ComponentViewAnalytics extends Component {
   // constructor(props) {
@@ -22,7 +22,7 @@ class ComponentViewAnalytics extends Component {
         </div>
         <div className="py-2 px-3 bg-blue">
           <div className="row">
-            <div className={`${isStatus ? "col-8" : "col-12"}`}>
+            <div className={`${isStatus ? 'col-8' : 'col-12'}`}>
               <span>{name}</span>
             </div>
             {isStatus && (
@@ -39,16 +39,10 @@ class ComponentViewAnalytics extends Component {
                 <div className="col-8">
                   <div className="d-flex align-items-center">
                     {value.icon && (
-                      <ComponentImage
-                        src={value.icon}
-                        alt={value.icon}
-                        className="img-avatar"
-                      />
+                      <ComponentImage src={value.icon} alt={value.icon} className="img-avatar" />
                     )}
 
-                    <span className={`${value.icon ? "ps-3" : ""}`}>
-                      {value.text}
-                    </span>
+                    <span className={`${value.icon ? 'ps-3' : ''}`}>{value.text}</span>
                   </div>
                 </div>
                 {isStatus && (

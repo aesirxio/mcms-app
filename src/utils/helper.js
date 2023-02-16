@@ -6,7 +6,7 @@ class Helper {
   };
 
   static isNull = (value) => {
-    if (!value || value === "null" || !JSON.parse(value)) {
+    if (!value || value === 'null' || !JSON.parse(value)) {
       return true;
     }
 
@@ -14,7 +14,7 @@ class Helper {
   };
 
   static confirmDeleteItem() {
-    return window.confirm("Are you sure you wish to delete this item?");
+    return window.confirm('Are you sure you wish to delete this item?');
   }
 
   static isJson = (str) => {
@@ -26,8 +26,7 @@ class Helper {
     return true;
   };
 
-  static getTimezoneDefault = () =>
-    Intl.DateTimeFormat().resolvedOptions().timeZone;
+  static getTimezoneDefault = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
 export default Helper;

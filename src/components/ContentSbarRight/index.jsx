@@ -1,12 +1,12 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-import { Tab, Nav } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons/faUserCog";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
-import "./index.scss";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+import { Tab, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCog } from '@fortawesome/free-solid-svg-icons/faUserCog';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import './index.scss';
 
-import ComponentPreviewPersona from "../ComponentPreviewPersona";
+import ComponentPreviewPersona from '../ComponentPreviewPersona';
 
 class ContentSbarRight extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class ContentSbarRight extends React.Component {
         {
           id: 0,
           icon: faUserCog,
-          name: "Persona",
+          name: 'Persona',
         },
         // {
         //   id: 1,
@@ -46,7 +46,7 @@ class ContentSbarRight extends React.Component {
                       <Nav.Link
                         eventKey={value.id}
                         className={`d-block text-center text px-0 text-black ${
-                          this.props.disabled ? "opacity-50" : ""
+                          this.props.disabled ? 'opacity-50' : ''
                         }`}
                         disabled={this.props.disabled}
                         onClick={this.props.handlShowPreviewPersona}
@@ -54,9 +54,7 @@ class ContentSbarRight extends React.Component {
                         <i className="">
                           <FontAwesomeIcon icon={value.icon} />
                         </i>
-                        <span className="fs-14 opacity-75 d-block">
-                          {value.name}
-                        </span>
+                        <span className="fs-14 opacity-75 d-block">{value.name}</span>
                       </Nav.Link>
                     </Nav.Item>
                   );
@@ -94,4 +92,4 @@ class ContentSbarRight extends React.Component {
   }
 }
 
-export default withTranslation("common")(ContentSbarRight);
+export default withTranslation('common')(ContentSbarRight);

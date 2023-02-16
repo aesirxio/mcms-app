@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./index.scss";
+import './index.scss';
 
 class TitleAccount extends React.Component {
   constructor(props) {
@@ -13,9 +13,7 @@ class TitleAccount extends React.Component {
     return (
       <div className={`d-block mt-2 wrapper_title_account ${mb}`}>
         <h2>{title}</h2>
-        {title_below !== undefined && title_below !== "" && (
-          <h2>{title_below}</h2>
-        )}
+        {title_below !== undefined && title_below !== '' && <h2>{title_below}</h2>}
       </div>
     );
   }

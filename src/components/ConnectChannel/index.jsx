@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { Image, Tab, Tabs } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import { Image, Tab, Tabs } from 'react-bootstrap';
+import { withTranslation } from 'react-i18next';
 
-import Button from "../Button";
-import ModalComponent from "../Modal";
+import Button from '../Button';
+import ModalComponent from '../Modal';
 
-import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 class ConnectChannel extends React.Component {
   constructor(props) {
@@ -15,20 +15,20 @@ class ConnectChannel extends React.Component {
       channels: [
         {
           id: 1,
-          name: "social",
-          title: "Social Media",
+          name: 'social',
+          title: 'Social Media',
           items: [
-            { name: "Facebook", image: "/assets/images/icon-pepsi.png" },
-            { name: "Twitter", image: "/assets/images/icon-nikon.png" },
+            { name: 'Facebook', image: '/assets/images/icon-pepsi.png' },
+            { name: 'Twitter', image: '/assets/images/icon-nikon.png' },
           ],
         },
         {
           id: 2,
-          name: "advertising",
-          title: "Advertising",
+          name: 'advertising',
+          title: 'Advertising',
           items: [
-            { name: "Advertising 1", image: "/assets/images/icon-adidas.png" },
-            { name: "Advertising 2", image: "/assets/images/icon-nikon.png" },
+            { name: 'Advertising 1', image: '/assets/images/icon-adidas.png' },
+            { name: 'Advertising 2', image: '/assets/images/icon-nikon.png' },
           ],
         },
       ],
@@ -59,11 +59,7 @@ class ConnectChannel extends React.Component {
                       return (
                         <div className="d-flex justify-content-between p-4">
                           <div className="align-self-center">
-                            <Image
-                              src={item.image}
-                              className="pe-2"
-                              height="40"
-                            />
+                            <Image src={item.image} className="pe-2" height="40" />
                             <span className="ps-2 fs-5">{item.name}</span>
                           </div>
                           <div className="align-self-center">
@@ -84,14 +80,10 @@ class ConnectChannel extends React.Component {
             })}
           </Tabs>
         </div>
-        <ModalComponent
-          body="test"
-          show={showModal}
-          onHide={() => this.handleModalShow(false)}
-        />
+        <ModalComponent body="test" show={showModal} onHide={() => this.handleModalShow(false)} />
       </>
     );
   }
 }
 
-export default withTranslation("common")(ConnectChannel);
+export default withTranslation('common')(ConnectChannel);

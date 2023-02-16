@@ -1,5 +1,5 @@
-import UpdatePasswordViewModel from "./UpdatePasswordViewModel";
-import UpdateGeneralViewModel from "./UpdateGeneralViewModel";
+import UpdatePasswordViewModel from './UpdatePasswordViewModel';
+import UpdateGeneralViewModel from './UpdateGeneralViewModel';
 
 class ProfileViewModel {
   updatePasswordViewModel = null;

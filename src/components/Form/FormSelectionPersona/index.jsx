@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SelectComponent from "../../../components/Select";
+import React, { Component } from 'react';
+import SelectComponent from '../../../components/Select';
 
 class FormSelectionPersona extends Component {
   constructor(props) {

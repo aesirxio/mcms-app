@@ -14,7 +14,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
   };
 
   const handlePreviousPage = (i) => {
-    console.log(i)
+    console.log(i);
     listViewModel.handlePagination(
       (listViewModel.filters['list[limitstart]'] = (i - 2) * pagination?.pageLimit)
     );
@@ -22,7 +22,7 @@ const PaginationComponent = ({ listViewModel, pagination, setPageSize }) => {
 
   const handleNextPage = (i) => {
     listViewModel.handlePagination(
-      (listViewModel.filters['list[limitstart]'] = i  * pagination?.pageLimit)
+      (listViewModel.filters['list[limitstart]'] = i * pagination?.pageLimit)
     );
   };
 

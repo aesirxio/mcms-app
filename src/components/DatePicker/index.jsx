@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import moment from "moment";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 const CustomizedDatePicker = ({ handleOnChange, defaultDate }) => {
-  const [startDate, setStartDate] = useState(
-    defaultDate ? new Date(defaultDate) : null
-  );
+  const [startDate, setStartDate] = useState(defaultDate ? new Date(defaultDate) : null);
   return (
     <DatePicker
-      dateFormat={"MMM d, yyyy"}
+      dateFormat={'MMM d, yyyy'}
       selected={startDate}
       showYearDropdown
-      maxDate={moment().subtract(10, "y").startOf("year").toDate()}
+      maxDate={moment().subtract(10, 'y').startOf('year').toDate()}
       wrapperClassName="w-100"
       scrollableYearDropdown
       yearDropdownItemNumber={15}

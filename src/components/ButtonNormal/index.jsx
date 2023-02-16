@@ -1,24 +1,19 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withTranslation } from "react-i18next";
-import "./index.scss";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withTranslation } from 'react-i18next';
+import './index.scss';
 
 class ButtonNormal extends React.Component {
   render() {
     let { iconStart, iconEnd, text, onClick, className, disabled } = this.props;
     const { t } = this.props;
     if (className === undefined) {
-      className = "btn-success";
+      className = 'btn-success';
     }
 
     return (
       <>
-        <button
-          type="button"
-          className={`btn ${className}`}
-          onClick={onClick}
-          disabled={disabled}
-        >
+        <button type="button" className={`btn ${className}`} onClick={onClick} disabled={disabled}>
           {iconStart && (
             <i className="me-1">
               <FontAwesomeIcon icon={iconStart} />
@@ -37,4 +32,4 @@ class ButtonNormal extends React.Component {
   }
 }
 
-export default withTranslation("common")(ButtonNormal);
+export default withTranslation('common')(ButtonNormal);

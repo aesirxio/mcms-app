@@ -1,11 +1,11 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons/faUserCog";
-import { withTranslation } from "react-i18next";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCog } from '@fortawesome/free-solid-svg-icons/faUserCog';
+import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const SubmitButton = ({ validateInfoBeforeSending }) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   return (
     <div>
       <div className="d-flex align-items-center row">
@@ -20,7 +20,7 @@ const SubmitButton = ({ validateInfoBeforeSending }) => {
             <i>
               <FontAwesomeIcon icon={faUserCog} />
             </i>
-            <span className="flex-1 ps-2">{t("txt_update")}</span>
+            <span className="flex-1 ps-2">{t('txt_update')}</span>
           </button>
         </div>
       </div>
@@ -28,4 +28,4 @@ const SubmitButton = ({ validateInfoBeforeSending }) => {
   );
 };
 
-export default withTranslation("common")(SubmitButton);
+export default withTranslation('common')(SubmitButton);

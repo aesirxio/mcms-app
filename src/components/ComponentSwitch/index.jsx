@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import "./index.scss";
+import React, { PureComponent } from 'react';
+import './index.scss';
 
 class ComponentSwitch extends PureComponent {
   render() {

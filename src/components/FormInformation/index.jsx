@@ -1,6 +1,6 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { Form } from "react-bootstrap";
+import React from 'react';
+import { observer } from 'mobx-react';
+import { Form } from 'react-bootstrap';
 
 const FormInformation = observer(
   class FormInformation extends React.Component {
@@ -11,7 +11,7 @@ const FormInformation = observer(
     }
 
     render() {
-      const value = this.viewModel ? this.viewModel.value : "Default";
+      const value = this.viewModel ? this.viewModel.value : 'Default';
 
       return (
         <Form.Label className="w-100 ps-2 mb-0">

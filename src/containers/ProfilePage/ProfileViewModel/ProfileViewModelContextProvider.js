@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ProfileViewModelContext = React.createContext();
 
@@ -11,8 +11,7 @@ export const ProfileViewModelContextProvider = ({ children, viewModel }) => {
 };
 
 /* Hook to use store in any functional component */
-export const useProfileViewModel = () =>
-  React.useContext(ProfileViewModelContext);
+export const useProfileViewModel = () => React.useContext(ProfileViewModelContext);
 
 /* HOC to inject store to any functional or class component */
 export const witheProfileViewModel = (Component) => (props) => {

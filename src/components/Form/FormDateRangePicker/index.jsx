@@ -1,24 +1,20 @@
-import React, { useState, lazy } from "react";
+import React, { useState, lazy } from 'react';
 
-import { Form } from "react-bootstrap";
+import { Form } from 'react-bootstrap';
 
-import { FORMAT_DATE } from "../../../constants/FormFieldType";
-import Label from "../Label";
+import { FORMAT_DATE } from '../../../constants/FormFieldType';
+import Label from '../Label';
 
-import "react-datepicker/dist/react-datepicker.css";
-import "./index.scss";
+import 'react-datepicker/dist/react-datepicker.css';
+import './index.scss';
 
-const DatePicker = lazy(() => import("react-datepicker"));
+const DatePicker = lazy(() => import('react-datepicker'));
 
 const FormDateRangePicker = ({ field, validator }) => {
   let { startField, endField } = field;
 
-  const [startDate, setStartDate] = useState(
-    startField.value && new Date(startField.value)
-  );
-  const [endDate, setEndDate] = useState(
-    endField.value && new Date(endField.value)
-  );
+  const [startDate, setStartDate] = useState(startField.value && new Date(startField.value));
+  const [endDate, setEndDate] = useState(endField.value && new Date(endField.value));
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -34,10 +30,7 @@ const FormDateRangePicker = ({ field, validator }) => {
   return (
     <>
       <Form.Group key={Math.random(40, 200)} className="mb-3">
-        <Label
-          text={startField.label}
-          required={startField.required ?? false}
-        />
+        <Label text={startField.label} required={startField.required ?? false} />
         <DatePicker
           dateFormat={FORMAT_DATE}
           selected={startDate}
@@ -50,14 +43,9 @@ const FormDateRangePicker = ({ field, validator }) => {
           minDate={new Date()}
         />
         {startField.validation &&
-          validator.message(
-            startField.label,
-            startField.value,
-            startField.validation,
-            {
-              className: "text-danger",
-            }
-          )}
+          validator.message(startField.label, startField.value, startField.validation, {
+            className: 'text-danger',
+          })}
       </Form.Group>
       <Form.Group key={Math.random(40, 200)} className="mb-3">
         <Label text={endField.label} required={endField.required ?? false} />
@@ -73,14 +61,9 @@ const FormDateRangePicker = ({ field, validator }) => {
           className="form-control"
         />
         {endField.validation &&
-          validator.message(
-            endField.label,
-            endField.value,
-            endField.validation,
-            {
-              className: "text-danger",
-            }
-          )}
+          validator.message(endField.label, endField.value, endField.validation, {
+            className: 'text-danger',
+          })}
       </Form.Group>
     </>
   );
