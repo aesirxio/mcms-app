@@ -14,7 +14,6 @@ const ItemsFormPage = ({
   title,
   validator,
   store,
-  // formPublish,
   isEdit,
   isDMA,
 }) => {
@@ -67,9 +66,6 @@ const ItemsFormPage = ({
             <GeneralInformation validator={validator} generateFormSetting={generateFormSetting} />
           )}
         </Col>
-        {/* <Col lg={3}>
-          <PublishOptionComponent validator={validator} formPublish={formPublish} />
-        </Col> */}
       </Row>
     </>
   );

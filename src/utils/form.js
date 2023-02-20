@@ -38,7 +38,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   <Input field={field} />
                   {field.validation &&
                     validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
+                      className: 'text-danger mt-2',
                     })}
                 </Form.Group>
               );

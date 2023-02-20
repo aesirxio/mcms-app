@@ -39,7 +39,7 @@ const mainRoutes = [
     main: ({ match }) => <EditItems match={match} />,
   },
   {
-    path: '/items-create',
+    path: '/items/add',
     exact: true,
     main: ({ match }) => <EditItems match={match} />,
   },
