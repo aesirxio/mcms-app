@@ -34,7 +34,7 @@ const mainRoutes = [
     main: () => <ItemsPage />,
   },
   {
-    path: '/items-edit/:id',
+    path: '/items/edit/:id',
     exact: true,
     main: ({ match }) => <EditItems match={match} />,
   },

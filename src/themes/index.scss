@@ -274,4 +274,12 @@
   @import '~bootstrap/scss/helpers';
   @import '~bootstrap/scss/utilities/api';
 
+  .btn-light {
+    --bs-btn-bg: #1a2226;
+    --bs-btn-color: $body-color;
+    --bs-btn-hover-color: #1a2226;
+    &:hover .icon {
+      background-color: #1a2226 !important;
+    }
+  }
 }

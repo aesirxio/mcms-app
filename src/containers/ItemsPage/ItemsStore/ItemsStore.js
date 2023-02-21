@@ -104,23 +104,27 @@ export default class ItemsStore {
     }
   }
 
-  async createItem(data, redirect, callbackOnSuccess, callbackOnError) {
+  async createItem(data, callbackOnSuccess, callbackOnError) {
     try {
-      const createItemsAPIService = new AesirxCmsItemsApiService();
-      const response = await createItemsAPIService.createItem(data);
-      if (response) {
+      let resultOnSave;
+      const aesirxCmsItemsApiService = new AesirxCmsItemsApiService();
+      resultOnSave = await aesirxCmsItemsApiService.create(data);
+
+      if (resultOnSave?.result) {
         runInAction(() => {
-          callbackOnSuccess(response, redirect);
+          callbackOnSuccess(resultOnSave?.result, 'Created successfully');
         });
       } else {
         runInAction(() => {
-          callbackOnError(response);
+          callbackOnError(resultOnSave);
         });
       }
+      return resultOnSave?.result;
     } catch (error) {
       runInAction(() => {
-        callbackOnError(error);
+        callbackOnError(error?.response?.data);
       });
+      return 0;
     }
   }
 

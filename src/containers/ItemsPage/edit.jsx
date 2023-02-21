@@ -5,41 +5,57 @@ import { observer } from 'mobx-react';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
 import PAGE_STATUS from 'constants/PageStatus';
 import ItemsStore from './ItemsStore/ItemsStore';
-import ItemsViewModel from './ItemsViewModels/ItemsViewModel';
 import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import { withItemsViewModel } from './ItemsViewModels/ItemsViewModelContextProvider';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import ItemsFormActionBar from 'components/ItemsForm/ItemsFormActionBar';
-const itemsStore = new ItemsStore();
-const itemsViewModel = new ItemsViewModel(itemsStore);
 import { Col, Row, Tab, Tabs } from 'react-bootstrap';
 import FieldsComponent from 'components/FieldsComponent';
-import DMAComponent from 'components/DmaComponent';
+import ItemsDetailViewModel from './ItemsViewModels/ItemsDetailViewModel';
+import ActionsBar from 'components/ActionsBar';
+// import DMAComponent from 'components/DmaComponent';
+
+const itemsStore = new ItemsStore();
+const itemsDetailViewModel = new ItemsDetailViewModel(itemsStore);
+
 const EditItems = observer(
   class EditItems extends Component {
-    itemsDetailViewModel = null;
-    formPropsData = {
-      [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: '',
-      [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: '',
-      [CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT]: '',
-      [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]: '',
-    };
+    viewModel = null;
     isEdit = false;
+
+    // formPropsData = {
+    //   [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: '',
+    //   [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: '',
+    //   [CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT]: '',
+    //   [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]: '',
+    // };
 
     constructor(props) {
       super(props);
-      this.viewModel = itemsViewModel ? itemsViewModel : null;
+      this.viewModel = itemsDetailViewModel ? itemsDetailViewModel : null;
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-      this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
-      this.itemsDetailViewModel.setForm(this);
+      // this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
+      // this.itemsDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
-      this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.ID] = this.props.match.params?.id;
-      await this.itemsDetailViewModel.initializeData();
-      this.forceUpdate();
+      if (this.isEdit) {
+        this.viewModel.initializeData(this.props.match.params?.id);
+      }
+    }
+
+    handleValidateForm() {
+      if (this.validator.fields[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] === true) {
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            key: 'fields',
+            requiredField: Math.random(1, 200),
+          };
+        });
+      }
+      this.validator.showMessages();
     }
 
     render() {
@@ -54,12 +70,12 @@ const EditItems = observer(
                 label: t('txt_title'),
                 key: 'title',
                 type: FORM_FIELD_TYPE.INPUT,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME],
+                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME],
                 className: 'col-12',
                 required: true,
                 validation: 'required',
                 changed: (data) => {
-                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
                 },
                 blurred: () => {
                   this.validator.showMessageFor('Title');
@@ -69,20 +85,21 @@ const EditItems = observer(
                 label: t('txt_description'),
                 key: 'description',
                 type: FORM_FIELD_TYPE.TEXTAREA,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
+                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] = data.target.value;
+                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] =
+                    data.target.value;
                 },
               },
               {
                 label: t('txt_intro_text'),
                 key: 'intro_text',
                 type: FORM_FIELD_TYPE.EDITOR,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
+                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
+                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
                 },
               },
 
@@ -90,10 +107,10 @@ const EditItems = observer(
                 label: t('txt_thump'),
                 key: 'thumb_image',
                 type: FORM_FIELD_TYPE.IMAGE,
-                value: this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
+                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
                 className: 'col-12',
                 changed: (data) => {
-                  this.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
+                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
                     data[0].download_url;
                 },
               },
@@ -102,13 +119,14 @@ const EditItems = observer(
         ],
       };
 
+      if (status === PAGE_STATUS.LOADING) {
+        return <Spinner />;
+      }
+
       return (
         <>
-          {this.itemsDetailViewModel?.formStatus === PAGE_STATUS.LOADING ? (
-            <Spinner className="spinner-overlay" />
-          ) : (
-            <div className="py-4 px-3 h-100 d-flex flex-column">
-              {/* <ItemsFormPage
+          <div className="py-4 px-3 h-100 d-flex flex-column">
+            {/* <ItemsFormPage
                 store={this.itemsDetailViewModel}
                 dataForm={data}
                 generateFormSetting={null}
@@ -118,43 +136,80 @@ const EditItems = observer(
                 isEdit={this.isEdit}
                 isDMA={true}
               /> */}
-              <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
-                <div>
-                  <h2 className="fw-bold text-capitalize">{t('txt_add_item')}</h2>
-                </div>
-                <ItemsFormActionBar
-                  path={'/'}
-                  validator={this.validator}
-                  store={this.itemsDetailViewModel}
-                  isEdit={this.isEdit}
+            <div className="d-flex align-items-start justify-content-between mb-32 flex-wrap">
+              <div>
+                <h2 className="fw-bold text-capitalize">{t('txt_add_item')}</h2>
+              </div>
+
+              <div className="position-relative">
+                <ActionsBar
+                  buttons={[
+                    {
+                      title: t('txt_cancel'),
+                      handle: async () => {
+                        history.push(`/variants/all`);
+                      },
+                      icon: '/assets/images/cancel.svg',
+                    },
+                    {
+                      title: t('txt_save_close'),
+                      handle: async () => {
+                        if (this.validator.allValid()) {
+                          const result = this.isEdit
+                            ? await this.viewModel.update()
+                            : await this.viewModel.create();
+                          if (result !== 0) {
+                            history.push(`/variants/all`);
+                          }
+                        } else {
+                          this.handleValidateForm();
+                        }
+                      },
+                    },
+                    {
+                      title: t('txt_save'),
+                      validator: this.validator,
+                      handle: async () => {
+                        console.log(this.viewModel.formPropsData);
+                        // if (this.validator.allValid()) {
+                        //   if (this.isEdit) {
+                        //     await this.viewModel.update();
+                        //   } else {
+                        //     let result = await this.viewModel.createItem();
+                        //     result && history.push(`/items/edit/${result}`);
+                        //   }
+                        // } else {
+                        //   this.handleValidateForm();
+                        // }
+                      },
+                      icon: '/assets/images/save.svg',
+                      variant: 'success',
+                    },
+                  ]}
                 />
               </div>
-              <Row>
-                <Col lg={9} className="mb-24">
-                  <Tabs defaultActiveKey="fields" className="mb-24 custom-tabs">
-                    <Tab
-                      tabClassName="border-0 bg-transparent p-0 pb-16 me-40"
-                      eventKey="fields"
-                      title={t('txt_menu_field')}
-                    >
-                      <FieldsComponent validator={this.validator} dataForm={data} />
-                    </Tab>
-                    <Tab
-                      tabClassName="border-0 bg-transparent p-0 pb-16"
-                      eventKey="DMA"
-                      title="DMA"
-                    >
-                      <DMAComponent
+            </div>
+            <Row>
+              <Col lg={9} className="mb-24">
+                <Tabs defaultActiveKey="fields" className="mb-24 custom-tabs">
+                  <Tab
+                    tabClassName="border-0 bg-transparent p-0 pb-16 me-40"
+                    eventKey="fields"
+                    title={t('txt_menu_field')}
+                  >
+                    <FieldsComponent validator={this.validator} dataForm={data} />
+                  </Tab>
+                  <Tab tabClassName="border-0 bg-transparent p-0 pb-16" eventKey="DMA" title="DMA">
+                    {/* <DMAComponent
                         store={this.itemsDetailViewModel}
                         // lang={i18n?.language}
                         // theme={theme?.theme}
-                      />
-                    </Tab>
-                  </Tabs>
-                </Col>
-              </Row>
-            </div>
-          )}
+                      /> */}
+                  </Tab>
+                </Tabs>
+              </Col>
+            </Row>
+          </div>
         </>
       );
     }
