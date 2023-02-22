@@ -23,25 +23,16 @@ const EditItems = observer(
     viewModel = null;
     isEdit = false;
 
-    // formPropsData = {
-    //   [CMS_ITEMS_DETAIL_FIELD_KEY.NAME]: '',
-    //   [CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT]: '',
-    //   [CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT]: '',
-    //   [CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]: '',
-    // };
-
     constructor(props) {
       super(props);
       this.viewModel = itemsDetailViewModel ? itemsDetailViewModel : null;
       this.validator = new SimpleReactValidator({ autoForceUpdate: this });
-      // this.itemsDetailViewModel = this.viewModel ? this.viewModel.getItemsDetailViewModel() : null;
-      // this.itemsDetailViewModel.setForm(this);
       this.isEdit = props.match.params?.id ? true : false;
     }
 
     async componentDidMount() {
       if (this.isEdit) {
-        this.viewModel.initializeData(this.props.match.params?.id);
+        await this.viewModel.initializeData(this.props.match.params?.id);
       }
     }
 
@@ -59,8 +50,8 @@ const EditItems = observer(
     }
 
     render() {
-      const { t } = this.props;
-      const data = {
+      const { t, history } = this.props;
+      let data = {
         id: 1,
         groups: [
           {
@@ -74,52 +65,52 @@ const EditItems = observer(
                 className: 'col-12',
                 required: true,
                 validation: 'required',
-                changed: (data) => {
-                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = data.target.value;
+                changed: (e) => {
+                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] = e.target.value;
                 },
                 blurred: () => {
-                  this.validator.showMessageFor('Title');
+                  this.validator.showMessageFor(t('txt_title'));
                 },
               },
-              {
-                label: t('txt_description'),
-                key: 'description',
-                type: FORM_FIELD_TYPE.TEXTAREA,
-                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
-                className: 'col-12',
-                changed: (data) => {
-                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] =
-                    data.target.value;
-                },
-              },
-              {
-                label: t('txt_intro_text'),
-                key: 'intro_text',
-                type: FORM_FIELD_TYPE.EDITOR,
-                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
-                className: 'col-12',
-                changed: (data) => {
-                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
-                },
-              },
+              // {
+              //   label: t('txt_description'),
+              //   key: 'description',
+              //   type: FORM_FIELD_TYPE.TEXTAREA,
+              //   value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT],
+              //   className: 'col-12',
+              //   changed: (data) => {
+              //     this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] =
+              //       data.target.value;
+              //   },
+              // },
+              // {
+              //   label: t('txt_intro_text'),
+              //   key: 'intro_text',
+              //   type: FORM_FIELD_TYPE.EDITOR,
+              //   value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT],
+              //   className: 'col-12',
+              //   changed: (data) => {
+              //     this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] = data;
+              //   },
+              // },
 
-              {
-                label: t('txt_thump'),
-                key: 'thumb_image',
-                type: FORM_FIELD_TYPE.IMAGE,
-                value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
-                className: 'col-12',
-                changed: (data) => {
-                  this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
-                    data[0].download_url;
-                },
-              },
+              // {
+              //   label: t('txt_thump'),
+              //   key: 'thumb_image',
+              //   type: FORM_FIELD_TYPE.IMAGE,
+              //   value: this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE],
+              //   className: 'col-12',
+              //   changed: (data) => {
+              //     this.viewModel.formPropsData[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] =
+              //       data[0].download_url;
+              //   },
+              // },
             ],
           },
         ],
       };
 
-      if (status === PAGE_STATUS.LOADING) {
+      if (this.viewModel.formStatus === PAGE_STATUS.LOADING) {
         return <Spinner />;
       }
 
@@ -147,7 +138,7 @@ const EditItems = observer(
                     {
                       title: t('txt_cancel'),
                       handle: async () => {
-                        history.push(`/variants/all`);
+                        history.push(`/items/all`);
                       },
                       icon: '/assets/images/cancel.svg',
                     },
@@ -156,10 +147,10 @@ const EditItems = observer(
                       handle: async () => {
                         if (this.validator.allValid()) {
                           const result = this.isEdit
-                            ? await this.viewModel.update()
-                            : await this.viewModel.create();
+                            ? await this.viewModel.updateItem()
+                            : await this.viewModel.createItem();
                           if (result !== 0) {
-                            history.push(`/variants/all`);
+                            history.push(`/items/all`);
                           }
                         } else {
                           this.handleValidateForm();
@@ -168,19 +159,18 @@ const EditItems = observer(
                     },
                     {
                       title: t('txt_save'),
-                      validator: this.validator,
                       handle: async () => {
-                        console.log(this.viewModel.formPropsData);
-                        // if (this.validator.allValid()) {
-                        //   if (this.isEdit) {
-                        //     await this.viewModel.update();
-                        //   } else {
-                        //     let result = await this.viewModel.createItem();
-                        //     result && history.push(`/items/edit/${result}`);
-                        //   }
-                        // } else {
-                        //   this.handleValidateForm();
-                        // }
+                        if (this.validator.allValid()) {
+                          if (this.isEdit) {
+                            await this.viewModel.updateItem();
+                          } else {
+                            await this.viewModel.createItem();
+                            this.viewModel.formPropsData.result &&
+                              history.push(`/items/edit/${this.viewModel.formPropsData.id}`);
+                          }
+                        } else {
+                          this.handleValidateForm();
+                        }
                       },
                       icon: '/assets/images/save.svg',
                       variant: 'success',

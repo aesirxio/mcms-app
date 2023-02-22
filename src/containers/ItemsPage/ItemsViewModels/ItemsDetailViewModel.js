@@ -6,7 +6,7 @@ import { notify } from 'components/Toast';
 // import history from 'routes/history';
 class ItemsDetailViewModel {
   itemsStore = null;
-  formStatus = PAGE_STATUS.LOADING;
+  formStatus = PAGE_STATUS.READY;
   formPropsData = {};
 
   constructor(itemsStore) {
@@ -20,11 +20,13 @@ class ItemsDetailViewModel {
 
   initializeData = async (itemId) => {
     this.formStatus = PAGE_STATUS.LOADING;
-    await this.itemsStore.getDetail(
-      itemId,
-      this.callbackOnSuccessHandler,
-      this.callbackOnErrorHandler
-    );
+    if (itemId) {
+      await this.itemsStore.getDetail(
+        itemId,
+        this.callbackOnGetItemSuccessHandler,
+        this.callbackOnErrorHandler
+      );
+    }
   };
 
   // getFields = async (contentTypeId) => {
@@ -39,9 +41,27 @@ class ItemsDetailViewModel {
     this.formStatus = PAGE_STATUS.LOADING;
     await this.itemsStore.createItem(
       this.formPropsData,
-      this.callbackOnSuccessHandler,
+      this.callbackOnCreateSuccessHandler,
       this.callbackOnErrorHandler
     );
+  };
+
+  updateItem = async () => {
+    this.formStatus = PAGE_STATUS.LOADING;
+    await this.itemsStore.updateItem(
+      this.formPropsData,
+      this.callbackOnUpdateSuccessHandler,
+      this.callbackOnErrorHandler
+    );
+  };
+
+  callbackOnUpdateSuccessHandler = async (result, message) => {
+    if (result) {
+      if (message) {
+        notify(message, 'success');
+      }
+    }
+    this.formStatus = PAGE_STATUS.READY;
   };
 
   // handleUpdate = async (redirect) => {
@@ -63,13 +83,29 @@ class ItemsDetailViewModel {
   //   this.formStatus = PAGE_STATUS.READY;
   // };
 
-  callbackOnSuccessHandler = (result, message) => {
+  callbackOnGetItemSuccessHandler = (result, message) => {
     if (result) {
+      this.formPropsData = result;
+      console.log('result', result);
+      if (message) {
+        notify(message, 'success');
+      }
+    }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnCreateSuccessHandler = (result, message) => {
+    if (result?.result) {
       this.formPropsData = result;
       if (message) {
         notify(message, 'success');
       }
     }
+    this.formStatus = PAGE_STATUS.READY;
+  };
+
+  callbackOnErrorHandler = (error) => {
+    notify(error, 'error');
     this.formStatus = PAGE_STATUS.READY;
   };
 
@@ -107,12 +143,6 @@ class ItemsDetailViewModel {
   //     );
   //   }
   // };
-
-  callbackOnErrorHandler = () => {
-    notify('txt_unsuccess', 'error');
-    // history.push('/');
-    this.formStatus = PAGE_STATUS.READY;
-  };
 }
 
 export default ItemsDetailViewModel;

@@ -22,7 +22,7 @@ const List = observer(() => {
   // };
 
   const handleEdit = (id) => {
-    history.push(`/items-edit/${id}`);
+    history.push(`/items/edit/${id}`);
   };
   const { t } = useTranslation('common');
   const columnsTable = React.useMemo(

@@ -29,7 +29,7 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: '/',
+    path: ['/', '/items', '/items/all'],
     exact: true,
     main: () => <ItemsPage />,
   },
@@ -41,7 +41,7 @@ const mainRoutes = [
   {
     path: '/items/add',
     exact: true,
-    main: ({ match }) => <EditItems match={match} />,
+    main: () => <EditItems />,
   },
   {
     path: '/categories',

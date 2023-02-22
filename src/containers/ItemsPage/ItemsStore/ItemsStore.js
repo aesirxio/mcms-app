@@ -108,11 +108,11 @@ export default class ItemsStore {
     try {
       let resultOnSave;
       const aesirxCmsItemsApiService = new AesirxCmsItemsApiService();
-      resultOnSave = await aesirxCmsItemsApiService.create(data);
+      resultOnSave = await aesirxCmsItemsApiService.createItem(data);
 
       if (resultOnSave?.result) {
         runInAction(() => {
-          callbackOnSuccess(resultOnSave?.result, 'Created successfully');
+          callbackOnSuccess(resultOnSave, 'Created successfully');
         });
       } else {
         runInAction(() => {
@@ -128,14 +128,14 @@ export default class ItemsStore {
     }
   }
 
-  async updateItem(data, redirect, callbackOnSuccess, callbackOnError) {
+  async updateItem(data, callbackOnSuccess, callbackOnError) {
     try {
-      const updateItemsAPIService = new AesirxCmsItemsApiService();
-      const response = await updateItemsAPIService.updateItem(data);
+      const aesirxCmsItemsApiService = new AesirxCmsItemsApiService();
+      const response = await aesirxCmsItemsApiService.updateItem(data);
 
       if (response) {
         runInAction(() => {
-          callbackOnSuccess(response, redirect);
+          callbackOnSuccess(response, 'Updated successfully');
         });
       } else {
         runInAction(() => {
