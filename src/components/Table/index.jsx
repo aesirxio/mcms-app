@@ -11,6 +11,8 @@ import update from 'immutability-helper';
 import BTable from 'react-bootstrap/Table';
 import ListThumb from 'components/ListThumb';
 import PaginationComponent from './PaginationComponent';
+import Spinner from 'components/Spinner';
+import PAGE_STATUS from 'constants/PageStatus';
 
 const Table = ({
   columns,
@@ -45,12 +47,14 @@ const Table = ({
     );
   });
   const [records, setRecords] = useState(data);
+  const [formStatus, setFormStatus] = useState(listViewModel.formStatus);
   const paginate = [];
 
   useEffect(() => {
     setRecords(data);
+    setFormStatus(listViewModel.formStatus);
     setPageSize(listViewModel.filters['list[limit]']);
-  }, [data]);
+  }, [data, formStatus]);
 
   const {
     getTableProps,
@@ -220,190 +224,201 @@ const Table = ({
           selectedMulptiRows={selectedFlatRows}
           allColumns={allColumns}
           listViewModel={listViewModel}
+          setFormStatus={setFormStatus}
         />
-        {rows.length ? (
+        {formStatus === PAGE_STATUS.LOADING ? (
+          <Spinner />
+        ) : (
           <>
-            <div className="rounded-3 shadow-sm mb-24 text-color">
-              <BTable
-                hover
-                {...getTableProps()}
-                className={`w-100 align-middle table-borderless table-striped mb-0 ${classNameTable}`}
-              >
-                <thead className="bg-white">
-                  {headerGroups.map((headerGroup) => {
-                    let newHeaderGroup = '';
+            {rows.length ? (
+              <>
+                <div className="rounded-3 shadow-sm mb-24 text-color">
+                  <BTable
+                    hover
+                    {...getTableProps()}
+                    className={`w-100 align-middle table-borderless table-striped mb-0 ${classNameTable}`}
+                  >
+                    <thead className="bg-white">
+                      {headerGroups.map((headerGroup) => {
+                        let newHeaderGroup = '';
 
-                    dataList
-                      ? (newHeaderGroup = headerGroup.headers.filter(
-                          (item) => !dataList.some((other) => item.id === other)
-                        ))
-                      : (newHeaderGroup = headerGroup.headers);
+                        dataList
+                          ? (newHeaderGroup = headerGroup.headers.filter(
+                              (item) => !dataList.some((other) => item.id === other)
+                            ))
+                          : (newHeaderGroup = headerGroup.headers);
 
-                    return (
-                      <tr key={Math.random(40, 200)} {...headerGroup.getHeaderGroupProps()}>
-                        {newHeaderGroup.map((column) => {
-                          let sortParams = column.sortParams ?? column.id;
-                          let columnInside = '';
-                          if (column.rowSpan && canSort && !sortAPI) {
-                            columnInside = column.columns[0];
-                          }
-                          return (
-                            <th
-                              key={Math.random(40, 200)}
-                              {...(!sortAPI && {
-                                ...column.getHeaderProps(
-                                  canSort && !column.rowSpan
-                                    ? column.getSortByToggleProps()
-                                    : columnInside && columnInside.getSortByToggleProps()
-                                ),
-                              })}
-                              className={`py-16 ${column.className} ${
-                                sortAPI && sortParams !== 'number' && sortParams !== 'selection'
-                                  ? 'cursor-pointer'
-                                  : ''
-                              } `}
-                              {...(sortAPI &&
-                                sortParams !== 'number' &&
-                                sortParams !== 'selection' && {
-                                  onClick: async () => {
-                                    // setLoading(true);
-                                    if (store.sortBy.id === sortParams && store.sortBy.desc) {
-                                      store.sortBy = { desc: true };
-                                    } else if (store.sortBy.id !== sortParams) {
-                                      store.sortBy = {
-                                        id: sortParams,
-                                        desc: false,
-                                      };
-                                    } else {
-                                      store.sortBy = {
-                                        id: sortParams,
-                                        desc: !store.sortBy.desc,
-                                      };
-                                    }
-                                    await store.getItems();
-                                    // setLoading(false);
-                                  },
-                                })}
-                              rowSpan={`${column.rowSpan ?? 1}`}
-                            >
-                              {column?.id === 'featured' && (
-                                <svg
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 20 20"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
+                        return (
+                          <tr key={Math.random(40, 200)} {...headerGroup.getHeaderGroupProps()}>
+                            {newHeaderGroup.map((column) => {
+                              let sortParams = column.sortParams ?? column.id;
+                              let columnInside = '';
+                              if (column.rowSpan && canSort && !sortAPI) {
+                                columnInside = column.columns[0];
+                              }
+                              return (
+                                <th
+                                  key={Math.random(40, 200)}
+                                  {...(!sortAPI && {
+                                    ...column.getHeaderProps(
+                                      canSort && !column.rowSpan
+                                        ? column.getSortByToggleProps()
+                                        : columnInside && columnInside.getSortByToggleProps()
+                                    ),
+                                  })}
+                                  className={`py-16 ${column.className} ${
+                                    sortAPI && sortParams !== 'number' && sortParams !== 'selection'
+                                      ? 'cursor-pointer'
+                                      : ''
+                                  } `}
+                                  {...(sortAPI &&
+                                    sortParams !== 'number' &&
+                                    sortParams !== 'selection' && {
+                                      onClick: async () => {
+                                        // setLoading(true);
+                                        if (store.sortBy.id === sortParams && store.sortBy.desc) {
+                                          store.sortBy = { desc: true };
+                                        } else if (store.sortBy.id !== sortParams) {
+                                          store.sortBy = {
+                                            id: sortParams,
+                                            desc: false,
+                                          };
+                                        } else {
+                                          store.sortBy = {
+                                            id: sortParams,
+                                            desc: !store.sortBy.desc,
+                                          };
+                                        }
+                                        await store.getItems();
+                                        // setLoading(false);
+                                      },
+                                    })}
+                                  rowSpan={`${column.rowSpan ?? 1}`}
                                 >
-                                  <path
-                                    d="M19.2831 7.27584L13.3323 6.411L10.6722 1.01803C10.5995 0.87037 10.48 0.750839 10.3323 0.678183C9.96199 0.49537 9.51199 0.647714 9.32684 1.01803L6.66668 6.411L0.715901 7.27584C0.551838 7.29928 0.401838 7.37662 0.286995 7.49381C0.148155 7.63651 0.0716479 7.8285 0.0742847 8.02758C0.0769216 8.22666 0.158487 8.41655 0.301057 8.55553L4.60653 12.7532L3.58934 18.6805C3.56549 18.8184 3.58074 18.9602 3.63338 19.0899C3.68602 19.2195 3.77394 19.3318 3.88716 19.4141C4.00038 19.4963 4.13437 19.5452 4.27395 19.5551C4.41352 19.5651 4.5531 19.5357 4.67684 19.4704L9.99949 16.6719L15.3222 19.4704C15.4675 19.5477 15.6362 19.5735 15.7979 19.5454C16.2057 19.4751 16.48 19.0883 16.4097 18.6805L15.3925 12.7532L19.6979 8.55553C19.8151 8.44068 19.8925 8.29068 19.9159 8.12662C19.9792 7.71646 19.6932 7.33678 19.2831 7.27584Z"
-                                    fill={'#1AB394'}
-                                    stroke={'#C0C0C0'}
-                                  />
-                                </svg>
-                              )}
-                              {column.render('Header')}
-                              {canSort && (
-                                <span className="position-relative">
-                                  {sortAPI ? (
-                                    store?.sortBy?.id === sortParams &&
-                                    sortParams !== 'number' &&
-                                    sortParams !== 'selection' ? (
-                                      store?.sortBy?.desc ? (
-                                        <FontAwesomeIcon
-                                          className="sort-icon sort-icon-down ms-sm"
-                                          icon={faSortDown}
-                                        />
-                                      ) : (
-                                        <FontAwesomeIcon
-                                          className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                          icon={faSortUp}
-                                        />
-                                      )
-                                    ) : (
-                                      ''
-                                    )
-                                  ) : !column.rowSpan ? (
-                                    column.isSorted &&
-                                    sortParams !== 'number' &&
-                                    sortParams !== 'selection' ? (
-                                      column.isSortedDesc ? (
-                                        <FontAwesomeIcon
-                                          className="sort-icon sort-icon-down ms-sm"
-                                          icon={faSortDown}
-                                        />
-                                      ) : (
-                                        <FontAwesomeIcon
-                                          className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                          icon={faSortUp}
-                                        />
-                                      )
-                                    ) : (
-                                      ''
-                                    )
-                                  ) : columnInside.isSorted &&
-                                    // Column have rowSpan
-                                    sortParams !== 'number' &&
-                                    sortParams !== 'selection' ? (
-                                    columnInside.isSortedDesc ? (
-                                      <FontAwesomeIcon
-                                        className="sort-icon sort-icon-down ms-sm"
-                                        icon={faSortDown}
+                                  {column?.id === 'featured' && (
+                                    <svg
+                                      width="20"
+                                      height="20"
+                                      viewBox="0 0 20 20"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M19.2831 7.27584L13.3323 6.411L10.6722 1.01803C10.5995 0.87037 10.48 0.750839 10.3323 0.678183C9.96199 0.49537 9.51199 0.647714 9.32684 1.01803L6.66668 6.411L0.715901 7.27584C0.551838 7.29928 0.401838 7.37662 0.286995 7.49381C0.148155 7.63651 0.0716479 7.8285 0.0742847 8.02758C0.0769216 8.22666 0.158487 8.41655 0.301057 8.55553L4.60653 12.7532L3.58934 18.6805C3.56549 18.8184 3.58074 18.9602 3.63338 19.0899C3.68602 19.2195 3.77394 19.3318 3.88716 19.4141C4.00038 19.4963 4.13437 19.5452 4.27395 19.5551C4.41352 19.5651 4.5531 19.5357 4.67684 19.4704L9.99949 16.6719L15.3222 19.4704C15.4675 19.5477 15.6362 19.5735 15.7979 19.5454C16.2057 19.4751 16.48 19.0883 16.4097 18.6805L15.3925 12.7532L19.6979 8.55553C19.8151 8.44068 19.8925 8.29068 19.9159 8.12662C19.9792 7.71646 19.6932 7.33678 19.2831 7.27584Z"
+                                        fill={'#1AB394'}
+                                        stroke={'#C0C0C0'}
                                       />
-                                    ) : (
-                                      <FontAwesomeIcon
-                                        className="sort-icon sort-icon-up ms-sm mb-nsm"
-                                        icon={faSortUp}
-                                      />
-                                    )
-                                  ) : (
-                                    ''
+                                    </svg>
                                   )}
-                                </span>
-                              )}
-                            </th>
+                                  {column.render('Header')}
+                                  {canSort && (
+                                    <span className="position-relative">
+                                      {sortAPI ? (
+                                        store?.sortBy?.id === sortParams &&
+                                        sortParams !== 'number' &&
+                                        sortParams !== 'selection' ? (
+                                          store?.sortBy?.desc ? (
+                                            <FontAwesomeIcon
+                                              className="sort-icon sort-icon-down ms-sm"
+                                              icon={faSortDown}
+                                            />
+                                          ) : (
+                                            <FontAwesomeIcon
+                                              className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                              icon={faSortUp}
+                                            />
+                                          )
+                                        ) : (
+                                          ''
+                                        )
+                                      ) : !column.rowSpan ? (
+                                        column.isSorted &&
+                                        sortParams !== 'number' &&
+                                        sortParams !== 'selection' ? (
+                                          column.isSortedDesc ? (
+                                            <FontAwesomeIcon
+                                              className="sort-icon sort-icon-down ms-sm"
+                                              icon={faSortDown}
+                                            />
+                                          ) : (
+                                            <FontAwesomeIcon
+                                              className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                              icon={faSortUp}
+                                            />
+                                          )
+                                        ) : (
+                                          ''
+                                        )
+                                      ) : columnInside.isSorted &&
+                                        // Column have rowSpan
+                                        sortParams !== 'number' &&
+                                        sortParams !== 'selection' ? (
+                                        columnInside.isSortedDesc ? (
+                                          <FontAwesomeIcon
+                                            className="sort-icon sort-icon-down ms-sm"
+                                            icon={faSortDown}
+                                          />
+                                        ) : (
+                                          <FontAwesomeIcon
+                                            className="sort-icon sort-icon-up ms-sm mb-nsm"
+                                            icon={faSortUp}
+                                          />
+                                        )
+                                      ) : (
+                                        ''
+                                      )}
+                                    </span>
+                                  )}
+                                </th>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </thead>
+                    <tbody {...getTableBodyProps()}>
+                      {rows.length > 0 &&
+                        rows.map((row, index) => {
+                          prepareRow(row);
+                          let newRowCells = '';
+
+                          dataList
+                            ? (newRowCells = row.cells.filter(
+                                (item) => !dataList.some((other) => item.column.id === other)
+                              ))
+                            : (newRowCells = row.cells);
+
+                          return (
+                            <Row
+                              key={Math.random(40, 200)}
+                              index={index}
+                              row={row}
+                              moveRow={moveRow}
+                              newRowCells={newRowCells}
+                              {...row.getRowProps()}
+                            />
                           );
                         })}
-                      </tr>
-                    );
-                  })}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                  {rows.length > 0 &&
-                    rows.map((row, index) => {
-                      prepareRow(row);
-                      let newRowCells = '';
-
-                      dataList
-                        ? (newRowCells = row.cells.filter(
-                            (item) => !dataList.some((other) => item.column.id === other)
-                          ))
-                        : (newRowCells = row.cells);
-
-                      return (
-                        <Row
-                          key={Math.random(40, 200)}
-                          index={index}
-                          row={row}
-                          moveRow={moveRow}
-                          newRowCells={newRowCells}
-                          {...row.getRowProps()}
-                        />
-                      );
-                    })}
-                </tbody>
-              </BTable>
-            </div>
-            <PaginationComponent
-              listViewModel={listViewModel}
-              pageSize={pageSize}
-              pagination={pagination && pagination}
-              setPageSize={setPageSize}
-            />
+                    </tbody>
+                  </BTable>
+                </div>
+                <PaginationComponent
+                  listViewModel={listViewModel}
+                  pageSize={pageSize}
+                  pagination={pagination && pagination}
+                  setPageSize={setPageSize}
+                />
+              </>
+            ) : (
+              <div className="position-absolute top-50 start-50 translate-middle">
+                <ComponentNoData
+                  icons="/assets/images/ic_project.svg"
+                  title="No Data"
+                  width="w-50"
+                />
+              </div>
+            )}
           </>
-        ) : (
-          <div className="position-absolute top-50 start-50 translate-middle">
-            <ComponentNoData icons="/assets/images/ic_project.svg" title="No Data" width="w-50" />
-          </div>
         )}
       </>
     </DndProvider>
