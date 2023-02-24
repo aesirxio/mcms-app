@@ -249,15 +249,14 @@ $color-purple: #4052b3 !default;
 $enable-negative-margins: true;
 
 //SPACER
-$spacer: 1rem;
 $spacers: (
   24: 24px,
   0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
+  1: 10px,
+  2: 20px,
+  3: 30px,
+  4: 40px,
+  5: 50px,
   6: 60px,
   sm: 5px,
   7px: 7px,
