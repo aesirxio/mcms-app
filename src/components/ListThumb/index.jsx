@@ -62,8 +62,8 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel, setFormStatu
 
   return (
     <div className="rounded-3 mb-24 bg-white shadow-sm">
-      <div className="row">
-        <div className="col-auto border-end-1">
+      <div className="d-flex align-items-center">
+        <div className="border-end-1 px-3">
           <div className="input-group mb-0">
             <input
               type="text"
@@ -84,7 +84,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel, setFormStatu
             </button>
           </div>
         </div>
-        <div className="col-auto border-end-1">
+        <div className="border-end-1">
           <SelectComponent
             value={action}
             onChange={(e) => handleAnAction(e)}
@@ -137,12 +137,12 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel, setFormStatu
             </div>
           </div>
         </Modal>
-        <div className="col-auto border-end-1">
+        <div className="border-end-1">
           <Dropdown>
             <Dropdown.Toggle
               id="actions"
               variant="white"
-              className={`btn_toggle bg-transparent border-0 d-flex align-items-center`}
+              className={`btn_toggle bg-transparent border-0 d-flex align-items-center px-4`}
             >
               <i className="text-blue-0">
                 <FontAwesomeIcon icon={faColumns} />
@@ -152,7 +152,10 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel, setFormStatu
                 <FontAwesomeIcon icon={faChevronDown} />
               </i>
             </Dropdown.Toggle>
-            <Dropdown.Menu className="pt-3 px-2 border-0 shadow select-option">
+            <Dropdown.Menu
+              style={{ minWidth: '100%' }}
+              className="pt-3 px-4 border-0 shadow select-option"
+            >
               {allColumns?.map(
                 (column) =>
                   column.id !== 'selection' &&
