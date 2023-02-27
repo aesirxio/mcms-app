@@ -86,7 +86,6 @@ class ItemsDetailViewModel {
   callbackOnGetItemSuccessHandler = (result, message) => {
     if (result) {
       this.formPropsData = result;
-      console.log('result', result);
       if (message) {
         notify(message, 'success');
       }
