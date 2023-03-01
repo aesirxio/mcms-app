@@ -66,14 +66,18 @@ const ProfilePage = observer(
 
       return (
         <ProfileViewModelContextProvider viewModel={profileViewModel}>
-          <div>
-            <div className="py-4 px-16 mx-16 rounded-3">
-              <div className="w-80">
-                <h2 className="text-blue-0 mb-16">{t('txt_general_information')}</h2>
-                <UpdateGeneral />
-                <h2 className="text-blue-0 my-16">{t('txt_password')}</h2>
-                <UpdatePassword />
-              </div>
+          <div className="px-3 py-4">
+            <div className="mb-3">
+              <h2 className="fw-bold">{t('txt_title_profilfe_setting')}</h2>
+              <div className="text-color">{t('txt_title_set_information_name')}</div>
+            </div>
+
+            <div className="px-2 py-3 bg-white rounded-3">
+              <div className="fw-semi mb-2 h3">{t('txt_general_information')}</div>
+              <UpdateGeneral />
+              <div className="mb-5" />
+              <div className="fw-semi mb-2 h3">{t('txt_projectpage_password')}</div>
+              <UpdatePassword />
             </div>
           </div>
         </ProfileViewModelContextProvider>

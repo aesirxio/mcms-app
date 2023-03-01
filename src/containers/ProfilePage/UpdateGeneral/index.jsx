@@ -1,25 +1,24 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+ */
+
 import React, { observer } from 'mobx-react';
 import { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { Storage } from 'aesirx-dma-lib';
 import 'react-datepicker/dist/react-datepicker.css';
 import { withTranslation } from 'react-i18next';
 import SimpleReactValidator from 'simple-react-validator';
 import FormComponent from '../../../components/Form';
-// import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
-// import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/Spinner';
 import { FORM_FIELD_TYPE } from '../../../constants/FormFieldType';
 import { UPDATE_GENERAL_FIELD_KEY } from '../../../constants/ProfileModule';
 import '../index.scss';
 import SubmitButton from '../Layout/SubmitButton';
 import { witheProfileViewModel } from '../ProfileViewModel/ProfileViewModelContextProvider';
 import AvatarDAM from '../Layout/AvatarDAM';
-// import ComponentImage from 'components/ComponentImage';
-// import Button from 'components/Button';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import Spinner from 'components/Spinner';
-import FormImage from 'components/Form/FormImage';
-// import ComponentImage from 'components/ComponentImage';
+import { Col, Row } from 'react-bootstrap';
 
 const UpdateGeneral = observer(
   class UpdateGeneral extends Component {
@@ -39,6 +38,7 @@ const UpdateGeneral = observer(
       [UPDATE_GENERAL_FIELD_KEY.STATE]: '',
       [UPDATE_GENERAL_FIELD_KEY.COUNTRY]: '',
       [UPDATE_GENERAL_FIELD_KEY.TIMEZONE]: '',
+      [UPDATE_GENERAL_FIELD_KEY.ORGANIZATION]: '',
     };
 
     constructor(props) {
@@ -65,7 +65,7 @@ const UpdateGeneral = observer(
         this.setState({
           getUrlImage: data,
         });
-        this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM] = data[0].download_url;
+        this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM] = data[0].url;
       }
     }
 
@@ -100,11 +100,19 @@ const UpdateGeneral = observer(
         {
           fields: [
             {
-              label: 'txt_Username',
+              label: 'txt_organization',
+              key: UPDATE_GENERAL_FIELD_KEY.ORGANIZATION,
+              type: FORM_FIELD_TYPE.INPUT,
+              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ORGANIZATION],
+              className: 'col-lg-6',
+              readOnly: true,
+            },
+            {
+              label: 'txt_username',
               key: UPDATE_GENERAL_FIELD_KEY.USERNAME,
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
-              className: 'col-6',
+              className: 'col-lg-6',
               readOnly: true,
             },
             {
@@ -112,17 +120,17 @@ const UpdateGeneral = observer(
               key: UPDATE_GENERAL_FIELD_KEY.EMAIL,
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.EMAIL],
-              className: 'col-6',
+              className: 'col-lg-6',
               readOnly: true,
             },
 
             {
-              label: 'txt_Fullname',
+              label: 'txt_fullname',
               key: UPDATE_GENERAL_FIELD_KEY.FULLNAME,
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.FULLNAME],
-              className: 'col-6',
-              changed: (event) => {
+              className: 'col-lg-6',
+              handleChange: (event) => {
                 this.formPropsData[UPDATE_GENERAL_FIELD_KEY.FULLNAME] = event.target.value;
               },
             },
@@ -131,86 +139,35 @@ const UpdateGeneral = observer(
               key: UPDATE_GENERAL_FIELD_KEY.PHONE,
               type: FORM_FIELD_TYPE.INPUT,
               value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.PHONE],
-              className: 'col-6',
-              changed: (event) => {
+              className: 'col-lg-6',
+              handleChange: (event) => {
                 this.formPropsData[UPDATE_GENERAL_FIELD_KEY.PHONE] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_Address_1',
-              key: UPDATE_GENERAL_FIELD_KEY.ADDRESS,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ADDRESS],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ADDRESS] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_Address_2',
-              key: UPDATE_GENERAL_FIELD_KEY.ADDRESS_2,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ADDRESS_2],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ADDRESS_2] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_City',
-              key: UPDATE_GENERAL_FIELD_KEY.CITY,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.CITY],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.CITY] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_State',
-              key: UPDATE_GENERAL_FIELD_KEY.STATE,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.STATE],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.STATE] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_Country',
-              key: UPDATE_GENERAL_FIELD_KEY.COUNTRY,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.COUNTRY],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.COUNTRY] = event.target.value;
-              },
-            },
-            {
-              label: 'txt_Zipcode',
-              key: UPDATE_GENERAL_FIELD_KEY.ZIPCODE,
-              type: FORM_FIELD_TYPE.INPUT,
-              value: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ZIPCODE],
-              className: 'col-6',
-              changed: (event) => {
-                this.formPropsData[UPDATE_GENERAL_FIELD_KEY.ZIPCODE] = event.target.value;
               },
             },
           ],
         },
       ];
     };
+
+    avatarOnSelectHandler = (data) => {
+      if (data.split(/[#?]/)[0].split('.').pop().trim() !== 'mp4') {
+        this.setState({
+          getUrlImage: data,
+        });
+        this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM] = data;
+      }
+    };
+
     render() {
-      let { getUrlImage } = this.state;
       const { memberInfo } = this.updateGeneralViewModel;
       return (
         <>
           {!memberInfo ? (
             <Spinner />
           ) : (
-            <div className="bg-white p-24 rounded-3">
-              <div className="row">
-                <div className="col-9">
+            <>
+              <Row>
+                <Col lg={9}>
                   <FormComponent
                     formClassName={'row'}
                     generateFormSetting={() => this.generateFormSetting()}
@@ -218,50 +175,16 @@ const UpdateGeneral = observer(
                     viewModel={this.updateGeneralViewModel}
                     key={Math.random(40, 200)}
                   />
-                </div>
-                <AvatarDAM>
-                  <div
-                    className={`position-relative  cursor-pointer wr_upload_images ${
-                      getUrlImage.length > 0 ? 'active_img' : ''
-                    }`}
-                  >
-                    {!getUrlImage && (
-                      <FormImage
-                        field={{
-                          value: {
-                            download_url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
-                            name: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
-                          },
-                          changed: (data) => this.handleDamAssets(data),
-                        }}
-                        hiddenDelete={true}
-                      />
-                    )}
-                    {getUrlImage ? (
-                      <>
-                        <FormImage
-                          field={{
-                            value: {
-                              download_url: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.AVATAR_DAM],
-                              name: this.formPropsData[UPDATE_GENERAL_FIELD_KEY.USERNAME],
-                            },
-                            changed: (data) => this.handleDamAssets(data),
-                          }}
-                          hiddenDelete={true}
-                        />
-                        <div
-                          onClick={() => this.clearImage(memberInfo.avatar_dam)}
-                          className={'clear_image_button'}
-                        >
-                          <FontAwesomeIcon icon={faTimesCircle} className="text-white" />
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
-                </AvatarDAM>
-                <SubmitButton validateInfoBeforeSending={this.validateInfoBeforeSending} />
-              </div>
-            </div>
+                </Col>
+                <Col lg={3}>
+                  <AvatarDAM
+                    formPropsData={this.formPropsData}
+                    avatarOnSelectHandler={this.avatarOnSelectHandler}
+                  />
+                </Col>
+              </Row>
+              <SubmitButton validateInfoBeforeSending={this.validateInfoBeforeSending} />
+            </>
           )}
         </>
       );

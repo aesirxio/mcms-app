@@ -23,12 +23,12 @@
 @import '~bootstrap/scss/nav';
 
 @import '~bootstrap/scss/helpers';
-@import '~bootstrap/scss/utilities/api';
 
 @import './utils/atomic.scss';
 
 @import '../fonts/fontface.scss';
 
+@import '~bootstrap/scss/utilities/api';
 @import '../themes/index.scss';
 
 ::-webkit-scrollbar {
@@ -48,6 +48,66 @@
   box-shadow: inset 0 0 6px transparent;
 }
 
+.fw-semi {
+  font-weight: 600 !important;
+}
+
+form {
+  .form-control {
+    padding: 10px 16px;
+    line-height: 18px;
+    font-size: 14px;
+    background-color: var(--bs-white);
+    &::placeholder {
+      color: var(--input-placeholder-color);
+    }
+    &:focus {
+      box-shadow: none;
+      border: 1px solid $color-blue;
+      background-color: var(--bs-white);
+    }
+    &:-webkit-autofill:focus {
+      background-color: var(--bs-white) !important;
+      -webkit-box-shadow: 0 0 0px 1000px var(--bs-white) inset;
+    }
+
+    &:read-only {
+      background-color: $gray-300;
+    }
+  }
+}
+.form-check {
+  .form-check-input {
+    width: 16px;
+    height: 16px;
+    margin-left: -25px;
+    margin-top: 4px;
+    &[type='radio'] {
+      border-color: $body-color;
+      &:checked {
+        border-color: $success;
+        background-color: $white;
+      }
+      &:not(:checked) {
+        background-color: var(--content-bg);
+      }
+    }
+    &[type='checkbox'] {
+      border-color: $body-color;
+      width: 24px;
+      height: 24px;
+      margin-left: -32px;
+      margin-top: 0;
+      &:checked {
+        border-color: $success;
+        background-color: $success;
+      }
+      &:not(:checked) {
+        background-color: var(--content-bg);
+      }
+    }
+  }
+}
 .btn-light {
   @include button-variant(
     $white /*background*/,

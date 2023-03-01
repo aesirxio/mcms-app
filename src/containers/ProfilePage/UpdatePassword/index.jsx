@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+ */
+
 import React, { Component, createRef } from 'react';
 import { observer } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -99,102 +104,106 @@ const UpdatePassword = observer(
       if (!successResponse.state) this.resetValue(successResponse.content_id);
       this.validator.purgeFields();
       return (
-        <div>
-          <div className="bg-white p-24 rounded-3">
-            <form>
-              <div className="row">
-                <div className="col-4">
-                  <label className="form-label mb-8px fw-semibold" htmlFor="curr_password">
-                    <span className="text-blue-0">{t('txt_current_password')}</span>
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control mb-16"
-                    id="curr_password"
-                    onBlur={this.blurringFieldHandler}
-                    disabled={this.state.loading}
-                    onChange={(event) =>
-                      this.handleInputChange('curr_password', event.target.value)
-                    }
-                    name="curr_password"
-                    ref={this.currentPassword}
-                  />
-                  {this.validator.message(
-                    'password',
-                    this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.CURR_PASSWORD],
-                    'required|min:6|max:30',
-                    { className: 'text-danger' }
-                  )}
-                </div>
-                <div className="col-4">
-                  <label className="form-label mb-8px fw-semibold" htmlFor="new_password">
-                    <span className="text-blue-0">{t('txt_new_password')}</span>
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control mb-16"
-                    id="new_password"
-                    onBlur={this.blurringFieldHandler}
-                    disabled={this.state.loading}
-                    onChange={(event) => this.handleInputChange('new_password', event.target.value)}
-                    name="new_password"
-                    ref={this.newPassword}
-                  />
-                  {this.validator.message(
-                    'password',
-                    this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.NEW_PASSWORD],
-                    'required|min:6|max:30',
-                    { className: 'text-danger' }
-                  )}
-                </div>
-                <div className="col-4">
-                  <label className="form-label mb-8px fw-semibold" htmlFor="new_password">
-                    <span className="text-blue-0 text-nowrap">{t('txt_confirm_password')}</span>
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control mb-16"
-                    id="new_checked_password"
-                    onBlur={this.blurringFieldHandler}
-                    disabled={this.state.loading}
-                    onChange={(event) =>
-                      this.handleInputChange('new_checked_password', event.target.value)
-                    }
-                    name="new_checked_password"
-                    ref={this.newCheckedPassword}
-                    onKeyPress={this.onKeyPress}
-                  />
-                  {this.validator.message(
-                    'password',
-                    this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.NEW_CHECKED_PASSWORD],
-                    'required|min:6|max:30',
-                    { className: 'text-danger' }
-                  )}
+        <>
+          <form>
+            <div className="row">
+              <div className="col-lg-9">
+                <div className="row">
+                  <div className="col-lg-6 mb-3">
+                    <label className="form-label fw-semi" htmlFor="curr_password">
+                      {t('txt_current_password')}
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="curr_password"
+                      onBlur={this.blurringFieldHandler}
+                      disabled={this.state.loading}
+                      onChange={(event) =>
+                        this.handleInputChange('curr_password', event.target.value)
+                      }
+                      name="curr_password"
+                      ref={this.currentPassword}
+                    />
+                    {this.validator.message(
+                      'password',
+                      this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.CURR_PASSWORD],
+                      'required|min:6|max:30',
+                      { className: 'text-danger' }
+                    )}
+                  </div>
+                  <div className="col-lg-6 mb-3">
+                    <label className="form-label fw-semi" htmlFor="new_password">
+                      {t('txt_new_password')}
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="new_password"
+                      onBlur={this.blurringFieldHandler}
+                      disabled={this.state.loading}
+                      onChange={(event) =>
+                        this.handleInputChange('new_password', event.target.value)
+                      }
+                      name="new_password"
+                      ref={this.newPassword}
+                    />
+                    {this.validator.message(
+                      'password',
+                      this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.NEW_PASSWORD],
+                      'required|min:6|max:30',
+                      { className: 'text-danger mb-3' }
+                    )}
+                  </div>
+                  <div className="col-lg-6 mb-3">
+                    <label className="form-label fw-semi" htmlFor="new_password">
+                      {t('txt_confirm_password')}
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="new_checked_password"
+                      onBlur={this.blurringFieldHandler}
+                      disabled={this.state.loading}
+                      onChange={(event) =>
+                        this.handleInputChange('new_checked_password', event.target.value)
+                      }
+                      name="new_checked_password"
+                      ref={this.newCheckedPassword}
+                      onKeyPress={this.onKeyPress}
+                    />
+                    {this.validator.message(
+                      'password',
+                      this.formPropsData[UPDATE_PASSWORD_FIELD_KEY.NEW_CHECKED_PASSWORD],
+                      'required|min:6|max:30',
+                      { className: 'text-danger' }
+                    )}
+                  </div>
                 </div>
               </div>
-              {this.state.loading && successResponse.state ? (
-                <button className="btn btn-success" disabled={this.state.loading}>
-                  <div className="spinner-border text-secondary" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>
-                </button>
-              ) : (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    this.validateInfoBeforeSending();
-                  }}
-                  className="btn btn-success d-flex align-items-center ps-3 pe-3"
-                >
-                  <i>
-                    <FontAwesomeIcon icon={faCog} />
-                  </i>
-                  <span className="flex-1 ps-2">{t('txt_update')}</span>
-                </button>
-              )}
-            </form>
-          </div>
-        </div>
+            </div>
+            {this.state.loading && successResponse.state ? (
+              <button className="btn btn-success" disabled={this.state.loading}>
+                <div className="spinner-border text-secondary" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.validateInfoBeforeSending();
+                }}
+                className="btn btn-success d-flex align-items-center ps-3 pe-3"
+              >
+                <i>
+                  <FontAwesomeIcon icon={faCog} />
+                </i>
+                <span className="flex-1 ps-2">{t('txt_update')}</span>
+              </button>
+            )}
+          </form>
+        </>
       );
     }
   }

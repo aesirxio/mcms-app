@@ -43,11 +43,11 @@
   "txt_set_up": "SET UP",
   "txt_profile": "Profile",
   "txt_title_profilfe_setting": "Profile Setting",
-  "txt_title_set_information_name": "Set Information name",
+  "txt_title_set_information_name": "Set your name and other public-facing information",
   "txt_password": "Password",
   "txt_general_information": "General Information",
   "txt_Fullname": "Fullname",
-  "txt_your_avatar": "Avatar",
+  "txt_your_avatar": "Your Avatar",
   "txt_entries_found": "entries found",
   "txt_add_new_item": "Add new item",
   "txt_add_item": "Add item",
@@ -103,7 +103,12 @@
   "txt_warning": "Warning",
   "txt_successful": "Successful",
   "txt_error": "Error",
-  "txt_successfuly":"Successfully",
+  "txt_successfuly": "Successfully",
   "txt_unsuccess": "Unsuccessfully",
-  "txt_delete_success": "Delete Successfully"
+  "txt_delete_success": "Delete Successfully",
+  "txt_click_to_change_image": "Click to change image",
+  "txt_max_file_size": "Max filesize is: 2 MB (Allowed file extension: jpg, jpeg, gif, png)",
+  "txt_organization": "Organization",
+  "txt_fullname": "Full Name",
+  "txt_projectpage_password": "Password"
 }
