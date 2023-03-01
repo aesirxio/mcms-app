@@ -1,10 +1,15 @@
+// import { CMS_ITEMS_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
+// import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
 import React from 'react';
 import { Col, ListGroup, Row, Tab } from 'react-bootstrap';
 import { withTranslation } from 'react-i18next';
 import { renderingGroupFieldHandler } from 'utils/form';
 
 const FieldsComponent = (props) => {
-  const { t, dataForm, validator } = props;
+  const { t, viewModel, validator, formDataGenerate } = props;
+
+  const dataForm = formDataGenerate(viewModel, validator, t);
+
   return (
     <Tab.Container defaultActiveKey="0">
       <Row>

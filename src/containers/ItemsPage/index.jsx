@@ -31,7 +31,7 @@ const Dashboard = observer(() => {
             <Button
               variant={'success'}
               className="btn btn-success px-16 py-7px lh-lg text-capitalize fw-semibold rounded-1 text-capitalize fw-semibold rounded-1"
-              onClick={() => history.push('/items-create')}
+              onClick={() => history.push('/items/add')}
             >
               <Icon icon="akar-icons:plus" width={24} height={24} className="me-1" />
               {t('txt_add_new_item')}
