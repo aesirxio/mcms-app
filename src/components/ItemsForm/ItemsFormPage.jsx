@@ -7,6 +7,32 @@ import FieldsComponent from 'components/FieldsComponent';
 import GeneralInformation from 'components/GeneralInfomationComponent';
 import DMAComponent from 'components/DmaComponent';
 import { useThemeContext } from 'themes/ThemeContextProvider';
+import { FORM_FIELD_TYPE } from 'constants/FormFieldType';
+import { CMS_CATE_DETAIL_FIELD_KEY } from 'aesirx-dma-lib';
+
+const formDataGenerate = (viewModel, validator, trans) => {
+  return {
+    id: 1,
+    groups: [
+      {
+        name: trans('txt_seo'),
+        fields: [
+          {
+            label: trans('txt_meta'),
+            key: 'description',
+            type: FORM_FIELD_TYPE.TEXTAREA,
+            value: viewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION],
+            className: 'col-12',
+            changed: (data) => {
+              viewModel.formPropsData[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] = data.target.value;
+            },
+          },
+        ],
+      },
+    ],
+  };
+};
+
 const ItemsFormPage = ({
   dataForm,
   generateFormSetting,
@@ -14,7 +40,6 @@ const ItemsFormPage = ({
   title,
   validator,
   store,
-  // formPublish,
   isEdit,
   isDMA,
 }) => {
@@ -38,7 +63,11 @@ const ItemsFormPage = ({
                 eventKey="fields"
                 title={t('txt_menu_field')}
               >
-                <FieldsComponent validator={validator} dataForm={dataForm} />
+                <FieldsComponent
+                  validator={validator}
+                  viewModel={store.categoriesDetailViewModel}
+                  formDataGenerate={formDataGenerate}
+                />
               </Tab>
               {generateFormSetting && (
                 <Tab
@@ -67,9 +96,6 @@ const ItemsFormPage = ({
             <GeneralInformation validator={validator} generateFormSetting={generateFormSetting} />
           )}
         </Col>
-        {/* <Col lg={3}>
-          <PublishOptionComponent validator={validator} formPublish={formPublish} />
-        </Col> */}
       </Row>
     </>
   );

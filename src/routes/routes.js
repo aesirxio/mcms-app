@@ -29,19 +29,19 @@ const authRoutes = [
 
 const mainRoutes = [
   {
-    path: '/',
+    path: ['/', '/items', '/items/all'],
     exact: true,
     main: () => <ItemsPage />,
   },
   {
-    path: '/items-edit/:id',
+    path: '/items/edit/:id',
     exact: true,
     main: ({ match }) => <EditItems match={match} />,
   },
   {
-    path: '/items-create',
+    path: '/items/add',
     exact: true,
-    main: ({ match }) => <EditItems match={match} />,
+    main: () => <EditItems />,
   },
   {
     path: '/categories',
