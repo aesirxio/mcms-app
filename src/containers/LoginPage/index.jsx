@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
                   alt="aesirx"
                   src="/assets/images/logo/welcome-logo.png"
                 />
-                {t('txt_pim')}.
+                {t('txt_login_text_1')}.
                 <br /> {t('txt_login_text_2')}
               </h1>
               <form className="login-form">
