@@ -1,14 +1,20 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+ */
+
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import SimpleReactValidator from 'simple-react-validator';
+
 import './index.scss';
 
 import { login } from '../../auth';
-import InputPassword from '../../components/inputPassword';
-import Checkbox from 'components/Checkbox';
+// import InputPassword from '../../components/inputPassword';
+// import ComponentImage from 'components/ComponentImage';
 import { SSOButton } from 'aesirx-sso';
-import { Storage, AesirxAuthenticationApiService } from 'aesirx-dma-lib';
-import { withThemeContext } from 'themes/ThemeContextProvider';
+import { AesirxAuthenticationApiService, Storage } from 'aesirx-dma-lib';
+// import Checkbox from 'components/Checkbox';
 import { env } from 'env';
 
 class LoginPage extends React.Component {
@@ -54,12 +60,7 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { t, theme } = this.props;
-    const stylesImage = {
-      verticalAlign: 'inherit',
-      filter: theme?.theme !== 'dark' ? 'unset' : 'brightness(0) invert(1)',
-    };
-
+    const { t } = this.props;
     const onGetData = async (response) => {
       const authService = new AesirxAuthenticationApiService();
       await authService.setTokenUser(response, false);
@@ -67,41 +68,41 @@ class LoginPage extends React.Component {
       window.location.reload();
     };
     return (
-      <div className="container h-100vh">
-        <div className="h-100 d-flex justify-content-center align-items-center">
-          <div className="d-block ">
-            <h1 className="fs-2 mb-24 lh-sm fw-semibold text-center">
-              {t('txt_welcome_to')}
-              <img
-                className="px-1"
-                style={stylesImage}
-                alt="aesirx"
-                src="/assets/images/logo/welcome-logo.png"
-              />
-              {t('txt_login_text_1')} <br /> {t('txt_login_text_2')}
-            </h1>
-            <div className="mw-480px mx-auto">
-              <form>
+      <div className="vh-100 bg-blue-9 login-page position-relative">
+        <div className="bg-login position-absolute bottom-0">
+          <img alt="bg-login" src="/assets/images/bg.png" />
+        </div>
+        <div className="row justify-content-center align-items-center h-100 ">
+          <div className="col-lg-7 col-xxl-4 ">
+            <div className="d-block p-2 p-lg-5">
+              <h1 className="fs-2 text-blue-0 fw-semibold text-center mb-24 lh-base">
+                {t('txt_login_text_1')}
+                <img
+                  className="px-1"
+                  style={{ verticalAlign: 'inherit' }}
+                  alt="aesirx"
+                  src="/assets/images/logo/welcome-logo.png"
+                />
+                {t('txt_pim')}.
+                <br /> {t('txt_login_text_2')}
+              </h1>
+              <form className="login-form">
                 <SSOButton
-                  className="btn btn-blue-3 fw-bold fs-md w-100 lh-sm mb-3"
+                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-24 px-6 btn-small"
                   text={t('txt_sign_in_with_sso')}
                   onGetData={onGetData}
                 />
-                <div className="position-relative text-center mb-3">
-                  <p className="line position-absolute top-50 mb-0"></p>
-                  <span
-                    style={{ backgroundColor: 'var(--bs-body-bg)' }}
-                    className="fs-6 fw-medium text-uppercase px-3 py-2 text-gray-600 position-relative z-1"
-                  >
-                    {t('txt_or')}
-                  </span>
+                {/* <div className="d-flex align-items-center flex-nowrap mb-24">
+                  <div className="border-bottom w-50"></div>
+                  <span className="px-2 text-uppercase fw-medium text-gray">{t('txt_or')}</span>
+                  <div className="border-bottom w-50"></div>
                 </div>
-                <label className="form-label mb-10 fw-semibold text-black">
-                  {t('txt_email')} <span className="text-danger">*</span>
+                <label className="form-label fw-semibold mb-1 text-black">
+                  {t('txt_Email')} <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
-                  className="form-control mb-4"
+                  className="form-control"
                   name="username"
                   value={this.state.username}
                   onChange={this.handleInputChange}
@@ -113,12 +114,12 @@ class LoginPage extends React.Component {
                 {this.validator.message('Email or username', this.state.username, 'required', {
                   className: 'text-danger',
                 })}
-                <label className="form-label mb-10 fw-semibold text-black" htmlFor="password">
-                  {t('txt_password')} <span className="text-danger">*</span>
+                <label className="form-label fw-semibold mt-24 mb-1 text-black" htmlFor="password">
+                  {t('txt_projectpage_password')} <span className="text-danger">*</span>
                 </label>
                 <InputPassword
                   type="password"
-                  className="form-control mb-4"
+                  className="form-control"
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChange}
@@ -130,33 +131,33 @@ class LoginPage extends React.Component {
                 {this.validator.message('password', this.state.password, 'required', {
                   className: 'text-danger',
                 })}
-                <div className="d-flex justify-content-between align-items-center">
-                  <Checkbox text={t('txt_remember')} />
+                <div className="d-flex justify-content-between pt-24 text-black">
+                  <Checkbox text={t('txt_remember_me')} />
                   <a
-                    href="https://mcms.aesirx.io/auth/forgotpassword"
+                    href="https://pim.aesirx.io/auth/forgotpassword"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="d-flex fw-semibold fs-6 text-blue-3"
+                    className="d-flex fw-semibold fs-6"
                   >
-                    {t('txt_forgot')}
+                    {t('tx_forgot_password')}
                   </a>
                 </div>
                 <button
                   type="button"
-                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24 h-54px text-uppercase align-items-center`}
+                  className={`btn w-100 fw-bold btn-success position-relative d-flex align-item-center justify-content-center wr_btn_login mt-24 text-uppercase py-14`}
                   onClick={this.handleSubmit}
                 >
-                  <span>{t('txt_sign_in')}</span>
+                  {t('txt_sign_in')}
                   <div className="ps-2 btn_loading">
                     <div
                       className="spinner-border"
                       style={{ width: '1.7rem', height: '1.7rem' }}
                       role="status"
                     >
-                      <span className="visually-hidden"> {t('txt_load')}</span>
+                      <span className="visually-hidden">Loading...</span>
                     </div>
                   </div>
-                </button>
+                </button> */}
               </form>
             </div>
           </div>
@@ -166,4 +167,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withThemeContext(withTranslation('common')(LoginPage));
+export default withTranslation('common')(LoginPage);
