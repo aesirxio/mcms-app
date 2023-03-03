@@ -4,7 +4,8 @@
   "txt_sign_in": "Log ind",
   "txt_sign_in_with_sso": "Log ind med AesirX SSO",
   "txt_sign_up": "Opret konto",
-  "txt_login_text_1": "MetaVese MCMS.",
+  "txt_login_text_1": "Velkommen til",
+  "txt_metavesecms": "Metavese CMS",
   "txt_login_text_2": "Log ind for at komme i gang",
   "txt_do_not_have_an_account": "Har du ikke en konto? Opret en gratis konto",
   "txt_username": "Brugernavn",
@@ -103,7 +104,7 @@
   "txt_warning": "Advarsel",
   "txt_successful": "Vellykket",
   "txt_error": "Fejl",
-  "txt_successfuly":"Succesfuldt",
+  "txt_successfuly": "Succesfuldt",
   "txt_unsuccess": "Forgæves",
   "txt_delete_success": "Slet med succes"
 }

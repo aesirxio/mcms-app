@@ -73,7 +73,7 @@ class LoginPage extends React.Component {
           <img alt="bg-login" src="/assets/images/bg.png" />
         </div>
         <div className="row justify-content-center align-items-center h-100 ">
-          <div className="col-lg-7 col-xxl-4 ">
+          <div className="col-lg-7 col-xxl-5">
             <div className="d-block p-2 p-lg-5">
               <h1 className="fs-2 text-blue-0 fw-semibold text-center mb-24 lh-base">
                 {t('txt_login_text_1')}
@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
                   alt="aesirx"
                   src="/assets/images/logo/welcome-logo.png"
                 />
-                {t('txt_login_text_1')}.
+                {t('txt_metavesecms')}.
                 <br /> {t('txt_login_text_2')}
               </h1>
               <form className="login-form">
