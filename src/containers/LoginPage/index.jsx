@@ -68,7 +68,7 @@ class LoginPage extends React.Component {
       window.location.reload();
     };
     return (
-      <div className="vh-100 bg-blue-9 login-page position-relative">
+      <div style={{ background: '#EDEFF0' }} className="vh-100 login-page position-relative">
         <div className="bg-login position-absolute bottom-0">
           <img alt="bg-login" src="/assets/images/bg.png" />
         </div>
