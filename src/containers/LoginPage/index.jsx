@@ -87,11 +87,13 @@ class LoginPage extends React.Component {
                 <br /> {t('txt_login_text_2')}
               </h1>
               <form className="login-form">
-                <SSOButton
-                  className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-24 px-6 btn-small"
-                  text={t('txt_sign_in_with_sso')}
-                  onGetData={onGetData}
-                />
+                <div className='mx-auto' style={{ maxWidth: '480px' }}>
+                  <SSOButton
+                    className="btn w-100 fw-bold btn-blue-3 position-relative d-flex align-item-center justify-content-center mb-24 px-6 btn-small"
+                    text={t('txt_sign_in_with_sso')}
+                    onGetData={onGetData}
+                  />
+                </div>
                 {/* <div className="d-flex align-items-center flex-nowrap mb-24">
                   <div className="border-bottom w-50"></div>
                   <span className="px-2 text-uppercase fw-medium text-gray">{t('txt_or')}</span>
