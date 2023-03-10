@@ -2,8 +2,6 @@ import Table from 'components/Table';
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useItemsViewModel } from '../ItemsViewModels/ItemsViewModelContextProvider';
-import PAGE_STATUS from 'constants/PageStatus';
-import Spinner from 'components/Spinner';
 import history from 'routes/history';
 import { useTranslation } from 'react-i18next';
 // import TabBarComponent from 'components/TabBarComponent';
@@ -22,7 +20,7 @@ const List = observer(() => {
   // };
 
   const handleEdit = (id) => {
-    history.push(`/items-edit/${id}`);
+    history.push(`/items/edit/${id}`);
   };
   const { t } = useTranslation('common');
   const columnsTable = React.useMemo(
@@ -158,22 +156,18 @@ const List = observer(() => {
   return (
     <>
       {/* <TabBarComponent viewModel={itemsListViewModel} /> */}
-      {itemsListViewModel.formStatus === PAGE_STATUS.LOADING ? (
-        <Spinner />
-      ) : (
-        <div className="fs-14">
-          <Table
-            columns={columnsTable}
-            data={tableData}
-            canSort={true}
-            store={itemsListViewModel}
-            listViewModel={itemsListViewModel}
-            pagination={itemsListViewModel?.pagination}
-            selection={false}
-            dragDrop={true}
-          />
-        </div>
-      )}
+      <div className="fs-14">
+        <Table
+          columns={columnsTable}
+          data={tableData}
+          canSort={true}
+          store={itemsListViewModel}
+          listViewModel={itemsListViewModel}
+          pagination={itemsListViewModel?.pagination}
+          selection={false}
+          dragDrop={true}
+        />
+      </div>
     </>
   );
 });

@@ -7,6 +7,7 @@ import { notify } from 'components/Toast';
 import { Button, Dropdown, Modal } from 'react-bootstrap';
 import { faChevronDown, faColumns } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
+import PAGE_STATUS from 'constants/PageStatus';
 // import { Icon } from '@iconify/react';
 
 // const optionFilterColumns = [
@@ -14,7 +15,7 @@ import './index.scss';
 //   { value: 'unPublished', label: 'UnPublished' },
 // ];
 
-const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
+const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel, setFormStatus }) => {
   const { t } = useTranslation('common');
   const optionAction = [{ value: 'delete', label: t('delete') }];
   const [action, setAction] = useState('');
@@ -40,6 +41,7 @@ const ListThumb = ({ selectedMulptiRows, allColumns, listViewModel }) => {
   };
 
   const handleSearch = async () => {
+    setFormStatus(PAGE_STATUS.LOADING);
     await listViewModel.getListByFilter((listViewModel.filters['filter[search]'] = valueSearch));
   };
 

@@ -104,34 +104,38 @@ export default class ItemsStore {
     }
   }
 
-  async createItem(data, redirect, callbackOnSuccess, callbackOnError) {
+  async createItem(data, callbackOnSuccess, callbackOnError) {
     try {
-      const createItemsAPIService = new AesirxCmsItemsApiService();
-      const response = await createItemsAPIService.createItem(data);
-      if (response) {
+      let resultOnSave;
+      const aesirxCmsItemsApiService = new AesirxCmsItemsApiService();
+      resultOnSave = await aesirxCmsItemsApiService.createItem(data);
+
+      if (resultOnSave?.result) {
         runInAction(() => {
-          callbackOnSuccess(response, redirect);
+          callbackOnSuccess(resultOnSave, 'Created successfully');
         });
       } else {
         runInAction(() => {
-          callbackOnError(response);
+          callbackOnError(resultOnSave);
         });
       }
+      return resultOnSave?.result;
     } catch (error) {
       runInAction(() => {
-        callbackOnError(error);
+        callbackOnError(error?.response?.data);
       });
+      return 0;
     }
   }
 
-  async updateItem(data, redirect, callbackOnSuccess, callbackOnError) {
+  async updateItem(data, callbackOnSuccess, callbackOnError) {
     try {
-      const updateItemsAPIService = new AesirxCmsItemsApiService();
-      const response = await updateItemsAPIService.updateItem(data);
+      const aesirxCmsItemsApiService = new AesirxCmsItemsApiService();
+      const response = await aesirxCmsItemsApiService.updateItem(data);
 
       if (response) {
         runInAction(() => {
-          callbackOnSuccess(response, redirect);
+          callbackOnSuccess(response, 'Updated successfully');
         });
       } else {
         runInAction(() => {

@@ -40,6 +40,14 @@ textarea {
   width: 35%;
 }
 
+.w-45 {
+  width: 45px;
+}
+
+.w-196 {
+  width: 196px;
+}
+
 .w-350 {
   width: 350px;
 }
@@ -187,10 +195,6 @@ textarea {
 
 .z-index-100 {
   z-index: 100;
-}
-
-.btn-light {
-  border-color: $secondary;
 }
 
 .pe-65 {
@@ -447,7 +451,7 @@ textarea {
   }
 }
 .item_menu {
-  .text{
+  .text {
     color: #fff;
   }
 }

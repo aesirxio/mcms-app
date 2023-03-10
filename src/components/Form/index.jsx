@@ -1,7 +1,12 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+ */
+
 import React, { Component } from 'react';
 
 import SimpleReactValidator from 'simple-react-validator';
-// import { Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { renderingGroupFieldHandler } from '../../utils/form';
 
@@ -24,7 +29,7 @@ class FormComponent extends Component {
       this.populatingFormDataHandler(props.populatedFormData);
     }
 
-    // this.viewModel.setForm(this);
+    this.viewModel.setForm(this);
   }
 
   isFormValid = () => {
@@ -42,8 +47,7 @@ class FormComponent extends Component {
 
   renderingFormHandler = (formSetting) => {
     return (
-      <>
-        {/* <Form key={Math.random(40, 200)} className={this.props.formClassName}> */}
+      <Form key={Math.random(40, 200)} className={this.props.formClassName}>
         {Object.keys(formSetting)
           .map((groupIndex) => {
             return [...Array(formSetting[groupIndex])].map((group) => {
@@ -53,8 +57,7 @@ class FormComponent extends Component {
           .reduce((arr, el) => {
             return arr.concat(el);
           }, [])}
-        {/* </Form> */}
-      </>
+      </Form>
     );
   };
 

@@ -29,7 +29,7 @@ const renderingGroupFieldHandler = (group, validator) => {
           switch (field.type) {
             case FORM_FIELD_TYPE.INPUT:
               return (
-                <Form.Group key={field.key} className={`mb-24 ${className}`}>
+                <Form.Group key={field.key} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -38,7 +38,7 @@ const renderingGroupFieldHandler = (group, validator) => {
                   <Input field={field} />
                   {field.validation &&
                     validator.message(field.label, field.value, field.validation, {
-                      className: 'text-danger',
+                      className: 'text-danger mt-2',
                     })}
                 </Form.Group>
               );
@@ -80,7 +80,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.TEXTAREA:
               return (
-                <Form.Group key={field.key} className={`mb-24 ${className}`}>
+                <Form.Group key={field.key} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -115,7 +115,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.DATE:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <div
                     className={`${
                       field?.isInline && 'd-flex justify-content-between align-items-center'
@@ -132,7 +132,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               );
             case FORM_FIELD_TYPE.IMAGE:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -145,7 +145,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.SELECTION:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   {field.label && (
                     <Label
                       labelClassName={field.labelClassName}
@@ -164,7 +164,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               );
             case FORM_FIELD_TYPE.SELECTIONPERSONA:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -181,7 +181,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               );
             case FORM_FIELD_TYPE.DROPDOWN:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <div
                     className={`${
                       field?.isInline && 'd-flex justify-content-between align-items-center'
@@ -204,7 +204,7 @@ const renderingGroupFieldHandler = (group, validator) => {
               );
             case FORM_FIELD_TYPE.RADIO:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -216,7 +216,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.INFORMATION:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -228,7 +228,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.BIRTHDAY:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label labelClassName={field.labelClassName} text={field.label} />
                   <div className="form-control w-full">
                     <CustomizedDatePicker
@@ -241,7 +241,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.PRICE:
               return (
-                <Form.Group key={field.key} className={`mb-24 ${className}`}>
+                <Form.Group key={field.key} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -259,7 +259,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.AGE:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -275,7 +275,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.LOCATION:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -291,7 +291,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.CHECKBOX:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
@@ -307,7 +307,7 @@ const renderingGroupFieldHandler = (group, validator) => {
 
             case FORM_FIELD_TYPE.EDITOR:
               return (
-                <Form.Group key={Math.random(40, 200)} className={`mb-24 ${className}`}>
+                <Form.Group key={Math.random(40, 200)} className={`mt-24 ${className}`}>
                   <Label
                     labelClassName={field.labelClassName}
                     text={field.label}
