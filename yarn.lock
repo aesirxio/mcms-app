@@ -3620,26 +3620,24 @@ aesirx-ckeditor@^1.0.0:
   resolved "https://registry.yarnpkg.com/aesirx-ckeditor/-/aesirx-ckeditor-1.0.0.tgz#25bb08c5a20281e191df258596d34d1d1ba6b09a"
   integrity sha512-CTNTVe6OGdAikmZTgy60XIgIYI3nAhlAIwTPGFlwhcM0tHzaHneG249fQBldR2UvaZR/p/SCY9GOQd6OyFEywQ==
 
-aesirx-dam-app@^1.2.6, aesirx-dam-app@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/aesirx-dam-app/-/aesirx-dam-app-1.2.8.tgz#4dd228295ef48e71acc9eb2cab96d7263d4b0c8a"
-  integrity sha512-y+0PhO5GVC9oDu/gyTFHnwJbLxuLU77IGGf2oLVljj5RDZK7wo8dSBvlROU95teu3oh4vpRdLPGX2qeMk+59vQ==
+aesirx-dam-app@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/aesirx-dam-app/-/aesirx-dam-app-1.2.9.tgz#4cf6ff166eb7d95a02a673f71f9999fb555eafb6"
+  integrity sha512-p0T3fqFoerymXpvclU9dibc58ODujvnNITavqHNd8TeOmxIYvkje11bvXvi9gSjX/wTpLFrMLYsPL91niUQE6A==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^6.2.0"
     "@fortawesome/free-brands-svg-icons" "^6.2.0"
     "@fortawesome/free-regular-svg-icons" "^6.2.0"
     "@fortawesome/free-solid-svg-icons" "^6.2.0"
     "@fortawesome/react-fontawesome" "^0.2.0"
-    aesirx-dma-lib "^1.7.11"
-    aesirx-sso "^1.0.3"
+    aesirx-dma-lib "^1.8.1"
+    aesirx-sso "^1.0.6"
     babel-plugin-file-loader "^2.0.0"
     bootstrap "^5.2.2"
     date-fns "^2.16.1"
     date-fns-tz "^1.1.6"
     file-saver "^2.0.5"
     html-react-parser "^1.2.7"
-    i18next "^19.8.4"
-    i18next-browser-languagedetector "^6.0.1"
     lodash "^4.17.21"
     mobx "^6.0.4"
     mobx-react "^7.0.5"
@@ -3652,7 +3650,6 @@ aesirx-dam-app@^1.2.6, aesirx-dam-app@^1.2.8:
     react-dnd-html5-backend "^15.1.2"
     react-dom "^17.0.1"
     react-dropzone "^11.2.4"
-    react-i18next "^11.7.3"
     react-lazy-load-image-component "^1.5.1"
     react-number-format "^4.6.4"
     react-router-dom "^5.2.0"
@@ -3665,10 +3662,10 @@ aesirx-dam-app@^1.2.6, aesirx-dam-app@^1.2.8:
     swiper "^6.3.5"
     web-vitals "^2.1.4"
 
-aesirx-dma-app@^1.6.2:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/aesirx-dma-app/-/aesirx-dma-app-1.6.6.tgz#e67949681307df12909fce9cd343f82e52af627e"
-  integrity sha512-hwbbOyQ4bKV3g+5b+tQpVMUHzFX1JcyvblTcvX1ornt5W65Zf9muNbYI7LLcbew+cNQU9Q2za58bscK4AfYXVA==
+aesirx-dma-app@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/aesirx-dma-app/-/aesirx-dma-app-1.6.7.tgz#17710d0909962e2a1fba0bbe2ffeb55638da75fd"
+  integrity sha512-qhNAJRCYG7nmekaFSL/YbG8xcWtyTmIVtyx0UOYLjROQn7FFJ4VAC32EsUZ7pVCmt6gokx84lrniY7beGTthaA==
   dependencies:
     "@ckeditor/ckeditor5-build-classic" "^27.1.0"
     "@ckeditor/ckeditor5-react" "^3.0.2"
@@ -3677,9 +3674,9 @@ aesirx-dma-app@^1.6.2:
     "@fortawesome/free-regular-svg-icons" "^5.15.1"
     "@fortawesome/free-solid-svg-icons" "^5.15.1"
     "@fortawesome/react-fontawesome" "^0.1.12"
-    aesirx-dam-app "^1.2.6"
-    aesirx-dma-lib "^1.7.11"
-    aesirx-sso "^1.0.3"
+    aesirx-dam-app "^1.2.9"
+    aesirx-dma-lib "^1.8.1"
+    aesirx-sso "^1.0.7"
     bootstrap "^5.2.2"
     date-fns "^2.29.3"
     date-fns-tz "^1.3.8"
@@ -3691,10 +3688,11 @@ aesirx-dma-app@^1.6.2:
     lodash "^4.17.21"
     mobx "^6.0.4"
     mobx-react "^7.0.5"
+    openai "^3.1.0"
     react "^17.0.1"
     react-big-calendar "^0.33.5"
     react-bootstrap "^2.5.0"
-    react-datepicker "^3.3.0"
+    react-datepicker "^4.8.0"
     react-dom "^17.0.1"
     react-dropzone "^11.2.4"
     react-google-charts "^3.0.15"
@@ -3714,10 +3712,10 @@ aesirx-dma-app@^1.6.2:
     swiper "^6.3.5"
     web-vitals "^2.1.4"
 
-aesirx-dma-lib@^1.7.11:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/aesirx-dma-lib/-/aesirx-dma-lib-1.8.0.tgz#cbd6d39a276c4e602e43d9bf934f6aeee266551a"
-  integrity sha512-zbKNQqelbSygqfqaMllL2JezLk74CPlx4f1iEOJfIqpSrduk1PV7IWdCkilNfbwDjp4aFjo9yjxxU8R2zn8Fyw==
+aesirx-dma-lib@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/aesirx-dma-lib/-/aesirx-dma-lib-1.8.1.tgz#472636c29053e74514eb51d100192857daacb687"
+  integrity sha512-btdgYDWgzSckx6DrFOBmn/zEv+5hiBuiB0qznHsaxvXqFRN2LO0hHF6u+4iJ3N/AWxPjjZAS0EZP/lmb3fMfGw==
   dependencies:
     axios "^1.3.4"
     axios-auth-refresh "^3.0.0"
@@ -3725,12 +3723,11 @@ aesirx-dma-lib@^1.7.11:
     qs "^6.10.1"
     query-string "7.1.3"
 
-aesirx-sso@^1.0.3:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.5.tgz#7206c730dcc63bf619956694b63fe40d0a360ca9"
-  integrity sha512-40rNZdGFq7vgyUvzvHq1S+GY9SAya4vR9W5iW9xYKk/k7Sefp4xf9oik9ud9+LOK5MC2Oq+f788tjFq870H/3g==
+aesirx-sso@^1.0.6, aesirx-sso@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/aesirx-sso/-/aesirx-sso-1.0.7.tgz#2db06c7d8a19e27adfd7bedf82a9533852b9b97d"
+  integrity sha512-3Hqn4gFM2XI4s4QQ/As0+C3F6Ba8tbWKPXEHSZewONQOIktcVmEBq6EcPbyfDj2COK3DUAjsxqjh7SEc6aYshw==
   dependencies:
-    axios "^1.3.4"
     cross-env "^7.0.3"
     dotenv "^16.0.3"
     react-spinners "^0.13.6"
@@ -4083,6 +4080,13 @@ axios@^0.21.0:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
+
+axios@^0.26.0:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 axios@^1.3.4:
   version "1.3.4"
@@ -7002,7 +7006,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0, follow-redirects@^1.14.0, follow-redirects@^1.15.0:
+follow-redirects@^1.0.0, follow-redirects@^1.14.0, follow-redirects@^1.14.8, follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
@@ -9755,6 +9759,14 @@ open@^8.0.9, open@^8.4.0:
     define-lazy-prop "^2.0.0"
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
+
+openai@^3.1.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/openai/-/openai-3.2.1.tgz#1fa35bdf979cbde8453b43f2dd3a7d401ee40866"
+  integrity sha512-762C9BNlJPbjjlWZi4WYK9iM2tAVAv0uUp1UmI34vb0CN5T2mjB/qM6RYBmNKMh/dN9fC+bxqPwWJZUTWW052A==
+  dependencies:
+    axios "^0.26.0"
+    form-data "^4.0.0"
 
 optionator@^0.8.1:
   version "0.8.3"
